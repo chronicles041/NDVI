@@ -18,6 +18,11 @@ export const Routes = [
         name:"Fields"
     },
     {
+        path:"/activities",
+        icon:IconTypes.Dashboard,
+        name:"Activities"
+    },
+    {
         path:"/notifications",
         icon:IconTypes.Dashboard,
         name:"Notifications"

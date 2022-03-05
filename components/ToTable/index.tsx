@@ -1,4 +1,3 @@
-
 import * as React from "react";
 // import styled from 'styled-components';
 import { usePagination, useTable } from "react-table";
@@ -7,7 +6,7 @@ import makeData from "./makeData";
 
 type Props = {
   columns: any;
-  data: [];
+  data: any;
   fetchData: any;
   loading: boolean;
   pageCount: any;
@@ -55,17 +54,17 @@ export const ToTable = ({
   // Render the UI for your table
   return (
     <>
-      <div className="flex flex-col w-full p-4 mx-auto">
+      <div className="flex flex-col w-full p-4   mx-auto">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <div className="shadow overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg">
               <table
                 {...getTableProps()}
-                className="min-w-full divide-y divide-gray-200"
+                className="min-w-full divide-y  divide-gray-200"
               >
                 <thead className="bg-gray-50">
-                  {headerGroups.map((headerGroup,i) => (
-                    <tr  {...headerGroup.getHeaderGroupProps()} key={i}>
+                  {headerGroups.map((headerGroup, i) => (
+                    <tr {...headerGroup.getHeaderGroupProps()} key={i}>
                       {headerGroup.headers.map((column) => (
                         <th
                           className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -79,11 +78,11 @@ export const ToTable = ({
                   ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                  {page.map((row:any, i:number) => {
+                  {page.map((row: any, i: number) => {
                     prepareRow(row);
                     return (
                       <tr {...row.getRowProps()} key={i}>
-                        {row.cells.map((cell:any) => {
+                        {row.cells.map((cell: any) => {
                           return (
                             <td
                               {...cell.getCellProps()}
@@ -111,59 +110,66 @@ export const ToTable = ({
                     )}
                   </tr>
                 </tbody>
+                
               </table>
               <div className="pagination">
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                  {"<<"}
-                </button>{" "}
-                <button
-                  onClick={() => previousPage()}
-                  disabled={!canPreviousPage}
-                >
-                  {"<"}
-                </button>{" "}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                  {">"}
-                </button>{" "}
-                <button
-                  onClick={() => gotoPage(pageCount - 1)}
-                  disabled={!canNextPage}
-                >
-                  {">>"}
-                </button>{" "}
-                <span>
-                  Page{" "}
-                  <strong>
-                    {pageIndex + 1} of {pageOptions.length}
-                  </strong>{" "}
-                </span>
-                <span>
-                  | Go to page:{" "}
-                  <input
-                    type="number"
-                    defaultValue={pageIndex + 1}
-                    onChange={(e) => {
-                      const page = e.target.value
-                        ? Number(e.target.value) - 1
-                        : 0;
-                      gotoPage(page);
-                    }}
-                    style={{ width: "100px" }}
-                  />
-                </span>{" "}
-                <select
-                  value={pageSize}
-                  onChange={(e) => {
-                    setPageSize(Number(e.target.value));
-                  }}
-                >
-                  {[5,10, 20, 30, 40, 50].map((pageSize) => (
-                    <option key={pageSize} value={pageSize}>
-                      Show {pageSize}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                      <button
+                        onClick={() => gotoPage(0)}
+                        disabled={!canPreviousPage}
+                      >
+                        {"<<"}
+                      </button>{" "}
+                      <button
+                        onClick={() => previousPage()}
+                        disabled={!canPreviousPage}
+                      >
+                        {"<"}
+                      </button>{" "}
+                      <button
+                        onClick={() => nextPage()}
+                        disabled={!canNextPage}
+                      >
+                        {">"}
+                      </button>{" "}
+                      <button
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}
+                      >
+                        {">>"}
+                      </button>{" "}
+                      <span>
+                        Page{" "}
+                        <strong>
+                          {pageIndex + 1} of {pageOptions.length}
+                        </strong>{" "}
+                      </span>
+                      <span>
+                        | Go to page:{" "}
+                        <input
+                          type="number"
+                          defaultValue={pageIndex + 1}
+                          onChange={(e) => {
+                            const page = e.target.value
+                              ? Number(e.target.value) - 1
+                              : 0;
+                            gotoPage(page);
+                          }}
+                          style={{ width: "100px" }}
+                        />
+                      </span>{" "}
+                      <select
+                        value={pageSize}
+                        onChange={(e) => {
+                          setPageSize(Number(e.target.value));
+                        }}
+                      >
+                        {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+                          <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
             </div>
           </div>
         </div>
