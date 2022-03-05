@@ -10,6 +10,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.4.0",
     "apexcharts": "^3.33.2",
+    "axios": "^0.26.0",
     "i18next": "^21.6.11",
     "install": "^0.13.0",
     "next": "latest",
