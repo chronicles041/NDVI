@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import React from "react";
 import { ToTable } from "../../components/ToTable";
 
@@ -37,12 +38,12 @@ class FieldsTable extends React.Component {
     let newArray: any = [];
     let params = {
       search: " ",
-      //   limit: limit,
+      user__id: 1,
       //   offset: offset,
     };
 
     axios
-      .get("https://farminsure.teamonetech.com/api/v1/farm-details/", {
+      .get("https://app.teamonetech.com/api/v1/farm_info_view/", {
         params,
       })
       .then((res) => {
@@ -91,17 +92,23 @@ class FieldsTable extends React.Component {
       },
 
       {
-        Header: "Full Name",
-        accessor: "fullName",
+        Header: "Farm Name",
+        accessor: "farm_name",
       },
       {
         Header: "Plantation Date",
-        accessor: "plantationDate",
+        accessor: "created_date",
+        Cell: ({ value }) => moment(value).format("DD MMMM YYYY"),
+      },
+      {
+        Header: "Area",
+        accessor: "farm_area",
+        Cell: ({value})=> `${value} Hectare`,
       },
       {
         Header: "Province",
         accessor: "province",
-        Cell: "province",
+        Cell: "Lumbini-5",
       },
       {
         Header: "District",
@@ -111,12 +118,12 @@ class FieldsTable extends React.Component {
       {
         Header: "Community",
         accessor: "community",
-        Cell : "community"
+        Cell: "community",
       },
       {
         Header: "Crop",
         accessor: "cropName",
-        cell: "Maize",
+        Cell: "Maize",
       },
       {
         Header: "Phase",
@@ -132,24 +139,21 @@ class FieldsTable extends React.Component {
         Header: "Last Recorded NDVI",
         accessor: "lndvi",
         Cell: "0.08",
-
       },
       {
         Header: "Expected NDWI",
         accessor: "endwi",
         Cell: "0.08",
-
       },
       {
         Header: "Last Recorded  NDWI",
         accessor: "lndwi",
         Cell: "0.08",
-
       },
       {
         Header: "Detail",
         // accessor: "lndwi",
-        Cell:"Show"
+        Cell: "Show",
       },
     ];
 
