@@ -1,15 +1,9 @@
-import { GetStaticProps } from "next";
-import Link from "next/link";
-
 import { User } from "../../interfaces";
 import { sampleUserData } from "../../utils/sample-data";
 import Layout from "../../components/Layouts";
-import List from "../../components/List";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { withTranslation } from "next-i18next";
 import React, { ReactElement } from "react";
-import { ToTable } from "../../components/ToTable";
-import makeData from "./makeFieldData";
+import FieldsTable from "./fieldsTable";
 
 type Props = {
   items: User[];
@@ -17,110 +11,9 @@ type Props = {
 };
 
 const WithStaticProps = ({ items, t }: Props) => {
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
-  const fetchIdRef = React.useRef(0);
-  const serverData = makeData(10000);
-
-  const fetchData = React.useCallback(({ pageSize, pageIndex }) => {
-    // This will get called when the table needs new data
-    // You could fetch your data from literally anywhere,
-    // even a server. But for this example, we'll just fake it.
-
-    // Give this fetch an ID
-    const fetchId = ++fetchIdRef.current;
-
-    // Set the loading state
-    setLoading(true);
-
-    // We'll even set a delay to simulate a server here
-    setTimeout(() => {
-      // Only update the data if this is the latest fetch
-      if (fetchId === fetchIdRef.current) {
-        const startRow = pageSize * pageIndex;
-        const endRow = startRow + pageSize;
-        setData(serverData.slice(startRow, endRow));
-
-        // Your server could send back total page count.
-        // For now we'll just fake it, too
-        setPageCount(Math.ceil(serverData.length / pageSize));
-
-        setLoading(false);
-      }
-    }, 1000);
-  }, []);
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Field ID",
-        accessor: "fieldId",
-      },
-
-      {
-        Header: "Full Name",
-        accessor: "fullName",
-      },
-      {
-        Header: "Plantation Date",
-        accessor: "plantationDate",
-      },
-      {
-        Header: "Province",
-        accessor: "province",
-      },
-      {
-        Header: "District",
-        accessor: "district",
-      },
-      {
-        Header: "Community",
-        accessor: "community",
-      },
-      {
-        Header: "Crop",
-        accessor: "cropName",
-      },
-      {
-        Header: "Phase",
-        accessor: "phaseName",
-      },
-      {
-        Header: "Expected NDVI",
-        accessor: "endvi",
-      },
-      {
-        Header: "Last Recorded NDVI",
-        accessor: "lndvi",
-      },
-      {
-        Header: "Expected NDWI",
-        accessor: "endwi",
-      },
-      {
-        Header: "Last Recorded  NDWI",
-        accessor: "lndwi",
-      },      {
-        Header: "Detail",
-        // accessor: "lndwi",
-      },
-    ],
-    []
-  );
-
-  // const data = React.useMemo(() => makeData(20), []);
-
   return (
     <div className="flex ">
-      {/* <List items={items} /> */}
-      <ToTable
-        columns={columns}
-        data={data}
-        fetchData={fetchData}
-        loading={loading}
-        pageCount={pageCount}
-      />
+      <FieldsTable />
     </div>
   );
 };
@@ -136,21 +29,9 @@ export async function getStaticProps({ locale }: any) {
     },
   };
 }
-// export const getStaticProps: GetStaticProps = async ({ locale }: any) => {
-//   // Example for including static props in a Next.js function component page.
-//   // Don't forget to include the respective types for any props passed into
-//   // the component.
-//   const items: User[] = sampleUserData;
-//   return {
-//     props: {
-//       items,
-//       ...(await serverSideTranslations(locale, ["common"])),
-//     },
-//   };
-// };
 
 WithStaticProps.getLayout = function getLayout(page: ReactElement) {
-  return page;
+  return <Layout>{page}</Layout>;
 };
 
 export default WithStaticProps;
