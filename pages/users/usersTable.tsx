@@ -129,7 +129,7 @@ class UsersTable extends React.Component {
     ];
 
     return (
-      <div className="flex ">
+      <div className="flex min-w-full">
         <ToTable
           columns={columns}
           data={this.state.data}
