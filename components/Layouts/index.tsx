@@ -26,7 +26,7 @@ const Layout = ({ children, title = "Some Information" }: Props) => {
           {/* <div className="flex flex-col justify-between"> */}
           <div className="flex flex-col h-screen justify-between">
             {/* remove h-screen above and try to reduce header height  / Class*/}
-            <div className="flex-none">
+            <div className="flex-none sticky">
               <Header title={title} />
             </div>
             <div className={"overflow-y-auto overflow-x-hidden container bg-gray-200 w-full"}>
