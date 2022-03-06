@@ -46,7 +46,7 @@ const Header = ({ title, changeCollapse, currentCollapse }: Props) => {
               Mr. Test User
             </span>
             <img
-              className="w-12 h-12 rounded-full  object-cover border-2 ring-2 border-secondary ring-offset-4 ring-primary ring-opacity-80"
+              className="w-12 h-12 rounded-full  object-cover border-2 ring-2 border-gray-400 ring-offset-2 ring-primary ring-opacity-80"
               src="https://random.imagecdn.app/500/150"
             ></img>
           </div>
