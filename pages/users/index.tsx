@@ -10,6 +10,7 @@ import { withTranslation } from "next-i18next";
 import React, { ReactElement } from "react";
 import { ToTable } from "../../components/ToTable";
 import makeData from "../../components/ToTable/makeData";
+import UsersTable from "./usersTable";
 
 type Props = {
   items: User[];
@@ -87,13 +88,14 @@ const WithStaticProps = ({ items, t }: Props) => {
   return (
     <div className="flex ">
       {/* <List items={items} /> */}
-      <ToTable
+      {/* <ToTable
         columns={columns}
         data={data}
         fetchData={fetchData}
         loading={loading}
         pageCount={pageCount}
-      />
+      /> */}
+      <UsersTable />
     </div>
   );
 };
