@@ -1,4 +1,3 @@
-
 const defaultTheme = require("tailwindcss/defaultTheme")
 module.exports = {
   content: [
@@ -12,7 +11,15 @@ module.exports = {
     },
     fontFamily:{
      "Oxygen":["Oxygen", ...defaultTheme.fontFamily.sans],
-    }
+    },
+    colors: {
+      primary: "#7C9C3C",
+      secondary: "#161626",
+      text_primary: "#333",
+      text_light: "#636363",
+      theme_green: "#7b9d40",
+      banner_background:"#EBF5CF",
+    },
     },
   },
   plugins: [

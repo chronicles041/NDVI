@@ -4,7 +4,6 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
-
 @layer components {
   .sidebar-a-herf {
     @apply flex items-center mb-3 p-2 text-base font-normal text-gray-900 hover:rounded-xl dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700;
@@ -16,10 +15,11 @@
   width: 3.75rem;
   height: 3.75rem;
   border-radius: 50%;
-  border: 0.275rem solid #a3e635;
+  border: 0.275rem solid #7c9c3c;
   left: -2.375rem;
   top: 5.49%;
   z-index: 20;
+  opacity: 90;
 }
 .circle-shape-one:before {
   content: "";
@@ -28,14 +28,15 @@
   left: -3.5rem;
   right: -3.5rem;
   bottom: -3.5rem;
-  border: 0.15rem solid #a3e635;
+  border: 0.15rem solid #7c9c3c;
   border-radius: 50%;
+  opacity: 90;
 }
 
 .round-shape-one {
   width: 1.7rem;
   height: 1.7rem;
-  background: #a3e635;
+  background: #7c9c3c;
   border-radius: 50%;
   position: absolute;
   offset-path: path("M 100 300 L 350 200 L 400 350 L 250 450 L 50 350");
@@ -44,12 +45,13 @@
   left: 70%;
   border: none;
   z-index: 10;
+  opacity: 90;
 }
 
 .round-shape-two {
   width: 1rem;
   height: 1rem;
-  background: #a3e635;
+  background: #7c9c3c;
   border-radius: 50%;
   position: absolute;
   offset-path: path("M 100 300 L 350 200 L 400 350 L 250 450 L 50 350");
@@ -58,12 +60,13 @@
   right: 15%;
   border: none;
   z-index: 10;
+  opacity: 90;
 }
 
 .round-shape-three {
   width: 2.5rem;
   height: 2.5rem;
-  border: 0.125rem solid #a3e635;
+  border: 0.125rem solid #7c9c3c;
   border-radius: 50%;
   position: absolute;
   left: 20%;
@@ -73,4 +76,19 @@
   top: 0%;
   background: none;
   z-index: 1;
+  opacity: 90;
+}
+.linear-bg {
+  background-image: linear-gradient(
+    to right top,
+    #7b9d40,
+    #689a45,
+    #54964c,
+    #3e9252,
+    #248d59
+  );
+  opacity: 70;
+}
+.neumorph {
+  box-shadow: 20px 20px 60px #698533, -20px -20px 60px #8fb345;
 }
