@@ -22,7 +22,7 @@ const NavItem = ({ type, name, path }: Props) => {
               size={IconSize.NAVICON}
               style={IconStyles.Navigation}
             />
-            <span className="ml-3">{name}</span>
+            <span className="ml-4 text-xl font-medium text-secondary px-2">{name}</span>
           </a>
         </Link>
       </li>

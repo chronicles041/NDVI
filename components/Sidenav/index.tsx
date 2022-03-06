@@ -12,17 +12,11 @@ const Navbar = () => {
   return (
     <div className="w-full h-full absoulte sidebar border-r-2">
       <div className="px-3 py-4 overflow-y-auto rounded dark:bg-gray-800 h-full">
-
-        <a href="https://teamonetech.com/" className="flex pl-2.5 mb-5">
           <ToIcon
             type={IconTypes.Banner}
             style={IconStyles.Default}
             size={IconSize.LG}
           />
-          <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">
-            TeamOne 
-          </span>
-        </a>
       
         <ul className="space-y-2">
           {Routes.map((route) => (

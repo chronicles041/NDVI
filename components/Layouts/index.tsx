@@ -26,15 +26,14 @@ const Layout = ({ children, title = "Some Information" }: Props) => {
           {/* <div className="flex flex-col justify-between"> */}
           <div className="flex flex-col h-screen justify-between">
             {/* remove h-screen above and try to reduce header height  / Class*/}
-            <div className="basis-1/5">
+            <div className="flex-none">
               <Header title={title} />
             </div>
             <div className={"overflow-y-scroll"}>
-              <main className="mb-auto p-4 min-h-screen bg-gray-200 basis-3/5">
+              <main className="mb-auto p-4 min-h-screen bg-gray-200 grow">
                 {children}
               </main>
             </div>
-            <Footer />
           </div>
         </div>
       </div>

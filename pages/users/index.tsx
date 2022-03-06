@@ -33,7 +33,7 @@ export async function getStaticProps({ locale }: any) {
 }
 
 WithStaticProps.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout >{page}</Layout>;
 };
 
 export default WithStaticProps;

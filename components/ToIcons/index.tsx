@@ -65,8 +65,8 @@ export const IconSize = {
     width: 70,
   },
   LG: {
-    height: 100,
-    width: 100,
+    height: 200,
+    width: 200,
   },
   NAVICON: {
     height: 27,

@@ -41,14 +41,13 @@ const Login = ({ t }: LoginPageProps) => {
         ></img>
         <img className="mx-auto w-auto h-auto px-2" src="cover.svg"></img>
         <h1 className="mt-10 text-center text-3xl font-semibold text-secondary">
-          PlantSat DashBoard Management <br />
-          For Precision Agriculture.
+          Satellite Based Farm Management System<br/>
         </h1>
       </div>
       <div className="min-h-screen linear-bg w-full flex flex-col justify-center py-12 px-6 lg:px-8 overflow-hidden shadow-custom-shadow">
-        <div className="sm:mx-auto bg-banner_background sm:w-full sm:max-w-md rounded-t-lg shadow-2xl">
+        <div className="sm:mx-auto bg-banner_background sm:w-full sm:max-w-md rounded-t-2xl shadow-2xl">
           <img
-            className="mx-auto h-12 w-auto mt-4 "
+            className="mx-auto h-12 w-auto mt-14 px-2 "
             src="logo.png"
             alt="Workflow"
           />
@@ -99,10 +98,10 @@ const Login = ({ t }: LoginPageProps) => {
             ></path>
           </svg>
         </div>
-        <div className="sm:mx-auto sm:w-full sm:max-w-md shadow-2xl">
-          <div className="bg-primary py-8 px-6 rounded-b-lg sm:px-10">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md shadow-2xl rounded-2xl">
+          <div className="bg-primary py-8 px-6 rounded-b-2xl sm:px-10">
             {/* <form className="mb-0 space-y-6" action="#" method="POST"> */}
-              <div className="relative bg-primary">
+              <div className="relative bg-primary mb-2">
                 <input
                   id="email"
                   name="email"
@@ -118,7 +117,7 @@ const Login = ({ t }: LoginPageProps) => {
                   Email address
                 </label>
               </div>
-              <div className="relative bg-primary">
+              <div className="relative bg-primary mb-2">
                 <input
                   id="password"
                   name="password"
