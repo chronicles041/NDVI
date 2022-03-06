@@ -19,12 +19,12 @@ export const Routes = [
     },
     {
         path:"/activities",
-        icon:IconTypes.Dashboard,
+        icon:IconTypes.Activity,
         name:"Activities"
     },
     {
-        path:"/notifications",
-        icon:IconTypes.Dashboard,
-        name:"Notifications"
+        path:"/weather",
+        icon:IconTypes.Weather,
+        name:"Weather"
     }
 ]

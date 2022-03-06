@@ -16,7 +16,7 @@ const Header = ({ title, changeCollapse, currentCollapse }: Props) => {
   };
 
   return (
-    <header className="p-2 flex flex-row justify-between  item-center font-Oxygen align-middle">
+    <header className="p-2 flex flex-row justify-between  item-center font-Oxygen">
       <div className="flex flex-row justify-center item-center px-3 py-3">
         <div className="xl:w-96">
           <div className="input-group relative flex items-stretch w-full mb-4">
@@ -38,16 +38,16 @@ const Header = ({ title, changeCollapse, currentCollapse }: Props) => {
         </div>
       </div>
       <div className="flex flex-row justify-center item-center px-3 py-3">
-        <div className="relative flex flex-row gap-10 items-center w-full justify-center">
+        <div className="relative flex flex-row gap-6 items-center w-full justify-center">
           <BsMoon className="w-7 h-7 cursor-pointer"></BsMoon>
           <BsBell className="w-7 h-7 cursor-pointer"></BsBell>
-          <div className="flex gap-5 px-2 cursor-pointer items-center justify-center">
-            <span className="text-xl font-semibold text-secondary px-2">
-              Mr. Test user
+          <div className="flex gap-4 cursor-pointer items-center justify-center">
+            <span className="text-lg font-semibold text-secondary pr-3">
+              Mr. Test User
             </span>
             <img
               className="w-12 h-12 rounded-full  object-cover border-2 ring-2 border-secondary ring-offset-4 ring-primary ring-opacity-80"
-              src="defaultprofile.png"
+              src="https://random.imagecdn.app/500/150"
             ></img>
           </div>
         </div>

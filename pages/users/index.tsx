@@ -10,7 +10,7 @@ type Props = {
   t: Function;
 };
 
-const WithStaticProps = ({ items, t }: Props) => {
+const Users = ({ items, t }: Props) => {
   // const data = React.useMemo(() => makeData(20), []);
 
   return (
@@ -32,8 +32,8 @@ export async function getStaticProps({ locale }: any) {
   };
 }
 
-WithStaticProps.getLayout = function getLayout(page: ReactElement) {
+Users.getLayout = function getLayout(page: ReactElement) {
   return <Layout >{page}</Layout>;
 };
 
-export default WithStaticProps;
+export default Users;

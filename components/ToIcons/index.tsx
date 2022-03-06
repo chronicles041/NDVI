@@ -4,9 +4,21 @@ import Banner from "./assets/banner.svg";
 import Dashboard from "./assets/dashboard.svg";
 import User from "./assets/user.svg";
 import Farm from "./assets/farm.svg";
+import Activity from "./assets/activity.svg";
+import Weather from "./assets/weather.svg"
 import Image from "next/image";
 // import  './toicons.scss'
 import styles from "./toicons.module.css";
+import Community from "./assets/community.svg";
+import Champions from "./assets/champions.svg";
+import States from "./assets/states.svg";
+import Land from "./assets/land.svg";
+import Crop from "./assets/crop.svg";
+import Average from "./assets/average.svg";
+import Expected from "./assets/expected.svg";
+
+
+
 
 interface IiconSize {
   height: number;
@@ -44,8 +56,16 @@ export const IconTypes = {
   Dashboard: Dashboard,
   User:User,
   Farm:Farm,
+  Activity:Activity,
+  Weather:Weather,
+  Community:Community,
+  Champions:Champions,
+   States: States,
+   Land : Land,
+ Crop : Crop,
+ Average: Average, 
+ Expected: Expected,
 };
-
 export const IconStyles = {
   Default: styles.default,
   Navigation: styles.navigation,
@@ -65,8 +85,8 @@ export const IconSize = {
     width: 70,
   },
   LG: {
-    height: 200,
-    width: 200,
+    height: 500,
+    width: 500,
   },
   NAVICON: {
     height: 27,

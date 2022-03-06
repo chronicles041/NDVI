@@ -10,13 +10,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className="w-full h-full absoulte sidebar border-r-2">
+    <div className="w-full h-full absoulte sidebar border-r-2 shadow-custom-shadow">
       <div className="px-3 py-4 overflow-y-auto rounded dark:bg-gray-800 h-full">
-          <ToIcon
-            type={IconTypes.Banner}
-            style={IconStyles.Default}
-            size={IconSize.LG}
-          />
+         <img src="banner.svg" className="w-auto h-auto object-cover mb-6">
+         </img>
       
         <ul className="space-y-2">
           {Routes.map((route) => (

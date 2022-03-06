@@ -30,7 +30,7 @@ const Login = ({ t }: LoginPageProps) => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2  m-auto place-items-center place-content-center min-h-screen overflow-auto  font-Oxygen">
-      <div className="w-full relative h-full bg-banner_background overflow-hidden hidden mx-auto lg:flex flex-col gap-2 justify-center">
+      <div className="w-full relative h-full bg-white overflow-hidden hidden mx-auto lg:flex flex-col gap-2 justify-center">
         <div className="circle-shape-one"></div>
         <div className="round-shape-one"></div>
         <div className="round-shape-two"></div>
@@ -45,7 +45,7 @@ const Login = ({ t }: LoginPageProps) => {
         </h1>
       </div>
       <div className="min-h-screen linear-bg w-full flex flex-col justify-center py-12 px-6 lg:px-8 overflow-hidden shadow-custom-shadow">
-        <div className="sm:mx-auto bg-banner_background sm:w-full sm:max-w-md rounded-t-2xl shadow-2xl">
+        <div className="sm:mx-auto bg-white sm:w-full sm:max-w-md rounded-t-2xl shadow-2xl">
           <img
             className="mx-auto h-12 w-auto mt-14 px-2 "
             src="logo.png"
@@ -85,7 +85,7 @@ const Login = ({ t }: LoginPageProps) => {
             </a>
           </p>
         </div>
-        <div className=" bg-banner_background sm:mx-auto sm:w-full sm:max-w-md">
+        <div className=" bg-white sm:mx-auto sm:w-full sm:max-w-md">
           <svg
             className="w-full"
             xmlns="http://www.w3.org/2000/svg"

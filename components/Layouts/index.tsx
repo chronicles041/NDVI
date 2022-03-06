@@ -18,7 +18,7 @@ const Layout = ({ children, title = "Some Information" }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="min-h-screen flex flex-row overflow-y-hidden font-Oxygen">
+      <div className="min-h-screen flex flex-row overflow-y-hidden overflow-x-hidden font-Oxygen">
         <div className=" h-screen basis-1/5">
           <Navbar />
         </div>
@@ -29,7 +29,7 @@ const Layout = ({ children, title = "Some Information" }: Props) => {
             <div className="flex-none">
               <Header title={title} />
             </div>
-            <div className={"overflow-y-scroll"}>
+            <div className={"overflow-y-auto overflow-x-hidden container bg-gray-200 w-full"}>
               <main className="mb-auto p-4 min-h-screen bg-gray-200 grow">
                 {children}
               </main>

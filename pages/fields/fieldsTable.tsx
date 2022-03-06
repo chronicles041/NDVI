@@ -158,7 +158,7 @@ class FieldsTable extends React.Component {
     ];
 
     return (
-      <div className="flex ">
+      <div className="container">
         <ToTable
           columns={columns}
           data={this.state.data}

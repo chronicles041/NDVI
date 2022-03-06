@@ -5,38 +5,40 @@ import { BarTypes, ToBar } from "../../components/ToCharts/Tobar";
 import ToCard from "../../components/ToCard";
 import { PieTypes, ToPie } from "../../components/ToCharts/ToPie";
 import { ToRadial } from "../../components/ToCharts/ToRadialBar";
+import {Stats} from "../../components/Stats";
 
 type DashBoardProps = {
   t: Function;
 };
 const DashBorad = ({ t }: DashBoardProps) => {
   return (
-    <>
+    <div className="grid grid-row mx-auto px-auto ">
       <div className="flex flex-row">
         <div className="basis-8/12">
-          <ToBar title={"Bar Chart"} type={BarTypes.Bar} />
+          <ToBar title={"NVDVI Bar Chart"} type={BarTypes.Bar} />
         </div>
         <div className="basis-4/12">
-          <ToRadial title={"Radial Chart"} />
+          <ToRadial title={"Confidence Radial Chart"} />
+        </div>
+      </div>
+      <Stats></Stats>
+      <div className="flex flex-row">
+        <div className="basis-2/4">
+          <ToBar title={"Crop Chart"} type={BarTypes.Area} />
+        </div>
+        <div className="basis-2/4">
+          <ToBar title={"Water Usage Chart"} type={BarTypes.Line} />
         </div>
       </div>
       <div className="flex flex-row">
         <div className="basis-2/4">
-          <ToBar title={"Area Chart"} type={BarTypes.Area} />
+          <ToPie title={"Fertilizer Spray"} type={PieTypes.Donut} />
         </div>
         <div className="basis-2/4">
-          <ToBar title={"Line Chart"} type={BarTypes.Line} />
+          <ToPie title={"Land Information Chart"} type={PieTypes.Pie} />
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="basis-2/4">
-          <ToPie title={"Donut Chart"} type={PieTypes.Donut} />
-        </div>
-        <div className="basis-2/4">
-          <ToPie title={"Pie Chart"} type={PieTypes.Pie} />
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

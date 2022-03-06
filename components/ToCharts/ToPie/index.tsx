@@ -20,7 +20,7 @@ export const ToPie = ({ title, type }: Props) => {
         }
       }
     },
-    series: [44, 55, 41],
+    series: [55, 55, 55],
     labels: ["A", "B", "C"],
   };
 

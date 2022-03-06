@@ -10,11 +10,13 @@ type Props = {
   t: Function;
 };
 
-const WithStaticProps = ({ items, t }: Props) => {
+const Field = ({ items, t }: Props) => {
   return (
-    <div className="flex ">
-      <FieldsTable />
+    <>
+    <div className="container">
+      <FieldsTable/>
     </div>
+    </>
   );
 };
 
@@ -30,8 +32,8 @@ export async function getStaticProps({ locale }: any) {
   };
 }
 
-WithStaticProps.getLayout = function getLayout(page: ReactElement) {
+Field.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-export default WithStaticProps;
+export default Field;
