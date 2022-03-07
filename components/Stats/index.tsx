@@ -13,22 +13,22 @@ const Routes: any[] = [
   {
     title: "Total Area Covered in Sqaure Meters",
     icon: IconTypes.Land,
-    data: "535.234"
+    data: "140.234"
   },
   {
     title: "Total District",
     icon: IconTypes.Farm,
-    data: "8"
+    data: "3"
   },
   {
     title: "Total Communites",
     icon: IconTypes.Community,
-    data: 46
+    data: 0
   },
   {
     title: "Total Crop",
     icon: IconTypes.Crop,
-    data: 80
+    data: 1
   },
   {
     title: "Average NDVI",
@@ -36,9 +36,9 @@ const Routes: any[] = [
     data: 0.333
   },
   {
-    title: "Excepted NDVI",
-    icon: IconTypes.Expected,
-    data: 0.582
+    title: "Top Dressing",
+    icon: IconTypes.Dressing,
+    data: 20
   },
 ];
 

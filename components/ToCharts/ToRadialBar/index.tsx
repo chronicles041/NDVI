@@ -15,7 +15,7 @@ export const ToRadial = ({ title, type }: Props) => {
     //   type: "radialBar",
     },
   
-    series: [78],
+    series: [67],
     colors: ["#20E647"],
     plotOptions: {
       radialBar: {
@@ -59,7 +59,7 @@ export const ToRadial = ({ title, type }: Props) => {
     stroke: {
       lineCap: "round"
     },
-    labels: ["Confidence Index"]
+    labels: ["Activity Index"]
   };
   return (
     <ToCard title={title}>
@@ -69,7 +69,7 @@ export const ToRadial = ({ title, type }: Props) => {
         type="radialBar"
         height="400"
       />
-      <h2 className="p-1.5 text-center uppercase"><b>Satellite Confidence Index</b></h2>
+      <h2 className="p-1.5 text-center uppercase"><b>Activity Compeletion Index</b></h2>
     </ToCard>
   );
 };

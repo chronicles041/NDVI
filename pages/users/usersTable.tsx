@@ -91,38 +91,42 @@ class UsersTable extends React.Component {
       },
       {
         Header: "User Type",
-        // accessor: "user_type_name",
+        accessor: "user_type_name",
       },
       {
         Header: "Username",
-        // accessor: "farm_id",
+         accessor: "username",
       },
       {
-        Header: "Fullname",
-        // accessor: "farm_id",
+        Header: "Name",
+        accessor: "frist_name",
       },
       {
-        Header: "Address",
-        // accessor: "farm_id",
+        Header: "User Status",
+        accessor: "is_active",
+        Cell: ({value})=> (
+          <div className={value?"text-white rounded-full shadow-xl font-medium uppercase px-6 py-3 text-center bg-lime-600  cursor-not-allowed":"text-white rounded-full shadow-xl font-medium uppercase px-6 py-3 bg-green-600 cursor-not-allowed"}>
+         {value ? 'Active':'Inactive'}
+          </div>
+          
+        )
       },
+      
       {
         Header: "Email",
-        // accessor: "farm_id",
+        accessor: "email",
       },
       {
         Header: "Contact Number",
-        // accessor: "farm_id",
+         accessor: "mobile_number",
       },
-      {
-        Header: "Recent Activity",
-        // accessor: "farm_id",
-      },
+     
       {
         Header: "Detail",
         // accessor: "lndwi",
         Cell: (
           <>
-            <button>Show</button>
+            <button className="text-white rounded-full shadow-xl font-medium uppercase px-8 text-center py-6 bg-secondary hover:bg-primary hover:text-secondary transition ease-in-out duration-300">Show</button>
           </>
         ),
       },

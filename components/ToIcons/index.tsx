@@ -15,7 +15,7 @@ import States from "./assets/states.svg";
 import Land from "./assets/land.svg";
 import Crop from "./assets/crop.svg";
 import Average from "./assets/average.svg";
-import Expected from "./assets/expected.svg";
+import Dressing from "./assets/dressing.svg";
 
 
 
@@ -64,7 +64,7 @@ export const IconTypes = {
    Land : Land,
  Crop : Crop,
  Average: Average, 
- Expected: Expected,
+ Dressing: Dressing,
 };
 export const IconStyles = {
   Default: styles.default,
