@@ -18,7 +18,7 @@ const DashBorad = ({ t }: DashBoardProps) => {
           <ToBar title={"NVDVI Bar Chart"} type={BarTypes.Bar} />
         </div>
         <div className="basis-4/12">
-          <ToRadial title={"Confidence Radial Chart"} />
+          <ToRadial title={"Activity/Task Radial Chart"} />
         </div>
       </div>
       <Stats></Stats>

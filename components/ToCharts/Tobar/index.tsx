@@ -19,7 +19,7 @@ export const ToBar = ({ title, type }: Props) => {
         id: "basic-bar",
       },
       xaxis: {
-        categories: [2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077,],
+        categories: ["jan", "feb", "mar", "apr", "jun", "jul", "aug", "sep", "oct",],
       },
     },
     series: [
