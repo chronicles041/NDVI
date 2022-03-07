@@ -97,3 +97,83 @@
   height: 100vh;
 }
 
+.overlay {
+  margin-left: 2.2em;
+  z-index: 0.1;
+  position: relative;
+  border: solid 1px #000;
+  box-shadow: 0 0 10px #666;
+}
+
+.active_date {
+  color: red;
+}
+
+.ant-progress .ant-progress-outer .ant-progress-text {
+  display: none !important;
+}
+
+.colorTab {
+  padding: 1em;
+  padding-top: 0.01em;
+  text-align: center;
+}
+
+.ndwi_color {
+  /* display: none; */
+  /* text-align: center; */
+  width: 100%;
+  /* display: block; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  object-fit: cover;
+  /* width: 50%; */
+}
+
+.disaster_detail {
+  font-size: 15px;
+}
+
+.disaster_detail h1 {
+  padding: 5px;
+}
+
+.leaflet-image-layer {
+  image-rendering: pixelated;
+}
+
+.farmList {
+  /* overflow-x: scroll; */
+  /* overflow-y: scroll;
+  height: 400px; */
+  /* margin: 4px, 4px; */
+  /* padding: 4px; */
+  /* background-color: green; */
+  height: 400px;
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
+
+.listItemField {
+  cursor: alias;
+}
+
+.listItemField:hover {
+  background-color: rgba(102, 102, 102, 0.2);
+  cursor: alias;
+}
+
+.activeField {
+  background-color: rgba(102, 102, 102, 0.5) !important;
+  pointer-events: none;
+}
+
+.palette {
+  z-index: -1;
+  position: relative;
+}
+
+
+/* ant-progress ant-progress-line ant-progress-status-active ant-progress-show-info ant-progress-default */

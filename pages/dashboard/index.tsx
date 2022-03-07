@@ -5,7 +5,7 @@ import { BarTypes, ToBar } from "../../components/ToCharts/Tobar";
 import ToCard from "../../components/ToCard";
 import { PieTypes, ToPie } from "../../components/ToCharts/ToPie";
 import { ToRadial } from "../../components/ToCharts/ToRadialBar";
-import {Stats} from "../../components/Stats";
+import { Stats } from "../../components/Stats";
 
 type DashBoardProps = {
   t: Function;
@@ -21,7 +21,7 @@ const DashBorad = ({ t }: DashBoardProps) => {
           <ToRadial title={"Confidence Radial Chart"} />
         </div>
       </div>
-      <Stats></Stats>
+      <Stats />
       <div className="flex flex-row">
         <div className="basis-2/4">
           <ToBar title={"Crop Chart"} type={BarTypes.Area} />

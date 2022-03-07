@@ -1,5 +1,7 @@
 import axios from "axios";
 import moment from "moment";
+import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import React from "react";
 import { ToTable } from "../../components/ToTable";
 
@@ -84,6 +86,13 @@ class FieldsTable extends React.Component {
     // }, 1000);
   };
 
+  clickMap = () => {
+    this.props.router.push({
+      pathname: `/users/${user.id}`,
+      query: { success: true },
+    });
+  };
+
   render() {
     const columns = [
       {
@@ -96,14 +105,15 @@ class FieldsTable extends React.Component {
         accessor: "farm_name",
       },
       {
-        Header: "Plantation Date",
+        Header: "Created Date",
+        // Header: "Plantation Date",
         accessor: "created_date",
         Cell: ({ value }) => moment(value).format("DD MMMM YYYY"),
       },
       {
         Header: "Area",
         accessor: "farm_area",
-        Cell: ({value})=> `${value} Hectare`,
+        Cell: ({ value }) => `${value} Hectare`,
       },
       {
         Header: "Province",
@@ -152,8 +162,16 @@ class FieldsTable extends React.Component {
       },
       {
         Header: "Detail",
-        // accessor: "lndwi",
-        Cell: "Show",
+        accessor: (row) => row,
+        Cell: ({ value }) => (
+          <Link
+            as={`/maps/${value.farm_id}`}
+            href={`/maps/`} passHref
+          >
+            {/* <Link href={`/maps`} passHref > */}
+            Map
+          </Link>
+        ),
       },
     ];
 

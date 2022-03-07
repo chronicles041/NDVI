@@ -17,6 +17,8 @@ const Layout = ({ children, title = "Some Information" }: Props) => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+
       </Head>
       <div className="min-h-screen flex flex-row overflow-y-hidden overflow-x-hidden font-Oxygen">
         <div className=" h-screen basis-1/5">
