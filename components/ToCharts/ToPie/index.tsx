@@ -20,8 +20,8 @@ export const ToPie = ({ title, type }: Props) => {
         }
       }
     },
-    series: [55, 55, 55],
-    labels: ["A", "B", "C"],
+    series: [40, 35, 25],
+    // labels: ["Field Visit", "Satellite Data Analysis", "Report Compilation"],
   };
 
   return (
@@ -29,6 +29,7 @@ export const ToPie = ({ title, type }: Props) => {
       <Chart
         options={state2.options}
         series={state2.series}
+        // labels={state2.labels}
         type={type}
         height={'400'}
       />

@@ -9,7 +9,7 @@ type Props = {
   children?: ReactNode;
   title?: string;
 };
-const Layout = ({ children, title = "Some Information" }: Props) => {
+const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
   const [isCollapse, changeCollapse] = useState(true);
   return (
     <>

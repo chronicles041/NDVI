@@ -3,7 +3,11 @@ import dynamic from "next/dynamic";
 const Map = dynamic(() => import("./map"), { ssr: false });
 
 const Maps = () => {
-  return <Map fieldId={window.location.pathname.split("/")[2]} />;
+  return (
+    <div className="container">
+      <Map fieldId={window.location.pathname.split("/")[2]} />
+    </div>
+  );
 };
 
 export default Maps;

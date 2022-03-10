@@ -120,7 +120,7 @@ function Map(props) {
 
   return (
     <>
-      <div className="relative flex flex-col w-full shadow-lg bg-white rounded-xl">
+      <div className="relative flex flex-col w-full h-80 shadow-lg bg-white p-8 rounded-xl">
         <div className="rounded-t">
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col className="gutter-row p-1.5" span={17}>
@@ -161,12 +161,12 @@ function Map(props) {
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col hidden={false} className="gutter-row p-1.5" span={17}>
-              <DateList
+              {/* <DateList
                 loading={loading}
                 mapData={mapData}
                 selectedIndex={selectData}
                 getNewDates={getNewDates}
-              />
+              /> */}
             </Col>
             <br />
             <Col className="gutter-row p-1.5" span={17}>
@@ -205,7 +205,7 @@ function Map(props) {
                 // hidden={!viewControl.listView}
                 className="text-left farmList"
               >
-                <FarmList loading={loading} selectedItem={selectFarm} />
+                {/* <FarmList loading={loading} selectedItem={selectFarm} /> */}
               </div>
               {/* <div hidden={!viewControl.detailView} className="text-left">
                 <DisasterDetail detail={detailData} />

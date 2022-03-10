@@ -123,12 +123,12 @@ class FieldsTable extends React.Component {
       {
         Header: "District",
         accessor: "district",
-        Cell: "district",
+        Cell: "-",
       },
       {
         Header: "Community",
         accessor: "community",
-        Cell: "community",
+        Cell: "-",
       },
       {
         Header: "Crop",
@@ -143,22 +143,22 @@ class FieldsTable extends React.Component {
       {
         Header: "Expected NDVI",
         accessor: "endvi",
-        Cell: "0.08",
+        Cell: "-",
       },
       {
         Header: "Last Recorded NDVI",
         accessor: "lndvi",
-        Cell: "0.08",
+        Cell: "-",
       },
       {
         Header: "Expected NDWI",
         accessor: "endwi",
-        Cell: "0.08",
+        Cell: "-",
       },
       {
         Header: "Last Recorded  NDWI",
         accessor: "lndwi",
-        Cell: "0.08",
+        Cell: "-",
       },
       {
         Header: "Detail",

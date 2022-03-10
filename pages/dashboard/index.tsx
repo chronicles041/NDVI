@@ -32,10 +32,10 @@ const DashBorad = ({ t }: DashBoardProps) => {
       </div>
       <div className="flex flex-row">
         <div className="basis-2/4">
-          <ToPie title={"Fertilizer Spray"} type={PieTypes.Donut} />
+          <ToPie title={"Nitrogen Information Chart"} type={PieTypes.Donut} />
         </div>
         <div className="basis-2/4">
-          <ToPie title={"Land Information Chart"} type={PieTypes.Pie} />
+          <ToPie title={"Vegitation Information Chart"} type={PieTypes.Pie} />
         </div>
       </div>
     </div>
