@@ -134,6 +134,7 @@ class UsersTable extends React.Component {
 
     return (
       <div className="flex min-w-full">
+
         <ToTable
           columns={columns}
           data={this.state.data}
@@ -141,6 +142,9 @@ class UsersTable extends React.Component {
           loading={this.state.loading}
           pageCount={this.state.pageCount}
         />
+                  {console.log("Columns",columns)}
+        {/* {JSON.stringify(this.state.data)} */}
+        {/* {JSON.stringify(this.state.serverData)} */}
       </div>
     );
   }
