@@ -43,7 +43,7 @@ const Header = ({ title, changeCollapse, currentCollapse }: Props) => {
           <BsBell className="w-7 h-7 cursor-pointer"></BsBell>
           <div className="flex gap-4 cursor-pointer items-center justify-center">
             <span className="text-lg font-semibold text-secondary pr-3">
-              Mr. Test User
+              CIMMYT Admin
             </span>
             <img
               className="w-12 h-12 rounded-full  object-cover border-2 ring-2 border-gray-400 ring-offset-2 ring-primary ring-opacity-80"

@@ -14,7 +14,7 @@ function LayerOptionsList({ selectedItem, loading }) {
   const newFarmlist = () => {
     let newArray = [];
     let params = {
-      search: searchName,
+      farm_name: searchName,
     };
     MapService.fetchFarmList(params).then((res) => {
       res.data.results.map((data) => {
@@ -32,27 +32,34 @@ function LayerOptionsList({ selectedItem, loading }) {
   // const [filterValues] = useState({});
 
   return (
-    <>
+    <div className="pl-4">
       <div>
-        <Input onChange={onChange} placeholder="Search Farm" />
+        <input onChange={onChange} placeholder="Search Farm" className="border p-2 rounded-lg border-black border-opacity-30 w-full" />
       </div>
-      <ul  className={"farmList p-2"}>
+      <ul  className={"farmList mt-2 mb-2 pr-2"}>
         {farmList.map((farm, index) => (
           <li
-            className={"listItemField"}
-            onClick={() => {
+            className={` ${currentIndex==index?"bg-primary text-white":"bg-transparent text-black hover:bg-gray-300"}  grid grid-cols-2 p-2 max-w-sm rounded mt-2 border`}
+            onClick={(e) => {
               selectedItem(farm);
               setCurrentIndex(index);
             }}
           >
-          
-              {farm.farm_name ? farm.farm_name : <> N/A </>}( {farm.farm_id} )
-          
+          <div className="flex flex-col">
+            <label className="text-xs font-bold text-black  text-opacity-70 ">Farm Name </label>
+                {farm.farm_name ? farm.farm_name : <> N/A </>}
+          </div>
+
+          <div className="flex flex-col">
+            <label className="text-xs font-bold text-black   text-opacity-70 ">Area </label>
+                {(farm.farm_area *  1.5 *20).toFixed(1) + " kattha"}
+          </div>
+           
           </li>
         ))}
       </ul>
       <div>Total Records : {farmList.length}</div>
-    </>
+    </div>
   );
 }
 

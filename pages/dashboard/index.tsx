@@ -15,7 +15,7 @@ const DashBorad = ({ t }: DashBoardProps) => {
     <div className="grid grid-row mx-auto px-auto ">
       <div className="flex flex-row">
         <div className="basis-8/12">
-          <ToBar title={"NVDVI Bar Chart"} type={BarTypes.Bar} />
+          <ToBar title={"NDVI Bar Chart"} type={BarTypes.Bar} />
         </div>
         <div className="basis-4/12">
           <ToRadial title={"Activity/Task Radial Chart"} />
