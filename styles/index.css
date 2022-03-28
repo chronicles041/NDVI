@@ -179,5 +179,9 @@
   position: relative;
 }
 
+.leaflet-container {
+  height: 500px;
+  width: 100%;
 
+}
 /* ant-progress ant-progress-line ant-progress-status-active ant-progress-show-info ant-progress-default */
