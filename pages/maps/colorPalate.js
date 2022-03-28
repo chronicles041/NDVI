@@ -1,3 +1,5 @@
+import Image from "next/image";
+import palette from "./assets/ndvi.png"
 function ColorPalette({ ndvi, ndwi }) {
   return (
     <>
@@ -12,7 +14,9 @@ function ColorPalette({ ndvi, ndwi }) {
       <div>
         {/* <div hidden={!ndvi}> */}
         <div className="p-1" span={2}>
-          NDVI Poor- Good
+          NDVI Poor
+          <Image src={palette} ></Image>
+          NDVI BAD
         </div>
       </div>
     </>
