@@ -18,6 +18,11 @@ export const Routes = [
         name: "Fields"
     },
     {
+        path: "/maps",
+        icon: IconTypes.Map,
+        name: "Maps"
+    },
+    {
         path: "/activities",
         icon: IconTypes.Activity,
         name: "Activities"
@@ -32,4 +37,5 @@ export const Routes = [
         icon: IconTypes.Farm,
         name: "Visits"
     }
+
 ]

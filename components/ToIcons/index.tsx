@@ -5,7 +5,7 @@ import Dashboard from "./assets/dashboard.svg";
 import User from "./assets/user.svg";
 import Farm from "./assets/farm.svg";
 import Activity from "./assets/activity.svg";
-import Weather from "./assets/weather.svg"
+import Weather from "./assets/weather.svg";
 import Image from "next/image";
 // import  './toicons.scss'
 import styles from "./toicons.module.css";
@@ -16,9 +16,7 @@ import Land from "./assets/land.svg";
 import Crop from "./assets/crop.svg";
 import Average from "./assets/average.svg";
 import Dressing from "./assets/dressing.svg";
-
-
-
+import Map from "./assets/map.svg";
 
 interface IiconSize {
   height: number;
@@ -54,17 +52,18 @@ const ToIcon = ({ type, size, style }: Props) => {
 export const IconTypes = {
   Banner: Banner,
   Dashboard: Dashboard,
-  User:User,
-  Farm:Farm,
-  Activity:Activity,
-  Weather:Weather,
-  Community:Community,
-  Champions:Champions,
-   States: States,
-   Land : Land,
- Crop : Crop,
- Average: Average, 
- Dressing: Dressing,
+  User: User,
+  Farm: Farm,
+  Activity: Activity,
+  Weather: Weather,
+  Community: Community,
+  Champions: Champions,
+  States: States,
+  Land: Land,
+  Crop: Crop,
+  Average: Average,
+  Dressing: Dressing,
+  Map: Map,
 };
 export const IconStyles = {
   Default: styles.default,
