@@ -1,4 +1,4 @@
-function divorPalette({ ndvi, ndwi }) {
+function ColorPalette({ ndvi, ndwi }) {
   return (
     <>
       <div>
@@ -19,7 +19,7 @@ function divorPalette({ ndvi, ndwi }) {
   );
 }
 
-export default divorPalette;
+export default ColorPalette;
 
 {
   /* <div style={{ backgrounddivor: "#ef3b2c" }} className="p-1" span={2} />
