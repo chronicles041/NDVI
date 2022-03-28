@@ -65,46 +65,46 @@ class LayerOptions extends React.Component {
     if (this.state.polygon !== prevState.polygon) {
       this.controllLayer();
     }
-    // if (prevProps.polygon === this.state.polygon) {
-    //   this.createPolygon(this.props.polygon);
-    // } 
+    if (prevProps.polygon === this.state.polygon) {
+      this.createPolygon(this.props.polygon);
+    } 
     
     if (prevProps.polygon !== this.props.polygon) {
       this.createPolygon(this.props.polygon);
     }
-    // if (prevProps.polygon !== this.props.polygon) {
-    //   this.createPolygon(this.props.polygon);
-    //   this.ndwiOverlayRef.current._bounds = this.polyRef.current._bounds;
-    //   this.ndviOverlayRef.current._bounds = this.polyRef.current._bounds;
-    // }
-    // if (prevProps.selectedData !== this.props.selectedData) {
-    //   this.ndwiOverlayRef.current._bounds = this.polyRef.current._bounds;
-    //   this.ndviOverlayRef.current._bounds = this.polyRef.current._bounds;
+    if (prevProps.polygon !== this.props.polygon) {
+      this.createPolygon(this.props.polygon);
+      this.ndwiOverlayRef.current._bounds = this.polyRef.current._bounds;
+      this.ndviOverlayRef.current._bounds = this.polyRef.current._bounds;
+    }
+    if (prevProps.selectedData !== this.props.selectedData) {
+      this.ndwiOverlayRef.current._bounds = this.polyRef.current._bounds;
+      this.ndviOverlayRef.current._bounds = this.polyRef.current._bounds;
 
-    //   this.controllLayer();
-    //   this.setState({
-    //     ndwi_path: this.props.selectedData.ndwi_path,
-    //     ndvi_path: this.props.selectedData.ndvi_path,
-    //   });
-    // }
+      this.controllLayer();
+      this.setState({
+        ndwi_path: this.props.selectedData.ndwi_path,
+        ndvi_path: this.props.selectedData.ndvi_path,
+      });
+    }
   }
 
   controllLayer = () => {
-    // let ndwi_index = this.layControlRef.current._layers.findIndex(
-    //   (l) => l.name === "NDWI"
-    // );
-    // let ndvi_index = this.layControlRef.current._layers.findIndex(
-    //   (l) => l.name === "NDVI"
-    // );
+    let ndwi_index = this.layControlRef.current._layers.findIndex(
+      (l) => l.name === "NDWI"
+    );
+    let ndvi_index = this.layControlRef.current._layers.findIndex(
+      (l) => l.name === "NDVI"
+    );
 
-    // console.log(
-    //   "**Layer Control Ref/NDWI",
-    //   this.layControlRef.current._layerControlInputs[ndwi_index].checked
-    // );
-    // console.log(
-    //   "**Layer Control Ref/NDVI",
-    //   this.layControlRef.current._layerControlInputs[ndvi_index].checked
-    // );
+    console.log(
+      "**Layer Control Ref/NDWI",
+      this.layControlRef.current._layerControlInputs[ndwi_index].checked
+    );
+    console.log(
+      "**Layer Control Ref/NDVI",
+      this.layControlRef.current._layerControlInputs[ndvi_index].checked
+    );
 
     return null;
   };
@@ -153,7 +153,7 @@ class LayerOptions extends React.Component {
               <TileLayer url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png" />
             </LayersControl.BaseLayer>{" "}
           </LayerGroup>
-          {/* <LayerGroup>
+          <LayerGroup>
             <LayersControl.Overlay checked={this.state.checkImage} name="NDWI">
               <ImageOverlay
                 ref={this.ndwiOverlayRef}
@@ -172,7 +172,7 @@ class LayerOptions extends React.Component {
                 url={`${this.state.ndvi_path}`}
               />{" "}
             </LayersControl.Overlay>{" "}
-          </LayerGroup> */}
+          </LayerGroup>
         </LayersControl>
       </>
     );

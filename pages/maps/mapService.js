@@ -16,7 +16,7 @@ class MapService {
 
     getDateImage(params) {
         console.log("Param From Service for Image Dates ", params)
-        return axios.get(BASE_URL + "export_user_image", { params })
+        return axios.get(BASE_URL + "export_image/", { params })
     }
 
     getDisasterImage(params) {
