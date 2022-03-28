@@ -3,6 +3,7 @@ import { DisasterResponse } from "./assets/disasterResponse";
 import LeafletMap from "./leaflet/leafletMap";
 import MapService from "./mapService";
 import FarmList from "./farmList";
+import ColorPalette from "./colorPalate"
 const FarmFromReport = DisasterResponse.item[1].request.url.query;
 const viewParams = {
   addView: false,
@@ -44,7 +45,7 @@ function Map(props) {
     setLoading(true);
     setPolygon(item.farm_polygon_json.location);
     setCenter(item.extra_field.centroid);
-    // selectField(item);
+    selectField(item);
     // // setMapData([])
     // getLayerData(item, "False", null);
     console.log("Selected Farm :", item)
@@ -109,6 +110,18 @@ function Map(props) {
           </div>
           <div class="basis-1/4">
             <FarmList loading={loading} selectedItem={selectFarm} />
+          </div>
+        </div>
+
+        <div className="flex flex-row p-3">
+          <div className="basis-3/4" >
+          <ColorPalette
+                  ndvi={mapData.length > 0}
+                  ndwi={mapData.length > 0}
+                />
+          </div>
+          <div class="basis-1/4">
+              Something
           </div>
         </div>
       </div>
