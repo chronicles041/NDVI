@@ -3,7 +3,9 @@ import { DisasterResponse } from "./assets/disasterResponse";
 import LeafletMap from "./leaflet/leafletMap";
 import MapService from "./mapService";
 import FarmList from "./farmList";
-import ColorPalette from "./colorPalate"
+import ColorPalette from "./colorPalate";
+import DateList from "./dateSlider";
+
 const FarmFromReport = DisasterResponse.item[1].request.url.query;
 const viewParams = {
   addView: false,
@@ -25,7 +27,7 @@ function Map(props) {
   const [detailData, setDetailData] = useState({});
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
-
+  const [viewAllFields, setAllFields] = useState(false);
   // useEffect(() => {
   //   if (props.location.state) {
   //     setViewControl({
@@ -47,10 +49,10 @@ function Map(props) {
     setCenter(item.extra_field.centroid);
     selectField(item);
     // // setMapData([])
-    // getLayerData(item, "False", null);
-    console.log("Selected Farm :", item)
-    console.log("Polygon :", Object.values(item.farm_polygon_json))
-    console.log("Center :", item.extra_field.centroid)
+    getLayerData(item, "False", null);
+    console.log("Selected Farm :", item);
+    console.log("Polygon :", Object.values(item.farm_polygon_json));
+    console.log("Center :", item.extra_field.centroid);
   };
 
   const getLayerData = (item, previous, previous_date) => {
@@ -62,8 +64,8 @@ function Map(props) {
 
     MapService.getDateImage(params)
       .then((res) => {
-        // let newMapData = res.data.data.concat(mapData)
-        // setMapData(newMapData);
+        let newMapData = res.data.data.concat(mapData);
+        setMapData(newMapData);
         setLoading(false);
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
@@ -71,6 +73,7 @@ function Map(props) {
           ndvi: res.data.ndviGraph,
           ndwi: res.data.ndwiGraph,
         });
+        console.log("Data:", data);
       })
       .catch((err) => setLoading(false));
   };
@@ -95,9 +98,25 @@ function Map(props) {
     <>
       <div className="container">
         <div className="flex flex-row">
-          <div className="basis-3/4" >
+          <div className="basis-4/4">
+            {/* <input
+              type={"checkbox"}
+              onClick={() => setAllFields(!viewAllFields)}
+            />
+            View All Fields ? */}
+            <DateList
+              loading={loading}
+              mapData={mapData}
+              selectedIndex={selectData}
+              getNewDates={getNewDates}
+            />
+          </div>
+        </div>
+        <div className="flex flex-row">
+          <div className="basis-3/4">
             <LeafletMap
               polygon={polygon}
+              // multiplePolygon = {}
               center={center}
               ref={(mapRed) => mapRef}
               viewControl={viewControl}
@@ -114,15 +133,10 @@ function Map(props) {
         </div>
 
         <div className="flex flex-row p-3">
-          <div className="basis-3/4" >
-          <ColorPalette
-                  ndvi={mapData.length > 0}
-                  ndwi={mapData.length > 0}
-                />
+          <div className="basis-3/4">
+            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
-          <div class="basis-1/4">
-              Something
-          </div>
+          <div class="basis-1/4">Something</div>
         </div>
       </div>
     </>
