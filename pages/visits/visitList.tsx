@@ -109,7 +109,7 @@ class VisitList extends React.Component {
           loading={false}
           pageCount={this.state.pageCount}
         /> */}
-          <ToModal />
+          {/* <ToModal /> */}
         <ToCard title="Visits">
           <table className="min-w-full divide-y divide-gray-200 ">
             <thead className="bg-gray-50">

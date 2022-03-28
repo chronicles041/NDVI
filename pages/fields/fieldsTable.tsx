@@ -39,7 +39,7 @@ class FieldsTable extends React.Component {
     });
     let newArray: any = [];
     let params = {
-      search: " ",
+      search: "",
       user__id: 1,
       //   offset: offset,
     };
@@ -113,7 +113,7 @@ class FieldsTable extends React.Component {
       {
         Header: "Area",
         accessor: "farm_area",
-        Cell: ({ value }) => `${value} Hectare`,
+        Cell: ({ value }) => `${(value*29.6).toFixed(2)} kathha`,
       },
       {
         Header: "Province",
