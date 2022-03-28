@@ -11,6 +11,7 @@ module.exports = {
     },
     fontFamily:{
      "Oxygen":["Oxygen", ...defaultTheme.fontFamily.sans],
+     "Roboto":["Roboto", ...defaultTheme.fontFamily.sans],
     },
     colors: {
       primary: "#7C9C3C",
