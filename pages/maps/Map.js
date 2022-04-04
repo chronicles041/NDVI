@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+
 import { DisasterResponse } from "./assets/disasterResponse";
 import LeafletMap from "./leaflet/leafletMap";
 import MapService from "./mapService";
 import FarmList from "./farmList";
 import ColorPalette from "./colorPalate";
 import DateList from "./dateSlider";
+import TimeSeriesGraph from "./timeSeries";
+import FieldWeather from "./weather";
 
 const FarmFromReport = DisasterResponse.item[1].request.url.query;
 const viewParams = {
@@ -14,6 +18,7 @@ const viewParams = {
 };
 
 function Map(props) {
+  const router = useRouter();
   const mapRef = useRef();
   const [polygon, setPolygon] = useState(JSON.parse(FarmFromReport[2].value));
   const [center, setCenter] = useState([102.8312416766951, 15.248647579054131]);
@@ -28,6 +33,29 @@ function Map(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
+  const [hideGraph, setGraphView] = useState(true);
+  const [hideWeather, setWeatherView] = useState(true);
+  const [weatherData, setWeatherData] = useState();
+  useEffect(() => {
+    let pathname = window.location.pathname.split("/");
+    let id = pathname[pathname.length - 1];
+    if (pathname.length > 2) {
+      setSelectedField(id);
+    }
+  }, []);
+
+  const setSelectedField = (id) => {
+    MapService.fetchFarmListID(id).then((res) => {
+      // console.log("ID", id,res.data);
+      selectFarm(res.data);
+      setViewControl({
+        addView: false,
+        listView: false,
+        detailView: true,
+      });
+    });
+  };
+
   // useEffect(() => {
   //   if (props.location.state) {
   //     setViewControl({
@@ -50,6 +78,7 @@ function Map(props) {
     selectField(item);
     // // setMapData([])
     getLayerData(item, "False", null);
+  
     console.log("Selected Farm :", item);
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
@@ -69,22 +98,15 @@ function Map(props) {
         setLoading(false);
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
+        let ndviGraphData = res.data.ndviGraph;
         setGraphData({
-          ndvi: res.data.ndviGraph,
+          ndvi: ndviGraphData,
           ndwi: res.data.ndwiGraph,
         });
         console.log("Data:", data);
       })
       .catch((err) => setLoading(false));
-  };
-
-  const getDisasterData = (params) => {
-    // setCenter(params.polygon[0]);
-    MapService.getDisasterImage(params)
-      .then((res) => {
-        setMapData(res.data.data);
-      })
-      .catch((err) => console.log(err));
+      getFieldWeather();
   };
 
   const getNewDates = (pre, next) => {
@@ -94,49 +116,92 @@ function Map(props) {
     }
   };
 
+  const getFieldWeather = () => {
+    const params = {
+      coordinates: [81.4434422,28.2097205].toString(),
+    };
+    if (selectedFarm) {
+      MapService.getWeather(params).then((res) => {
+        console.log("Weather", res.data);
+        setWeatherData(res.data?.daily);
+      })
+      .catch(err => null);
+    }
+  };
+
   return (
     <>
       <div className="container">
-        <div className="flex flex-row">
-          <div className="basis-4/4">
-            {/* <input
-              type={"checkbox"}
-              onClick={() => setAllFields(!viewAllFields)}
-            />
-            View All Fields ? */}
-            <DateList
+        <div className="flex flex-row p-3">
+          <div className="basis-3/4">
+            <div className="flex flex-row p-3">
+              <div className="basis-6/12">
+                <DateList
+                  loading={loading}
+                  mapData={mapData}
+                  selectedIndex={selectData}
+                  getNewDates={getNewDates}
+                />
+              </div>
+
+              <div className="basis-3/12">
+                <input
+                  type={"checkbox"}
+                  onClick={() => setGraphView(!hideGraph)}
+                />
+                &nbsp; Time Series Graph
+              </div>
+
+              <div className="basis-3/12">
+                <input
+                  type={"checkbox"}
+                  onClick={() => setWeatherView(!hideWeather)}
+                />
+                &nbsp; Weather
+              </div>
+            </div>
+
+            <div className="flex flex-row">
+              <LeafletMap
+                polygon={polygon}
+                // multiplePolygon = {}
+                center={center}
+                ref={(mapRed) => mapRef}
+                viewControl={viewControl}
+                newFarmArray={setNewFarmArray}
+                selectedData={selectedData}
+                configureColorPalate={(type, value) =>
+                  setColor({ ...color, [type]: value })
+                }
+              />
+            </div>
+          </div>
+          <div className="basis-1/4">
+            <FarmList
               loading={loading}
-              mapData={mapData}
-              selectedIndex={selectData}
-              getNewDates={getNewDates}
+              selectedFarm={selectedFarm}
+              selectedItem={selectFarm}
             />
           </div>
         </div>
-        <div className="flex flex-row">
+
+        <div className="flex flex-row p-3 ">
           <div className="basis-3/4">
-            <LeafletMap
-              polygon={polygon}
-              // multiplePolygon = {}
-              center={center}
-              ref={(mapRed) => mapRef}
-              viewControl={viewControl}
-              newFarmArray={setNewFarmArray}
-              selectedData={selectedData}
-              configureColorPalate={(type, value) =>
-                setColor({ ...color, [type]: value })
-              }
-            />
+            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
-          <div class="basis-1/4">
-            <FarmList loading={loading} selectedItem={selectFarm} />
+          <div class="basis-1/4"></div>
+        </div>
+
+        <div className="flex flex-row p-3">
+          <div hidden={hideGraph} className="basis-4/4 w-full">
+            <TimeSeriesGraph graphData={graphData} />
           </div>
         </div>
 
         <div className="flex flex-row p-3">
-          <div className="basis-3/4">
-            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
+          <div hidden={hideWeather} className="basis-4/4 w-full">
+            <FieldWeather weatherData={weatherData} />
           </div>
-          <div class="basis-1/4">Something</div>
         </div>
       </div>
     </>

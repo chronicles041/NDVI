@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import palette from './assets/ndvi.png'
+
 function ColorPalette({ ndvi, ndwi }) {
   return (
     <>

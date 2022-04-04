@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Input, List, Typography } from "antd";
-import "./map.css";
+// import "./map.css";
 import MapService from "./mapService";
 import ReactApexChart from "react-apexcharts";
+import { BarTypes, ToBar } from "../../components/ToCharts/Tobar";
 
 function TimeSeriesGraph({ graphData, loading }) {
   const xAxis = (graphData) => {
@@ -19,12 +20,13 @@ function TimeSeriesGraph({ graphData, loading }) {
     series: [
       {
         name: "Performance",
-        data: graphData?.ndvi?.map((item) => item.ndvi_value),
+        data: graphData?.ndvi?.reverse().map((item) => item.ndvi_value),
       },
     ],
     options: {
       xaxis: {
         categories: graphData?.ndvi?.map((item) => item.date),
+        reverse:true,
         title: {
           text: "Date",
         },
@@ -38,6 +40,7 @@ function TimeSeriesGraph({ graphData, loading }) {
         chart: {
           type: "area",
           height: 350,
+          width: "100%",
           zoom: {
             enabled: false,
           },
@@ -115,27 +118,30 @@ function TimeSeriesGraph({ graphData, loading }) {
 
   return (
     <>
-      {graphData?.ndvi?.length > 0 ? (
-        <ReactApexChart
-          options={configNdvi.options}
-          series={configNdvi.series}
-          type="area"
-          height={300}
-        />
-      ) : (
+      {/* {graphData?.ndvi?.length > 0 ? ( */}
+      <ReactApexChart
+        options={configNdvi.options}
+        series={configNdvi.series}
+        type="area"
+        height={300}
+      />
+      {/* ) : (
         <></>
-      )}
+      )} */}
+      <br />
+      {/* {graphData?.ndwi?.length > 0 ? ( */}
+      {/* <ReactApexChart
+        options={configNdwi.options}
+        series={configNdwi.series}
+        type="area"
+        height={300}
+        width={"100%"}
+      /> */}
 
-      {graphData?.ndwi?.length > 0 ? (
-        <ReactApexChart
-          options={configNdwi.options}
-          series={configNdwi.series}
-          type="area"
-          height={300}
-        />
-      ) : (
+      {/* <ToBar title={"Water Usage Chart"} type={BarTypes.Line} /> */}
+      {/* ) : (
         <></>
-      )}
+      )} */}
 
       {/* {"Here" + JSON.stringify(graphData.ndvi.map((item) => item))} */}
     </>

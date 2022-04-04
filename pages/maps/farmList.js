@@ -15,6 +15,7 @@ function LayerOptionsList({ selectedItem, loading }) {
     let newArray = [];
     let params = {
       farm_name: searchName,
+      user__id: 203,
     };
     MapService.fetchFarmList(params).then((res) => {
       res.data.results.map((data) => {

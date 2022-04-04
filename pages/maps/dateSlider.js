@@ -1,6 +1,11 @@
 import React from "react";
 import { Slider, Row, Col } from "antd";
 import { LeftOutlined, RightOutlined, ReloadOutlined } from "@ant-design/icons";
+import ToIcon, {
+  IconSize,
+  IconStyles,
+  IconTypes,
+} from "../../components/ToIcons";
 
 const initialState = {
   selectedDate: "",
@@ -98,6 +103,7 @@ class DateList extends React.Component {
   };
 
   onChange = (value) => {
+    console.log("Selected Date Detail", this.props.mapData[value]);
     this.props.selectedIndex(this.props.mapData[value]);
     this.setState({
       selectedDate: this.props.mapData[value].date,
@@ -111,18 +117,22 @@ class DateList extends React.Component {
     return (
       <>
         <label for="dates">Choose Date:</label>
-        <select  onChange={()=>this.onChange(document.getElementById("dates").value)} name="dates" id="dates">
-        {/* <select  onChange={onChange(value)} name="dates" id="dates"> */}
+        <select
+          hidden={this.props.loading}
+          onChange={() => this.onChange(document.getElementById("dates").value)}
+          name="dates"
+          // placeholder={"Choose Date"}
+          id="dates"
+        >
+          <option value="">Select your option</option>
+          {/* <select  onChange={onChange(value)} name="dates" id="dates"> */}
           {this.props.mapData.map((d, i) => (
-            <option  value={i}>{d.date}</option>
+            <option disabled={d.cloud > 30} value={i}>
+              {d.date}  {d.cloud < 30 ? '' : "☁️"}
+            </option>
           ))}
         </select>
-        {/* <select name="cars" id="cars">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
-        </select> */}
+        <span hidden={!this.props.loading}> &nbsp; Loading...</span>
       </>
     );
   }
@@ -130,62 +140,4 @@ class DateList extends React.Component {
 
 export default DateList;
 
-/* <div classNameName="flex flex-row">
-<div classNameName="basis-1/12">
-  <LeftOutlined
-    hidden={visibleMarks.currentIndex === 0}
-    onClick={() => {
-      this.makeVisibleMarker(true, false);
-    }}
-  />
-  <LeftOutlined
-    hidden={visibleMarks.marks[0] !== marks[0]}
-    onClick={() => {
-      this.props.getNewDates(true, false);
-    }}
-    color="red"
-  />
-</div>
-<div classNameName="basis-10/12">
-  <Slider
-    // disabled={Object.keys(visibleMarks.marks).length === 0}
-    disabled={this.props.loading}
-    min={0}
-    reverse
-    tipFormatter={null}
-    max={Object.keys(visibleMarks.marks).length - 1}
-    marks={visibleMarks.marks}
-    defaultValue={this.state.markerIndex}
-    value={this.state.markerIndex}
-    onChange={this.onChange}
-  />
-  
-  {this.props.loading ? <ReloadOutlined spin={true} /> : <></>} &nbsp;
-  {Object.keys(visibleMarks.marks).length} of total{" "}
-  {Object.keys(marks).length} records .
-</div>
 
-<div classNameName="basis-1/12">
-  <RightOutlined
-    hidden={
-      visibleMarks.marks[Object.keys(visibleMarks.marks).length - 1] ===
-      marks[visibleMarks.totalDates - 1]
-    }
-
-    onClick={() => {
-      this.makeVisibleMarker(false, true);
-    }}
-
-  />
-
-  <RightOutlined
-    hidden={
-      visibleMarks.marks[Object.keys(visibleMarks.marks).length - 1] !==
-      marks[visibleMarks.totalDates - 1]
-    }
-    onClick={() => { this.props.getNewDates(false,true);}}
-    color="red"
-  />
-
-</div>
-</div> */
