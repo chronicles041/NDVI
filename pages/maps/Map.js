@@ -85,6 +85,8 @@ function Map(props) {
   };
 
   const getLayerData = (item, previous, previous_date) => {
+    getFieldWeather();
+
     const params = {
       farm_id: item.farm_id,
       previous: previous,
@@ -106,7 +108,6 @@ function Map(props) {
         console.log("Data:", data);
       })
       .catch((err) => setLoading(false));
-      getFieldWeather();
   };
 
   const getNewDates = (pre, next) => {
