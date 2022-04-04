@@ -196,11 +196,8 @@ function Map(props) {
           <div hidden={hideGraph} className="basis-4/4 w-full">
             <TimeSeriesGraph graphData={graphData} />
           </div>
-        </div>
+          <div class="basis-1/4">
 
-        <div className="flex flex-row p-3">
-          <div hidden={hideWeather} className="basis-4/4 w-full">
-            <FieldWeather weatherData={weatherData} />
           </div>
         </div>
       </div>

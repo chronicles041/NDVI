@@ -1,23 +1,39 @@
-import Image from 'next/image';
-import palette from './assets/ndvi.png'
-
+import Image from "next/image";
+import palette from "./assets/ndvi.png";
+import ndwipalette from "./assets/ndwicolor.png"
 function ColorPalette({ ndvi, ndwi }) {
   return (
     <>
       <div>
-        {/* <div hidden={!ndwi}> */}
-
-        <div className="p-1" span={2}>
-          Drought NDWI Drought - Flood
-        </div>
-      </div>
-
-      <div>
         {/* <div hidden={!ndvi}> */}
         <div className="p-1" span={2}>
-          NDVI Poor
-          <Image src={palette} ></Image>
-          NDVI BAD
+          <div className="flex flex-col lg:w-2/3">
+            <div className="mb-1 mx-auto font-bold">NDVI Range</div>
+            <Image src={palette}></Image>
+
+            <div className="flex mt-1 flex-row justify-between">
+              <div className="text-xs font-bold text-black opacity-60">
+                POOR
+              </div>
+              <div className="text-xs font-bold text-black opacity-60">
+                GOOD
+              </div>
+            </div>
+            </div>
+            <div className="flex flex-col lg:w-2/3">
+            <div className="mb-1 mx-auto font-bold">NDWI Range</div>
+            <Image src={ndwipalette}></Image>
+
+            <div className="flex mt-1 flex-row justify-between">
+              <div className="text-xs font-bold text-black opacity-60">
+                POOR
+              </div>
+              <div className="text-xs font-bold text-black opacity-60">
+                GOOD
+              </div>
+          </div>
+       
+          </div>
         </div>
       </div>
     </>
