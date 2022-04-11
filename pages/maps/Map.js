@@ -198,7 +198,7 @@ function Map(props) {
             <TimeSeriesGraph graphData={graphData} />
           </div>
           <div class="basis-1/4">
-                
+            
           </div>
         </div>
       </div>
