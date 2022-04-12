@@ -1,6 +1,10 @@
 const { i18n } = require('./next-i18next.config');
 
 module.exports = {
+  plugins: [
+    'tailwindcss',
+    'postcss-preset-env',
+  ],
   async redirects() {
     return [
       {
@@ -11,9 +15,15 @@ module.exports = {
     ]
   },
   i18n, 
-  future: {
-    webpack5: true, // by default, if you customize webpack config, they switch back to version 4. 
-      // Looks like backward compatibility approach.
+  
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+    ignoreDuringBuilds: true,
+
   },
   
 };

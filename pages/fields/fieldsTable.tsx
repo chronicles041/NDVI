@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import React from "react";
 import { ToTable } from "../../components/ToTable";
-import MapService from "../maps/mapService";
+import MapService from "../../components/Maps/mapService";
 
 type States = {
   columns: [];

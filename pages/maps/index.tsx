@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import ToCard from "../../components/ToCard";
 // import Map from './Map'
 
-const Map = dynamic(() => import("./Map"), { ssr: false });
+const Map = dynamic(() => import("../../components/leaflet/Map.js"), { ssr: false });
 
 const Field = () => {
   return (

@@ -1,5 +1,3 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap ,Polygon} from "react-leaflet";
-// import "leaflet-draw/dist/leaflet.draw.css";
 
 const MapBody = ({fieldId}) => {
   const position = [
@@ -40,12 +38,12 @@ const MapBody = ({fieldId}) => {
   return (
     <div className="flex flex-row">
 
-      <MapContainer  center={ [ 28.0704283,81.5759298]} zoom={15} scrollWheelZoom={false}>
+      {/* <MapContainer  center={ [ 28.0704283,81.5759298]} zoom={15} scrollWheelZoom={false}>
          <TileLayer   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
        <Polygon pathOptions={purpleOptions} positions={multiPolygon} />
        {/* <Polygon pathOptions={purpleOptions} positions={bardiya} /> */}
         {/* <GeoJSon attribution="&copy; credits due..." data={...} /> */}
-      </MapContainer>
+      {/* </MapContainer> */} 
      
     </div>
   );

@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
-import { DisasterResponse } from "./assets/disasterResponse";
-import LeafletMap from "./leaflet/leafletMap";
-import MapService from "./mapService";
-import FarmList from "./farmList";
-import ColorPalette from "./colorPalate";
-import DateList from "./dateSlider";
-import TimeSeriesGraph from "./timeSeries";
-import FieldWeather from "./weather";
+import { DisasterResponse } from "../Maps/disasterResponse.js";
+import LeafletMap from "./leafletMap";
+import MapService from "../Maps/mapService";
+import FarmList from "../Maps/farmList";
+import ColorPalette from "../Maps/colorPalate";
+import DateList from "../Maps/dateSlider";
+import TimeSeriesGraph from "../Maps/timeSeries";
+import FieldWeather from "../Maps/weather";
+import dynamic from 'next/dynamic'
+
 
 const FarmFromReport = DisasterResponse.item[1].request.url.query;
 const viewParams = {
@@ -37,12 +39,14 @@ function Map(props) {
   const [hideWeather, setWeatherView] = useState(true);
   const [weatherData, setWeatherData] = useState();
   useEffect(() => {
-    let pathname = window.location.pathname.split("/");
-    let id = pathname[pathname.length - 1];
-    if (pathname.length > 2) {
-      setSelectedField(id);
-    }
+    // let pathname = window.location.pathname.split("/");
+    // let id = pathname[pathname.length - 1];
+    // if (pathname.length > 2) {
+    //   setSelectedField(id);
+    // }
   }, []);
+
+
 
   const setSelectedField = (id) => {
     MapService.fetchFarmListID(id).then((res) => {

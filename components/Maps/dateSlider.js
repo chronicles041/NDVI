@@ -1,11 +1,4 @@
 import React from "react";
-import { Slider, Row, Col } from "antd";
-import { LeftOutlined, RightOutlined, ReloadOutlined } from "@ant-design/icons";
-import ToIcon, {
-  IconSize,
-  IconStyles,
-  IconTypes,
-} from "../../components/ToIcons";
 
 const initialState = {
   selectedDate: "",

@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import './map.css';
+// import './map.css';
 function DisasterDetail({ detail }) {
   return (
     <>

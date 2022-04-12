@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Input, List, Typography } from "antd";
 // import "./map.css";
 import MapService from "./mapService";
-import ReactApexChart from "react-apexcharts";
-import { BarTypes, ToBar } from "../../components/ToCharts/Tobar";
+import { BarTypes, ToBar } from "../ToCharts/Tobar";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function TimeSeriesGraph({ graphData, loading }) {
   const xAxis = (graphData) => {
@@ -119,7 +120,7 @@ function TimeSeriesGraph({ graphData, loading }) {
   return (
     <>
       {/* {graphData?.ndvi?.length > 0 ? ( */}
-      <ReactApexChart
+      <Chart
         options={configNdvi.options}
         series={configNdvi.series}
         type="area"
