@@ -4,6 +4,7 @@ import { usePagination, useTable } from "react-table";
 
 // import "./styles.css";
 import makeData from "./makeData";
+import { ToTablePagination } from "./pagination";
 
 type Props = {
   columns: any;
@@ -195,6 +196,7 @@ export const ToTable = ({
                 </select>
               </div>
             </div>
+            <ToTablePagination />
           </div>
         {/* </div> */}
       </div>

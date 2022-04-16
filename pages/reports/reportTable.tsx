@@ -11,7 +11,6 @@ type TableColumn = {
 };
 
 type FieldVisitProps = {
-
   testColumns: any[];
   tableData: IFieldReport[];
 };
@@ -46,7 +45,6 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
   componentWillMount() {
     // this.newFarmlist();
   }
-
 
 
   render() {

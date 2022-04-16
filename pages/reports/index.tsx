@@ -11,8 +11,6 @@ import ReportService from "./api/service";
 
 // };
 
-
-
 const testColumns = [
   {
     Header: "SN",

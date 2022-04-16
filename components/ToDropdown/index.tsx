@@ -1,13 +1,14 @@
 import React from "react";
-import { IDistricts } from "../../pages/reports/reportTypes";
+import { ILocation } from "../../pages/reports/reportTypes";
 
 type ToDropdownProps = {
   title: string;
   options: [];
   onChange: Function;
+  disabled?: boolean;
 };
 
-export default function ToDropdown({ title, options, onChange }: any) {
+export default function ToDropdown({ title, options, onChange, disabled }: any) {
   return (
     <div className="flex flex-row ml-2">
       <div className="flex flex-row w-full">
@@ -16,10 +17,11 @@ export default function ToDropdown({ title, options, onChange }: any) {
           <select
             className="px-2 py-1 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none w-2/3"
             onChange={onChange}
+            disabled = {disabled}
           >
             <option value="Default">Select </option>
 
-            {options?.map((v: IDistricts, i: number) => (
+            {options?.map((v: ILocation, i: number) => (
               <>
                 <option key={i} value={v.value}>
                   {v.title}
