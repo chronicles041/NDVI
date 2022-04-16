@@ -1,12 +1,9 @@
-import { User } from "../../interfaces";
-import { sampleUserData } from "../../utils/sample-data";
-import Layout from "../../components/Layouts";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React, { ReactElement } from "react";
-import VisitsTable from "./ReportTable";
-import ReportTable from "./ReportTable";
+import React, { ReactElement, useEffect } from "react";
+import ReportTable from "./reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
+import { IFieldReport, ILocation } from "./reportTypes";
+import ReportService from "./api/service";
 // import UsersTable from "./usersTable";
 
 // type Props = {
@@ -14,113 +11,20 @@ import ReportFilters from "./reportFilters";
 
 // };
 
-export const testData = [
-  {
-    id: 1,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 2,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 3,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 4,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 5,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 6,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 7,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 8,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 9,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-  {
-    id: 10,
-    farmer_name: "Some Name",
-    gender: "M / F",
-    age: "Some Number",
-    contact_number: "9843 **** **",
-    organization: "Some Organization",
-    crop_type_name: "Maize",
-    plantation_date: "2022-02-10",
-  },
-];
 
-export const testColumns = [
+
+const testColumns = [
   {
-    Header: "ID",
-    accessor: "id",
+    Header: "SN",
+    accessor: "farm_id",
+  },
+  {
+    Header: "Farm Name",
+    accessor: "farm_name",
+  },
+  {
+    Header: "Farm Area",
+    accessor: "farm_area",
   },
   {
     Header: "Farmer Name",
@@ -136,7 +40,7 @@ export const testColumns = [
   },
   {
     Header: "Contact Number",
-    accessor: "contact_number",
+    accessor: "contact_no",
   },
   {
     Header: "Organization",
@@ -153,14 +57,58 @@ export const testColumns = [
   },
 ];
 
+const params: {} = {
+  search: " ",
+  limit: 10,
+  offset: 0,
+};
+
 const Reports = () => {
-  // const data = React.useMemo(() => makeData(20), []);
-  const tableData = () => testData;
   const tableColumns = () => testColumns;
+  const [districts, setDistrict] = React.useState<ILocation[]>([
+    { value: 0, title: "No Districts Found" },
+  ]);
+
+  const [municipality, setMunicipalitiy] = React.useState<ILocation[]>([
+    { value: 0, title: "No Municipality Found" },
+  ]);
+
+  const [ward, setWard] = React.useState<ILocation[]>([
+    { value: 0, title: "No Wards Found" },
+  ]);
+
+  const [province, setprovince] = React.useState<ILocation[]>([
+    { value: 0, title: "No Wards Found" },
+  ]);
+
+  const [organization, setOrganization] = React.useState<ILocation[]>([
+    { value: 0, title: "No Wards Found" },
+  ]);
+
+  const [reportData, setReportData] = React.useState<IFieldReport[]>([]);
+
+  useEffect(() => {
+    ReportService.FetchProvince().then((res) => setprovince(res));
+    ReportService.FetchDistricts().then((res) => setDistrict(res));
+    ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
+    // ReportService.FetchWard().then((res) => setWard(res));
+    ReportService.FetchOrganizations().then((res) => setOrganization(res));
+    ReportService.FetchFieldReport(params).then((res) => setReportData(res));
+  }, []);
+
   return (
     <PageLayout>
-      <ReportFilters />
-      <ReportTable testColumns={tableColumns()} testData={tableData()} />
+      <ReportFilters
+        provinceValues={province}
+        districtValues={districts}
+        municipalityValues={municipality}
+        wardValues={ward}
+        organizationValues={organization}
+      />
+      <ReportTable
+        testColumns={tableColumns()}
+        tableData={reportData}
+      />
     </PageLayout>
   );
 };

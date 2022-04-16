@@ -28,7 +28,7 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
         <Header
           changeCollapse={() => changeCollapse(!isCollapse)}
           isCollapse={isCollapse}
-        />{" "}
+        />
       </div>
         <div className="flex flex-row h-screen">
           <div
