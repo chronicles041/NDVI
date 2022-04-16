@@ -16,7 +16,7 @@ const Navbar = ({ changeCollapse, isCollapse }: NavbarProps) => {
         onClick={() => changeCollapse()}
       >
         <ToIcon
-          type={IconTypes.TOGGLE}
+          type={IconTypes.Toggle}
           size={IconSize.SM}
           style={IconStyles.Navigation}
         

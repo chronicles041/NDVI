@@ -67,7 +67,7 @@ export const IconTypes = {
   Average: Average,
   Dressing: Dressing,
   Map: Map,
-  TOGGLE: Toggle,
+  Toggle: Toggle,
 };
 export const IconStyles = {
   Default: styles.default,
