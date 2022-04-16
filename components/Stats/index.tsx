@@ -43,9 +43,9 @@ const Routes: any[] = [
 ];
 
 export const Stats = () => (
-  <div className="grid grid-cols-4 ">
+  <div className="grid grid-cols-4 mb-10">
     {Routes.map((route) => (
-      <div className="bg-white p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center ">
+      <div className="bg-white border-2 border-primary p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center ">
         <ToIcon
           type={route?.icon}
           size={IconSize.MD}

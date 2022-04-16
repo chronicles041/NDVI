@@ -49,7 +49,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
   };
 
   componentWillMount() {
-    this.newFarmlist();
+    // this.newFarmlist();
   }
 
   newFarmlist = () => {
@@ -140,6 +140,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
         loading={false}
         pageCount={this.state.pageCount}
       />
+      
     );
   }
 

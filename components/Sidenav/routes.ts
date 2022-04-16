@@ -2,11 +2,11 @@ import { IconTypes } from "../ToIcons";
 
 
 export const Routes = [
-    // {
-    //     path: "/dashboard",
-    //     icon: IconTypes.Dashboard,
-    //     name: "Dashboard"
-    // },
+    {
+        path: "/dashboard",
+        icon: IconTypes.Dashboard,
+        name: "Dashboard"
+    },
     // {
     //     path: "/users",
     //     icon: IconTypes.User,
@@ -17,11 +17,11 @@ export const Routes = [
     //     icon: IconTypes.Farm,
     //     name: "Fields"
     // },
-    // {
-    //     path: "/maps",
-    //     icon: IconTypes.Map,
-    //     name: "Maps"
-    // },
+    {
+        path: "/maps",
+        icon: IconTypes.Farm,
+        name: "Maps"
+    },
     // {
     //     path: "/activities",
     //     icon: IconTypes.Activity,
@@ -34,7 +34,7 @@ export const Routes = [
     // },
     {
         path: "/reports",
-        icon: IconTypes.Farm,
+        icon: IconTypes.Activity,
         name: "Reports"
     }
 

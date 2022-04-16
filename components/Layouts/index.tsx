@@ -23,62 +23,40 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
         />
       </Head>
       {/* <div className="min-h-screen flex flex-row overflow-y-hidden overflow-x-hidden font-Oxygen"> */}
-      {/* <div className="min-h-screen flex flex-row overflow-y-hidden overflow-x-hidden font-Oxygen"> */}
-      <div className="flex-none sticky w-full">
-        <Header
-          changeCollapse={() => changeCollapse(!isCollapse)}
-          isCollapse={isCollapse}
-        />{" "}
-      </div>
-        <div className="flex flex-row h-screen">
+      <div className="h-screen flex flex-col overflow-hidden font-Oxygen">
+        <div className="w-full ">
+          <Header
+            changeCollapse={() => changeCollapse(!isCollapse)}
+            isCollapse={isCollapse}
+          />{" "}
+        </div>
+        <div className="flex flex-row">
           <div
-            className={`h-screen ${!isCollapse ? "basis-1/5" : "basis-[6%]"}`}
+            className={`h-screen ${!isCollapse ? "basis-1/5 delay-400 duration-500 ease-in-out transition-all transform " : "delay-400 duration-500 ease-in-out transition-all transform basis-[6%]"}`}
           >
             <Navbar isCollapse={isCollapse} />
           </div>
           <div
-            className={` bg-blue-300 h-screen ${
-              !isCollapse ? "basis-4/5" : "basis-[94%]"
+            className={`h-screen overflow-y-scroll ${
+              !isCollapse ? "basis-4/5" : "basis-[94%] "
             }`}
           >
             <div
               className={
-                "overflow-y-auto overflow-x-hidden  bg-gray-200 w-full"
+                " bg-gray-200 w-full"
               }
             >
-              <main className="mb-auto p-4 min-h-screen bg-gray-200 grow">
+              <main className="p-4 min-h-screen bg-gray-200 grow">
                 {children}
               </main>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 };
 
 export default Layout;
 
-{
-  /* <div className={`h-screen ${!isCollapse ? "basis-1/5" : "basis-[6%]"}`}>
-<Navbar
-changeCollapse = {()=>changeCollapse(!isCollapse)}
-isCollapse={isCollapse}
-/>
-</div>
-<div className={`h-screen  ${!isCollapse ? "basis-4/5" : "basis-[94%]"}`}>
-<div className="flex flex-col h-screen justify-between">
-  <div className="flex-none sticky">
-    <Header title={title} />
-  </div>
-  <div
-    className={
-      "overflow-y-auto overflow-x-hidden  bg-gray-200 w-full"
-    }
-  >
-    <main className="mb-auto p-4 min-h-screen bg-gray-200 grow">
-      {children}
-    </main>
-  </div>
-</div>
-</div> */
-}
+
