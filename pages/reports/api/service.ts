@@ -100,7 +100,11 @@ class ReportService {
                 ];
                 // console.log("**API**DropdDowm", tempReturnValue);
             });
-            return tempReturnValue;
+            let  ServerData = {
+                data : tempReturnValue,
+                total : res.data.count
+            }
+            return ServerData;
         });
 
     }

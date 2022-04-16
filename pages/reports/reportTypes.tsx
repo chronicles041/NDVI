@@ -3,6 +3,7 @@ export interface ILocation {
   title: string;
 }
 
+
 export interface IFieldReport {
   farm_id: number;
   farm_area: string;

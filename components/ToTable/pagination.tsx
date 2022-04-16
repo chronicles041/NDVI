@@ -1,12 +1,18 @@
-export const ToTablePagination = () => {
-  let loading = false;
-  let page = [1];
-  let controlledPageCount = 2;
-  let pageSize = 3;
-  let canPreviousPage = true;
-  let canNextPage = false;
-  let pageIndex = 2;
-  let pageOptions = [1, 2, 3];
+type PaginationProps = {
+    loading : boolean;
+    page : number;
+    pageCount : number;
+    pageSize : number
+    canPreviousPage:boolean;
+    canNextPage:boolean;
+    pageIndex:number;
+    pageOptions:number[];
+  };
+  
+
+
+export const ToTablePagination = ({loading,page,pageCount,pageIndex,pageOptions,pageSize,canNextPage,canPreviousPage}:PaginationProps) => {
+
 
   return (
     <div className="pagination flex item-center justify-between w-full my-4 mx-4 ,mt-1">
@@ -16,7 +22,7 @@ export const ToTablePagination = () => {
           <div>Loading...</div>
         ) : (
           <div className="text-lg font-semibold bg-primary px-2 py-2 text-center text-white shadow-2xl rounded-2xl opacity-80 ">
-            Showing {page.length} of ~{controlledPageCount * pageSize} results
+            Showing {page} of ~{pageCount * pageSize} results
           </div>
         )}
       </div>

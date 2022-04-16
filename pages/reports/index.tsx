@@ -83,7 +83,10 @@ const Reports = () => {
     { value: 0, title: "No Wards Found" },
   ]);
 
-  const [reportData, setReportData] = React.useState<IFieldReport[]>([]);
+  const [reportData, setReportData] = React.useState<{
+    data: IFieldReport[];
+    total: number;
+  }>({ data:[], total: 0 });
 
   useEffect(() => {
     ReportService.FetchProvince().then((res) => setprovince(res));
@@ -103,10 +106,7 @@ const Reports = () => {
         wardValues={ward}
         organizationValues={organization}
       />
-      <ReportTable
-        testColumns={tableColumns()}
-        tableData={reportData}
-      />
+      <ReportTable testColumns={tableColumns()} tableData={reportData} />
     </PageLayout>
   );
 };

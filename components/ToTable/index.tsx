@@ -10,7 +10,8 @@ type Props = {
   columns: any;
   data: any;
   loading: boolean;
-  pageCount: any;
+  pageCount: number;
+  count:number
 };
 
 export const ToTable = ({
@@ -18,6 +19,7 @@ export const ToTable = ({
   data,
   loading,
   pageCount: controlledPageCount,
+  count,
 }: Props) => {
   const {
     getTableProps,
@@ -196,7 +198,18 @@ export const ToTable = ({
                 </select>
               </div>
             </div>
-            <ToTablePagination />
+
+
+            <ToTablePagination
+              loading = {false}
+              page={2}
+              pageCount={count / 10}
+              pageSize={10}
+              canPreviousPage={true}
+              canNextPage={true}
+              pageIndex={3}
+              pageOptions={[5,10,15]}
+            />
           </div>
         {/* </div> */}
       </div>

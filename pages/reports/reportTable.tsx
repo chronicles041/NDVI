@@ -12,12 +12,15 @@ type TableColumn = {
 
 type FieldVisitProps = {
   testColumns: any[];
-  tableData: IFieldReport[];
+  tableData: {
+    data: IFieldReport[];
+    total: number;
+  };
 };
 
 type FieldVisitState = {
   columns: [TableColumn];
-  data: IFieldReport[];
+  data: [];
   loading: boolean;
   pageCount: number;
   pageSize: number;
@@ -46,16 +49,19 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
     // this.newFarmlist();
   }
 
-
   render() {
+    let tableData: any = this.props.tableData.data;
+    let count: number = this.props.tableData.total;
     return (
+      // <>Hello</>
       // <div className="flex flex-col w-full  ">
-
+   
       <ToTable
         columns={this.props.testColumns}
-        data={this.props.tableData}
+        data={tableData}
         loading={false}
         pageCount={1}
+        count={count}
       />
     );
   }
