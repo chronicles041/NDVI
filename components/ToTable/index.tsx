@@ -8,7 +8,6 @@ import makeData from "./makeData";
 type Props = {
   columns: any;
   data: any;
-  fetchData: any;
   loading: boolean;
   pageCount: any;
 };
@@ -16,7 +15,6 @@ type Props = {
 export const ToTable = ({
   columns,
   data,
-  fetchData,
   loading,
   pageCount: controlledPageCount,
 }: Props) => {
@@ -49,14 +47,13 @@ export const ToTable = ({
     },
     usePagination,
   );
-  React.useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
+  // React.useEffect(() => {
+  // }, [data, pageIndex, pageSize]);
   // Render the UI for your table
   return (
     <>
-      <div className="flex flex-col w-full p-10 ">
-        <div className="-my-2 sm:-mx-6 lg:-mx-8">
+      <div className="flex flex-col w-full  ">
+        {/* <div className="-my-2 sm:-mx-6 lg:-mx-8"> */}
           <div className="py-2 flex flex-col min-w-full sm:px-6 lg:px-8 bg-white border-b border-gray-200 sm:rounded-lg">
             <div className="shadow flex flex-row overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg overflow-x-visible mt-6">
               <table
@@ -199,7 +196,7 @@ export const ToTable = ({
               </div>
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

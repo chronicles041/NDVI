@@ -17,6 +17,8 @@ import Crop from "./assets/crop.svg";
 import Average from "./assets/average.svg";
 import Dressing from "./assets/dressing.svg";
 import Map from "./assets/map.svg";
+import Toggle from "./assets/toggle.svg";
+import { title } from "process";
 
 interface IiconSize {
   height: number;
@@ -33,9 +35,10 @@ type Props = {
   type: IiconType | any;
   size: IiconSize | any;
   style: string;
+  text?: string;
 };
 
-const ToIcon = ({ type, size, style }: Props) => {
+const ToIcon = ({ text, type, size, style }: Props) => {
   return (
     <>
       <Image
@@ -64,6 +67,7 @@ export const IconTypes = {
   Average: Average,
   Dressing: Dressing,
   Map: Map,
+  TOGGLE: Toggle,
 };
 export const IconStyles = {
   Default: styles.default,
@@ -90,6 +94,10 @@ export const IconSize = {
   NAVICON: {
     height: 27,
     width: 27,
+  },
+  LARGENAVICON: {
+    height: 40,
+    width: 40,
   },
 };
 export default ToIcon;

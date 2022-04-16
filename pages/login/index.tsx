@@ -3,10 +3,8 @@ import Router from "next/router";
 import { useState } from "react";
 import axios from "axios";
 
-type LoginPageProps = {
-  t: Function;
-};
-const Login = ({ t }: LoginPageProps) => {
+
+const Login = () => {
   const [username, changeUsername] = useState("");
   const [password, changePassword] = useState("");
   const [message, changeMessage] = useState("");
