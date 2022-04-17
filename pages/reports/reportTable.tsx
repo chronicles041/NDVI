@@ -16,13 +16,14 @@ type FieldVisitProps = {
     data: IFieldReport[];
     total: number;
   };
+  setPageSize: Function ;
 };
 
 type FieldVisitState = {
   columns: [TableColumn];
   data: [];
   loading: boolean;
-  pageCount: number;
+  currentPage: number;
   pageSize: number;
 };
 
@@ -41,7 +42,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
     ],
     data: [],
     loading: false,
-    pageCount: 0,
+    currentPage: 0,
     pageSize: 10,
   };
 
@@ -55,13 +56,15 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
     return (
       // <>Hello</>
       // <div className="flex flex-col w-full  ">
-   
+
       <ToTable
         columns={this.props.testColumns}
         data={tableData}
         loading={false}
-        pageCount={1}
+        currentPage={1}
         count={count}
+        // setPageSize={(value:Number)=>alert(value)}
+        setPageSize={(value:Number)=>this.props.setPageSize(value)}
       />
     );
   }

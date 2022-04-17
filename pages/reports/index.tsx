@@ -86,16 +86,30 @@ const Reports = () => {
   const [reportData, setReportData] = React.useState<{
     data: IFieldReport[];
     total: number;
-  }>({ data:[], total: 0 });
+  }>({ data: [], total: 0 });
+
+  const [pageSize, setPageSize] = React.useState<Number>(10);
+  const [limit, setLimit] = React.useState<Number>(10);
+  const [offSet, setOffset] = React.useState<Number>(0);
 
   useEffect(() => {
+    const params: {} = {
+      search: " ",
+      limit: limit,
+      offset: offSet,
+    };
     ReportService.FetchProvince().then((res) => setprovince(res));
     ReportService.FetchDistricts().then((res) => setDistrict(res));
     ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
     // ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
     ReportService.FetchFieldReport(params).then((res) => setReportData(res));
-  }, []);
+  }, [limit]);
+
+  const changePageSize = (value: number) => {
+    console.log("Clicked", value);
+    setLimit(value)
+  };
 
   return (
     <PageLayout>
@@ -106,7 +120,13 @@ const Reports = () => {
         wardValues={ward}
         organizationValues={organization}
       />
-      <ReportTable testColumns={tableColumns()} tableData={reportData} />
+      <ReportTable
+        // pageSize={pageSize}
+        setPageSize={(value: number) => changePageSize(value)}
+        // setPageSize={(value: number) => setPageSize(value)}
+        testColumns={tableColumns()}
+        tableData={reportData}
+      />
     </PageLayout>
   );
 };
