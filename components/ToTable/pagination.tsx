@@ -3,23 +3,17 @@ type PaginationProps = {
   page: number;
   pageCount: number;
   pageSize: number;
-  canPreviousPage: boolean;
-  canNextPage: boolean;
-  pageIndex: number;
-  pageOptions: number[];
   setPageSize: Function;
+  gotoPage: Function;
 };
 
 export const ToTablePagination = ({
   loading,
   page,
   pageCount,
-  pageIndex,
-  pageOptions,
   pageSize,
-  canNextPage,
-  canPreviousPage,
-  setPageSize
+  setPageSize,
+  gotoPage,
 }: PaginationProps) => {
   return (
     <div className="pagination flex item-center justify-between w-full my-4 mx-4 ,mt-1">
@@ -35,10 +29,10 @@ export const ToTablePagination = ({
       </div>
       <div className="mx-8 text-lg font-medium">
         <button
-          //   onClick={() => gotoPage(0)}
-          //   disabled={!canPreviousPage}
+          onClick={() => gotoPage(0)}
+          disabled={page === 1}
           className={
-            canPreviousPage
+            page !== 1
               ? "mx-2 bg-secondary rounded-full px-2 text-white  shadow-2xl"
               : "mx-2 bg-secondary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl cursor-not-allowed "
           }
@@ -46,10 +40,10 @@ export const ToTablePagination = ({
           {"FIRST"}
         </button>{" "}
         <button
-          //   onClick={() => previousPage()}
-          disabled={!canPreviousPage}
+          onClick={() => gotoPage(page - 1)}
+          disabled={page === 1}
           className={
-            canPreviousPage
+            page !== 1
               ? "mx-2 bg-primary rounded-full px-2 text-white  shadow-2xl"
               : "mx-2 bg-primary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl cursor-not-allowed "
           }
@@ -57,10 +51,10 @@ export const ToTablePagination = ({
           {"PREV"}
         </button>{" "}
         <button
-          //   onClick={() => nextPage()}
-          disabled={!canNextPage}
+          onClick={() => gotoPage(page + 1)}
+          disabled={page === pageCount}
           className={
-            canNextPage
+            page !== pageCount
               ? "mx-2 bg-primary rounded-full px-2 text-white  shadow-2xl"
               : "mx-2 bg-primary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl   cursor-not-allowed"
           }
@@ -68,10 +62,10 @@ export const ToTablePagination = ({
           {"NEXT"}
         </button>{" "}
         <button
-          //   onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
+          onClick={() => gotoPage(pageCount)}
+          disabled={page === pageCount}
           className={
-            canNextPage
+            page !== pageCount
               ? "mx-2 bg-secondary rounded-full px-2 text-white  shadow-2xl"
               : "mx-2 bg-secondary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl   cursor-not-allowed"
           }
@@ -88,25 +82,22 @@ export const ToTablePagination = ({
           | Go to page:{" "}
           <input
             type="number"
+            value={page}
             className="rounded-lg focus:ring-primary"
             defaultValue={page}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              // alert(page)
-              // gotoPage(page);
-            }}
+            onChange={(e) => gotoPage(e.target.value)}
             style={{ width: "100px" }}
           />
         </span>{" "}
         <select
-          value={pageSize}
+          defaultValue={pageSize}
           // disabled={true}
           // hidden={true}
           // onChange={(e) => {
           //   setPageSize(Number(e.target.value));
           // }}
           // onChange={(e)=>alert(e.target.value)}
-          onChange={(e)=>setPageSize(e.target.value)}
+          onChange={(e) => setPageSize(e.target.value)}
         >
           {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>

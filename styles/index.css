@@ -182,8 +182,24 @@
 .leaflet-container {
   height: 500px;
   width: 100%;
-
 }
+
+
+
+ .dateList .ant-slider-mark-text   {
+   padding:10px;
+   margin-left:2px;
+   /* width:100%; */
+  background-color:red !important;
+  
+}
+
+.dateList .ant-slider-mark-text strong {
+  font-weight:800;
+  font-size:10px;
+  color: yellow !important;
+}
+
 
 
 /* ant-progress ant-progress-line ant-progress-status-active ant-progress-show-info ant-progress-default */

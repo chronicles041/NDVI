@@ -17,11 +17,11 @@ export const Routes = [
     //     icon: IconTypes.Farm,
     //     name: "Fields"
     // },
-    // {
-    //     path: "/maps",
-    //     icon: IconTypes.Map,
-    //     name: "Maps"
-    // },
+    {
+        path: "/maps",
+        icon: IconTypes.Map,
+        name: "Maps"
+    },
     // {
     //     path: "/activities",
     //     icon: IconTypes.Activity,

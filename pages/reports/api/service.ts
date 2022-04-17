@@ -50,10 +50,10 @@ class ReportService {
     FetchWard() {
         return axios.get<ILocation, any>('https://app.teamonetech.com/api/v1/ward/').then((res) => {
             let tempReturnValue: ILocation[] = [];
-            res.data.results.map((value: { name: string; id: number }) => {
+            res.data.results.map((value: { name: number; id: number }) => {
                 tempReturnValue = [
                     ...tempReturnValue,
-                    { title: value.name, value: value.id },
+                    { title: (value.number), value: value.id },
                 ];
                 // console.log("**API**DropdDowm", tempReturnValue);
             });
@@ -79,16 +79,18 @@ class ReportService {
 
     }
 
-    FetchFieldReport(params:any) {
-        return axios.get<IFieldReport, any>('https://app.teamonetech.com/api/v1/farm_info_view/', {params}).then((res) => {
+    FetchFieldReport(params: any) {
+        return axios.get<IFieldReport, any>('https://app.teamonetech.com/api/v1/farm_info_view/', { params }).then((res) => {
             let tempReturnValue: IFieldReport[] = [];
-            res.data.results.map((value: {}, i: number) => {
+            res.data.results.map((
+                value: IFieldReport
+                , i: number) => {
                 tempReturnValue = [
                     ...tempReturnValue,
                     {
-                        farm_id: i + 1,
-                        farm_area: '12',
-                        farm_name: "Farm Name",
+                        farm_id: value.farm_id,
+                        farm_area: value.farm_area,
+                        farm_name: value.farm_name,
                         farmer_name: "Some Farmer",
                         gender: "M / F",
                         age: 40,
@@ -100,9 +102,9 @@ class ReportService {
                 ];
                 // console.log("**API**DropdDowm", tempReturnValue);
             });
-            let  ServerData = {
-                data : tempReturnValue,
-                total : res.data.count
+            let ServerData = {
+                data: tempReturnValue,
+                total: res.data.count
             }
             return ServerData;
         });

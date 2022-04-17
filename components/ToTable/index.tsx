@@ -10,9 +10,11 @@ type Props = {
   columns: any;
   data: any;
   loading: boolean;
-  currentPage: number;
   count: number;
   setPageSize: Function;
+  gotoPage: Function;
+  limit: Number;
+  offset: Number;
 };
 
 export const ToTable = ({
@@ -20,9 +22,11 @@ export const ToTable = ({
   data,
   loading,
   pageCount: controlledPageCount,
-  currentPage,
   count,
-  setPageSize
+  gotoPage,
+  setPageSize,
+  limit,
+  offset,
 }: Props) => {
   const {
     getTableProps,
@@ -34,7 +38,7 @@ export const ToTable = ({
     canNextPage,
     pageOptions,
     pageCount,
-    gotoPage,
+    // gotoPage,
     nextPage,
     previousPage,
     // setPageSize,
@@ -50,13 +54,15 @@ export const ToTable = ({
       // This means we'll also have to provide our own
       // pageCount.
       pageCount: controlledPageCount,
-     
     },
     usePagination
   );
   // React.useEffect(() => {
   // }, [data, pageIndex, pageSize]);
-  // Render the UI for your table
+  // Render the UI for your table]
+
+  const currentP: number = offset >= count ? -1 : parseInt(offset / limit) + 1;
+
   return (
     <>
       <div className="flex flex-col w-full  ">
@@ -111,15 +117,11 @@ export const ToTable = ({
 
           <ToTablePagination
             loading={false}
-            page={currentPage}
+            page={currentP}
             pageCount={Math.round(count / 10)}
             pageSize={10}
-            canPreviousPage={true}
-            canNextPage={true}
-            pageIndex={3}
-            pageOptions={[5, 10, 15]}
-            setPageSize={(value:number)=>setPageSize(value)}
-            // setPageSize={(value:number)=>alert(value)}
+            setPageSize={(value: number) => setPageSize(value)}
+            gotoPage={(value: number) => gotoPage(value)}
           />
         </div>
         {/* </div> */}

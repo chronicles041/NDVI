@@ -4,6 +4,8 @@ import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
 import { IFieldReport, ILocation } from "./reportTypes";
 import ReportService from "./api/service";
+import { off } from "process";
+import Link from "next/link";
 // import UsersTable from "./usersTable";
 
 // type Props = {
@@ -11,9 +13,9 @@ import ReportService from "./api/service";
 
 // };
 
-const testColumns = [
+const ReportColumns = [
   {
-    Header: "SN",
+    Header: "Farm ID",
     accessor: "farm_id",
   },
   {
@@ -53,6 +55,16 @@ const testColumns = [
     Header: "Plantation Date",
     accessor: "plantation_date",
   },
+  {
+    Header: "Detail",
+    accessor: (row: any) => row,
+    Cell: ({ value }: any) => (
+      <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
+        {/* <Link href={`/maps`} passHref > */}
+        Map
+      </Link>
+    ),
+  },
 ];
 
 const params: {} = {
@@ -62,7 +74,6 @@ const params: {} = {
 };
 
 const Reports = () => {
-  const tableColumns = () => testColumns;
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
   ]);
@@ -97,19 +108,15 @@ const Reports = () => {
       search: " ",
       limit: limit,
       offset: offSet,
+      project__id: 1,
     };
     ReportService.FetchProvince().then((res) => setprovince(res));
     ReportService.FetchDistricts().then((res) => setDistrict(res));
     ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
-    // ReportService.FetchWard().then((res) => setWard(res));
+    ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
     ReportService.FetchFieldReport(params).then((res) => setReportData(res));
-  }, [limit]);
-
-  const changePageSize = (value: number) => {
-    console.log("Clicked", value);
-    setLimit(value)
-  };
+  }, [limit, offSet]);
 
   return (
     <PageLayout>
@@ -121,11 +128,14 @@ const Reports = () => {
         organizationValues={organization}
       />
       <ReportTable
-        // pageSize={pageSize}
-        setPageSize={(value: number) => changePageSize(value)}
-        // setPageSize={(value: number) => setPageSize(value)}
-        testColumns={tableColumns()}
+        setPageSize={(value: number) => setLimit(value)}
+        gotoPage={(value: number) =>
+          setOffset(value - 1 < 0 ? 0 : (value - 1) * 10)
+        }
+        tableColumns={ReportColumns}
         tableData={reportData}
+        limit={limit}
+        offset={offSet}
       />
     </PageLayout>
   );

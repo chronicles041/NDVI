@@ -11,12 +11,15 @@ type TableColumn = {
 };
 
 type FieldVisitProps = {
-  testColumns: any[];
+  tableColumns: any[];
   tableData: {
     data: IFieldReport[];
     total: number;
   };
-  setPageSize: Function ;
+  setPageSize: Function;
+  gotoPage: Function;
+  limit: Number;
+  offset: Number;
 };
 
 type FieldVisitState = {
@@ -54,17 +57,18 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
     let tableData: any = this.props.tableData.data;
     let count: number = this.props.tableData.total;
     return (
-      // <>Hello</>
+      // <>{JSON.stringify(this.props.tableColumns)}</>
       // <div className="flex flex-col w-full  ">
 
       <ToTable
-        columns={this.props.testColumns}
+        columns={this.props.tableColumns}
         data={tableData}
         loading={false}
-        currentPage={1}
         count={count}
-        // setPageSize={(value:Number)=>alert(value)}
-        setPageSize={(value:Number)=>this.props.setPageSize(value)}
+        limit={this.props.limit}
+        offset={this.props.offset}
+        setPageSize={(value: Number) => this.props.setPageSize(value)}
+        gotoPage={(value: Number) => this.props.gotoPage(value)}
       />
     );
   }
