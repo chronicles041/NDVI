@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import ReportTable from "./reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
@@ -6,6 +6,8 @@ import { IFieldReport, ILocation } from "./reportTypes";
 import ReportService from "./api/service";
 import { off } from "process";
 import Link from "next/link";
+import ToModal from "../../components/ToModal";
+import DetailModal from "./fieldDetail";
 // import UsersTable from "./usersTable";
 
 // type Props = {
@@ -59,13 +61,35 @@ const ReportColumns = [
     Header: "Detail",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
-      <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
-        {/* <Link href={`/maps`} passHref > */}
-        Map
-      </Link>
+      <>
+        <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
+          {/* <Link href={`/maps`} passHref > */}
+          Map
+        </Link>
+        <DetailModal
+            id = {value.farm_id}
+        />
+      </>
     ),
   },
 ];
+
+// const DetailModal = () => {
+//   return (
+//     <>
+//       <button
+//         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+//         type="button"
+//         data-modal-toggle="defaultModal"
+//       >
+//         Toggle modal
+//       </button>
+
+//     </>
+//   );
+// };
+
+
 
 const params: {} = {
   search: " ",
