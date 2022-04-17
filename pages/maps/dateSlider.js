@@ -109,7 +109,7 @@ class DateList extends React.Component {
     const { visibleMarks, marks } = this.state;
 
     return (
-      <div className="flex flex-row w-full p-5">
+      <div className="flex flex-row w-full justify-center items-center p-5">
         <div className="basis-[2%]">
           <LeftOutlined
             hidden={visibleMarks.currentIndex === 0}
@@ -125,7 +125,7 @@ class DateList extends React.Component {
             color="red"
           />
         </div>
-        <div className="basis-[96%] w-full">
+        <div className="basis-[96%] w-full flex flex-col justify-center items-center">
             <Slider
               // disabled={Object.keys(visibleMarks.marks).length === 0}
               disabled={this.props.loading}
@@ -139,8 +139,10 @@ class DateList extends React.Component {
               onChange={this.onChange}
             />
             {this.props.loading ? <ReloadOutlined spin={true} /> : <></>} &nbsp;
-            {Object.keys(visibleMarks.marks).length} of total{" "}
-            {Object.keys(marks).length} records .
+            <div>
+            <span className='text-white text-base font-semibold'>{Object.keys(visibleMarks.marks).length} of total</span>{" "}
+            <span className='text-white text-base font-semibold'>{Object.keys(marks).length} records .</span>
+            </div>
         </div>
         <div className="basis-[2%]">
           <RightOutlined
@@ -153,6 +155,7 @@ class DateList extends React.Component {
             }}
           />
         </div>
+
       </div>
     );
   }

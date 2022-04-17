@@ -92,26 +92,8 @@ function Map(props) {
 
   return (
     <>
-      <div className="container">
-        <div className="flex flex-row w-full">
-          <div className="basis-3/4">
-            {/* <input
-              type={"checkbox"}
-              onClick={() => setAllFields(!viewAllFields)}
-            />
-            View All Fields ? */}
-
-            <div className=" bg-blue-300 w-[100%] dateList ">
-              <DateList
-                loading={loading}
-                mapData={mapData}
-                selectedIndex={selectData}
-                getNewDates={getNewDates}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-row">
+      <div className="container bg-white px-4 py-4">
+        <div className="flex flex-row gap-x-3">
           <div className="basis-3/4">
             <LeafletMap
               polygon={polygon}
@@ -125,12 +107,19 @@ function Map(props) {
                 setColor({ ...color, [type]: value })
               }
             />
+            <div className="dateList bg-primary flex justify-center items-center  w-full mt-3">
+              <DateList
+                loading={loading}
+                mapData={mapData}
+                selectedIndex={selectData}
+                getNewDates={getNewDates}
+              />
+            </div>
           </div>
-          <div class="basis-1/4">
+          <div class="basis-1/4 flex-col flex justify-between items-center">
             <FarmList loading={loading} selectedItem={selectFarm} />
           </div>
         </div>
-
         <div className="flex flex-row p-3">
           <div className="basis-3/4">
             <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />

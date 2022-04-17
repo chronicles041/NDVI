@@ -188,16 +188,19 @@
 
  .dateList .ant-slider-mark-text   {
    padding:10px;
-   margin-left:2px;
-   /* width:100%; */
-  background-color:red !important;
+   margin-left:3px;
+   cursor: pointer;
+   border-radius: 25px;
+  background-color: #161626 !important;
+  border: 1px solid;
+  box-shadow: 1px 1px rgb(77, 76, 76);
   
 }
 
 .dateList .ant-slider-mark-text strong {
   font-weight:800;
   font-size:10px;
-  color: yellow !important;
+  color: white !important;
 }
 
 
