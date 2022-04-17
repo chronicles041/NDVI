@@ -110,6 +110,17 @@ class ReportService {
         });
 
     }
+    FetchFieldReportID(id: number) {
+        return axios.get<IFieldReport, any>(`https://app.teamonetech.com/api/v1/farm_info_view/${id}/`).then((res) => {
+            console.log("Farm Detail : ",res.data )
+            let ServerData = {
+                data: {},
+                total: 20
+            }
+            return res.data;
+        });
+
+    }
 }
 
 
