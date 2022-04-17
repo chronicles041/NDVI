@@ -36,7 +36,7 @@ class ReportFilters extends React.Component<
         <div className="flex flex-row mb-1 ml-4">
           <div className="flex-initial p-2 mr-2">
             <button
-              className="text-white bg-secondary opacity-95 hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+              className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
               type="button"
               onClick={this.drawerIsOpen}
             >

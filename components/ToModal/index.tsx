@@ -1,18 +1,17 @@
-import { useState } from "react";
-
+import { ReactNode, useState } from "react";
 
 type Props = {
   children?: ReactNode;
   title: string;
-  type?:any
+  type?: any;
 };
 
-const ToModal = ({ children, title,type }: Props) => {
+const ToModal = ({ children, title, type }: Props) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
       <button
-        className="bg-green-200 text-black active:bg-blue-500 
+        className="bg-primary text-black hover:text-white hover:bg-secondary  transition duration-300 ease-in-out 
       font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
         onClick={() => setShowModal(true)}
@@ -21,20 +20,32 @@ const ToModal = ({ children, title,type }: Props) => {
       </button>
       {showModal ? (
         <>
-          <div className="flex  justify-center items-center overflow-x-hidden  overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="flex  justify-center items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className=" relative w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
-              <div className="bg-white border-2 h-[80%] p-6  m-3 rounded-lg shadow-lg">
+              <div className="bg-white border-2 h-[80%] p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-2 text-gray-800">
                   {title} <br />
                 </h2>
-                <div className="flex flex-row h-[90%] w-full">   {children} </div>
-                <div className="flex flex-row bg-red-600  w-full">
+                <div className="text-center max-w-xl mx-auto">
+                  <div className="text-center mb-10">
+                    <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
+                    <span className="inline-block w-3 h-1 rounded-full bg-secondary ml-1"></span>
+                    <span className="inline-block w-40 h-1 rounded-full bg-primary"></span>
+                    <span className="inline-block w-3 h-1 rounded-full bg-secondary ml-1"></span>
+                    <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
+                  </div>
+                </div>
+                <div className="flex flex-row h-[90%] w-full overflow-y-auto overflow-x-hidden">
+                  {" "}
+                  {children}{" "}
+                </div>
+                <div className="flex flex-row w-full">
                   <div className=" w-full">
                     <button
-                      className="text-white bg-red opacity-95 hover:bg-primary shadow-md uppercase rounded outline-none focus:outline-none mt-2 w-full"
+                      className="text-black transition duration-300 ease-in-out  bg-primary opacity-95 hover:bg-secondary hover:text-white shadow-md uppercase rounded-md outline-none focus:outline-none mt-2 w-full"
                       onClick={() => setShowModal(false)}
                     >
-                      <h4>close x</h4>
+                      <span className="text-base font-semibold">Close</span>
                     </button>
                   </div>
                 </div>

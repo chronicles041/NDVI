@@ -19,6 +19,9 @@ import Dressing from "./assets/dressing.svg";
 import Map from "./assets/map.svg";
 import Toggle from "./assets/toggle.svg";
 import { title } from "process";
+import Location from "./assets/location.png";
+import Project from "./assets/project.png";
+import Organiztion from "./assets/organization.png";
 
 interface IiconSize {
   height: number;
@@ -68,6 +71,9 @@ export const IconTypes = {
   Dressing: Dressing,
   Map: Map,
   Toggle: Toggle,
+  Location: Location,
+  Project:Project,
+  Organiztion:Organiztion,
 };
 export const IconStyles = {
   Default: styles.default,

@@ -61,15 +61,22 @@ const ReportColumns = [
     Header: "Detail",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
-      <>
-        <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
+      <div className="flex flex-row gap-x-2 justify-center items-center">
+        <div className='flex items-center justify-center'><Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
           {/* <Link href={`/maps`} passHref > */}
-          Map
+          <button
+        className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
+      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        type="button"
+      >
+        Go to Map
+      </button>
         </Link>
+        </div>
         <DetailModal
             id = {value.farm_id}
         />
-      </>
+      </div>
     ),
   },
 ];
