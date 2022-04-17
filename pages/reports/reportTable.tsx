@@ -70,6 +70,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
         setPageSize={(value: Number) => this.props.setPageSize(value)}
         gotoPage={(value: Number) => this.props.gotoPage(value)}
       />
+      
     );
   }
 }

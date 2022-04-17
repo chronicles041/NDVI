@@ -36,7 +36,7 @@ class ReportFilters extends React.Component<
         <div className="flex flex-row mb-1 ml-4">
           <div className="flex-initial p-2 mr-2">
             <button
-              className="text-white bg-red-500 hover:bg-red-600 active:bg-green-600 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+              className="text-white bg-secondary opacity-95 hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
               type="button"
               onClick={this.drawerIsOpen}
             >
@@ -47,81 +47,76 @@ class ReportFilters extends React.Component<
               isOpen={this.state.filterIsOpen}
               setIsOpen={this.drawerIsOpen}
             >
-              <div className="px-6 rounded  mt-1 w-full">
-                <p className="font-semibold">Filter Data</p>
-              </div>
-              <hr />
-              <div className="px-6 rounded  mt-2 w-full">
-                <p className="font-semibold mt-1 mb-2">Locate Fields</p>
-                <ToDropdown
-                  options={this.props.provinceValues}
-                  title="Province"
-                  // onChange={(e:Event)=>alert(JSON.stringify(e.target.value))}
-                />
-                <ToDropdown
-                  options={this.props.districtValues}
-                  title="District"
-                  // onChange={(e:Event)=>alert(JSON.stringify(e.target.value))}
-                />
-                <ToDropdown
-                  options={this.props.municipalityValues}
-                  title="Municipality"
-                  // onChange={(e:Event)=>alert(JSON.stringify(e.target.value))}
-                />
-                <ToDropdown
-                  options={this.props.wardValues}
-                  title="Ward"
-                  // onChange={(e:Event)=>alert(JSON.stringify(e.target.value))}
-                />
-              </div>
+              <div className=" rounded bg-white z-10   mt-1 w-full fixed top-0 left-0 right-0 ">
+                <p className="font-semibold p-4">Filter Data</p>
+              <hr className="border-[20%] border-secondary " />
 
-              <hr />
-
-              <div className="px-6 rounded  mt-2 w-full">
-                <p className="font-semibold mt-1 mb-2">Farm Area</p>
-                <div className="flex flex-row ml-2">
-                  <div className="flex flex-row w-full">
-                    <div className="w-1/3 py-2">From Farm Area</div>
-                    <Slider defaultValue={30}  />
-        <Slider range defaultValue={[20, 50]}  />
-                    <div className="w-2/3 pt-1">
-                      <input
-                        type="range"
-                        min="0"
-                        max="100"
-                        className="range range-xs"
-                      />{" "}
+              </div>
+              <div style={{marginBottom:"2rem !important"}} className=" overflow-y-auto flex flex-col gap-y-4">
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Locate Fields</p>
+                  <ToDropdown title="District" />
+                  <ToDropdown title="Municipalitiy" />
+                  <ToDropdown title="Ward" />
+                </div>
+                <hr className="border-[20%] border-primary" />
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Farm Area</p>
+                  <div className="flex flex-row ml-2">
+                    <div className="flex flex-row w-full">
+                      <div className="w-1/3 py-2">From Farm Area</div>
+                      <div className="w-2/3 pt-1">Options</div>
                     </div>
                   </div>
                 </div>
+                <hr className="border-[20%] border-primary" />
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Organization</p>
+                  <ToDropdown title="Organization" />
+                </div>
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Organization</p>
+                  <ToDropdown title="Organization" />
+                </div>
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Organization</p>
+                  <ToDropdown title="Organization" />
+                </div>
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Organization</p>
+                  <ToDropdown title="Organization" />
+                </div>
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Organization</p>
+                  <ToDropdown title="Organization" />
+                </div>
               </div>
+              <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
+              <hr className='border-[20%] border-secondary'/>
 
-              <hr />
-              <div className="px-6 rounded  mt-2 w-full">
-                <p className="font-semibold mt-1 mb-2">Organization</p>
-                <ToDropdown
-                  options={this.props.organizationValues}
-                  title="Organization"
-                  // onChange={(e:Event)=>alert(JSON.stringify(e.target.value))}
-                />
-              </div>
-
-              <div className="flex flex-row mb-1 ml-4">
-                <div className="flex-initial p-2 mr-2">
+                <div className="flex gap-x-2 p-2 mr-2">
                   <button
-                    className="text-white bg-red-500 hover:bg-red-600 active:bg-green-600 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+                    className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
                     type="button"
                     onClick={this.drawerIsOpen}
                   >
                     Process
                   </button>
                   <button
-                    className="text-white bg-red-500 hover:bg-red-600 active:bg-green-600 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+                    className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
                     type="button"
                     onClick={this.drawerIsOpen}
                     //   onClick={handleResetFileter}
                   >
                     Cancel
+                  </button>
+                  <button
+                    className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+                    type="button"
+                    onClick={this.drawerIsOpen}
+                    //   onClick={handleResetFileter}
+                  >
+                    Reset
                   </button>
                 </div>
               </div>
