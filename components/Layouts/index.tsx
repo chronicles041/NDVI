@@ -32,7 +32,7 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
         </div>
         <div className="flex flex-row">
           <div
-            className={`h-screen ${!isCollapse ? "basis-1/5 delay-400 duration-500 ease-in-out transition-all transform " : "delay-400 duration-500 ease-in-out transition-all transform basis-[6%]"}`}
+            className={`h-screen ${!isCollapse ? "basis-1/5" : "delay-400 duration-500 ease-in-out transition-all transform basis-[6%]"}`}
           >
             <Navbar isCollapse={isCollapse} />
           </div>
