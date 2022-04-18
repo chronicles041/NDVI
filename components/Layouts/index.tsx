@@ -46,7 +46,7 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
                 " bg-gray-200 w-full"
               }
             >
-              <main className="p-4 min-h-screen bg-gray-200 grow">
+              <main className="p-4 min-h-screen mb-20 bg-gray-200 grow">
                 {children}
               </main>
             </div>
