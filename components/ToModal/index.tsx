@@ -26,9 +26,9 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
       </button>
       {showModal ? (
         <>
-          <div className="flex  justify-center items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className=" relative w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
-              <div className="bg-white border-2 h-[80%] p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
+          <div className="flex  justify-center bg-gray-500 transition duration-300 ease-in-out bg-opacity-50 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className=" relative flex flex-col justify-center items-center w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
+              <div className="relative w-full bg-white border-2 h-full p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-2 text-gray-800">
                   {title} <br />
                 </h2>
@@ -41,17 +41,17 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
                     <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
                   </div>
                 </div>
-                <div className="flex flex-row h-[90%] w-full overflow-y-auto overflow-x-hidden">
+                <div className="flex flex-col h-[90%] w-full overflow-y-auto overflow-x-hidden">
                   {" "}
                   {children}{" "}
                 </div>
-                <div className="flex flex-row w-full">
+                <div className="flex flex-row absolute top-1 right-2">
                   <div className=" w-full">
                     <button
-                      className="text-black transition duration-300 ease-in-out  bg-primary opacity-95 hover:bg-secondary hover:text-white shadow-md uppercase rounded-md outline-none focus:outline-none mt-2 w-full"
+                      className="text-black transition duration-300 ease-in-out  bg-primary opacity-95 hover:bg-secondary hover:text-white shadow-md  rounded-md outline-none focus:outline-none mt-2 px-2 py-2 w-full"
                       onClick={() => setShowModal(false)}
                     >
-                      <span className="text-base font-semibold">Close</span>
+                      <span className="text-base px-2 font-semibold">Close</span>
                     </button>
                   </div>
                 </div>

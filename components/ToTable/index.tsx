@@ -63,7 +63,7 @@ export const ToTable = ({
 
   return (
     <>
-      <div className="flex flex-col w-full  ">
+      <div className="flex flex-col w-full h-auto  ">
         {/* <div className="-my-2 sm:-mx-6 lg:-mx-8"> */}
         <div className="py-2 flex flex-col min-w-full sm:px-6 lg:px-8 bg-white border-b border-gray-200 sm:rounded-lg">
           <div className="shadow flex flex-row overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg overflow-x-visible mt-6">
