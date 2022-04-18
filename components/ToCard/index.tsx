@@ -1,6 +1,4 @@
 import { ReactNode } from "react";
-import { ToBar } from "../../components/ToCharts/Tobar";
-import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 
 type Props = {
   children?: ReactNode;

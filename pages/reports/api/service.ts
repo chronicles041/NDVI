@@ -95,10 +95,14 @@ class ReportService {
                         gender: "M / F",
                         age: 40,
                         contact_no: 9843323432,
-                        organization: "Some Organization",
+                        organization_name: value.organization_name,
                         crop_type_name: "Maize",
                         plantation_date: "2022-02-10",
+                        ward: value.ward,
+                        ward_number: value.ward_number,
+                        tole_name: value.tole_name
                     },
+
                 ];
                 // console.log("**API**DropdDowm", tempReturnValue);
             });
@@ -112,7 +116,7 @@ class ReportService {
     }
     FetchFieldReportID(id: number) {
         return axios.get<IFieldReport, any>(`https://app.teamonetech.com/api/v1/farm_info_view/${id}/`).then((res) => {
-            console.log("Farm Detail : ",res.data )
+            console.log("Farm Detail : ", res.data)
             let ServerData = {
                 data: {},
                 total: 20

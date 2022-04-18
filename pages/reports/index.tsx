@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import ReportTable from "./reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
-import { IFieldReport, ILocation } from "./reportTypes";
+import { IFieldFilters, IFieldReport, ILocation } from "./reportTypes";
 import ReportService from "./api/service";
 import { off } from "process";
 import Link from "next/link";
@@ -29,80 +29,73 @@ const ReportColumns = [
     accessor: "farm_area",
   },
   {
-    Header: "Farmer Name",
-    accessor: "farmer_name",
+    Header: "District",
+    // accessor: "farm_area",
   },
   {
-    Header: "Gender",
-    accessor: "gender",
+    Header: "Municipality",
+    // accessor: "farm_area",
   },
   {
-    Header: "Age",
-    accessor: "age",
+    Header: "Ward Number",
+    accessor: "ward_number",
   },
   {
-    Header: "Contact Number",
-    accessor: "contact_no",
+    Header: "Tole Name",
+    accessor: "tole_name",
   },
+  // {
+  //   Header: "Farmer Name",
+  //   accessor: "farmer_name",
+  // },
+  // {
+  //   Header: "Gender",
+  //   accessor: "gender",
+  // },
+  // {
+  //   Header: "Age",
+  //   accessor: "age",
+  // },
+  // {
+  //   Header: "Contact Number",
+  //   accessor: "contact_no",
+  // },
   {
     Header: "Organization",
-    accessor: "organization",
+    accessor: "organization_name",
   },
 
   {
     Header: "Crop",
     accessor: "crop_type_name",
   },
-  {
-    Header: "Plantation Date",
-    accessor: "plantation_date",
-  },
+  // {
+  //   Header: "Plantation Date",
+  //   accessor: "plantation_date",
+  // },
+
   {
     Header: "Detail",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
       <div className="flex flex-row gap-x-2 justify-center items-center">
-        <div className='flex items-center justify-center'><Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
-          {/* <Link href={`/maps`} passHref > */}
-          <button
-        className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
+        <div className="flex items-center justify-center">
+          <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
+            {/* <Link href={`/maps`} passHref > */}
+            <button
+              className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
       font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-        type="button"
-      >
-        Go to Map
-      </button>
-        </Link>
+              type="button"
+            >
+              Go to Map
+            </button>
+          </Link>
         </div>
-        <DetailModal
-            id = {value.farm_id}
-        />
+        <DetailModal id={value.farm_id} />
       </div>
     ),
   },
 ];
-
-// const DetailModal = () => {
-//   return (
-//     <>
-//       <button
-//         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-//         type="button"
-//         data-modal-toggle="defaultModal"
-//       >
-//         Toggle modal
-//       </button>
-
-//     </>
-//   );
-// };
-
-
-
-const params: {} = {
-  search: " ",
-  limit: 10,
-  offset: 0,
-};
 
 const Reports = () => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
@@ -130,25 +123,39 @@ const Reports = () => {
     total: number;
   }>({ data: [], total: 0 });
 
-  const [pageSize, setPageSize] = React.useState<Number>(10);
-  const [limit, setLimit] = React.useState<Number>(10);
-  const [offSet, setOffset] = React.useState<Number>(0);
+  const [pageSize, setPageSize] = React.useState<number>(10);
+  const [limit, setLimit] = React.useState<number>(10);
+  const [offSet, setOffset] = React.useState<number>(0);
+
+  const defaultFilters: IFieldFilters = {
+    search: " ",
+    limit: limit,
+    offset: offSet,
+    project__id: 1,
+    organization__id: 2,
+    arm_area_min: "",
+    farm_area_max: "",
+    tole_name: "",
+  };
+  const [filterParams, setFilterParams] =
+    React.useState<IFieldFilters>(defaultFilters);
 
   useEffect(() => {
-    const params: {} = {
-      search: " ",
-      limit: limit,
-      offset: offSet,
-      project__id: 1,
-    };
     ReportService.FetchProvince().then((res) => setprovince(res));
     ReportService.FetchDistricts().then((res) => setDistrict(res));
     ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
     ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
-    ReportService.FetchFieldReport(params).then((res) => setReportData(res));
+    ReportService.FetchFieldReport(filterParams).then((res) =>
+      setReportData(res)
+    );
   }, [limit, offSet]);
 
+  const processData = () => {
+    ReportService.FetchFieldReport(filterParams).then((res) =>
+      setReportData(res)
+    );
+  };
   return (
     <PageLayout>
       <ReportFilters
@@ -157,6 +164,9 @@ const Reports = () => {
         municipalityValues={municipality}
         wardValues={ward}
         organizationValues={organization}
+        filterParams={filterParams}
+        changeFilterParams={setFilterParams}
+        processData={()=>processData()}
       />
       <ReportTable
         setPageSize={(value: number) => setLimit(value)}

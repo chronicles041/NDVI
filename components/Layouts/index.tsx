@@ -9,6 +9,7 @@ type Props = {
   children?: ReactNode;
   title?: string;
 };
+
 const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
   const [isCollapse, changeCollapse] = useState(false);
   return (
@@ -17,10 +18,6 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"
-        />
       </Head>
       {/* <div className="min-h-screen flex flex-row overflow-y-hidden overflow-x-hidden font-Oxygen"> */}
       <div className="h-screen flex flex-col overflow-hidden font-Oxygen">

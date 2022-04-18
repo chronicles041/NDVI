@@ -1,8 +1,6 @@
 import * as React from "react";
 // import styled from 'styled-components';
 import { usePagination, useTable } from "react-table";
-
-// import "./styles.css";
 import makeData from "./makeData";
 import { ToTablePagination } from "./pagination";
 

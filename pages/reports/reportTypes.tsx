@@ -3,7 +3,6 @@ export interface ILocation {
   title: string;
 }
 
-
 export interface IFieldReport {
   farm_id: number;
   farm_area: string;
@@ -12,7 +11,21 @@ export interface IFieldReport {
   gender: string;
   age: number;
   contact_no: number;
-  organization:string;
-  crop_type_name:string;
-  plantation_date:string;
+  organization_name: string;
+  crop_type_name: string;
+  plantation_date: string;
+  ward: number;
+  ward_number: number;
+  tole_name: string;
+}
+
+export interface IFieldFilters {
+  limit: number;
+  offset: number;
+  search: string;
+  project__id: number;
+  organization__id: number;
+  arm_area_min: string;
+  farm_area_max: string;
+  tole_name: string;
 }

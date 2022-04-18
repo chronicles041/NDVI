@@ -29,14 +29,20 @@ const DetailModal = ({ id }: { id: number }) => {
   const [detail, setReportDetail] =
     React.useState<FarmDetailProps>(defaultFarmDetail);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   ReportService.FetchFieldReportID(id).then((res: FarmDetailProps) =>
+  //     setReportDetail(res)
+  //   );
+  // }, []);
+
+  const onDetailClick = () => {
     ReportService.FetchFieldReportID(id).then((res: FarmDetailProps) =>
-      setReportDetail(res)
-    );
-  }, []);
+    setReportDetail(res)
+  );
+  };
 
   return (
-    <ToModal title={"Field Details"}>
+    <ToModal  onOpen={()=>onDetailClick()} title={"Field Details"}>
       <div className="grid w-full grid-cols-2  gap-4 p-5 h-full">
         <div className="bg-white border-2  overflow-hidden border-solid border-primary flex flex-col justify-center items-center   p-10 rounded-lg">
           <ToIcon
@@ -75,20 +81,20 @@ const DetailModal = ({ id }: { id: number }) => {
             style={IconStyles.Default}
           ></ToIcon>
           <div className="text-center font-normal text-secondary whitespace-nowrap  text-base mt-8 p-4">
-            Organization Name: 
+            Organization Name:
             <br></br>
             {detail.organization_name}
           </div>
         </div>
         <div className="bg-white flex flex-col justify-center items-center border-2 border-solid border-primary   p-10 rounded-lg">
-        <ToIcon
+          <ToIcon
             type={IconTypes.Land}
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-        <div className="text-center font-normal text-secondary text-base mt-8 p-4 ">
-          Farm Area: {detail.farm_area}
-        </div>
+          <div className="text-center font-normal text-secondary text-base mt-8 p-4 ">
+            Farm Area: {detail.farm_area}
+          </div>
         </div>
       </div>
     </ToModal>

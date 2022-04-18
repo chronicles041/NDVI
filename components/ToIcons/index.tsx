@@ -7,8 +7,6 @@ import Farm from "./assets/farm.svg";
 import Activity from "./assets/activity.svg";
 import Weather from "./assets/weather.svg";
 import Image from "next/image";
-// import  './toicons.scss'
-import styles from "./toicons.module.css";
 import Community from "./assets/community.svg";
 import Champions from "./assets/champions.svg";
 import States from "./assets/states.svg";
@@ -22,6 +20,7 @@ import { title } from "process";
 import Location from "./assets/location.png";
 import Project from "./assets/project.png";
 import Organiztion from "./assets/organization.png";
+// import styles from "./../../styles";
 
 interface IiconSize {
   height: number;
@@ -55,6 +54,7 @@ const ToIcon = ({ text, type, size, style }: Props) => {
     </>
   );
 };
+
 export const IconTypes = {
   Banner: Banner,
   Dashboard: Dashboard,
@@ -76,8 +76,8 @@ export const IconTypes = {
   Organiztion:Organiztion,
 };
 export const IconStyles = {
-  Default: styles.default,
-  Navigation: styles.navigation,
+  Default: " ",
+  Navigation: " ",
 };
 
 export const IconSize = {
@@ -106,4 +106,7 @@ export const IconSize = {
     width: 40,
   },
 };
+
 export default ToIcon;
+
+

@@ -4,7 +4,7 @@ import { ToTable } from "../../components/ToTable";
 import moment from "moment";
 import ToDrawer from "../../components/ToDrawer";
 import ToDropdown from "../../components/ToDropdown";
-import { ILocation } from "./reportTypes";
+import { IFieldFilters, ILocation } from "./reportTypes";
 import { Slider, Switch } from "antd";
 type ReportFilterProps = {
   provinceValues: ILocation[];
@@ -12,6 +12,9 @@ type ReportFilterProps = {
   municipalityValues: ILocation[];
   wardValues: ILocation[];
   organizationValues: ILocation[];
+  filterParams: IFieldFilters;
+  changeFilterParams: Function;
+  processData: Function;
 };
 
 type ReportFilterState = {
@@ -28,6 +31,17 @@ class ReportFilters extends React.Component<
 
   drawerIsOpen = () => {
     this.setState({ filterIsOpen: !this.state.filterIsOpen });
+  };
+
+  triggerProcess = () => {
+    this.props.processData();
+    this.setState({ filterIsOpen: !this.state.filterIsOpen });
+  };
+
+  handleFilterChange = (e: any, name: string) => {
+    let oldFP = this.props.filterParams;
+    let newFP = { ...oldFP, [name]: e.target.value };
+    this.props.changeFilterParams(newFP);
   };
 
   render() {
@@ -49,15 +63,35 @@ class ReportFilters extends React.Component<
             >
               <div className=" rounded bg-white z-10   mt-1 w-full fixed top-0 left-0 right-0 ">
                 <p className="font-semibold p-4">Filter Data</p>
-              <hr className="border-[20%] border-secondary " />
-
+                <hr className="border-[20%] border-secondary " />
               </div>
-              <div style={{marginBottom:"2rem !important"}} className=" overflow-y-auto flex flex-col gap-y-4">
+              <div
+                style={{ marginBottom: "2rem !important" }}
+                className=" overflow-y-auto flex flex-col gap-y-4"
+              >
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Locate Fields</p>
-                  <ToDropdown title="District" />
-                  <ToDropdown title="Municipalitiy" />
-                  <ToDropdown title="Ward" />
+                  <ToDropdown
+                    options={this.props.districtValues}
+                    title="District"
+                    onChange={(e: Event) =>
+                      this.handleFilterChange(e, "organization__id")
+                    }
+                  />
+                  <ToDropdown
+                    options={this.props.municipalityValues}
+                    title="Municipalitiy"
+                    onChange={(e: Event) =>
+                      this.handleFilterChange(e, "ward__id")
+                    }
+                  />
+                  <ToDropdown
+                    onChange={(e: Event) =>
+                      this.handleFilterChange(e, "ward__id")
+                    }
+                    options={this.props.wardValues}
+                    title="Ward"
+                  />
                 </div>
                 <hr className="border-[20%] border-primary" />
                 <div className="px-6 rounded  mt-2 w-full">
@@ -72,33 +106,23 @@ class ReportFilters extends React.Component<
                 <hr className="border-[20%] border-primary" />
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Organization</p>
-                  <ToDropdown title="Organization" />
-                </div>
-                <div className="px-6 rounded  mt-2 w-full">
-                  <p className="font-semibold mt-1 mb-2">Organization</p>
-                  <ToDropdown title="Organization" />
-                </div>
-                <div className="px-6 rounded  mt-2 w-full">
-                  <p className="font-semibold mt-1 mb-2">Organization</p>
-                  <ToDropdown title="Organization" />
-                </div>
-                <div className="px-6 rounded  mt-2 w-full">
-                  <p className="font-semibold mt-1 mb-2">Organization</p>
-                  <ToDropdown title="Organization" />
-                </div>
-                <div className="px-6 rounded  mt-2 w-full">
-                  <p className="font-semibold mt-1 mb-2">Organization</p>
-                  <ToDropdown title="Organization" />
+                  <ToDropdown
+                    options={this.props.organizationValues}
+                    onChange={(e: Event) =>
+                      this.handleFilterChange(e, "organization__id")
+                    }
+                    title="Organization"
+                  />
                 </div>
               </div>
               <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
-              <hr className='border-[20%] border-secondary'/>
+                <hr className="border-[20%] border-secondary" />
 
                 <div className="flex gap-x-2 p-2 mr-2">
                   <button
                     className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
                     type="button"
-                    onClick={this.drawerIsOpen}
+                    onClick={() => this.triggerProcess()}
                   >
                     Process
                   </button>
