@@ -1,20 +1,17 @@
-import { User } from "../../interfaces";
-import { sampleUserData } from "../../utils/sample-data";
-import Layout from "../../components/Layouts";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React, { ReactElement } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
-import ToCard from "../../components/ToCard";
 import PageLayout from "../../components/Pagelayout";
-import Map from './Map'
+// import Map from './Map'
 
-// const Map = dynamic(() => import("./Map"), { ssr: false });
+const ToMap = dynamic(() => import('./Map'), { ssr: false });
 
 const MapIndex = () => {
-  return (
+  // const Map = React.useMemo(() => dynamic(() => import('./Map'), { loading: () => <p>Loading map...</p>, ssr: false, }), [])
+
+  return (typeof window !== "undefined"?
     <PageLayout>
-      <Map />
-    </PageLayout>
+      <ToMap />
+    </PageLayout> : 'Loading'
   );
 };
 

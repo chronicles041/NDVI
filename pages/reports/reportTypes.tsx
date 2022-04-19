@@ -17,6 +17,8 @@ export interface IFieldReport {
   ward: number;
   ward_number: number;
   tole_name: string;
+  farm_polygon_json:JSON
+  extra_field:JSON
 }
 
 export interface IFieldFilters {
@@ -24,7 +26,7 @@ export interface IFieldFilters {
   offset: number;
   search: string;
   project__id: number;
-  organization__id: number;
+  organization__id?: number;
   arm_area_min: string;
   farm_area_max: string;
   tole_name: string;

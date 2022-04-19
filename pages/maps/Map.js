@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-// import { DisasterResponse } from "./assets/disasterResponse";
-// import LeafletMap from "./leaflet/leafletMap";
 import MapService from "./mapService";
-import FarmList from "./farmList";
-import ColorPalette from "./colorPalate";
+// import ColorPalette from "./colorPalate";
 import DateList from "./dateSlider";
+import Reports from "../reports";
+import TimeSeriesGraph from "./timeSeries";
 import dynamic from "next/dynamic";
+// import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
   ssr: false,
@@ -33,6 +33,7 @@ function Map(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
+
   // useEffect(() => {
   //   if (props.location.state) {
   //     setViewControl({
@@ -84,11 +85,13 @@ function Map(props) {
   };
 
   const getNewDates = (pre, next) => {
-    if (!props.location.state) {
-      setLoading(true);
-      getLayerData(selectedFarm, "True", previousDate);
-    }
+    // if (!props.location.state) {
+    setLoading(true);
+    getLayerData(selectedFarm, "True", previousDate);
+    // }
   };
+
+
 
   return (
     <>
@@ -107,6 +110,8 @@ function Map(props) {
                 setColor({ ...color, [type]: value })
               }
             />
+        {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
+
             <div className="dateList bg-primary flex justify-center items-center  w-full mt-3">
               <DateList
                 loading={loading}
@@ -116,16 +121,26 @@ function Map(props) {
               />
             </div>
           </div>
-          <div class="basis-1/4 flex-col flex justify-between items-center">
-            <FarmList loading={loading} selectedItem={selectFarm} />
+          <div className="basis-1/4 flex-col flex justify-between items-center">
+            <Reports
+              loading={loading}
+              selectedItem={selectFarm}
+              listView={true}
+            />
           </div>
         </div>
-        <div className="flex flex-row p-3">
-          <div className="basis-3/4">
-            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
-          </div>
-          <div class="basis-1/4">Something</div>
+            
+        <div hidden={loading} className={"pt-10 "}>
+          <TimeSeriesGraph graphData={graphData} />
         </div>
+          
+        {/* <div className="flex flex-row p-3"> */}
+        {/* <div className="basis-3/4"> */}
+        {/* <TimeSeriesGraph graphData={graphData}/> */}
+        {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
+        {/* </div> */}
+        {/* <div className="basis-1/4">Something</div> */}
+        {/* </div> */}
       </div>
     </>
   );

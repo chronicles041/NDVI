@@ -8,6 +8,9 @@ import { off } from "process";
 import Link from "next/link";
 import ToModal from "../../components/ToModal";
 import DetailModal from "./fieldDetail";
+import ListReport from "./listView";
+import { ToTablePagination } from "../../components/ToTable/pagination";
+import { ToListPagination } from "../../components/ToListPagination";
 // import UsersTable from "./usersTable";
 
 // type Props = {
@@ -97,7 +100,7 @@ const ReportColumns = [
   },
 ];
 
-const Reports = () => {
+const Reports = ({ selectedItem, loading, listView }: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
   ]);
@@ -126,17 +129,18 @@ const Reports = () => {
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);
   const [offSet, setOffset] = React.useState<number>(0);
-
+  const [tableView, setTableView] = React.useState<boolean>(false);
   const defaultFilters: IFieldFilters = {
     search: " ",
     limit: limit,
     offset: offSet,
     project__id: 1,
-    organization__id: 2,
+    // organization__id: 2,
     arm_area_min: "",
     farm_area_max: "",
     tole_name: "",
   };
+
   const [filterParams, setFilterParams] =
     React.useState<IFieldFilters>(defaultFilters);
 
@@ -149,6 +153,7 @@ const Reports = () => {
     ReportService.FetchFieldReport(filterParams).then((res) =>
       setReportData(res)
     );
+    // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
 
   const processData = () => {
@@ -156,7 +161,16 @@ const Reports = () => {
       setReportData(res)
     );
   };
-  return (
+
+  const changePagination = (value: number) => {
+    console.log("***", value);
+    let newParams = { ...filterParams, offset: value };
+    setFilterParams(newParams);
+
+    setOffset(value);
+  };
+
+  return !listView ? (
     <PageLayout>
       <ReportFilters
         provinceValues={province}
@@ -166,12 +180,12 @@ const Reports = () => {
         organizationValues={organization}
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
-        processData={()=>processData()}
+        processData={() => processData()}
       />
       <ReportTable
         setPageSize={(value: number) => setLimit(value)}
         gotoPage={(value: number) =>
-          setOffset(value - 1 < 0 ? 0 : (value - 1) * 10)
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
         }
         tableColumns={ReportColumns}
         tableData={reportData}
@@ -179,6 +193,36 @@ const Reports = () => {
         offset={offSet}
       />
     </PageLayout>
+  ) : (
+    <>
+      <ReportFilters
+        provinceValues={province}
+        districtValues={districts}
+        municipalityValues={municipality}
+        wardValues={ward}
+        organizationValues={organization}
+        filterParams={filterParams}
+        changeFilterParams={setFilterParams}
+        processData={() => processData()}
+      />
+      <ListReport
+        listData={reportData.data}
+        selectedItem={selectedItem}
+        loading={loading}
+      />
+      <ToListPagination
+        loading={false}
+        page={
+          offSet >= Math.round(reportData.total / 10) ? -1 : offSet / limit + 1
+        }
+        pageCount={Math.round(reportData.total / 10)}
+        pageSize={10}
+        setPageSize={(value: number) => setPageSize(value)}
+        gotoPage={(value: number) =>
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+        }
+      />
+    </>
   );
 };
 

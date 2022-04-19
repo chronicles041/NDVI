@@ -100,7 +100,9 @@ class ReportService {
                         plantation_date: "2022-02-10",
                         ward: value.ward,
                         ward_number: value.ward_number,
-                        tole_name: value.tole_name
+                        tole_name: value.tole_name,
+                        farm_polygon_json:value.farm_polygon_json,
+                        extra_field:value.extra_field
                     },
 
                 ];

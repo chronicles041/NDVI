@@ -1,6 +1,7 @@
 import React from "react";
-import { Slider} from "antd";
+import { Slider } from "antd";
 import { LeftOutlined, RightOutlined, ReloadOutlined } from "@ant-design/icons";
+import moment from "moment";
 
 const initialState = {
   selectedDate: "",
@@ -21,7 +22,7 @@ class DateList extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.mapData !== this.props.mapData) {
-      console.log("Did Update Slider", prevProps, this.props.mapData);
+      // console.log("Did Update Slider", prevProps, this.props.mapData);
       this.setState({ initialState }, () => {
         this.createMarkers();
       });
@@ -38,7 +39,9 @@ class DateList extends React.Component {
             color: "#374151",
             fontSize: "7px",
           },
-          label: <strong>{d.date}</strong>,
+          label: <strong>
+            {moment(d.date).format("Do MMM, yy")}
+            </strong>,
         },
       };
       return null;
@@ -79,7 +82,7 @@ class DateList extends React.Component {
     if (totalDates > 7) {
       var temp = 0;
       for (var i = newIndex; i < newIndex + 8; i++) {
-        console.log("**Marks / Seprated", i, allMarks[i]);
+        // console.log("**Marks / Seprated", i, allMarks[i]);
         if (allMarks[i]) {
           tempMarks = { ...tempMarks, [temp]: allMarks[i] };
           temp++;
@@ -105,57 +108,75 @@ class DateList extends React.Component {
     });
   };
 
+ 
+
+  createDateMarks = () => {
+    const { visibleMarks, marks } = this.state;
+    // console.log("Marks",visibleMarks)
+    return visibleMarks.marks
+  }
   render() {
     const { visibleMarks, marks } = this.state;
 
     return (
       <div className="flex flex-row w-full justify-center items-center p-5">
-        <div className="basis-[2%]">
-          <LeftOutlined
-            hidden={visibleMarks.currentIndex === 0}
-            onClick={() => {
-              this.makeVisibleMarker(true, false);
-            }}
-          />
-          <LeftOutlined
-            hidden={visibleMarks.marks[0] !== marks[0]}
-            onClick={() => {
-              this.props.getNewDates(true, false);
-            }}
-            color="red"
-          />
-        </div>
-        <div className="basis-[96%] w-full flex flex-col justify-center items-center">
-            <Slider
-              // disabled={Object.keys(visibleMarks.marks).length === 0}
-              disabled={this.props.loading}
-              min={0}
-              reverse
-              tipFormatter={null}
-              max={Object.keys(visibleMarks.marks).length - 1}
-              marks={visibleMarks.marks}
-              defaultValue={this.state.markerIndex}
-              value={this.state.markerIndex}
-              onChange={this.onChange}
-            />
-            {this.props.loading ? <ReloadOutlined spin={true} /> : <></>} &nbsp;
-            <div>
-            <span className='text-white text-base font-semibold'>{Object.keys(visibleMarks.marks).length} of total</span>{" "}
-            <span className='text-white text-base font-semibold'>{Object.keys(marks).length} records .</span>
+        {this.props.loading ? (
+          <ReloadOutlined spin={true} />
+        ) : (
+          <>
+            <div className="basis-[2%]">
+              <LeftOutlined
+                hidden={visibleMarks.currentIndex === 0}
+                onClick={() => {
+                  this.makeVisibleMarker(true, false);
+                }}
+              />
+              <LeftOutlined
+                hidden={visibleMarks.marks[0] !== marks[0]}
+                onClick={() => {
+                  this.props.getNewDates(true, false);
+                }}
+                color="red"
+              />
             </div>
-        </div>
-        <div className="basis-[2%]">
-          <RightOutlined
-            hidden={
-              visibleMarks.marks[Object.keys(visibleMarks.marks).length - 1] ===
-              marks[visibleMarks.totalDates - 1]
-            }
-            onClick={() => {
-              this.makeVisibleMarker(false, true);
-            }}
-          />
-        </div>
 
+            <div className="basis-[96%] w-full flex flex-col justify-center items-center">
+              <Slider
+                // disabled={Object.keys(visibleMarks.marks).length === 0}
+                disabled={this.props.loading}
+                min={0}
+                reverse
+                tipFormatter={null}
+                max={Object.keys(visibleMarks.marks).length - 1}
+                marks={this.createDateMarks()}
+                defaultValue={this.state.markerIndex}
+                value={this.state.markerIndex}
+                onChange={this.onChange}
+              />
+
+              <div className={""}>
+                <span className="text-white text-base font-semibold">
+                  {Object.keys(visibleMarks.marks).length} of total
+                </span>{" "}
+                <span className="text-white text-base font-semibold">
+                  {Object.keys(marks).length} records .
+                </span>
+              </div>
+            </div>
+            <div className="basis-[2%]">
+              <RightOutlined
+                hidden={
+                  visibleMarks.marks[
+                    Object.keys(visibleMarks.marks).length - 1
+                  ] === marks[visibleMarks.totalDates - 1]
+                }
+                onClick={() => {
+                  this.makeVisibleMarker(false, true);
+                }}
+              />
+            </div>
+          </>
+        )}
       </div>
     );
   }
