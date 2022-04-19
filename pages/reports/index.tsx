@@ -82,7 +82,7 @@ const ReportColumns = [
   // },
 
   {
-    Header: "Detail",
+    Header: "Action",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
       <div className="flex flex-row gap-x-2 justify-center items-center">

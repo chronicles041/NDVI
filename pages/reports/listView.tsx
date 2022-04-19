@@ -31,7 +31,7 @@ function ListReport({ selectedItem, loading, listData }: ListReportProps) {
           }}
         >
           {farm.farm_name ? farm.farm_name : <> N/A </>}( {farm.farm_id} )
-           {/* <br /><DetailModal id={farm.farm_id} />   */}
+           <br /><DetailModal id={farm.farm_id} />  
         </li>
       ))}
     </ul>
