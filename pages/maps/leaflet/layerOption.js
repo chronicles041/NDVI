@@ -5,37 +5,9 @@ import {
   LayersControl,
   Polygon,
   TileLayer,
-  Marker,
-  Popup,
 } from "react-leaflet";
 
-import markerIconPng from "leaflet/dist/images/marker-icon.png";
-import { Icon } from "leaflet";
-// import { DisasterResponse } from "../assets/disasterResponse";
-// import NdviPalate from "../colorPalate";
 
-// const FarmFromReport = DisasterResponse.item[1].request.url.query;
-
-const testPolygon = [
-  [
-    [28.209537039662536, 81.44453166029894],
-    [28.20861997663536, 81.44383606751973],
-    [28.208393843522572, 81.44370880779178],
-    [28.20812516763897, 81.44416845435785],
-    [28.209366111768247, 81.44488015098813],
-    [28.209537039662536,81.44453166029894],
-  ],
-];
-// const testPolygon = [
-//   [
-//     [81.44453166029894, 28.209537039662536],
-//     [81.44383606751973, 28.20861997663536],
-//     [81.44370880779178, 28.208393843522572],
-//     [81.44416845435785, 28.20812516763897],
-//     [81.44488015098813, 28.209366111768247],
-//     [81.44453166029894, 28.209537039662536],
-//   ],
-// ];
 class LayerOptions extends React.Component {
   polyRef = React.createRef();
   ndviOverlayRef = React.createRef();
@@ -43,6 +15,7 @@ class LayerOptions extends React.Component {
   // geoOverlayRef = React.createRef();
   layControlRef = React.createRef();
 
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -128,7 +101,7 @@ class LayerOptions extends React.Component {
   };
 
   render() {
-    const polygonStyle = { color: "purple" };
+    const polygonStyle = { color: "yellow" };
     return (
       <>
         <LayersControl
