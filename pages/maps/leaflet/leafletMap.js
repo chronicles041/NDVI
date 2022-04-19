@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, useMap } from "react-leaflet";
-// import LayerOptions from "./layerOption";
+import LayerOptions from "./layerOption";
 // import LayerOptions from "./layersControl";
 // import NewField from "./newField";
 // import "leaflet-draw/dist/leaflet.draw.css";
-import dynamic from "next/dynamic";
-// import LeafletMap from "./leaflet/leafletMap";
-
-const LayerOptions = dynamic(() => import("./layerOption"), {
-  ssr: false,
-});
 
 function LeafletMap({
   polygon,
