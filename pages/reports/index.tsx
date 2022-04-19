@@ -32,12 +32,16 @@ const ReportColumns = [
     accessor: "farm_area",
   },
   {
+    Header: "Province",
+    accessor: "province_name",
+  },
+  {
     Header: "District",
-    // accessor: "farm_area",
+    accessor: "district_name",
   },
   {
     Header: "Municipality",
-    // accessor: "farm_area",
+    accessor: "municipality_name",
   },
   {
     Header: "Ward Number",
@@ -126,6 +130,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     total: number;
   }>({ data: [], total: 0 });
 
+  
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);
   const [offSet, setOffset] = React.useState<number>(0);

@@ -12,6 +12,9 @@ export interface IFieldReport {
   age: number;
   contact_no: number;
   organization_name: string;
+  municipality_name:string;
+  province_name:string;
+  district_name:string
   crop_type_name: string;
   plantation_date: string;
   ward: number;
