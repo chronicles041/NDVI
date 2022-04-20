@@ -98,7 +98,7 @@ function ToMap(props) {
     <>
       <div className="container bg-white px-4 py-4">
         <div className="flex flex-row gap-x-3">
-          <div className="basis-3/4">
+          <div className="basis-3/4 z-0">
             <LeafletMap
               polygon={polygon}
               // multiplePolygon = {}
@@ -107,6 +107,7 @@ function ToMap(props) {
               viewControl={viewControl}
               newFarmArray={setNewFarmArray}
               selectedData={selectedData}
+              
               configureColorPalate={(type, value) =>
                 setColor({ ...color, [type]: value })
               }

@@ -64,7 +64,7 @@ export const ToRadial = ({ title, type }: Props) => {
   return (
     <ToCard title={title}>
       <Chart
-        options={options}
+       options={options}
         series={options.series}
         type="radialBar"
         height="400"
