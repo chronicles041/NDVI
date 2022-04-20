@@ -17,8 +17,8 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
   return (
     <>
       <button
-        className="bg-primary text-black hover:text-white hover:bg-secondary  transition duration-300 ease-in-out 
-      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        className=" text-primary text-black hover:text-white hover:bg-secondary  transition duration-300 ease-in-out
+      font-bold  rounded mt-2 px-2 py-1 border border-gray-600 border-opacity-30 bg-white hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
         onClick={() => setModalOpen()}
       >

@@ -48,7 +48,7 @@ class ReportFilters extends React.Component<
   render() {
     return (
       <>
-        <div className="flex flex-row mb-1 ml-4">
+        <div className="flex flex-row mb-1 ml-4 w-full">
           <div className="flex-initial p-2 mr-2">
             <button
               className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
@@ -62,15 +62,14 @@ class ReportFilters extends React.Component<
               isOpen={this.state.filterIsOpen}
               setIsOpen={this.drawerIsOpen}
             >
-              <div className=" rounded bg-white z-10   mt-1 w-full fixed top-0 left-0 right-0 ">
+              <div className=" rounded bg-white z-10   mt-1 w-full fixed top-0 left-0   ">
                 <p className="font-semibold p-4">Filter Data</p>
                 <hr className="border-[20%] border-secondary " />
               </div>
               <div
-                style={{ marginBottom: "2rem !important" }}
-                className=" overflow-y-auto flex flex-col gap-y-4"
+                className="flex flex-col mt-3 "
               >
-                <div className="px-6 rounded  mt-2 w-full">
+                <div className="px-6 rounded   mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Locate Fields</p>
                   <ToDropdown
                     options={this.props.provinceValues}
@@ -126,7 +125,7 @@ class ReportFilters extends React.Component<
                 </div>
 
 
-                <hr className="border-[20%] border-primary" />
+                <hr className="border-[20%] mt-4 border-primary" />
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Farm Area (Hector)</p>
                   <div className="flex flex-row ml-2">
@@ -157,7 +156,7 @@ class ReportFilters extends React.Component<
                     </div> 
                   </div>
                 </div>
-                <hr className="border-[20%] border-primary" />
+                <hr className="border-[20%] mt-4 border-primary" />
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Organization</p>
                   <ToDropdown
@@ -168,7 +167,7 @@ class ReportFilters extends React.Component<
                     title="Organization"
                   />
                 </div>
-                <hr className="border-[20%] border-primary" />
+                <hr className="border-[20%] mt-4 border-primary" />
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Other</p>
                   <div className="flex flex-row ml-2">
@@ -189,7 +188,7 @@ class ReportFilters extends React.Component<
               </div>
               
               <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
-                <hr className="border-[20%] border-secondary" />
+                <hr className="border-[20%]  border-secondary" />
 
                 <div className="flex gap-x-2 p-2 mr-2">
                   <button

@@ -154,7 +154,7 @@ class DateList extends React.Component {
                 onChange={this.onChange}
               />
 
-              <div className={""}>
+              <div className={"mt-3"}>
                 <span className="text-white text-base font-semibold">
                   {Object.keys(visibleMarks.marks).length} of total
                 </span>{" "}
