@@ -7,10 +7,11 @@ import PageLayout from "../../components/Pagelayout";
 
 const MapIndex = () => {
   // const Map = React.useMemo(() => dynamic(() => import('./Map'), { loading: () => <p>Loading map...</p>, ssr: false, }), [])
-
+  const Map = dynamic(() => import("../../components/ToMap/Map.js"), { ssr: false });
   return (
     <PageLayout>
       {/* <ToMap /> */}
+    <Map />
       
     </PageLayout>
   );
