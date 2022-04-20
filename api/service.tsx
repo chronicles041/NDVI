@@ -1,30 +1,35 @@
 import axios, { responseEncoding } from "axios";
 import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
+import { baseUrl } from "./serviceConfig";
 
-const token: any = typeof window !== 'undefined' ? localStorage.getItem("token") : '';
+const token: any =
+  typeof window !== "undefined" ? localStorage.getItem("token") : "";
 export default new (class ReportService {
   FetchProvince() {
-    return axios
-      .get<ILocation, any>("https://app.teamonetech.com/api/v1/province/", {
-        headers: { Authorization: `Token ${token}` },
-      })
-      .then((res) => {
-        let tempReturnValue: ILocation[] = [];
-        res.data.results.map((value: { name: string; id: number }) => {
-          tempReturnValue = [
-            ...tempReturnValue,
-            { title: value.name, value: value.id },
-          ];
-          // console.log("**API**DropdDowm", tempReturnValue);
-        });
-        return tempReturnValue;
-      });
+    return (
+      axios
+        // .get<ILocation, any>("https://app.teamonetech.com/api/v1/province/", {
+        .get<ILocation, any>(`${baseUrl}province/`, {
+          headers: { Authorization: `Token ${token}` },
+        })
+        .then((res) => {
+          let tempReturnValue: ILocation[] = [];
+          res.data.results.map((value: { name: string; id: number }) => {
+            tempReturnValue = [
+              ...tempReturnValue,
+              { title: value.name, value: value.id },
+            ];
+            // console.log("**API**DropdDowm", tempReturnValue);
+          });
+          return tempReturnValue;
+        })
+    );
   }
 
   FetchDistricts() {
     return axios
-      .get<ILocation, any>("https://app.teamonetech.com/api/v1/district/", {
+      .get<ILocation, any>(`${baseUrl}district/`, {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
@@ -42,7 +47,7 @@ export default new (class ReportService {
 
   FetchMunicipality() {
     return axios
-      .get<ILocation, any>("https://app.teamonetech.com/api/v1/municipality/", {
+      .get<ILocation, any>(`${baseUrl}municipality/`, {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
@@ -60,7 +65,7 @@ export default new (class ReportService {
 
   FetchWard() {
     return axios
-      .get<ILocation, any>("https://app.teamonetech.com/api/v1/ward/", {
+      .get<ILocation, any>(`${baseUrl}ward/`, {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
@@ -78,7 +83,7 @@ export default new (class ReportService {
 
   FetchOrganizations() {
     return axios
-      .get<ILocation, any>("https://app.teamonetech.com/api/v1/organization/", {
+      .get<ILocation, any>(`${baseUrl}organization/`, {
         headers: { Authorization: `Token ${token}` },
       })
       .then((res) => {
@@ -97,13 +102,10 @@ export default new (class ReportService {
 
   FetchFieldReport(params: any) {
     return axios
-      .get<IFieldReport, any>(
-        "https://app.teamonetech.com/api/v1/farm_info_view/",
-        {
-          headers: { Authorization: `Token ${token}` },
-          params,
-        }
-      )
+      .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
+        headers: { Authorization: `Token ${token}` },
+        params,
+      })
       .then((res) => {
         let tempReturnValue: IFieldReport[] = [];
         res.data.results.map((value: IFieldReport, i: number) => {
@@ -141,12 +143,9 @@ export default new (class ReportService {
   }
   FetchFieldReportID(id: number) {
     return axios
-      .get<IFieldReport, any>(
-        `https://app.teamonetech.com/api/v1/farm_info_view/${id}/`,
-        {
-          headers: { Authorization: `Token ${token}` },
-        }
-      )
+      .get<IFieldReport, any>(`${baseUrl}farm_info_view/${id}/`, {
+        headers: { Authorization: `Token ${token}` },
+      })
       .then((res) => {
         console.log("Farm Detail : ", res.data);
         let ServerData = {
@@ -155,6 +154,14 @@ export default new (class ReportService {
         };
         return res.data;
       });
+  }
+
+  getDateImage(params: {}) {
+    console.log("Param From Service for Image Dates ", params);
+    return axios.get(`${baseUrl}export_image/`, {
+      headers: { Authorization: `Token ${token}` },
+      params,
+    });
   }
 })();
 
