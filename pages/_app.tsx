@@ -6,6 +6,7 @@ import "../styles/index.css";
 import { useRouter } from "next/router";
 
 
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const currentRoute = router.asPath;
