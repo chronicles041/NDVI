@@ -1,17 +1,16 @@
-
 import React from "react";
 import { AppProps } from "next/app";
 import Layout from "../components/Layouts";
 import "../styles/index.css";
 import { useRouter } from "next/router";
 
-
-
 export default function MyApp({ Component, pageProps }: AppProps) {
+  // let hasToken = localStorage.getItem("Token");
   const router = useRouter();
   const currentRoute = router.asPath;
   const loginRoute = "/login";
-  return currentRoute !== loginRoute ? (
+  // console.log("Token", hasToken);
+  return ![loginRoute,''].includes(currentRoute) ? (
     <Layout>
       <Component {...pageProps} />
     </Layout>
@@ -19,5 +18,3 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <Component {...pageProps} />
   );
 }
-
-
