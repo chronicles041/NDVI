@@ -10,17 +10,16 @@ const Login = () => {
   const [message, changeMessage] = useState("");
   // alert("Reached")
   const createToken = () => {
-    Router.push("/dashboard");
+    // Router.push("/dashboard");
 
     axios
-      .post("https://app.teamonetech.com/auth/token/login/", {
+      .post("https://app.teamonetech.com/custom-auth/token/login/", {
         username: username,
         password: password,
       })
       .then((response) => {
-        console.log(response);
-        localStorage.setItem('token','token')
-       localStorage.setItem('token','token')
+        console.log("Response",response.data.token);
+        localStorage.setItem('token',response.data.token)
         Router.push("/dashboard");
       })
       .catch((err) => {
