@@ -4,6 +4,10 @@
  * @type {import('next').NextConfig}
  **/
  const nextConfig = {
+  // images: {
+  //   loader: 'imgix',
+  //   path: '/',
+  // },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

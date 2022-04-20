@@ -4,7 +4,7 @@ import { ToTable } from "../../components/ToTable";
 import moment from "moment";
 import ToDrawer from "../../components/ToDrawer";
 import ToDropdown from "../../components/ToDropdown";
-import { IFieldFilters, ILocation } from "./reportTypes";
+import { IFieldFilters, ILocation } from "../../types/reportTypes";
 import { Slider, Switch } from "antd";
 type ReportFilterProps = {
   provinceValues: ILocation[];
@@ -72,35 +72,88 @@ class ReportFilters extends React.Component<
                 <div className="px-6 rounded  mt-2 w-full">
                   <p className="font-semibold mt-1 mb-2">Locate Fields</p>
                   <ToDropdown
+                    options={this.props.provinceValues}
+                    title="Province"
+                    onChange={(e: Event) =>
+                      this.handleFilterChange(
+                        e,
+                        "ward__municipality__district__province__id"
+                      )
+                    }
+                  />
+                  <ToDropdown
                     options={this.props.districtValues}
                     title="District"
                     onChange={(e: Event) =>
-                      this.handleFilterChange(e, "organization__id")
+                      this.handleFilterChange(
+                        e,
+                        "ward__municipality__district__id"
+                      )
                     }
                   />
                   <ToDropdown
                     options={this.props.municipalityValues}
                     title="Municipalitiy"
                     onChange={(e: Event) =>
-                      this.handleFilterChange(e, "ward__id")
+                      this.handleFilterChange(e, "ward__municipality__id")
                     }
                   />
                   <ToDropdown
                     onChange={(e: Event) =>
-                      this.handleFilterChange(e, "ward__id")
+                      this.handleFilterChange(e, "ward__number")
                     }
                     options={this.props.wardValues}
                     title="Ward"
                   />
-                </div>
-                <hr className="border-[20%] border-primary" />
-                <div className="px-6 rounded  mt-2 w-full">
-                  <p className="font-semibold mt-1 mb-2">Farm Area</p>
+
+
+
                   <div className="flex flex-row ml-2">
                     <div className="flex flex-row w-full">
-                      <div className="w-1/3 py-2">From Farm Area</div>
-                      <div className="w-2/3 pt-1">Options</div>
+                      <div className="w-1/3 py-2">{"Tole Name"}</div>
+                      <div className="w-2/3 pt-1">
+                        <input
+                          onChange={(e: any) =>
+                            this.handleFilterChange(e, "tole_name")
+                          }
+                          type="text"
+                         
+                        />
+                      </div>
                     </div>
+                  </div>
+                </div>
+
+
+                <hr className="border-[20%] border-primary" />
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Farm Area (Hector)</p>
+                  <div className="flex flex-row ml-2">
+                    <div className="flex flex-row w-full">
+                      <div className="w-1/3 py-2">{"Farm Area Min"}</div>
+                      <div className="w-2/3 pt-1">
+                        <input
+                          onChange={(e: any) =>
+                            this.handleFilterChange(e,"farm_area_min")
+                          }
+                          type="number"
+                        />
+                      </div>
+                    </div> 
+                  </div>
+                  <div className="flex flex-row ml-2">
+                    <div className="flex flex-row w-full">
+                      <div className="w-1/3 py-2">{"Farm Area Max"}</div>
+                      <div className="w-2/3 pt-1">
+                        <input
+                          onChange={(e: any) =>
+                            this.handleFilterChange(e, "farm_area_max")
+                          }
+                          type="number"
+                         
+                        />
+                      </div>
+                    </div> 
                   </div>
                 </div>
                 <hr className="border-[20%] border-primary" />
@@ -114,7 +167,26 @@ class ReportFilters extends React.Component<
                     title="Organization"
                   />
                 </div>
+                <hr className="border-[20%] border-primary" />
+                <div className="px-6 rounded  mt-2 w-full">
+                  <p className="font-semibold mt-1 mb-2">Other</p>
+                  <div className="flex flex-row ml-2">
+                    <div className="flex flex-row w-full">
+                      <div className="w-1/3 py-2">{"Farm Name"}</div>
+                      <div className="w-2/3 pt-1">
+                        <input
+                          onChange={(e: any) =>
+                            this.handleFilterChange(e, "farm_name")
+                          }
+                          type="text"
+                         
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              
               <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
                 <hr className="border-[20%] border-secondary" />
 

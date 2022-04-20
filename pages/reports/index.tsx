@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import ReportTable from "./reportTable";
+import ReportTable from "../../components/reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
-import { IFieldFilters, IFieldReport, ILocation } from "./reportTypes";
-import ReportService from "./api/service";
+import { IFieldFilters, IFieldReport, ILocation } from "../../types/reportTypes";
+import ReportService from "../../api/service";
 import { off } from "process";
 import Link from "next/link";
 import ToModal from "../../components/ToModal";
@@ -32,12 +32,16 @@ const ReportColumns = [
     accessor: "farm_area",
   },
   {
+    Header: "Province",
+    accessor: "province_name",
+  },
+  {
     Header: "District",
-    // accessor: "farm_area",
+    accessor: "district_name",
   },
   {
     Header: "Municipality",
-    // accessor: "farm_area",
+    accessor: "municipality_name",
   },
   {
     Header: "Ward Number",
@@ -78,7 +82,7 @@ const ReportColumns = [
   // },
 
   {
-    Header: "Detail",
+    Header: "Action",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
       <div className="flex flex-row gap-x-2 justify-center items-center">
@@ -125,6 +129,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     data: IFieldReport[];
     total: number;
   }>({ data: [], total: 0 });
+
 
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);

@@ -43,7 +43,7 @@ type Props = {
 const ToIcon = ({ text, type, size, style }: Props) => {
   return (
     <>
-      <Image
+      <img
         className={style}
         height={size.height}
         width={size.width}

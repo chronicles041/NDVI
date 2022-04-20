@@ -1,5 +1,5 @@
 import React from "react";
-import { ILocation } from "../../pages/reports/reportTypes";
+import { ILocation } from "../../types/reportTypes";
 
 type ToDropdownProps = {
   title: string;

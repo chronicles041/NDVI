@@ -5,7 +5,7 @@ import ToIcon, {
   IconTypes,
 } from "../../components/ToIcons";
 import ToModal from "../../components/ToModal";
-import ReportService from "./api/service";
+import ReportService from "../../api/service";
 
 type FarmDetailProps = {
   farm_id: number;
@@ -42,7 +42,7 @@ const DetailModal = ({ id }: { id: number }) => {
   };
 
   return (
-    <ToModal onOpen={()=>onDetailClick()} title={"Field Details"}>
+    <ToModal onOpen={()=>onDetailClick()} title={"Detail"}>
       <div className='flex flex-col px-2 text-white items-center justify-center'>
       <div className="grid h-auto w-full grid-cols-2  gap-x-6 gap-y-6  ">
         <div className="bg-white max-h-52 border-2  overflow-hidden border-solid border-primary flex flex-col justify-center items-center   p-10 rounded-lg">
