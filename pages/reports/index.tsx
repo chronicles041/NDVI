@@ -130,7 +130,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     total: number;
   }>({ data: [], total: 0 });
 
-
+  
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);
   const [offSet, setOffset] = React.useState<number>(0);
