@@ -11,7 +11,7 @@ const Login = () => {
   // alert("Reached")
   const createToken = () => {
     // Router.push("/index");
-
+    changeMessage('')
     axios
       .post("https://app.teamonetech.com/custom-auth/token/login/", {
         username: username,
@@ -23,9 +23,6 @@ const Login = () => {
         Router.push("/");
       })
       .catch((err) => {
-        console.log(err.message);
-        Router.push("/");
-
         changeMessage("Unable to Login. Check Credentials and try again");
         //   alert(err.message)
       });
