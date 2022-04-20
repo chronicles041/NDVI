@@ -1,4 +1,4 @@
-import DashBorad from "./dashboard";
+import DashBorad from "./index";
 import Login from "./login";
 import { useRouter } from "next/router";
 

@@ -10,7 +10,7 @@ const Login = () => {
   const [message, changeMessage] = useState("");
   // alert("Reached")
   const createToken = () => {
-    // Router.push("/dashboard");
+    // Router.push("/index");
 
     axios
       .post("https://app.teamonetech.com/custom-auth/token/login/", {
@@ -20,7 +20,7 @@ const Login = () => {
       .then((response) => {
         console.log("Response",response.data.token);
         localStorage.setItem('token',response.data.token)
-        Router.push("/dashboard");
+        Router.push("/index");
       })
       .catch((err) => {
         console.log(err.message);
