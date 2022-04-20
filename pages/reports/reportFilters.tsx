@@ -15,6 +15,7 @@ type ReportFilterProps = {
   filterParams: IFieldFilters;
   changeFilterParams: Function;
   processData: Function;
+  resetFilter: Function;
 };
 
 type ReportFilterState = {
@@ -209,8 +210,7 @@ class ReportFilters extends React.Component<
                   <button
                     className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
                     type="button"
-                    onClick={this.drawerIsOpen}
-                    //   onClick={handleResetFileter}
+                    onClick={()=>this.props.resetFilter()}
                   >
                     Reset
                   </button>

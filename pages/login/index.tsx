@@ -105,8 +105,10 @@ const Login = () => {
                   >
                     Password
                   </label>
-
+                  <br />
+            
                   <div className="flex justify-center items-center my-2">
+                   
               <a
                 href="#"
                 className="border-2 border-white bg-gray-200 rounded-full p-3 mx-1 hover:bg-primary shadow-2xl"

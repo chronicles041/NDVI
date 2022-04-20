@@ -171,8 +171,8 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     console.log("***", value);
     let newParams = { ...filterParams, offset: value };
     setFilterParams(newParams);
-
     setOffset(value);
+
   };
 
   return !listView ? (
@@ -186,6 +186,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
         processData={() => processData()}
+        resetFilter={()=>setFilterParams(defaultFilters)}
       />
       <ReportTable
         setPageSize={(value: number) => setLimit(value)}
@@ -209,6 +210,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
         processData={() => processData()}
+        resetFilter={()=>setFilterParams(defaultFilters)}
       />
       <ListReport
         listData={reportData.data}

@@ -2,8 +2,6 @@ import React, { ReactNode, useState } from "react";
 import Head from "next/head";
 import Navbar from "../Sidenav";
 import Header from "../Header";
-import { useTranslation } from "next-i18next";
-import { Footer } from "../Footer";
 
 type Props = {
   children?: ReactNode;

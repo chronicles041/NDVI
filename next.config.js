@@ -8,7 +8,7 @@
     return [
       {
         source: '/',
-        destination: '/dashboard',
+        destination: '/login',
         permanent: true,
       },
     ]
