@@ -2,7 +2,7 @@ import axios, { responseEncoding } from "axios";
 import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
 
-const token: any = localStorage.getItem("token");
+const token: any = typeof window !== 'undefined' ? localStorage.getItem("token") : '';
 export default new (class ReportService {
   FetchProvince() {
     return axios
