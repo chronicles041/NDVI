@@ -84,7 +84,7 @@ const DetailModal = ({ id }: { id: number }) => {
           <div className="text-center font-normal text-secondary whitespace-nowrap  text-base  mt-4">
             Organization Name:
             <br></br>
-            {detail.organization_name}
+            {detail.organization_name}`
           </div>
         </div>
         <div className="bg-white max-h-52 flex flex-col justify-center items-center border-2 border-solid border-primary   p-10 rounded-lg">
