@@ -6,23 +6,31 @@ import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 
 type Props = {
   label?: string;
-  type: string;
+  isCollapse: boolean;
   path: string;
   name: string;
+  icon: string;
 };
 
-const NavItem = ({ type, name, path }: Props) => {
+
+
+const NavItem = ({ isCollapse, name, path, icon }: Props) => {
   return (
     <>
-      <li>
+      <li 
+              data-toggle="tooltip"
+              title={name}
+      >
         <Link href={path}>
           <a className="sidebar-a-herf">
             <ToIcon
-              type={type}
-              size={IconSize.NAVICON}
+              type={icon}
+              size={!isCollapse ? IconSize.NAVICON : IconSize.LARGENAVICON}
               style={IconStyles.Navigation}
             />
-            <span className="ml-4 text-xl font-medium text-secondary px-2">{name}</span>
+            <span  hidden={isCollapse} className="ml-4 text-xl font-medium text-secondary px-2">
+              {name}
+            </span>
           </a>
         </Link>
       </li>

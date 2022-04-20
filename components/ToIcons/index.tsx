@@ -7,8 +7,6 @@ import Farm from "./assets/farm.svg";
 import Activity from "./assets/activity.svg";
 import Weather from "./assets/weather.svg";
 import Image from "next/image";
-// import  './toicons.scss'
-import styles from "./toicons.module.css";
 import Community from "./assets/community.svg";
 import Champions from "./assets/champions.svg";
 import States from "./assets/states.svg";
@@ -17,6 +15,12 @@ import Crop from "./assets/crop.svg";
 import Average from "./assets/average.svg";
 import Dressing from "./assets/dressing.svg";
 import Map from "./assets/map.svg";
+import Toggle from "./assets/toggle.svg";
+import { title } from "process";
+import Location from "./assets/location.png";
+import Project from "./assets/project.png";
+import Organiztion from "./assets/organization.png";
+// import styles from "./../../styles";
 
 interface IiconSize {
   height: number;
@@ -33,12 +37,13 @@ type Props = {
   type: IiconType | any;
   size: IiconSize | any;
   style: string;
+  text?: string;
 };
 
-const ToIcon = ({ type, size, style }: Props) => {
+const ToIcon = ({ text, type, size, style }: Props) => {
   return (
     <>
-      <Image
+      <img
         className={style}
         height={size.height}
         width={size.width}
@@ -49,6 +54,7 @@ const ToIcon = ({ type, size, style }: Props) => {
     </>
   );
 };
+
 export const IconTypes = {
   Banner: Banner,
   Dashboard: Dashboard,
@@ -64,10 +70,14 @@ export const IconTypes = {
   Average: Average,
   Dressing: Dressing,
   Map: Map,
+  Toggle: Toggle,
+  Location: Location,
+  Project:Project,
+  Organiztion:Organiztion,
 };
 export const IconStyles = {
-  Default: styles.default,
-  Navigation: styles.navigation,
+  Default: " ",
+  Navigation: " ",
 };
 
 export const IconSize = {
@@ -91,5 +101,12 @@ export const IconSize = {
     height: 27,
     width: 27,
   },
+  LARGENAVICON: {
+    height: 40,
+    width: 40,
+  },
 };
+
 export default ToIcon;
+
+

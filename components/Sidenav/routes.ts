@@ -7,35 +7,35 @@ export const Routes = [
         icon: IconTypes.Dashboard,
         name: "Dashboard"
     },
-    {
-        path: "/users",
-        icon: IconTypes.User,
-        name: "Users"
-    },
-    {
-        path: "/fields",
-        icon: IconTypes.Farm,
-        name: "Fields"
-    },
+    // {
+    //     path: "/users",
+    //     icon: IconTypes.User,
+    //     name: "Users"
+    // },
+    // {
+    //     path: "/fields",
+    //     icon: IconTypes.Farm,
+    //     name: "Fields"
+    // },
     {
         path: "/maps",
-        icon: IconTypes.Map,
+        icon: IconTypes.Farm,
         name: "Maps"
     },
+    // {
+    //     path: "/activities",
+    //     icon: IconTypes.Activity,
+    //     name: "Activities"
+    // },
+    // {
+    //     path: "/weather",
+    //     icon: IconTypes.Weather,
+    //     name: "Weather"
+    // },
     {
-        path: "/activities",
+        path: "/reports",
         icon: IconTypes.Activity,
-        name: "Activities"
-    },
-    {
-        path: "/weather",
-        icon: IconTypes.Weather,
-        name: "Weather"
-    },
-    {
-        path: "/visits",
-        icon: IconTypes.Farm,
-        name: "Visits"
+        name: "Reports"
     }
 
 ]

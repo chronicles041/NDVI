@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type Props = {
-  type?: string | any;
+  type?:  any;
   title: string;
 };
 
