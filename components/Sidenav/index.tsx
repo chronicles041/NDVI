@@ -11,7 +11,7 @@ const Navbar = ({  isCollapse }: NavbarProps) => {
   return (
     <div className="w-full h-full absoulte sidebar border-r-2 shadow-custom-shadow">
 
-      <div className="px-3 py-8 overflow-y-auto rounded dark:bg-gray-800 h-full">
+      <div className="px-3 py-8 overflow-y-auto rounded  h-full">
 
         <ul className="space-y-2">
           {Routes.map((route) => (

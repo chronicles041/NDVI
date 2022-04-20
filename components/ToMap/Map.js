@@ -68,6 +68,7 @@ function ToMap(props) {
       previous: previous,
       previous_date: previous_date,
     };
+    console.log("Graph Data")
 
     MapService.getDateImage(params)
       .then((res) => {
