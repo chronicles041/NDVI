@@ -76,8 +76,9 @@ function ToMap(props) {
         setLoading(false);
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
+        const tempNdviGraph = res.data.ndviGraph.reverse()
         setGraphData({
-          ndvi: res.data.ndviGraph,
+          ndvi: tempNdviGraph,
           ndwi: res.data.ndwiGraph,
         });
         console.log("Data:", data);
