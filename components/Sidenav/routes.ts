@@ -3,7 +3,7 @@ import { IconTypes } from "../ToIcons";
 
 export const Routes = [
     {
-        path: "/index",
+        path: "/",
         icon: IconTypes.Dashboard,
         name: "Dashboard"
     },

@@ -20,7 +20,7 @@ const Login = () => {
       .then((response) => {
         console.log("Response",response.data.token);
         localStorage.setItem('token',response.data.token)
-        Router.push("/index");
+        Router.push("/");
       })
       .catch((err) => {
         console.log(err.message);
