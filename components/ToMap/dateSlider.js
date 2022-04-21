@@ -11,7 +11,7 @@ const initialState = {
     totalDates: null,
     marks: {},
   },
-  markerIndex: 0,
+  markerIndex: null,
 };
 
 class DateList extends React.Component {
@@ -146,13 +146,13 @@ class DateList extends React.Component {
                 // disabled={Object.keys(visibleMarks.marks).length === 0}
                 disabled={this.props.loading}
                 min={0}
-                reverse
                 tipFormatter={null}
                 max={Object.keys(visibleMarks.marks).length - 1}
                 marks={this.createDateMarks()}
                 defaultValue={this.state.markerIndex}
                 value={this.state.markerIndex}
                 onChange={this.onChange}
+              
               />
 
               <div className={"mt-3"}>
