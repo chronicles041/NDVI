@@ -3,8 +3,8 @@ import Router from "next/router";
 import { useState } from "react";
 import axios from "axios";
 
-// let LoginApi = 'https://app.teamonetech.com/custom-auth/token/login/'
-let LoginApi = "https://api.plantsat.com/custom-auth/token/login/";
+let LoginApi = 'https://app.teamonetech.com/custom-auth/token/login/'
+// let LoginApi = "https://api.plantsat.com/custom-auth/token/login/";
 
 const Login = () => {
   const [username, changeUsername] = useState("");

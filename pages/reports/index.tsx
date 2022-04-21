@@ -12,7 +12,7 @@ import { off } from "process";
 import Link from "next/link";
 import ToModal from "../../components/ToModal";
 import DetailModal from "./fieldDetail";
-import ListReport from "./listView";
+import ListReport from "../../components/listView";
 import { ToTablePagination } from "../../components/ToTable/pagination";
 import { ToListPagination } from "../../components/ToListPagination";
 // import UsersTable from "./usersTable";

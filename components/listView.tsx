@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 // import "./map.css";
 
-import { IFieldReport } from "../../types/reportTypes";
-import DetailModal from "./fieldDetail";
+import { IFieldReport } from "../types/reportTypes";
+import DetailModal from "../pages/reports/fieldDetail";
 
 type ListReportProps = {
   selectedItem: Function;
@@ -20,20 +20,20 @@ function ListReport({
   activeItem,
 }: ListReportProps) {
   const ActiveItemRef = React.useRef<HTMLInputElement>(null);
-  const executeScroll = () => ActiveItemRef.current.scrollIntoView(0)
+  const executeScroll = () => ActiveItemRef.current.scrollIntoView(0);
   const [selectedData, selectData] = useState<IFieldReport>();
 
   const onFarmSelect = (farm: IFieldReport, index: number) => {
     console.log(listData[index]);
     selectedItem(farm);
-    
+
     executeScroll();
   };
 
   useEffect(() => {
     // Update the document title using the browser API
     selectData(activeItem);
-  },[activeItem]);
+  }, [activeItem]);
 
   return (
     <div ref={ActiveItemRef} className={" overflow-y-scroll  w-full"}>
@@ -73,7 +73,7 @@ function ListReport({
               </div>
             </div>
 
-            <DetailModal id={selectedData ?selectedData.farm_id :0} />
+            <DetailModal id={selectedData ? selectedData.farm_id : 0} />
           </li>
         ) : null}
         {listData
