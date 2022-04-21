@@ -6,7 +6,7 @@
 
 @layer components {
   .sidebar-a-herf {
-    @apply flex items-center mb-3 p-2 text-base font-normal text-gray-900 hover:rounded-xl dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700;
+    @apply flex items-center mb-3 p-2 text-base font-normal text-gray-900 hover:rounded-xl;
   }
 }
 

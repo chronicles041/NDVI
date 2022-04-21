@@ -19,14 +19,13 @@ function ListReport({
   listData,
   activeItem,
 }: ListReportProps) {
+
   const ActiveItemRef = React.useRef<HTMLInputElement>(null);
   const executeScroll = () => ActiveItemRef.current.scrollIntoView(0);
   const [selectedData, selectData] = useState<IFieldReport>();
-
   const onFarmSelect = (farm: IFieldReport, index: number) => {
     console.log(listData[index]);
     selectedItem(farm);
-
     executeScroll();
   };
 
@@ -35,13 +34,14 @@ function ListReport({
     selectData(activeItem);
   }, [activeItem]);
 
+
   return (
     <div ref={ActiveItemRef} className={" overflow-y-scroll  w-full"}>
       <ul className={" w-auto h-[400px] mr-4   flex flex-col justify-start  "}>
         {activeItem ? (
           <li
             className={
-              "cursor-pointer w-full px-4  shadow  bg-gray-100  border-green-500 border-2  rounded   px-2 py-2 mx-2 my-2"
+              "cursor-pointer w-full px-4  shadow  bg-gray-400  border  rounded   px-2 py-2 mx-2 my-2"
             }
             key={0}
           >
@@ -53,26 +53,25 @@ function ListReport({
             >
               <div className={"flex  flex-col"}>
                 <div
-                  className={"font-bold text-black text-opacity-60  text-sm"}
+                  className={"font-bold text-white text-opacity-60  text-sm"}
                 >
                   Farm Name
                 </div>
-                <div className={"font-bold text-text_primary"}>
+                <div className={"font-bold text-white"}>
                   {selectedData?.farm_name}
                 </div>
               </div>
               <div className={"flex flex-col"}>
                 <div
-                  className={"font-bold text-black text-opacity-60  text-sm"}
+                  className={"font-bold text-white text-opacity-60  text-sm"}
                 >
                   Farm Area
                 </div>
-                <div className={"font-bold text-text_primary"}>
+                <div className={"font-bold text-white"}>
                   {selectedData?.farm_area}
                 </div>
               </div>
             </div>
-
             <DetailModal id={selectedData ? selectedData.farm_id : 0} />
           </li>
         ) : null}

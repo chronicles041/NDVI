@@ -76,13 +76,18 @@ export const ToTable = ({
                   <tr {...headerGroup.getHeaderGroupProps()} key={i}>
                     {headerGroup.headers.map((column) => (
                       <th
-                        className="px-6 py-3 text-left text-base font-semibold text-gray-500 uppercase tracking-wider border"
+                        className={`${
+                          column.render("Header") === "Action"
+                            ? "sticky inset-x-0 top-0 left-0 bg-white"
+                            : ""
+                        } px-6 py-3 align-right text-left text-base font-semibold text-gray-500 uppercase tracking-wider border`}
                         {...column.getHeaderProps()}
                         key={i}
                       >
                         {column.render("Header")}
                       </th>
                     ))}
+
                   </tr>
                 ))}
               </thead>
@@ -93,13 +98,17 @@ export const ToTable = ({
                     <tr
                       {...row.getRowProps()}
                       key={i}
-                      className="bg-white border-b hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="bg-white border-b hover:bg-gray-100 "
                     >
                       {row.cells.map((cell: any) => {
                         return (
                           <td
                             {...cell.getCellProps()}
-                            className="py-4 px-6 text-base font-medium text-secondary whitespace-nowrap dark:text-white border"
+                            className={`${
+                              cell.render("Header") === "Action"
+                                ? "sticky bg-white inset-x-0 top-0 left-0 "
+                                : ""
+                            } py-4 px-6 text-base font-medium text-secondary whitespace-nowrap  border`}
                             key={i}
                           >
                             <div className="">{cell.render("Cell")}</div>
