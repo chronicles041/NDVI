@@ -24,11 +24,8 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
             style={IconStyles.Navigation}
           />
         </div>
-        
-          <img
-            className="w-36 h-12 "
-            src="logo.png"
-          ></img>
+
+        <img className="w-36 h-12 " src="logo.png"></img>
       </div>
 
       <div className="flex flex-row justify-center item-center px-3 py-3">
@@ -36,7 +33,6 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
           {/* <BsMoon className="w-7 h-7 cursor-pointer"></BsMoon>
           <BsBell className="w-7 h-7 cursor-pointer"></BsBell> */}
           <div className="flex gap-4 cursor-pointer items-center justify-center">
-            
             <img
               className="w-12 h-12 rounded-full  object-cover border-2 ring-2 border-gray-400 ring-offset-2 ring-primary ring-opacity-80"
               src="https://random.imagecdn.app/500/150"

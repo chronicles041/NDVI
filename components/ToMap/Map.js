@@ -94,8 +94,6 @@ function ToMap(props) {
     // }
   };
 
-
-
   return (
     <>
       <div className="container bg-white px-4 py-4">
@@ -115,7 +113,6 @@ function ToMap(props) {
               }
             />
         {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
-
             <div className="dateList bg-primary flex justify-center items-center  w-full mt-3">
               <DateList
                 loading={loading}
@@ -132,19 +129,10 @@ function ToMap(props) {
               listView={true}
             />
           </div>
-        </div>
-            
+        </div> 
         <div hidden={loading} className={"pt-10 "}>
           <TimeSeriesGraph graphData={graphData} />
         </div>
-          
-        {/* <div className="flex flex-row p-3"> */}
-        {/* <div className="basis-3/4"> */}
-        {/* <TimeSeriesGraph graphData={graphData}/> */}
-        {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
-        {/* </div> */}
-        {/* <div className="basis-1/4">Something</div> */}
-        {/* </div> */}
       </div>
     </>
   );

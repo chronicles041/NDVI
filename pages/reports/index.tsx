@@ -2,7 +2,11 @@ import React, { ReactElement, useEffect, useState } from "react";
 import ReportTable from "../../components/reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
-import { IFieldFilters, IFieldReport, ILocation } from "../../types/reportTypes";
+import {
+  IFieldFilters,
+  IFieldReport,
+  ILocation,
+} from "../../types/reportTypes";
 import ReportService from "../../api/service";
 import { off } from "process";
 import Link from "next/link";
@@ -130,10 +134,10 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     total: number;
   }>({ data: [], total: 0 });
 
-  
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);
   const [offSet, setOffset] = React.useState<number>(0);
+  const [selectedData, selectData] = useState<IFieldReport>();
   const [tableView, setTableView] = React.useState<boolean>(false);
   const defaultFilters: IFieldFilters = {
     search: " ",
@@ -172,8 +176,12 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     let newParams = { ...filterParams, offset: value };
     setFilterParams(newParams);
     setOffset(value);
-
   };
+
+  const onItemSelect = (value) => {
+    selectData(value)
+    selectedItem(value)
+  }
 
   return !listView ? (
     <PageLayout>
@@ -186,7 +194,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
         processData={() => processData()}
-        resetFilter={()=>setFilterParams(defaultFilters)}
+        resetFilter={() => setFilterParams(defaultFilters)}
       />
       <ReportTable
         setPageSize={(value: number) => setLimit(value)}
@@ -210,12 +218,13 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
         processData={() => processData()}
-        resetFilter={()=>setFilterParams(defaultFilters)}
+        resetFilter={() => setFilterParams(defaultFilters)}
       />
       <ListReport
         listData={reportData.data}
-        selectedItem={selectedItem}
+        selectedItem={onItemSelect}
         loading={loading}
+        activeItem={selectedData}
       />
       <ToListPagination
         loading={false}
