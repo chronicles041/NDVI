@@ -32,7 +32,7 @@ const ReportColumns = [
     accessor: "farm_name",
   },
   {
-    Header: "Farm Area",
+    Header: "Farm Area(Hector)",
     accessor: "farm_area",
   },
   {
@@ -80,28 +80,17 @@ const ReportColumns = [
     Header: "Crop",
     accessor: "crop_type_name",
   },
+
   // {
   //   Header: "Plantation Date",
   //   accessor: "plantation_date",
   // },
-
+  
   {
     Header: "Action",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
       <div className="flex flex-row gap-x-2 justify-center items-center">
-        <div className="flex items-center justify-center">
-          <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
-            {/* <Link href={`/maps`} passHref > */}
-            <button
-              className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
-      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-              type="button"
-            >
-              Go to Map
-            </button>
-          </Link>
-        </div>
         <DetailModal id={value.farm_id} />
       </div>
     ),
@@ -137,7 +126,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(10);
   const [offSet, setOffset] = React.useState<number>(0);
-  const [selectedData, selectData] = useState<IFieldReport>();
+  const [selectedData, selectData] = useState<IFieldReport | undefined>();
   const [tableView, setTableView] = React.useState<boolean>(false);
   const defaultFilters: IFieldFilters = {
     search: " ",
@@ -162,6 +151,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     ReportService.FetchFieldReport(filterParams).then((res) =>
       setReportData(res)
     );
+    console.log("Test Data", reportData);
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
 
@@ -179,9 +169,9 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
   };
 
   const onItemSelect = (value) => {
-    selectData(value)
-    selectedItem(value)
-  }
+    selectData(value);
+    selectedItem(value);
+  };
 
   return !listView ? (
     <PageLayout>
@@ -243,3 +233,16 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 };
 
 export default Reports;
+
+// {/* <div className="flex items-center justify-center">
+//   <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
+//     {/* <Link href={`/maps`} passHref > */}
+//     <button
+//       className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
+// font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+//       type="button"
+//     >
+//       Go to Map
+//     </button>
+//   </Link>
+// </div>; */}
