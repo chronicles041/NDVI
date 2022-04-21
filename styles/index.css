@@ -191,7 +191,7 @@
    margin-left:3px;
    cursor: pointer;
    border-radius: 25px;
-  background-color: #161626 !important;
+  /* background-color: #161626 !important; */
   border: 1px solid;
   box-shadow: 1px 1px rgb(77, 76, 76);
   

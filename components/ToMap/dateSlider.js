@@ -23,27 +23,38 @@ class DateList extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.mapData !== this.props.mapData) {
       // console.log("Did Update Slider", prevProps, this.props.mapData);
-      this.setState({ 
-        initaialState:initialState,
-        markerIndex:null
-
-       }, () => {
-        this.createMarkers();
-      });
+      this.setState(
+        {
+          initaialState: initialState,
+          markerIndex: null,
+        },
+        () => {
+          this.createMarkers();
+        }
+      );
     }
   }
 
   createMarkers = () => {
     let tempMarks = {};
+    let activeMarker = this.state.markerIndex;
     this.props.mapData.map((d, i) => {
       tempMarks = {
         ...tempMarks,
         [i]: {
           style: {
+            backgroundColor:
+              this.state.markerIndex === i ? "#59433E" : "#161626",
             color: "#374151",
             fontSize: "7px",
           },
-          label: <strong>{moment(d.date).format("Do MMM, yy")}</strong>,
+          label:
+            this.state.markerIndex === i ? (
+              <strong>{moment(d.date).format("Do MMM, yy")} </strong>
+            ) : (
+              <strong>{moment(d.date).format("Do MMM, yy")} </strong>
+            ),
+          // label: this.state.markerIndexactiveMarker ?  'Active': <strong>{moment(d.date).format("Do MMM, yy")}</strong>,
         },
       };
       return null;
@@ -104,10 +115,13 @@ class DateList extends React.Component {
 
   onChange = (value) => {
     this.props.selectedIndex(this.props.mapData[value]);
-    this.setState({
-      selectedDate: this.props.mapData[value].date,
-      markerIndex: value,
-    });
+    this.setState(
+      {
+        selectedDate: this.props.mapData[value].date,
+        markerIndex: value,
+      },
+      () => this.createMarkers()
+    );
   };
 
   createDateMarks = () => {
@@ -173,6 +187,17 @@ class DateList extends React.Component {
                 onClick={() => {
                   this.makeVisibleMarker(false, true);
                 }}
+              />
+              <RightOutlined
+                hidden={
+                  visibleMarks.marks[
+                    Object.keys(visibleMarks.marks).length - 1
+                  ] !== marks[visibleMarks.totalDates - 1]
+                }
+                onClick={() => {
+                  this.props.getNewDates(true, false);
+                }}
+                color="red"
               />
             </div>
           </>
