@@ -98,7 +98,7 @@ export const ToTable = ({
                     <tr
                       {...row.getRowProps()}
                       key={i}
-                      className="bg-white border-b hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="bg-white border-b hover:bg-gray-100 "
                     >
                       {row.cells.map((cell: any) => {
                         return (
@@ -108,7 +108,7 @@ export const ToTable = ({
                               cell.render("Header") === "Action"
                                 ? "sticky bg-white inset-x-0 top-0 left-0 "
                                 : ""
-                            } py-4 px-6 text-base font-medium text-secondary whitespace-nowrap dark:text-white border`}
+                            } py-4 px-6 text-base font-medium text-secondary whitespace-nowrap  border`}
                             key={i}
                           >
                             <div className="">{cell.render("Cell")}</div>
