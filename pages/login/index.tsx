@@ -24,7 +24,6 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.message);
-        Router.push("/");
 
         changeMessage("Unable to Login. Check Credentials and try again");
         //   alert(err.message)
