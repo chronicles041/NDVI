@@ -23,7 +23,11 @@ class DateList extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.mapData !== this.props.mapData) {
       // console.log("Did Update Slider", prevProps, this.props.mapData);
-      this.setState({ initialState }, () => {
+      this.setState({ 
+        initaialState:initialState,
+        markerIndex:null
+
+       }, () => {
         this.createMarkers();
       });
     }
@@ -39,9 +43,7 @@ class DateList extends React.Component {
             color: "#374151",
             fontSize: "7px",
           },
-          label: <strong>
-            {moment(d.date).format("Do MMM, yy")}
-            </strong>,
+          label: <strong>{moment(d.date).format("Do MMM, yy")}</strong>,
         },
       };
       return null;
@@ -108,14 +110,12 @@ class DateList extends React.Component {
     });
   };
 
- 
-
   createDateMarks = () => {
     const { visibleMarks, marks } = this.state;
     // console.log("Marks",visibleMarks)
-    return visibleMarks.marks
-  }
-  
+    return visibleMarks.marks;
+  };
+
   render() {
     const { visibleMarks, marks } = this.state;
 
@@ -149,10 +149,9 @@ class DateList extends React.Component {
                 tipFormatter={null}
                 max={Object.keys(visibleMarks.marks).length - 1}
                 marks={this.createDateMarks()}
-                defaultValue={this.state.markerIndex}
+                // defaultValue={this.state.markerIndex}
                 value={this.state.markerIndex}
                 onChange={this.onChange}
-              
               />
 
               <div className={"mt-3"}>

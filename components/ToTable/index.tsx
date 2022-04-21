@@ -98,7 +98,7 @@ export const ToTable = ({
                     <tr
                       {...row.getRowProps()}
                       key={i}
-                      className="bg-white border-b hover:bg-gray-100 "
+                      className={`bg-white border-b hover:bg-gray-100 `}
                     >
                       {row.cells.map((cell: any) => {
                         return (
