@@ -12,8 +12,8 @@ type Props = {
   count: number;
   setPageSize: Function;
   gotoPage: Function;
-  limit: Number;
-  offset: Number;
+  limit: number;
+  offset: number;
 };
 
 export const ToTable = ({
@@ -142,7 +142,7 @@ export const ToTable = ({
             loading={false}
             page={currentP}
             pageCount={Math.round(count / 10)}
-            pageSize={10}
+            pageSize={limit}
             setPageSize={(value: number) => setPageSize(value)}
             gotoPage={(value: number) => gotoPage(value)}
           />

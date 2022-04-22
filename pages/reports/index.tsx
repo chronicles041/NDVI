@@ -176,10 +176,21 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     setOffset(value);
   };
 
+  const changePageSize = (value: number) => {
+    console.log("***", value);
+    let newParams = { ...filterParams, limit: value };
+    setFilterParams(newParams);
+    setLimit(value);
+    // setOffset(limit/offSet)
+    
+  };
+
   const onItemSelect = (value) => {
     selectData(value);
     selectedItem(value);
   };
+
+  const currentP: number = offSet >= reportData.total ? -1 : (offSet / limit) + 1;
 
   return !listView ? (
     <PageLayout>
@@ -195,7 +206,8 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         resetFilter={() => setFilterParams(defaultFilters)}
       />
       <ReportTable
-        setPageSize={(value: number) => setLimit(value)}
+        // setPageSize={(value: number) => setLimit(value)}
+        setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
           changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
         }
@@ -228,11 +240,12 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
       <ToListPagination
         loading={loading}
         page={
-          offSet >= Math.round(reportData.total / 10) ? -1 : offSet / limit + 1
+          offSet >= reportData.total ? -1 : (offSet / limit) + 1
         }
         pageCount={Math.round(reportData.total / 10)}
-        pageSize={10}
-        setPageSize={(value: number) => setPageSize(value)}
+        pageSize={limit}
+        // page={currentP}
+        setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
           changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
         }

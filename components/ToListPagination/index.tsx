@@ -29,6 +29,9 @@ export const ToListPagination = ({
         >
           {"PREV"}
         </button>{" "}
+                   <span className={'text-sm font-semibold'}>
+              {pageSize} /   {pageCount * pageSize} Records
+            </span>
         <button
           onClick={() => gotoPage(page + 1)}
           disabled={page === pageCount}
@@ -42,12 +45,25 @@ export const ToListPagination = ({
         </button>{" "}
       </div>
 
+      <div className="text-md font-semibold w-full bg-primary px-2 py-2 mt-3 text-center text-white shadow-2xl rounded-sm opacity-80 ">
+        {/* Showing {pageSize} of ~{pageCount * pageSize} results */}
+        <span className="font-medium">
+        Showing Page{" "}
+          <input
+              type="number"
+              value={page}
+              className="text-secondary mx-2"
+              // defaultValue={page}
+              onChange={(e) => gotoPage(e.target.value)}
+              style={{ width: "60px" }}
+            />
+          
 
-        <div className="text-lg font-semibold w-full bg-primary px-2 py-2 mt-3 text-center text-white shadow-2xl rounded-sm opacity-80 ">
-          {/* Showing {pageSize} of ~{pageCount * pageSize} results */}
-          Showing {pageSize} of ~{pageCount * pageSize} results
-        </div>
-
+            of {pageCount} Pages
+ 
+         
+        </span>
+      </div>
     </>
   );
 };
