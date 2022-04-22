@@ -129,6 +129,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
   const [selectedData, selectData] = useState<IFieldReport | undefined>();
   const [tableView, setTableView] = React.useState<boolean>(false);
   const [tableLoading, setTableLoading] = React.useState<boolean>(false);
+
   const defaultFilters: IFieldFilters = {
     search: " ",
     limit: limit,
@@ -152,11 +153,9 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
     ReportService.FetchFieldReport(filterParams).then((res) => {
       setReportData(res);
-
       setTableLoading(false);
     });
 
-    console.log("Test Data", reportData);
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
 

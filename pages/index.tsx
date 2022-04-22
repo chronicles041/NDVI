@@ -15,12 +15,11 @@ const DashBorad = () => {
   useEffect(() => {
     ReportService.GetDashboadData().then((res) => setDashdata(res));
     // console.log("***",filterParams?filterParams:"Undefined")
-  }, [dashData]);
+  }, []);
 
   return (
     <PageLayout>
       <div className={" p-6  m-3 "}>
-        <h2 className="text-xl font-bold mb-2 text-gray-800">{"DashBorad"}</h2>
         <div className="grid  grid-cols-3 mb-5">
           <Stats
             icon={IconTypes.Dressing}
