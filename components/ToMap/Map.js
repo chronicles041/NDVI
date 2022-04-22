@@ -6,6 +6,7 @@ import DateList from "./dateSlider";
 import TimeSeriesGraph from "./timeSeries";
 import dynamic from "next/dynamic";
 import Reports from "../../pages/reports";
+import ColorPalette from "./colorPalate";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
@@ -119,7 +120,7 @@ function ToMap(props) {
                 setColor({ ...color, [type]: value })
               }
             />
-            {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
+            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
           <div className="basis-1/4 flex-col flex justify-between items-center">
             <Reports
