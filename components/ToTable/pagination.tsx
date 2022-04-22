@@ -97,10 +97,11 @@ export const ToTablePagination = ({
           //   setPageSize(Number(e.target.value));
           // }}
           // onChange={(e)=>alert(e.target.value)}
+         
           onChange={(e) => setPageSize(e.target.value)}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
+          {[5, 10, 20, 30, 40, 50].map((pageSize:number) => (
+            <option key={pageSize}    value={pageSize}>
               Show {pageSize}
             </option>
           ))}

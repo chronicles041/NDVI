@@ -16,8 +16,8 @@ type FieldVisitProps = {
   };
   setPageSize: Function;
   gotoPage: Function;
-  limit: Number;
-  offset: Number;
+  limit: number;
+  offset: number;
   loading: boolean;
 
 };
