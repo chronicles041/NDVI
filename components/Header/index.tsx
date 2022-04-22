@@ -4,6 +4,7 @@ import ListItem from "../ListItem";
 import { User } from "../../interfaces";
 import { useTranslation } from "next-i18next";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
+import { useRouter } from "next/router";
 
 type HeaderProps = {
   changeCollapse: Function;
@@ -11,11 +12,13 @@ type HeaderProps = {
 };
 
 const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
+  const router = useRouter();
+  const currentRoute = router.asPath === '/'? '/dashboard':router.asPath;
   return (
     <header className="p-2 flex flex-row justify-between items-center font-Oxygen">
       <div className="flex flex-row justify-center items-center gap-x-4 px-3 py-3 ">
         <div
-          className={` ${!isCollapse ? " text-right" : " text-center"}`}
+          className={` ${!isCollapse ? "text-right" : " text-center"}`}
           onClick={() => changeCollapse()}
         >
           <ToIcon
@@ -25,10 +28,14 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
           />
         </div>
 
-        <img className="w-36 h-12 " src="logo.png"></img>
+        <img className="w-36 h-12  " src="logo.png"></img>
+        <span className={"  text-opacity-60 font-bold capitalize  ml-4 text-2xl  text-secondary px-2"}>
+          {currentRoute.substring(1)}
+        </span>
       </div>
 
       <div className="flex flex-row justify-center item-center px-3 py-3">
+
         <div className="relative flex flex-row gap-6 items-center w-full justify-center">
           {/* <BsMoon className="w-7 h-7 cursor-pointer"></BsMoon>
           <BsBell className="w-7 h-7 cursor-pointer"></BsBell> */}

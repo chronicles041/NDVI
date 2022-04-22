@@ -42,15 +42,12 @@ export const ToListPagination = ({
         </button>{" "}
       </div>
 
-      {loading ? (
-        // Use our custom loading state to show a loading indicator
-        <div>Loading...</div>
-      ) : (
+
         <div className="text-lg font-semibold w-full bg-primary px-2 py-2 mt-3 text-center text-white shadow-2xl rounded-sm opacity-80 ">
           {/* Showing {pageSize} of ~{pageCount * pageSize} results */}
           Showing {pageSize} of ~{pageCount * pageSize} results
         </div>
-      )}
+
     </>
   );
 };
