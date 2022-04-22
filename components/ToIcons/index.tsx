@@ -20,6 +20,7 @@ import { title } from "process";
 import Location from "./assets/location.png";
 import Project from "./assets/project.png";
 import Organiztion from "./assets/organization.png";
+import Loading from "./assets/loading.svg";
 // import styles from "./../../styles";
 
 interface IiconSize {
@@ -74,10 +75,12 @@ export const IconTypes = {
   Location: Location,
   Project:Project,
   Organiztion:Organiztion,
+  Loading:Loading
 };
 export const IconStyles = {
   Default: " ",
   Navigation: " ",
+  Loading: "text-center",
 };
 
 export const IconSize = {
@@ -104,6 +107,10 @@ export const IconSize = {
   LARGENAVICON: {
     height: 40,
     width: 40,
+  },
+  LOADING: {
+    height: 60,
+    width: 60,
   },
 };
 

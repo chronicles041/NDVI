@@ -146,13 +146,7 @@ class DateList extends React.Component {
                   this.makeVisibleMarker(true, false);
                 }}
               />
-              <LeftOutlined
-                hidden={visibleMarks.marks[0] !== marks[0]}
-                onClick={() => {
-                  this.props.getNewDates(true, false);
-                }}
-                color="red"
-              />
+
             </div>
 
             <div className="basis-[96%] w-full flex flex-col justify-center items-center">

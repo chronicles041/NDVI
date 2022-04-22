@@ -1,6 +1,7 @@
 import * as React from "react";
 // import styled from 'styled-components';
 import { usePagination, useTable } from "react-table";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 import makeData from "./makeData";
 import { ToTablePagination } from "./pagination";
 
@@ -87,11 +88,25 @@ export const ToTable = ({
                         {column.render("Header")}
                       </th>
                     ))}
-
                   </tr>
                 ))}
               </thead>
               <tbody {...getTableBodyProps()} className="body">
+                <tr
+                  className={`bg-white border-b  flex-center`}
+                  hidden={!loading}
+                >
+                  <td>
+                  <ToIcon
+                      type={IconTypes.Loading}
+                      size={IconSize.LOADING}
+                      style={IconStyles.Loading}
+                    />
+                  </td>
+          
+                  
+                  
+                </tr>
                 {page.map((row: any, i: number) => {
                   prepareRow(row);
                   return (
@@ -99,6 +114,7 @@ export const ToTable = ({
                       {...row.getRowProps()}
                       key={i}
                       className={`bg-white border-b hover:bg-gray-100 `}
+                      hidden={loading}
                     >
                       {row.cells.map((cell: any) => {
                         return (

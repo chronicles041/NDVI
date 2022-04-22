@@ -18,12 +18,13 @@ type FieldVisitProps = {
   gotoPage: Function;
   limit: Number;
   offset: Number;
+  loading: boolean;
+
 };
 
 type FieldVisitState = {
   columns: [TableColumn];
   data: [];
-  loading: boolean;
   currentPage: number;
   pageSize: number;
 };
@@ -42,7 +43,6 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
       },
     ],
     data: [],
-    loading: false,
     currentPage: 0,
     pageSize: 10,
   };
@@ -61,7 +61,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
       <ToTable
         columns={this.props.tableColumns}
         data={tableData}
-        loading={false}
+        loading={this.props.loading}
         count={count}
         limit={this.props.limit}
         offset={this.props.offset}

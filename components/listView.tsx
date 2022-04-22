@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { IFieldReport } from "../types/reportTypes";
 import DetailModal from "../pages/reports/fieldDetail";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "./ToIcons";
 
 type ListReportProps = {
   selectedItem: Function;
@@ -19,7 +20,6 @@ function ListReport({
   listData,
   activeItem,
 }: ListReportProps) {
-
   const ActiveItemRef = React.useRef<HTMLInputElement>(null);
   const executeScroll = () => ActiveItemRef.current.scrollIntoView(0);
   const [selectedData, selectData] = useState<IFieldReport>();
@@ -33,7 +33,6 @@ function ListReport({
     // Update the document title using the browser API
     selectData(activeItem);
   }, [activeItem]);
-
 
   return (
     <div ref={ActiveItemRef} className={" overflow-y-scroll  w-full"}>
@@ -75,13 +74,25 @@ function ListReport({
             <DetailModal id={selectedData ? selectedData.farm_id : 0} />
           </li>
         ) : null}
+        {!loading ? null : (
+          <div
+            className={`${"visible flex mt-20  items-center justify-center"}`}
+          >
+            <ToIcon
+              type={IconTypes.Loading}
+              size={IconSize.LOADING}
+              style={IconStyles.Loading}
+            />
+          </div>
+        )}
+
         {listData
           .filter((e) => e !== selectedData)
           .map((farm: any, index: any) => (
             <li
-              className={
-                "cursor-pointer w-full px-4  shadow border  border-black border-opacity-10 rounded  hover:bg-gray-300 px-2 py-2 mx-2 my-2"
-              }
+              className={`  
+              ${loading ? "invisible" : "visible"} 
+              cursor-pointer   w-full px-4  shadow border  border-black border-opacity-10 rounded  hover:bg-gray-300 px-2 py-2 mx-2 my-2`}
               key={index}
               onClick={() => {
                 onFarmSelect(farm, index);
@@ -89,7 +100,7 @@ function ListReport({
             >
               <div
                 className={
-                  "flex items-stretch justify-between  w-full gap-x-1 flex-row"
+                  "flex items-stretch justify-between  w-full gap-x-1 flex-row "
                 }
               >
                 <div className={"flex  flex-col"}>

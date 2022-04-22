@@ -85,7 +85,7 @@ const ReportColumns = [
   //   Header: "Plantation Date",
   //   accessor: "plantation_date",
   // },
-  
+
   {
     Header: "Action",
     accessor: (row: any) => row,
@@ -128,6 +128,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
   const [offSet, setOffset] = React.useState<number>(0);
   const [selectedData, selectData] = useState<IFieldReport | undefined>();
   const [tableView, setTableView] = React.useState<boolean>(false);
+  const [tableLoading, setTableLoading] = React.useState<boolean>(false);
   const defaultFilters: IFieldFilters = {
     search: " ",
     limit: limit,
@@ -143,22 +144,29 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     React.useState<IFieldFilters>(defaultFilters);
 
   useEffect(() => {
+    setTableLoading(true);
     ReportService.FetchProvince().then((res) => setprovince(res));
     ReportService.FetchDistricts().then((res) => setDistrict(res));
     ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
     ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
-    ReportService.FetchFieldReport(filterParams).then((res) =>
-      setReportData(res)
-    );
+    ReportService.FetchFieldReport(filterParams).then((res) => {
+      setReportData(res);
+
+      setTableLoading(false);
+    });
+
     console.log("Test Data", reportData);
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
 
   const processData = () => {
-    ReportService.FetchFieldReport(filterParams).then((res) =>
-      setReportData(res)
-    );
+    setTableLoading(true);
+
+    ReportService.FetchFieldReport(filterParams).then((res) => {
+      setReportData(res);
+      setTableLoading(false);
+    });
   };
 
   const changePagination = (value: number) => {
@@ -195,6 +203,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         tableData={reportData}
         limit={limit}
         offset={offSet}
+        loading={tableLoading}
       />
     </PageLayout>
   ) : (
@@ -213,11 +222,11 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
       <ListReport
         listData={reportData.data}
         selectedItem={onItemSelect}
-        loading={loading}
+        loading={tableLoading}
         activeItem={selectedData}
       />
       <ToListPagination
-        loading={false}
+        loading={loading}
         page={
           offSet >= Math.round(reportData.total / 10) ? -1 : offSet / limit + 1
         }
@@ -238,7 +247,7 @@ export default Reports;
 //   <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
 //     {/* <Link href={`/maps`} passHref > */}
 //     <button
-//       className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out   
+//       className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out
 // font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
 //       type="button"
 //     >
