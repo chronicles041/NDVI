@@ -4,7 +4,7 @@ import Router from "next/router";
 type StatProps = {
   title: string;
   icon: typeof IconTypes;
-  count: number;
+  count: number|string;
   path:string;
   buttonText:string;
 };

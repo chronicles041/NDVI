@@ -141,6 +141,7 @@ export default new (class ReportService {
         return ServerData;
       });
   }
+
   FetchFieldReportID(id: number) {
     return axios
       .get<IFieldReport, any>(`${baseUrl}farm_info_view/${id}/`, {
@@ -157,11 +158,20 @@ export default new (class ReportService {
   }
 
   getDateImage(params: {}) {
-    console.log("Param From Service for Image Dates ", params);
     return axios.get(`${baseUrl}export_image/`, {
       headers: { Authorization: `Token ${token}` },
       params,
     });
+  }
+
+  GetDashboadData() {
+    return axios
+      .get<IFieldReport, any>(`${baseUrl}dashboard/`, {
+        headers: { Authorization: `Token ${token}` },
+      })
+      .then((res) => {
+        return res.data;
+      });
   }
 })();
 
