@@ -51,7 +51,7 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary text-base  mt-4">
+          <div className="text-center font-semibold text-secondary text-base  mt-4">
             Farm id: {detail.farm_id}
           </div>
         </div>
@@ -61,7 +61,7 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary text-base  mt-4">
+          <div className="text-center font-semibold text-secondary text-base  mt-4">
             Farm Name:{detail.farm_name}
           </div>
         </div>
@@ -71,7 +71,7 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary text-base  mt-4">
+          <div className="text-center font-semibold text-secondary text-base  mt-4">
             Project Name: {detail.project_name}
           </div>
         </div>
@@ -81,7 +81,7 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary whitespace-nowrap  text-base  mt-4">
+          <div className="text-center font-semibold text-secondary whitespace-nowrap  text-base  mt-4">
             Organization Name:
             <br></br>
             {detail.organization_name}`
@@ -93,8 +93,8 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary text-base  mt-4 ">
-            Farm Area: {detail.farm_area}
+          <div className="text-center font-semibold text-secondary text-base  mt-4 ">
+            Farm Area: {detail.farm_area} Hectors
           </div>
         </div>
         <div className="bg-white max-h-52 flex flex-col justify-center items-center border-2 border-solid border-primary   p-10 rounded-lg">
@@ -103,7 +103,7 @@ const DetailModal = ({ id }: { id: number }) => {
             size={IconSize.MD}
             style={IconStyles.Default}
           ></ToIcon>
-          <div className="text-center font-normal text-secondary text-base  mt-4 ">
+          <div className="text-center font-semibold text-secondary text-base  mt-4 ">
             Farm Note: {detail.farm_notes}
           </div>
         </div>   
@@ -111,54 +111,54 @@ const DetailModal = ({ id }: { id: number }) => {
        <div className='flex flex-col w-full px-1 justify-start items-start py-2'>
           <div className="text-xl  my-4 py-2  font-medium border-b pr-8  text-black  border-opacity-20  border-b-black">Farmer Details</div>
         {detail.farmer_info.map((data) => (
-          <div className="flex  flex-col gap-y-3 items-start w-auto">
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+          <div className="grid  grid-cols-2 gap-3 p-4 items-start w-auto">
+            <div className="inline-flex items-center p-2 w-full  border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Name</span> 
-              <span className="inline-flex px-2 text-white">{data.farmer_name}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.farmer_name}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 w-full border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Phone</span> 
-              <span className="inline-flex px-2 text-white">{data.farmer_phone}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.farmer_phone}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2  w-full border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Gender</span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.gender}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.gender}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 w-full border-b  border-primary ">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Is Irrigated </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.is_irrigated}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.is_irrigated}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 w-full border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Is Selfowned </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.self_owned}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.self_owned}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 w-full border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Avilablity of Irrigation </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.irrigation_system}</span>
+              <span className="inline-flex px-2 font-semibold textsecondary">{data.additional_fields.irrigation_system}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 border-b  border-primar w-fully">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Contact Number </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.contact_number}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.contact_number}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 border-b  border-primary w-full">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Source of Income </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.source_of_income}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.source_of_income}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 w-full border-b  border-primary">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Previous Disaster  </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.is_previous_disaster}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.is_previous_disaster}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 border-b  border-primary w-full">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Major Plantation Crop </span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.major_crop_plantation}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.major_crop_plantation}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center border-b  border-primary w-full p-2">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Plantation Date</span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.maize_plantation_date}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.maize_plantation_date}</span>
             </div>
-            <div className="inline-flex items-center p-2 shadow-md w-full rounded-full bg-primary">
+            <div className="inline-flex items-center p-2 border-b  border-primary w-full">
               <span className="inline-flex bg-secondary text-white rounded-full h-6 px-3 justify-center items-center">Parent Farm Tracking Code</span> 
-              <span className="inline-flex px-2 text-white">{data.additional_fields.parent_farm_tracking_code}</span>
+              <span className="inline-flex px-2 font-semibold text-secondary">{data.additional_fields.parent_farm_tracking_code}</span>
             </div>
           </div>
         ))}

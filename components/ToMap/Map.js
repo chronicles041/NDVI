@@ -68,7 +68,7 @@ function ToMap(props) {
       previous: previous,
       previous_date: previous_date,
     };
-    console.log("Graph Data")
+    console.log("Graph Data");
 
     MapService.getDateImage(params)
       .then((res) => {
@@ -77,7 +77,7 @@ function ToMap(props) {
         setLoading(false);
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
-        const tempNdviGraph = res.data.ndviGraph.reverse()
+        const tempNdviGraph = res.data.ndviGraph.reverse();
         setGraphData({
           ndvi: tempNdviGraph,
           ndwi: res.data.ndwiGraph,
@@ -98,7 +98,15 @@ function ToMap(props) {
     <>
       <div className="container bg-white px-4 py-4">
         <div className="flex flex-row gap-x-3">
-          <div className="basis-3/4 z-0">
+          <div className="basis-3/4 z-0 flex flex-col gap-y-2">
+            <div className="dateList flex justify-center bg-primary bg-opacity-80 items-center  w-full mt-3">
+              <DateList
+                loading={loading}
+                mapData={mapData}
+                selectedIndex={selectData}
+                getNewDates={getNewDates}
+              />
+            </div>
             <LeafletMap
               polygon={polygon}
               // multiplePolygon = {}
@@ -107,20 +115,11 @@ function ToMap(props) {
               viewControl={viewControl}
               newFarmArray={setNewFarmArray}
               selectedData={selectedData}
-              
               configureColorPalate={(type, value) =>
                 setColor({ ...color, [type]: value })
               }
             />
-        {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
-            <div className="dateList bg-primary flex justify-center items-center  w-full mt-3">
-              <DateList
-                loading={loading}
-                mapData={mapData}
-                selectedIndex={selectData}
-                getNewDates={getNewDates}
-              />
-            </div>
+            {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
           </div>
           <div className="basis-1/4 flex-col flex justify-between items-center">
             <Reports
@@ -129,7 +128,7 @@ function ToMap(props) {
               listView={true}
             />
           </div>
-        </div> 
+        </div>
         <div hidden={loading} className={"pt-10 "}>
           <TimeSeriesGraph graphData={graphData} />
         </div>

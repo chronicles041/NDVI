@@ -11,7 +11,7 @@ type StatProps = {
 
 export const Stats = ({ title, icon, count,path,buttonText }: StatProps) => (
   <div className="mb-10">  
-    <div className="bg-white border-2 border-primary p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center ">
+    <div className="bg-white border-2 border-primary p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center items-center">
       <ToIcon type={icon} size={IconSize.MD} style={IconStyles.Default} />
       <div className="text-center font-semibold text-secondary text-3xl mt-8 p-4">
         {count} +
@@ -19,7 +19,7 @@ export const Stats = ({ title, icon, count,path,buttonText }: StatProps) => (
       <div className="text-center font-semibold text-secondary text-lg mt-2 px-2">
         {title}
       </div>
-      <button 
+      <button className='p-2 bg-primary text-white rounded-md shadow-md items-center mt-3 hover:bg-secondary transition duration-400 ease-in-out '
       onClick={()=>Router.push(path)}
       >{buttonText}</button>
     </div>
