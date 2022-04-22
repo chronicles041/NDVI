@@ -79,7 +79,7 @@ export const ToTable = ({
                       <th
                         className={`${
                           column.render("Header") === "Action"
-                            ? "sticky inset-x-0 top-0 left-0 bg-white"
+                            ? " bg-white"
                             : ""
                         } px-6 py-3 align-right text-left text-base font-semibold text-gray-500 uppercase tracking-wider border`}
                         {...column.getHeaderProps()}
@@ -91,12 +91,12 @@ export const ToTable = ({
                   </tr>
                 ))}
               </thead>
-              <tbody {...getTableBodyProps()} className="body">
+              <tbody {...getTableBodyProps()} className="items-center">
                 <tr
                   className={`bg-white border-b  flex-center`}
                   hidden={!loading}
                 >
-                  <td>
+                  <td className="item-center text-center">
                   <ToIcon
                       type={IconTypes.Loading}
                       size={IconSize.LOADING}
@@ -122,7 +122,7 @@ export const ToTable = ({
                             {...cell.getCellProps()}
                             className={`${
                               cell.render("Header") === "Action"
-                                ? "sticky bg-white inset-x-0 top-0 left-0 "
+                                ? "  bg-white inset-x-0  "
                                 : ""
                             } py-4 px-6 text-base font-medium text-secondary whitespace-nowrap  border`}
                             key={i}

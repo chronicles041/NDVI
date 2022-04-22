@@ -81,6 +81,7 @@ export const IconStyles = {
   Default: " ",
   Navigation: " ",
   Loading: "text-center",
+  Selected: "fill-blue-500",
 };
 
 export const IconSize = {

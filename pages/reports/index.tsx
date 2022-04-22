@@ -90,7 +90,7 @@ const ReportColumns = [
     Header: "Action",
     accessor: (row: any) => row,
     Cell: ({ value }: any) => (
-      <div className="flex flex-row gap-x-2 justify-center items-center">
+      <div className="flex flex-row z-0 gap-x-2 justify-center items-center">
         <DetailModal id={value.farm_id} />
       </div>
     ),

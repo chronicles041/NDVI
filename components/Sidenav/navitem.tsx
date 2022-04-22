@@ -22,17 +22,17 @@ const NavItem = ({ isCollapse, name, path, icon }: Props) => {
       <li 
               data-toggle="tooltip"
               title={name}
-              // className={path === Router.name ? 'bg-red-600':''}
-              className={'hover:bg-gray-200 '}
+              className={` ${path === currentRoute ? 'bg-gray-200 rounded-l-xl w-full shadow-sm':'hover:bg-gray-200 hover:rounded-l-xl w-full  transition duration-400 ease-in-out'}`}
+              
       >
         <Link href={path}>
           <a className="sidebar-a-herf">
             <ToIcon
               type={icon}
               size={!isCollapse ? IconSize.NAVICON : IconSize.LARGENAVICON}
-              style={IconStyles.Navigation}
+              style={IconStyles.Selected}
             />
-            <span  hidden={isCollapse} className={` ${path === currentRoute ? 'font-bold':'font-medium'}  ml-4 text-xl  text-secondary px-2`}>
+            <span  hidden={isCollapse} className={` ${path === currentRoute ? 'font-semibold':'font-medium'}  ml-4 text-xl  text-secondary px-2`}>
            
                 {name}
              
