@@ -260,7 +260,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 
   return !listView ? (
     <PageLayout>
-    
+      <div className="flex flex-row ml-4">
         <ReportFilters
           provinceValues={province}
           districtValues={districts}
@@ -272,16 +272,21 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
           processData={() => processData()}
           resetFilter={() => setFilterParams(defaultFilters)}
         />
-    
-          <CSVLink
+        <div className="flex-initial p-2">
+          <button
             className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
-            filename={`${Date().toLocaleString()}_plantsat.csv`}
-            data={createExportData()}
+            type="button"
           >
-            Export
-          </CSVLink>
-  
-    
+            <CSVLink
+              filename={`${Date().toLocaleString()}_plantsat.csv`}
+              data={createExportData()}
+            >
+              Export
+            </CSVLink>
+          </button>
+        </div>
+      </div>
+
       <ReportTable
         // setPageSize={(value: number) => setLimit(value)}
         setPageSize={(value: number) => changePageSize(value)}
