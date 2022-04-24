@@ -110,8 +110,7 @@ export const IconSize = {
     width: 40,
   },
   LOADING: {
-    height: 60,
-    width: 60,
+    width: 70,
   },
 };
 
