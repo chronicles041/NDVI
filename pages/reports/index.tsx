@@ -80,11 +80,57 @@ const ReportColumns = [
     Header: "Crop",
     accessor: "crop_type_name",
   },
-
-  // {
-  //   Header: "Plantation Date",
-  //   accessor: "plantation_date",
-  // },
+  {
+    Header: "Plantation Date",
+    accessor: "plantation_date",
+  },
+  {
+    Header: "NDVI",
+    columns: [
+      {
+        Header: "Previous Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div
+              className={`${
+                value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
+              }`}
+            >
+              0.234 / 0.245
+            </div>
+          </>
+        ),
+      },
+      {
+        Header: "Current Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div
+              className={`${
+                value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
+              }`}
+            >
+              0.275/ 0.325
+            </div>
+          </>
+        ),
+      },
+      {
+        Header: "Next Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div className={'text-blue-500'}>0.425</div>
+          </>
+        ),
+      },
+    ],
+  },
 
   {
     Header: "Action",
@@ -181,7 +227,6 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     setFilterParams(newParams);
     setLimit(value);
     // setOffset(limit/offSet)
-    
   };
 
   const onItemSelect = (value) => {
@@ -189,7 +234,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     selectedItem(value);
   };
 
-  const currentP: number = offSet >= reportData.total ? -1 : (offSet / limit) + 1;
+  const currentP: number = offSet >= reportData.total ? -1 : offSet / limit + 1;
 
   return !listView ? (
     <PageLayout>
@@ -237,12 +282,10 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         loading={tableLoading}
         activeItem={selectedData}
       />
-      
+
       <ToListPagination
         loading={loading}
-        page={
-          offSet >= reportData.total ? -1 : (offSet / limit) + 1
-        }
+        page={offSet >= reportData.total ? -1 : offSet / limit + 1}
         pageCount={Math.round(reportData.total / 10)}
         pageSize={limit}
         // page={currentP}
