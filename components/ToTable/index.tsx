@@ -61,7 +61,7 @@ export const ToTable = ({
   // Render the UI for your table]
 
   const currentP: number = offset >= count ? -1 : parseInt(offset / limit) + 1;
-
+   
   return (
     <>
       <div className="flex flex-col w-full h-auto  ">
@@ -72,6 +72,8 @@ export const ToTable = ({
               {...getTableProps()}
               className="min-w-full divide-y divide-gray-200 "
             >
+
+
               <thead className="bg-gray-50">
                 {headerGroups.map((headerGroup, i) => (
                   <tr {...headerGroup.getHeaderGroupProps()} key={i}>

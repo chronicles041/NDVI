@@ -31,11 +31,9 @@ const NavItem = ({ isCollapse, name, path, icon }: Props) => {
               type={icon}
               size={!isCollapse ? IconSize.NAVICON : IconSize.LARGENAVICON}
               style={IconStyles.Selected}
-            />
+            />      
             <span  hidden={isCollapse} className={` ${path === currentRoute ? 'font-semibold':'font-medium'}  ml-4 text-xl  text-secondary px-2`}>
-           
                 {name}
-             
             </span>
           </a>
         </Link>

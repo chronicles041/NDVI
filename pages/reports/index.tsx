@@ -15,6 +15,8 @@ import DetailModal from "./FieldDetail";
 import ListReport from "../../components/listView";
 import { ToTablePagination } from "../../components/ToTable/pagination";
 import { ToListPagination } from "../../components/ToListPagination";
+import { CSVLink, CSVDownload } from "react-csv";
+
 // import UsersTable from "./usersTable";
 
 // type Props = {
@@ -125,7 +127,7 @@ const ReportColumns = [
         accessor: (row: any) => row,
         Cell: ({ value }: any) => (
           <>
-            <div className={'text-blue-500'}>0.425</div>
+            <div className={"text-blue-500"}>0.425</div>
           </>
         ),
       },
@@ -236,19 +238,50 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 
   const currentP: number = offSet >= reportData.total ? -1 : offSet / limit + 1;
 
+  const createExportData = () => {
+    let tempArray: any = [];
+    reportData.data.map((data) => {
+      let tempData = {
+        "Farm ID": data.farm_id,
+        "Farm Name": data.farm_name,
+        Province: data.province_name,
+        District: data.district_name,
+        Municipality: data.municipality_name,
+        "Ward Number": data.ward_number,
+        Tole: data.tole_name,
+        Organization: data.organization_name,
+        Crop: "Maize",
+      };
+
+      tempArray.push(tempData);
+    });
+    return tempArray;
+  };
+
   return !listView ? (
     <PageLayout>
-      <ReportFilters
-        provinceValues={province}
-        districtValues={districts}
-        municipalityValues={municipality}
-        wardValues={ward}
-        organizationValues={organization}
-        filterParams={filterParams}
-        changeFilterParams={setFilterParams}
-        processData={() => processData()}
-        resetFilter={() => setFilterParams(defaultFilters)}
-      />
+    
+        <ReportFilters
+          provinceValues={province}
+          districtValues={districts}
+          municipalityValues={municipality}
+          wardValues={ward}
+          organizationValues={organization}
+          filterParams={filterParams}
+          changeFilterParams={setFilterParams}
+          processData={() => processData()}
+          resetFilter={() => setFilterParams(defaultFilters)}
+        />
+    
+          <CSVLink
+            className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+            filename={`${Date().toLocaleString()}_plantsat.csv`}
+            data={createExportData()}
+          >
+            Export
+          </CSVLink>
+  
+    
       <ReportTable
         // setPageSize={(value: number) => setLimit(value)}
         setPageSize={(value: number) => changePageSize(value)}

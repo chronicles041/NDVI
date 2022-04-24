@@ -15,8 +15,11 @@ type TimeSeriesProps = {
   plantationDate: string;
 };
 
-function TimeSeriesGraph({ graphData, loading ,plantationDate}: TimeSeriesProps) {
-
+function TimeSeriesGraph({
+  graphData,
+  loading,
+  plantationDate,
+}: TimeSeriesProps) {
   const createXdates = (date) => {
     moment(date).format("Do MMM, yy");
     // xaxis: {
@@ -53,8 +56,8 @@ function TimeSeriesGraph({ graphData, loading ,plantationDate}: TimeSeriesProps)
   ];
 
   const testData: null | any[] = [
-    0.1, 0.125, 0.17, 0.2, 0.225, 0.275, 0.3, 0.35, 0.4, 0.35, 0.3, 0.275,
-    0.225, 0.2, 0.175, 0.125, 0.1,
+    0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.890, 0.887, 0.802, 0.755,
+    0.654, 0.525, 0.369
   ];
 
   const pLength: number = testData.length;
@@ -80,17 +83,17 @@ function TimeSeriesGraph({ graphData, loading ,plantationDate}: TimeSeriesProps)
         data: graphData?.ndvi?.map((item) => item.ndvi_value),
         // data: testArray.map((item) => item.ndvi_value),
       },
-      // {
-      //   name: "Phase Wise Data",
-      //   data: testData,
-      // },
+      {
+        name: "Phase Wise Data",
+        data: testData,
+      },
     ],
     options: {
       xaxis: {
-        categories: graphData?.ndvi?.map((item) =>
-          moment(item.date).format("Do MMM")
-        ),
-        // categories: createGraphDates(),
+        // categories: graphData?.ndvi?.map((item) =>
+        //   moment(item.date).format("Do MMM")
+        // categories: testArray.map((item) => moment(item).format("Do MMM")),
+        categories: createGraphDates(),
         // title: {
         //   text: "Date",
         // },
@@ -125,23 +128,22 @@ function TimeSeriesGraph({ graphData, loading ,plantationDate}: TimeSeriesProps)
 
   return (
     <>
-    <div className={' m-1 rounded-2xl shadow-l'}>
-    {graphData?.ndvi?.length > 0 ? (
-        <>
-          {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
+      <div className={" m-1 rounded-2xl shadow-l"}>
+        {graphData?.ndvi?.length > 0 ? (
+          <>
+            {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
 
-          <ReactApexChart
-            options={NewConfig.options}
-            series={NewConfig.series}
-            type="area"
-            height={500}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
-    
+            <ReactApexChart
+              options={NewConfig.options}
+              series={NewConfig.series}
+              type="area"
+              height={500}
+            />
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }
