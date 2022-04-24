@@ -60,6 +60,17 @@ function TimeSeriesGraph({
     0.755, 0.654, 0.525, 0.369,
   ];
 
+  const testData2: any = testData.map((d, i) => {
+    let nA;
+    if (i % 4 == 0) {
+      nA = d + 0.022;
+    }
+    if (i % 4 != 0) {
+      nA = d - 0.022;
+    }
+    return nA;
+  });
+
   const daysDifference = [
     0, 5, 12, 19, 26, 33, 41, 49, 60, 67, 74, 94, 100, 110, 120,
   ];
@@ -72,7 +83,8 @@ function TimeSeriesGraph({
     tempArray.push(moment(currentTime).format("Do MMM"));
     for (let i = 1; i < 15; i++) {
       console.log("Block statement execution no." + i);
-      let reqDate = currentTime.setDate(currentTime.getDate() + (daysDifference[i+1]-daysDifference[i]));
+      let reqDate = currentTime.setDate(currentTime.getDate() + 9);
+      // let reqDate = currentTime.setDate(currentTime.getDate() + (daysDifference[i+1]-daysDifference[i]));
       tempArray.push(moment(reqDate).format("Do MMM"));
       // currentTime = reqDate
       // moment(reqDate).format("Do MMM")
@@ -80,21 +92,120 @@ function TimeSeriesGraph({
     // alert(tempArray[2])
     return tempArray;
   };
-
-  const NewConfig = {
+  var options = {
     series: [
       {
-        name: "Performance",
-        data: graphData?.ndvi?.map((item) => item.ndvi_value),
-        // data: testArray.map((item) => item.ndvi_value),
+        name: "TEAM A",
+        type: "column",
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
       },
       {
+        name: "TEAM B",
+        type: "area",
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+      },
+      {
+        name: "TEAM C",
+        type: "line",
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+      },
+    ],
+    chart: {
+      height: 350,
+      type: "line",
+      stacked: false,
+    },
+    stroke: {
+      width: [0, 2, 5],
+      curve: "smooth",
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "50%",
+      },
+    },
+
+    fill: {
+      opacity: [0.85, 0.25, 1],
+      gradient: {
+        inverseColors: false,
+        shade: "light",
+        type: "vertical",
+        opacityFrom: 0.85,
+        opacityTo: 0.55,
+        stops: [0, 100, 100, 100],
+      },
+    },
+    labels: [
+      "01/01/2003",
+      "02/01/2003",
+      "03/01/2003",
+      "04/01/2003",
+      "05/01/2003",
+      "06/01/2003",
+      "07/01/2003",
+      "08/01/2003",
+      "09/01/2003",
+      "10/01/2003",
+      "11/01/2003",
+    ],
+    markers: {
+      size: 0,
+    },
+    xaxis: {
+      type: "datetime",
+    },
+    yaxis: {
+      title: {
+        text: "Points",
+      },
+      min: 0,
+    },
+    tooltip: {
+      shared: true,
+      intersect: false,
+      y: {
+        formatter: function (y) {
+          if (typeof y !== "undefined") {
+            return y.toFixed(0) + " points";
+          }
+          return y;
+        },
+      },
+    },
+  };
+  const NewConfig = {
+    series: [
+      // {
+      //   name: "Performance",
+      //   type: "line",
+      //   data: graphData?.ndvi?.map((item) => item.ndvi_value),
+      //   stroke: {
+      //     curve: "smooth",
+      //   },
+      //   // data: testArray.map((item) => item.ndvi_value),
+      // },
+      {
         name: "Phase Wise Data",
+        type: "line",
         data: testData,
+      },
+      {
+        name: " Mock API Data",
+        type: "line",
+        data: testData2,
+        stroke: {
+          curve: "smooth",
+        },
+        // data: testArray.map((item) => item.ndvi_value),
       },
     ],
     options: {
+      height: 350,
       xaxis: {
+        labels: {
+          format: "dd/MM",
+        },
         // categories: graphData?.ndvi?.map((item) =>
         //   moment(item.date).format("Do MMM")
         // categories: testArray.map((item) => moment(item).format("Do MMM")),
@@ -120,10 +231,6 @@ function TimeSeriesGraph({
         dataLabels: {
           enabled: false,
         },
-        stroke: {
-          curve: "straight",
-        },
-
         legend: {
           horizontalAlign: "left",
         },
@@ -137,12 +244,15 @@ function TimeSeriesGraph({
         {graphData?.ndvi?.length > 0 ? (
           <>
             {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
+            <ReactApexChart
+              options={NewConfig.options}
+              series={NewConfig.series}
+              height='350'
+            />
 
             <ReactApexChart
               options={NewConfig.options}
               series={NewConfig.series}
-              type="area"
-              height={500}
             />
           </>
         ) : (
