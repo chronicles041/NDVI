@@ -12,7 +12,7 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
 
   const setModalOpen = () => {
     setShowModal(true)
-    onOpen()
+     onOpen()
   }
   return (
     <>

@@ -17,7 +17,7 @@ export const ToListPagination = ({
 }: PaginationProps) => {
   return (
     <>
-      <div className="px-2 w-full py-2 mt-3 flex flex-row items-center justify-center">
+      <div className=" w-full  flex flex-row items-center justify-center">
         <button
           onClick={() => gotoPage(page - 1)}
           disabled={page === 1}
