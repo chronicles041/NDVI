@@ -56,8 +56,12 @@ function TimeSeriesGraph({
   ];
 
   const testData: null | any[] = [
-    0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.890, 0.887, 0.802, 0.755,
-    0.654, 0.525, 0.369
+    0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
+    0.755, 0.654, 0.525, 0.369,
+  ];
+
+  const daysDifference = [
+    0, 5, 12, 19, 26, 33, 41, 49, 60, 67, 74, 94, 100, 110, 120,
   ];
 
   const pLength: number = testData.length;
@@ -66,13 +70,14 @@ function TimeSeriesGraph({
     let currentTime = new Date(plantationDate);
     let tempArray = [];
     tempArray.push(moment(currentTime).format("Do MMM"));
-    for (let i = 1; i < 19; i++) {
+    for (let i = 1; i < 15; i++) {
       console.log("Block statement execution no." + i);
-      let reqDate = currentTime.setDate(currentTime.getDate() + 5);
+      let reqDate = currentTime.setDate(currentTime.getDate() + (daysDifference[i+1]-daysDifference[i]));
       tempArray.push(moment(reqDate).format("Do MMM"));
       // currentTime = reqDate
       // moment(reqDate).format("Do MMM")
     }
+    // alert(tempArray[2])
     return tempArray;
   };
 

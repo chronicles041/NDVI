@@ -116,7 +116,7 @@ const ReportColumns = [
                 value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
               }`}
             >
-              0.275/ 0.325
+              0.275 / 0.325
             </div>
           </>
         ),
