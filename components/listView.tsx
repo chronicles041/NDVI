@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import "./map.css";
 
 import { IFieldReport } from "../types/reportTypes";
-import DetailModal from "../pages/reports/fieldDetail";
+import DetailModal from "../pages/reports/FieldDetail";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "./ToIcons";
 
 type ListReportProps = {
@@ -40,7 +40,7 @@ function ListReport({
         {activeItem ? (
           <li
             className={
-              "cursor-pointer w-full px-4  shadow  bg-gray-400  border  rounded   px-2 py-2 mx-2 my-2"
+              "cursor-pointer w-full shadow  bg-gray-400  border  rounded   px-2 py-2 mx-2 my-2"
             }
             key={0}
           >
@@ -74,6 +74,7 @@ function ListReport({
             <DetailModal id={selectedData ? selectedData.farm_id : 0} />
           </li>
         ) : null}
+        
         {!loading ? null : (
           <div
             className={`${"visible flex mt-20  items-center justify-center"}`}
