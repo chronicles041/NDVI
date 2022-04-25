@@ -85,54 +85,61 @@ const ReportColumns = [
   {
     Header: "Plantation Date",
     accessor: "plantation_date",
+    Cell : ({value}) => value === 'N/A' ? <span className="text-red-500">{value}</span> : value
   },
   {
-    Header: "NDVI",
-    columns: [
-      {
-        Header: "Previous Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div
-              className={`${
-                value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              0.234 / 0.245
-            </div>
-          </>
-        ),
-      },
-      {
-        Header: "Current Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div
-              className={`${
-                value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              0.275 / 0.325
-            </div>
-          </>
-        ),
-      },
-      {
-        Header: "Next Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div className={"text-blue-500"}>0.425</div>
-          </>
-        ),
-      },
-    ],
+    Header: "Current Phase",
+    accessor: "current_phase",
+    Cell : ({value}) => !value  ? <span className="text-red-500">N/A</span> : value
   },
+
+  // {
+  //   Header: "NDVI",
+  //   columns: [
+  //     {
+  //       Header: "Previous Phase",
+  //       // accessor: "plantation_date",
+  //       accessor: (row: any) => row,
+  //       Cell: ({ value }: any) => (
+  //         <>
+  //           <div
+  //             className={`${
+  //               value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
+  //             }`}
+  //           >
+  //             0.234 / 0.245
+  //           </div>
+  //         </>
+  //       ),
+  //     },
+  //     {
+  //       Header: "Current Phase",
+  //       // accessor: "plantation_date",
+  //       accessor: (row: any) => row,
+  //       Cell: ({ value }: any) => (
+  //         <>
+  //           <div
+  //             className={`${
+  //               value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
+  //             }`}
+  //           >
+  //             0.275 / 0.325
+  //           </div>
+  //         </>
+  //       ),
+  //     },
+  //     {
+  //       Header: "Next Phase",
+  //       // accessor: "plantation_date",
+  //       accessor: (row: any) => row,
+  //       Cell: ({ value }: any) => (
+  //         <>
+  //           <div className={"text-blue-500"}>0.425</div>
+  //         </>
+  //       ),
+  //     },
+  //   ],
+  // },
 
   {
     Header: "Action",

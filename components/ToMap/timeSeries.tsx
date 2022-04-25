@@ -56,9 +56,13 @@ function TimeSeriesGraph({
   ];
 
   const testData: null | any[] = [
-    0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
-    0.755, 0.654, 0.525, 0.369,
+   0.290,0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
+    0.755, 0.654, 0.525,
   ];
+  // const testData: null | any[] = [
+  //   [ 0.317, moment("2022-04-20").format("Do MMM")], 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
+  //    0.755, 0.654, 0.525, 0.369,
+  //  ];
 
   const testData2: any = testData.map((d, i) => {
     let nA;
@@ -66,7 +70,7 @@ function TimeSeriesGraph({
       nA = d + 0.022;
     }
     if (i % 4 != 0) {
-      nA = d - 0.022;
+      nA = d + 0.022;
     }
     return nA;
   });
@@ -102,42 +106,42 @@ function TimeSeriesGraph({
       },
       // {
       //   name: "Phase Wise Data",
-      //   type: "line",
       //   data: testData,
       // },
+      // {
+      //   name: "Phase Wise Data",
+      //   data: testData2,
+      // },
     ],
-    options: {
-      xaxis: {
-        categories: graphData?.ndvi?.map((item) => moment(item.date).format("Do MMM")),
-        // categories: createGraphDates(),
-        
-      },
-      yaxis: {
-        decimalsInFloat: 3,
-        min: -0.50,
-        max: 1.000,
-        tickAmount: 10,
-        title: {
-          text: "NDVI Performance",
-        },
-      },
-      options: {
-        chart: {
-          type: "area",
-          height: 350,
-          zoom: {
-            enabled: false,
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        legend: {
-          horizontalAlign: "left",
-        },
+  };
+
+  const chartOptions ={
+    chart: {
+
+      // type: 'area'
+    },
+    dataLabels: {
+      enabled: false
+    },
+    // stroke: {
+    //   curve: 'smooth'
+    // },
+    xaxis: {
+      // type: 'datetime',
+      categories: graphData?.ndvi?.map((item) => moment(item.date).format("Do MMM")),
+      // categories: createGraphDates(),
+    },
+    yaxis: {
+      decimalsInFloat: 3,
+      // min: -0.50,
+      // max: 1.000,
+      // tickAmount: 10,
+      title: {
+        text: "NDVI Performance",
       },
     },
-  };
+  }
+
 
   return (
     <>
@@ -146,9 +150,11 @@ function TimeSeriesGraph({
           <>
             {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
             <ReactApexChart
-              options={NewConfig.options}
+              options={chartOptions}
               series={NewConfig.series}
-              height="350"
+              height= '200'
+              type="line"
+              // height="350"
             />
           </>
         ) : (

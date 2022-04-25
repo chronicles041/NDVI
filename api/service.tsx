@@ -123,13 +123,14 @@ export default new (class ReportService {
               municipality_name: value.municipality_name,
               district_name: value.district_name,
               province_name: value.province_name,
-              crop_type_name: "Maize",
-              plantation_date: "2022-02-10",
+              crop_type_name:value?.season[0] ? `${value.season[0].crop_name_en}(${value.season[0].crop_name_np})`: "Maize",
+              plantation_date: value?.season[0] ? value.season[0].crop_plantation_date : 'N/A',
               ward: value.ward,
               ward_number: value.ward_number,
               tole_name: value.tole_name,
               farm_polygon_json: value.farm_polygon_json,
               extra_field: value.extra_field,
+              current_phase:value.current_phase
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);
