@@ -11,7 +11,7 @@ type StatProps = {
 
 export const Stats = ({ title, icon, count,path,buttonText }: StatProps) => (
   <div className="mb-10">  
-    <div className="bg-white border-2 border-primary p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center items-center">
+    <div className="bg-white border-2 border-primary p-6 m-12 rounded-lg shadow-lg flex flex-col justify-center items-center h-full">
       <ToIcon type={icon} size={IconSize.MD} style={IconStyles.Default} />
       <div className="text-center font-semibold text-secondary text-3xl mt-8 p-4">
         {count} +

@@ -2,6 +2,7 @@ import * as React from "react";
 // import styled from 'styled-components';
 import { usePagination, useTable } from "react-table";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
+import Loader from "../ToIcons/loader";
 import makeData from "./makeData";
 import { ToTablePagination } from "./pagination";
 
@@ -61,7 +62,7 @@ export const ToTable = ({
   // Render the UI for your table]
 
   const currentP: number = offset >= count ? -1 : parseInt(offset / limit) + 1;
-
+   
   return (
     <>
       <div className="flex flex-col w-full h-auto  ">
@@ -70,8 +71,11 @@ export const ToTable = ({
           <div className="shadow flex flex-row overflow-hidden bg-white border-b border-gray-200 sm:rounded-lg overflow-x-visible mt-6">
             <table
               {...getTableProps()}
-              className="min-w-full divide-y divide-gray-200 "
+              // className="min-w-full divide-y divide-gray-200 "
+              className={`${loading ? 'min-w-full divide-y divide-gray-200 flex flex-col justify-center items-center':'min-w-full divide-y divide-gray-200'}`}
             >
+
+
               <thead className="bg-gray-50">
                 {headerGroups.map((headerGroup, i) => (
                   <tr {...headerGroup.getHeaderGroupProps()} key={i}>
@@ -102,9 +106,7 @@ export const ToTable = ({
                       size={IconSize.LOADING}
                       style={IconStyles.Loading}
                     />
-                  </td>
-          
-                  
+                  </td>  
                   
                 </tr>
                 {page.map((row: any, i: number) => {

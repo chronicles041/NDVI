@@ -3,10 +3,10 @@ import MapService from "./mapService";
 // import ColorPalette from "./colorPalate";
 import DateList from "./dateSlider";
 // import Reports from "../reports";
-import TimeSeriesGraph from "./timeSeries";
 import dynamic from "next/dynamic";
 import Reports from "../../pages/reports";
 import ColorPalette from "./colorPalate";
+import TimeSeriesGraph from "./timeSeries";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
@@ -35,6 +35,7 @@ function ToMap(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
+  const [plantationDate, setPlantationDate] = React.useState('2022-04-02');
 
   // useEffect(() => {
   //   if (props.location.state) {
@@ -61,6 +62,7 @@ function ToMap(props) {
     console.log("Selected Farm :", item);
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
+    getplantationDate()
   };
 
   const getLayerData = (item, previous, previous_date) => {
@@ -81,11 +83,10 @@ function ToMap(props) {
         const tempNdviGraph = res.data.ndviGraph.reverse();
         setGraphData({
           ndvi: tempNdviGraph,
-          ndwi: res.data.ndwiGraph,
         });
-        console.log("Data:", data);
       })
       .catch((err) => setLoading(false));
+      
   };
 
   const getNewDates = (pre, next) => {
@@ -94,6 +95,10 @@ function ToMap(props) {
     getLayerData(selectedFarm, "True", previousDate);
     // }
   };
+
+  const getplantationDate = () =>{
+     setPlantationDate('2022-03-28')
+  }
 
   return (
     <>
@@ -120,18 +125,19 @@ function ToMap(props) {
                 setColor({ ...color, [type]: value })
               }
             />
-            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
+            <ColorPalette   ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
           <div className="basis-1/4 flex-col flex justify-between items-center">
             <Reports
               loading={loading}
               selectedItem={selectFarm}
               listView={true}
+              getPlantationDate={getplantationDate}
             />
           </div>
         </div>
         <div hidden={loading} className={"pt-10 "}>
-          <TimeSeriesGraph graphData={graphData} />
+          <TimeSeriesGraph  plantationDate={plantationDate}  graphData={graphData} />
         </div>
       </div>
     </>
