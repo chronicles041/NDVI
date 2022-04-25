@@ -2,6 +2,7 @@ import React from "react";
 import { Slider } from "antd";
 import { LeftOutlined, RightOutlined, ReloadOutlined } from "@ant-design/icons";
 import moment from "moment";
+import ToIcon, { IconSize, IconTypes } from "../ToIcons";
 
 const initialState = {
   selectedDate: "",
@@ -136,7 +137,7 @@ class DateList extends React.Component {
     return (
       <div className="flex flex-row w-full justify-center items-center p-5">
         {this.props.loading ? (
-          <ReloadOutlined spin={true} />
+         <ToIcon type={IconTypes.Loading} size={IconSize.LOADING}></ToIcon>
         ) : (
           <>
             <div className="basis-[2%]">

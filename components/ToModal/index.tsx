@@ -17,8 +17,8 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
   return (
     <>
       <button
-        className=" text-primary text-black hover:text-white hover:bg-secondary  transition duration-300 ease-in-out
-      font-bold  rounded mt-2 px-2 py-1 border border-gray-600 border-opacity-30 bg-white hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        className=" text-white bg-primary hover:text-white hover:bg-secondary  transition duration-300 ease-in-out shadow-md
+      font-bold  rounded-md px-4 py-2 border-opacity-30 hover:shadow-lg outline-none focus:outline-none"
         type="button"
         onClick={() => setModalOpen()}
       >
@@ -41,14 +41,14 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
                     <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
                   </div>
                 </div>
-                <div className="flex flex-col h-[90%] w-full overflow-y-auto overflow-x-hidden">
+                <div className="flex flex-col h-[90%] w-full overflow-x-hidden overflow-y-hidden">
                   {" "}
                   {children}{" "}
                 </div>
                 <div className="flex flex-row absolute top-1 right-2">
                   <div className=" w-full">
                     <button
-                      className="text-black transition duration-300 ease-in-out  bg-primary opacity-95 hover:bg-secondary hover:text-white shadow-md  rounded-md outline-none focus:outline-none mt-2 px-2 py-2 w-full"
+                      className="text-white transition duration-300 ease-in-out  bg-secondary  hover:bg-primary hover:text-white shadow-md  rounded-md outline-none focus:outline-none mt-2 px-2 py-2 w-full"
                       onClick={() => setShowModal(false)}
                     >
                       <span className="text-base px-2 font-semibold">Close</span>
