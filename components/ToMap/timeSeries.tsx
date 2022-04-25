@@ -92,130 +92,31 @@ function TimeSeriesGraph({
     // alert(tempArray[2])
     return tempArray;
   };
-  var options = {
-    series: [
-      {
-        name: "TEAM A",
-        type: "column",
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-      },
-      {
-        name: "TEAM B",
-        type: "area",
-        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-      },
-      {
-        name: "TEAM C",
-        type: "line",
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
-      },
-    ],
-    chart: {
-      height: 350,
-      type: "line",
-      stacked: false,
-    },
-    stroke: {
-      width: [0, 2, 5],
-      curve: "smooth",
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: "50%",
-      },
-    },
 
-    fill: {
-      opacity: [0.85, 0.25, 1],
-      gradient: {
-        inverseColors: false,
-        shade: "light",
-        type: "vertical",
-        opacityFrom: 0.85,
-        opacityTo: 0.55,
-        stops: [0, 100, 100, 100],
-      },
-    },
-    labels: [
-      "01/01/2003",
-      "02/01/2003",
-      "03/01/2003",
-      "04/01/2003",
-      "05/01/2003",
-      "06/01/2003",
-      "07/01/2003",
-      "08/01/2003",
-      "09/01/2003",
-      "10/01/2003",
-      "11/01/2003",
-    ],
-    markers: {
-      size: 0,
-    },
-    xaxis: {
-      type: "datetime",
-    },
-    yaxis: {
-      title: {
-        text: "Points",
-      },
-      min: 0,
-    },
-    tooltip: {
-      shared: true,
-      intersect: false,
-      y: {
-        formatter: function (y) {
-          if (typeof y !== "undefined") {
-            return y.toFixed(0) + " points";
-          }
-          return y;
-        },
-      },
-    },
-  };
   const NewConfig = {
     series: [
+      {
+        name: "Performance",
+        type: "area",
+        data: graphData?.ndvi?.map((item) => item.ndvi_value),
+      },
       // {
-      //   name: "Performance",
+      //   name: "Phase Wise Data",
       //   type: "line",
-      //   data: graphData?.ndvi?.map((item) => item.ndvi_value),
-      //   stroke: {
-      //     curve: "smooth",
-      //   },
-      //   // data: testArray.map((item) => item.ndvi_value),
+      //   data: testData,
       // },
-      {
-        name: "Phase Wise Data",
-        type: "line",
-        data: testData,
-      },
-      {
-        name: " Mock API Data",
-        type: "line",
-        data: testData2,
-        stroke: {
-          curve: "smooth",
-        },
-        // data: testArray.map((item) => item.ndvi_value),
-      },
     ],
     options: {
-      height: 350,
       xaxis: {
-        labels: {
-          format: "dd/MM",
-        },
-        // categories: graphData?.ndvi?.map((item) =>
-        //   moment(item.date).format("Do MMM")
-        // categories: testArray.map((item) => moment(item).format("Do MMM")),
-        categories: createGraphDates(),
-        // title: {
-        //   text: "Date",
-        // },
+        categories: graphData?.ndvi?.map((item) => moment(item.date).format("Do MMM")),
+        // categories: createGraphDates(),
+        
       },
       yaxis: {
-        decimalsInFloat: 2,
+        decimalsInFloat: 3,
+        min: -0.50,
+        max: 1.000,
+        tickAmount: 10,
         title: {
           text: "NDVI Performance",
         },
@@ -247,12 +148,7 @@ function TimeSeriesGraph({
             <ReactApexChart
               options={NewConfig.options}
               series={NewConfig.series}
-              height='350'
-            />
-
-            <ReactApexChart
-              options={NewConfig.options}
-              series={NewConfig.series}
+              height="350"
             />
           </>
         ) : (
