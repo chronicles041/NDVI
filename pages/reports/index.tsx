@@ -82,10 +82,17 @@ const ReportColumns = [
     Header: "Crop",
     accessor: "crop_type_name",
   },
-  // {
-  //   Header: "Plantation Date",
-  //   accessor: "plantation_date",
-  // },
+  {
+    Header: "Plantation Date",
+    accessor: "plantation_date",
+    Cell : ({value}) => value === 'N/A' ? <span className="text-red-500">{value}</span> : value
+  },
+  {
+    Header: "Current Phase",
+    accessor: "current_phase",
+    Cell : ({value}) => !value  ? <span className="text-red-500">N/A</span> : value
+  },
+
   // {
   //   Header: "NDVI",
   //   columns: [

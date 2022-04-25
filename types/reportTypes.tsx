@@ -22,6 +22,7 @@ export interface IFieldReport {
   tole_name: string;
   farm_polygon_json:JSON
   extra_field:JSON
+  current_phase:String
 }
 
 export interface IFieldFilters {
