@@ -16,13 +16,13 @@ export interface IFieldReport {
   province_name:string;
   district_name:string
   crop_type_name: string;
-  plantation_date: string;
+  // plantation_date: string;
   ward: number;
   ward_number: number;
   tole_name: string;
   farm_polygon_json:JSON
   extra_field:JSON
-  current_phase:String
+  // current_phase?:String
 }
 
 export interface IFieldFilters {
