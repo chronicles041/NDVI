@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import "./map.css";
 
 import { IFieldReport } from "../types/reportTypes";
-import DetailModal from "../pages/reports/FieldDetail";
+import DetailModal from "./FieldDetail";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "./ToIcons";
 
 type ListReportProps = {
