@@ -3,9 +3,9 @@ import ToIcon, {
   IconSize,
   IconStyles,
   IconTypes,
-} from "../../../components/ToIcons";
-import ToModal from "../../../components/ToModal";
-import ReportService from "../../../api/service";
+} from "../ToIcons";
+import ToModal from "../ToModal";
+import ReportService from "../../api/service";
 import FarmDetail from "./farmDetail";
 import FarmersDetail from "./farmerDetail";
 import PlantationDetail from "./plantationDetail";

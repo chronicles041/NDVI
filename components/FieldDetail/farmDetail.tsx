@@ -2,7 +2,7 @@ import ToIcon, {
   IconSize,
   IconStyles,
   IconTypes,
-} from "../../../components/ToIcons";
+} from "../ToIcons";
 
 const FarmDetail = ({detail}:any) => {
   return (
