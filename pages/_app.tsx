@@ -9,8 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const currentRoute = router.asPath;
   const loginRoute = "/login";
-  // console.log("Token", hasToken);
-  return ![loginRoute, ""].includes(currentRoute) ? (
+  return loginRoute !== currentRoute ? (
     <Layout>
       <Component {...pageProps} />
     </Layout>
