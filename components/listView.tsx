@@ -35,7 +35,7 @@ function ListReport({
   }, [activeItem]);
 
   return (
-    <div ref={ActiveItemRef} className={" overflow-y-scroll  w-full"}>
+    <div ref={ActiveItemRef} className={" overflow-y-scroll  w-full flex-1"}>
       <ul className={" w-auto h-[400px] mr-4   flex flex-col justify-start  "}>
         {activeItem ? (
           <li

@@ -105,7 +105,7 @@ function ToMap(props) {
       <div className="container bg-white px-4 py-4">
         <div className="flex flex-row gap-x-3">
           <div className="basis-3/4 z-0 flex flex-col gap-y-3">
-            <div className="dateList flex justify-center bg-[#54964A]  items-center  w-full mt-3">
+            <div className="dateList flex justify-center bg-[#006F70]  items-center  w-full mt-3">
               <DateList
                 loading={loading}
                 mapData={mapData}
@@ -127,7 +127,7 @@ function ToMap(props) {
             />
             <ColorPalette   ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
-          <div className="basis-1/4 flex-col flex justify-between items-center">
+          <div className="basis-1/4 flex-col flex justify-centergap-x-2 items-center">
             <Reports
               loading={loading}
               selectedItem={selectFarm}

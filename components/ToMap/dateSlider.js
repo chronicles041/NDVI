@@ -1,8 +1,8 @@
 import React from "react";
 import { Slider } from "antd";
-import { LeftOutlined, RightOutlined, ReloadOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined, CaretRightFilled,CaretLeftFilled   } from "@ant-design/icons";
 import moment from "moment";
-import ToIcon, { IconSize, IconTypes } from "../ToIcons";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 
 const initialState = {
   selectedDate: "",
@@ -137,11 +137,11 @@ class DateList extends React.Component {
     return (
       <div className="flex flex-row w-full justify-center items-center p-5">
         {this.props.loading ? (
-         <ToIcon type={IconTypes.Loading} size={IconSize.LOADING}></ToIcon>
+         <ToIcon type={IconTypes.Loading} size={IconSize.LOADING} style={IconStyles.FillColor}></ToIcon>
         ) : (
           <>
             <div className="basis-[2%]">
-              <LeftOutlined
+              <CaretLeftFilled
                 hidden={visibleMarks.currentIndex === 0}
                 onClick={() => {
                   this.makeVisibleMarker(true, false);
@@ -173,7 +173,7 @@ class DateList extends React.Component {
               </div>
             </div>
             <div className="basis-[2%]">
-              <RightOutlined
+              <CaretRightFilled
                 hidden={
                   visibleMarks.marks[
                     Object.keys(visibleMarks.marks).length - 1
@@ -183,7 +183,7 @@ class DateList extends React.Component {
                   this.makeVisibleMarker(false, true);
                 }}
               />
-              <RightOutlined
+              <CaretRightFilled
                 hidden={
                   visibleMarks.marks[
                     Object.keys(visibleMarks.marks).length - 1

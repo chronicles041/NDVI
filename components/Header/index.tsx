@@ -49,7 +49,7 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
               src="https://random.imagecdn.app/500/150"
             ></img>
             <span className="text-lg font-semibold text-secondary">
-              CIMMYT Admin
+              CIMMYT1
             </span>
             <button
               className="text-lg font-semibold text-secondary"

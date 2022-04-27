@@ -89,7 +89,7 @@ export const IconStyles = {
   Navigation: " ",
   Loading: "text-center",
   Selected: "fill-blue-500",
-  FillColor: "hover:fill-white"
+  FillColor: "fill-white"
 };
 
 export const IconSize = {
