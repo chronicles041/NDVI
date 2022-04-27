@@ -21,6 +21,10 @@ import Location from "./assets/location.png";
 import Project from "./assets/project.png";
 import Organiztion from "./assets/organization.png";
 import Loading from "./assets/loading.svg";
+import Logout from "./assets/logout.svg";
+import Profile from "./assets/profile.svg";
+import Settings from "./assets/settings.svg";
+
 // import styles from "./../../styles";
 
 interface IiconSize {
@@ -75,13 +79,17 @@ export const IconTypes = {
   Location: Location,
   Project:Project,
   Organiztion:Organiztion,
-  Loading:Loading
+  Loading:Loading,
+  Settings: Settings,
+  Logout:Logout,
+  Profile:Profile,
 };
 export const IconStyles = {
   Default: " ",
   Navigation: " ",
   Loading: "text-center",
   Selected: "fill-blue-500",
+  FillColor: "hover:fill-white"
 };
 
 export const IconSize = {
@@ -106,8 +114,8 @@ export const IconSize = {
     width: 27,
   },
   LARGENAVICON: {
-    height: 40,
-    width: 40,
+    height: 38,
+    width: 38,
   },
   LOADING: {
     width: 70,

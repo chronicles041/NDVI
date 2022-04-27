@@ -104,8 +104,8 @@ function ToMap(props) {
     <>
       <div className="container bg-white px-4 py-4">
         <div className="flex flex-row gap-x-3">
-          <div className="basis-3/4 z-0 flex flex-col gap-y-2">
-            <div className="dateList flex justify-center bg-secondary bg-opacity-60 items-center  w-full mt-3">
+          <div className="basis-3/4 z-0 flex flex-col gap-y-3">
+            <div className="dateList flex justify-center bg-[#54964A]  items-center  w-full mt-3">
               <DateList
                 loading={loading}
                 mapData={mapData}
