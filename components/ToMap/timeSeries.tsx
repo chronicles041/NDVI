@@ -56,8 +56,8 @@ function TimeSeriesGraph({
   ];
 
   const testData: null | any[] = [
-   0.290,0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
-    0.755, 0.654, 0.525,
+    0.29, 0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887,
+    0.802, 0.755, 0.654, 0.525,
   ];
   // const testData: null | any[] = [
   //   [ 0.317, moment("2022-04-20").format("Do MMM")], 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
@@ -115,20 +115,21 @@ function TimeSeriesGraph({
     ],
   };
 
-  const chartOptions ={
+  const chartOptions = {
     chart: {
-
       // type: 'area'
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     // stroke: {
     //   curve: 'smooth'
     // },
     xaxis: {
       // type: 'datetime',
-      categories: graphData?.ndvi?.map((item) => moment(item.date).format("Do MMM")),
+      categories: graphData?.ndvi?.map((item) =>
+        moment(item.date).format("Do MMM")
+      ),
       // categories: createGraphDates(),
     },
     yaxis: {
@@ -140,19 +141,19 @@ function TimeSeriesGraph({
         text: "NDVI Performance",
       },
     },
-  }
-
+  };
 
   return (
     <>
-      <div className={" m-1 rounded-2xl shadow-l"}>
+      <div className={"m-1 rounded-2xl shadow-l"}>
+       
         {graphData?.ndvi?.length > 0 ? (
           <>
             {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
             <ReactApexChart
               options={chartOptions}
               series={NewConfig.series}
-              height= '200'
+              height="200"
               type="line"
               // height="350"
             />

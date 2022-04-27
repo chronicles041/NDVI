@@ -35,7 +35,7 @@ function ToMap(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
-  const [plantationDate, setPlantationDate] = React.useState('2022-04-02');
+  const [plantationDate, setPlantationDate] = React.useState("2022-04-02");
 
   // useEffect(() => {
   //   if (props.location.state) {
@@ -62,7 +62,7 @@ function ToMap(props) {
     console.log("Selected Farm :", item);
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
-    getplantationDate()
+    getplantationDate();
   };
 
   const getLayerData = (item, previous, previous_date) => {
@@ -86,7 +86,6 @@ function ToMap(props) {
         });
       })
       .catch((err) => setLoading(false));
-      
   };
 
   const getNewDates = (pre, next) => {
@@ -96,9 +95,9 @@ function ToMap(props) {
     // }
   };
 
-  const getplantationDate = () =>{
-     setPlantationDate('2022-03-28')
-  }
+  const getplantationDate = () => {
+    setPlantationDate("2022-03-28");
+  };
 
   return (
     <>
@@ -125,7 +124,7 @@ function ToMap(props) {
                 setColor({ ...color, [type]: value })
               }
             />
-            <ColorPalette   ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
+            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
           <div className="basis-1/4 flex-col flex justify-centergap-x-2 items-center">
             <Reports
@@ -136,8 +135,11 @@ function ToMap(props) {
             />
           </div>
         </div>
-        <div hidden={loading} className={"pt-10 "}>
-          <TimeSeriesGraph  plantationDate={plantationDate}  graphData={graphData} />
+        <div hidden={loading} className={"pt-5 text-center"}>
+          <TimeSeriesGraph
+            plantationDate={plantationDate}
+            graphData={graphData}
+          />
         </div>
       </div>
     </>

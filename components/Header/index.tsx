@@ -23,7 +23,7 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
   };
 
   return (
-    <header className="p-2 flex flex-row justify-between items-center font-Oxygen">
+    <header className=" relative p-2 flex flex-row justify-between items-center font-Oxygen">
       <div className="flex flex-row justify-center items-center gap-x-4 px-3 py-3 ">
         <div
           className={` ${!isCollapse ? "text-right" : " text-center"}`}
@@ -40,10 +40,10 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
       </div>
 
       <div className="flex flex-row justify-center item-center px-3 py-3">
-        <div className="relative flex flex-row gap-6 items-center w-full justify-center px-2">
+        <div className=" flex flex-row gap-6 items-center w-full justify-center px-2">
           {/* <BsMoon className="w-7 h-7 cursor-pointer"></BsMoon>
           <BsBell className="w-7 h-7 cursor-pointer"></BsBell> */}
-          <div className="flex gap-2 cursor-pointer items-center dropdown justify-center group relative  outline-none focus:outline-none">
+          <div className="flex gap-2 cursor-pointer items-center dropdown justify-center   outline-none focus:outline-none">
             <img
               className="w-12 h-12 rounded-full mr-2 object-cover border-2 ring-2 border-gray-400 ring-offset-2 ring-primary ring-opacity-80"
               src="https://random.imagecdn.app/500/150"
@@ -70,7 +70,7 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
             <ul
               className={`${
                 showDropdown === true
-                  ? "bg-white z-[100]  transition   flex flex-col gap-y-3 border-none pt-4 top-10 left-[70px] w-[140px] px-2 py-2 rounded-md absolute origin-top"
+                  ? "bg-white z-[100]  transition   flex flex-col gap-y-3 border-none top-20 right-8 w-[140px] px-2 py-2 rounded-md absolute origin-top"
                   : "hidden bg-white z-[100]  flex-col gap-y-3 border-none pt-4 left-[70px] w-[140px] top-10 px-2 py-2 rounded-md absolute origin-top"
               }`}
             >
