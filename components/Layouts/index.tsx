@@ -27,13 +27,13 @@ const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
         </div>
         <div className="flex flex-row">
           <div
-            className={`h-screen ${!isCollapse ? "basis-1/5 transition-all duration-200 ease-out delay-50  " : "delay-400 duration-400 ease-in-out transition-all transform basis-[8%] lg:basis-[6%]"}`}
+            className={`h-screen ${!isCollapse ? "basis-1/5 transition-all duration-200 ease-out delay-50  " : "delay-400 duration-400 ease-in-out transition-all transform basis-[10%] "}`}
           >
             <Navbar isCollapse={isCollapse} />
           </div>
           <div
             className={`h-screen overflow-y-scroll ${
-              !isCollapse ? "basis-4/5" : "basis-[92%] lg:basis-[94%] "
+              !isCollapse ? "basis-4/5" : "basis-[90%]"
             }`}
           >
             <div

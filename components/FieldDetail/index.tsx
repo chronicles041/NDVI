@@ -47,7 +47,7 @@ const DetailModal = ({ id }: { id: number }) => {
 
   return (
     <ToModal onOpen={() => onDetailClick()} title={"Detail"}>
-      <div className="flex sticky gap-x-2 top-0">
+      <div className="flex flex-none sticky gap-x-2 top-0 ">
         <div className="flex-1 ">
          <button
             onClick={() => setActiveItem("Farm Detail")}
@@ -79,7 +79,7 @@ const DetailModal = ({ id }: { id: number }) => {
       <div
         className={` ${
           activeItem !== "Farm Detail" ? "hidden" : "flex"
-        } flex flex-col px-2   items-center justify-center`}
+        } flex flex-col px-2 flex-1   items-center justify-center`}
       >
         <FarmDetail
           detail={detail}
@@ -89,7 +89,7 @@ const DetailModal = ({ id }: { id: number }) => {
       <div
         className={`${
           activeItem !== "Farmers" ? "hidden" : "flex"
-        } flex flex-col px-2   items-center justify-center`}
+        } flex flex-col px-2 flex-1   items-center justify-center`}
       >
         <FarmersDetail 
            detail={detail}
@@ -99,7 +99,7 @@ const DetailModal = ({ id }: { id: number }) => {
       <div
         className={`${
           activeItem !== "Plantation" ? "hidden" : "flex"
-        } flex flex-col px-2  items-center justify-center`}
+        } flex flex-col px-2 flex-1  items-center justify-center`}
       >
         <PlantationDetail 
            detail={detail}
