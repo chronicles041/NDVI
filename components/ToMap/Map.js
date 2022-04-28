@@ -35,7 +35,7 @@ function ToMap(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
-  const [plantationDate, setPlantationDate] = React.useState("2022-04-02");
+  const [plantationDate, setPlantationDate] = React.useState();
 
   // useEffect(() => {
   //   if (props.location.state) {
@@ -63,13 +63,18 @@ function ToMap(props) {
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
     getplantationDate();
+    setPlantationDate(item.plantation_date)
   };
 
   const getLayerData = (item, previous, previous_date) => {
+    // const params = {
+    //   farm_id: item.farm_id,
+    //   previous: previous,
+    //   previous_date: previous_date,
+    // };
     const params = {
       farm_id: item.farm_id,
-      previous: previous,
-      previous_date: previous_date,
+      plantation_date:item.plantation_date
     };
     console.log("Graph Data");
 
@@ -96,7 +101,7 @@ function ToMap(props) {
   };
 
   const getplantationDate = () => {
-    setPlantationDate("2022-03-28");
+    setPlantationDate(selectedFarm.plantation_date);
   };
 
   return (

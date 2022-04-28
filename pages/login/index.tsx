@@ -14,6 +14,7 @@ const Login = () => {
   const createToken = () => {
     // Router.push("/index");
     changeMessage("");
+    localStorage.setItem('token','')
     axios
       .post(LoginApi, {
         username: username,
