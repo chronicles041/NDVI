@@ -40,7 +40,7 @@ function ListReport({
         {activeItem ? (
           <li
             className={
-              "cursor-pointer w-full shadow  bg-gray-400  border  rounded   px-2 py-2 mx-2 my-2"
+              "cursor-pointer w-full shadow  bg-gray-400  border  rounded flex flex-col gap-y-3  px-2 py-2 mx-2 my-2"
             }
             key={0}
           >
@@ -71,7 +71,21 @@ function ListReport({
                 </div>
               </div>
             </div>
-            <DetailModal id={selectedData ? selectedData.farm_id : 0} />
+            <div className="flex items-stretch justify-between  w-full gap-x-1 flex-row">
+                <DetailModal id={selectedData?.farm_id} />
+                <div className={"flex flex-col mr-4"}>
+                  <div
+                    className={"font-bold text-white text-opacity-60  text-sm"}
+                  >
+                    Farm ID
+                  </div>
+                  <div className={"font-bold text-white"}>
+                    {selectedData?.farm_id}
+                  </div>
+                </div>
+              </div>
+                
+
           </li>
         ) : null}
 
