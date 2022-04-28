@@ -4,7 +4,7 @@ import Banner from "./assets/banner.svg";
 import Dashboard from "./assets/dashboard.svg";
 import User from "./assets/user.svg";
 import Farm from "./assets/farm.svg";
-import Activity from "./assets/activity.svg";
+import Report from "./assets/report.svg";
 import Weather from "./assets/weather.svg";
 import Image from "next/image";
 import Community from "./assets/community.svg";
@@ -24,6 +24,8 @@ import Loading from "./assets/loading.svg";
 import Logout from "./assets/logout.svg";
 import Profile from "./assets/profile.svg";
 import Settings from "./assets/settings.svg";
+import Activity from "./assets/activity.svg";
+import Expert from "./assets/expert.svg";
 
 // import styles from "./../../styles";
 
@@ -65,7 +67,7 @@ export const IconTypes = {
   Dashboard: Dashboard,
   User: User,
   Farm: Farm,
-  Activity: Activity,
+  Report: Report,
   Weather: Weather,
   Community: Community,
   Champions: Champions,
@@ -83,6 +85,8 @@ export const IconTypes = {
   Settings: Settings,
   Logout:Logout,
   Profile:Profile,
+  Activity:Activity,
+  Expert:Expert,
 };
 export const IconStyles = {
   Default: " ",

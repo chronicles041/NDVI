@@ -51,7 +51,7 @@ const DetailModal = ({ id }: { id: number }) => {
         <div className="flex-1 ">
          <button
             onClick={() => setActiveItem("Farm Detail")}
-            className={`${activeItem==='Farm Detail'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
+            className={`${activeItem==='Farm Detail'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 relative after:absolute after:bg-secondary after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 '}`}
           >
             Farm Detail
          </button>
@@ -59,7 +59,7 @@ const DetailModal = ({ id }: { id: number }) => {
         <div className="flex-1 ">
          <button
             onClick={() => setActiveItem("Farmers")}
-            className={`${activeItem==='Farmers'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
+            className={`${activeItem==='Farmers'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 relative after:absolute after:bg-secondary after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 '}`}
            
           >
             Farmers Detail
@@ -68,7 +68,7 @@ const DetailModal = ({ id }: { id: number }) => {
         <div className="text-center flex-1">
          <button
             onClick={() => setActiveItem("Plantation")}
-            className={`${activeItem==='Plantation'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
+            className={`${activeItem==='Plantation'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 relative after:absolute after:bg-secondary after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300'}`}
           >
             Plantation Detail
          </button>
