@@ -9,9 +9,17 @@ const token =
 // const token = localStorage?.getItem("token");
 
 class MapService {
+  // getDateImage(params) {
+  //   console.log("Param From Service for Image Dates ", params);
+  //   return axios.get(BASE_URL + "export_image/", {
+  //     headers: { Authorization: `Token ${token}` },
+  //     params,
+  //   });
+  // }
+
   getDateImage(params) {
     console.log("Param From Service for Image Dates ", params);
-    return axios.get(BASE_URL + "export_image/", {
+    return axios.get(BASE_URL + "export_plantation_image/", {
       headers: { Authorization: `Token ${token}` },
       params,
     });

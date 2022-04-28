@@ -66,10 +66,14 @@ function ToMap(props) {
   };
 
   const getLayerData = (item, previous, previous_date) => {
+    // const params = {
+    //   farm_id: item.farm_id,
+    //   previous: previous,
+    //   previous_date: previous_date,
+    // };
     const params = {
       farm_id: item.farm_id,
-      previous: previous,
-      previous_date: previous_date,
+      plantation_date:selectedFarm.plantation_date
     };
     console.log("Graph Data");
 
