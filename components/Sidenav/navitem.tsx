@@ -22,7 +22,7 @@ const NavItem = ({ isCollapse, name, path, icon }: Props) => {
       <li 
               data-toggle="tooltip"
               title={name}
-              className={` ${path === currentRoute ? 'bg-gray-200 rounded-l-xl w-full shadow-sm':'hover:bg-gray-200 hover:rounded-l-xl w-full  transition duration-400 ease-in-out'}`}
+              className={` ${path === currentRoute ? 'bg-gray-300 rounded-l-xl w-full shadow-sm':'hover:bg-gray-200 hover:rounded-l-xl w-full  transition duration-400 ease-in-out'}`}
               
       >
         <Link href={path}>

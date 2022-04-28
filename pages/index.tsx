@@ -22,21 +22,21 @@ const DashBorad = () => {
       <div className={" p-6  m-3 "}>
         <div className="grid  grid-cols-3 mb-5">
           <Stats
-            icon={IconTypes.Dressing}
+            icon={IconTypes.Farm}
             title={"Total Farms"}
             count={dashData?.farm_count}
             buttonText={"View Reports"}
             path={"/reports"}
           />
           <Stats
-            icon={IconTypes.Dressing}
+            icon={IconTypes.Land}
             title={"Total Farm Digitalized (Hector)"}
             count={dashData?.farm_area_count.toFixed(2)}
             buttonText={"View Maps"}
             path={"/maps"}
           />
           <Stats
-            icon={IconTypes.Dressing}
+            icon={IconTypes.User}
             title={"Total Farmers"}
             count={dashData?.farmer_count}
             buttonText={"View Reports"}

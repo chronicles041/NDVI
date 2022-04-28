@@ -48,7 +48,7 @@ class ReportFilters extends React.Component<
   render() {
     return (
       <>
-          <div className="flex-initial p-2">
+          <div className="flex-none p-2">
             <button
               className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
               type="button"

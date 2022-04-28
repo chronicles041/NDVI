@@ -16,8 +16,8 @@ export const ToListPagination = ({
   gotoPage,
 }: PaginationProps) => {
   return (
-    <>
-      <div className=" w-full  flex flex-row items-center justify-center">
+    <div className="flex-none ">
+      <div className=" w-full  flex flex-row items-center justify-center px-2 py-2">
         <button
           onClick={() => gotoPage(page - 1)}
           disabled={page === 1}
@@ -64,6 +64,6 @@ export const ToListPagination = ({
          
         </span>
       </div>
-    </>
+    </div>
   );
 };

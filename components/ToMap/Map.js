@@ -35,7 +35,7 @@ function ToMap(props) {
   const [color, setColor] = useState({});
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
-  const [plantationDate, setPlantationDate] = React.useState('2022-04-02');
+  const [plantationDate, setPlantationDate] = React.useState("2022-04-02");
 
   // useEffect(() => {
   //   if (props.location.state) {
@@ -62,7 +62,7 @@ function ToMap(props) {
     console.log("Selected Farm :", item);
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
-    getplantationDate()
+    getplantationDate();
   };
 
   const getLayerData = (item, previous, previous_date) => {
@@ -71,6 +71,10 @@ function ToMap(props) {
       previous: previous,
       previous_date: previous_date,
     };
+    // const params = {
+    //   farm_id: item.farm_id,
+    //   plantation_date:selectedFarm.plantation_date
+    // };
     console.log("Graph Data");
 
     MapService.getDateImage(params)
@@ -86,7 +90,6 @@ function ToMap(props) {
         });
       })
       .catch((err) => setLoading(false));
-      
   };
 
   const getNewDates = (pre, next) => {
@@ -96,16 +99,16 @@ function ToMap(props) {
     // }
   };
 
-  const getplantationDate = () =>{
-     setPlantationDate('2022-03-28')
-  }
+  const getplantationDate = () => {
+    setPlantationDate("2022-03-28");
+  };
 
   return (
     <>
       <div className="container bg-white px-4 py-4">
         <div className="flex flex-row gap-x-3">
-          <div className="basis-3/4 z-0 flex flex-col gap-y-2">
-            <div className="dateList flex justify-center bg-primary bg-opacity-80 items-center  w-full mt-3">
+          <div className="basis-3/4 z-0 flex flex-col gap-y-3">
+            <div className="dateList flex justify-center bg-[#006F70]  items-center  w-full mt-3">
               <DateList
                 loading={loading}
                 mapData={mapData}
@@ -125,9 +128,9 @@ function ToMap(props) {
                 setColor({ ...color, [type]: value })
               }
             />
-            <ColorPalette   ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
+            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
-          <div className="basis-1/4 flex-col flex justify-between items-center">
+          <div className="basis-1/4 flex-col flex justify-centergap-x-2 items-center">
             <Reports
               loading={loading}
               selectedItem={selectFarm}
@@ -136,8 +139,11 @@ function ToMap(props) {
             />
           </div>
         </div>
-        <div hidden={loading} className={"pt-10 "}>
-          <TimeSeriesGraph  plantationDate={plantationDate}  graphData={graphData} />
+        <div hidden={loading} className={"pt-5 text-center"}>
+          <TimeSeriesGraph
+            plantationDate={plantationDate}
+            graphData={graphData}
+          />
         </div>
       </div>
     </>

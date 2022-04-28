@@ -1,74 +1,60 @@
-import ToIcon, {
-  IconSize,
-  IconStyles,
-  IconTypes,
-} from "../ToIcons";
+import { IFieldReport } from "../../types/reportTypes";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 
-const FarmDetail = ({detail}:any) => {
+const FarmDetail = ({ detail }: any) => {
   return (
-    <div className="  flex-col px-2  text-white items-center justify-center">
-      <div className="grid h-auto w-full grid-cols-2  gap-x-6 gap-y-6  ">
-        <div className="bg-white max-h-52 border-2  overflow-hidden border-solid border-primary flex flex-col justify-center items-center   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Farm}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          ></ToIcon>
-          <div className="text-center font-semibold text-secondary text-base  mt-4">
-            Farm id: {detail.farm_id}
-          </div>
+    <div className="flex flex-col justify-center items-center w-full gap-y-8 ">
+      <div className="grid grid-cols-2 w-full items-center justify-center">
+        <div className="flex flex-col p-6 gap-y-3 text-center md:border-r ">
+          <span className="text-2xl font-bold text-primary">
+            {" "}
+            {detail.farm_id}
+          </span>
+          <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
+            Farm ID
+          </p>
         </div>
-        <div className="bg-white max-h-52 border-2 border-solid border-primary flex flex-col justify-center items-center   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Location}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          ></ToIcon>
-          <div className="text-center font-semibold text-secondary text-base  mt-4">
-            Farm Name:{detail.farm_name}
-          </div>
+        <div className="text-center flex flex-col p-6 gap-y-3 border-b">
+          <span className="text-2xl font-bold text-primary">
+            {detail.farm_name}
+          </span>
+          <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
+            farm name
+          </p>
         </div>
-        <div className="bg-white max-h-52 border-2 border-solid border-primary flex flex-col justify-center items-center   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Project}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          ></ToIcon>
-          <div className="text-center font-semibold text-secondary text-base  mt-4">
-            Project Name: {detail.project_name}
-          </div>
+        <div className="flex flex-col p-6 gap-y-3 text-center md:border-r md:border-t ">
+          <span className="text-2xl font-bold text-primary">
+            {" "}
+            {detail.project_name}
+          </span>
+          <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
+            Project Name
+          </p>
         </div>
-        <div className="bg-white max-h-52 flex flex-col justify-center border-2 border-soild border-primary items-center   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Organiztion}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          ></ToIcon>
-          <div className="text-center font-semibold text-secondary whitespace-nowrap  text-base  mt-4">
-            Organization Name:
-            <br></br>
-            {detail.organization_name}`
-          </div>
+        <div className="text-center flex flex-col p-6 gap-y-3">
+          <span className="text-2xl font-bold text-primary overflow-hidden tuncate">
+            {detail.organization_name}
+          </span>
+          <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
+            Organization Name
+          </p>
         </div>
-        <div className="bg-white max-h-52 flex flex-col justify-center items-center border-2 border-solid border-primary   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Land}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          ></ToIcon>
-          <div className="text-center font-semibold text-secondary text-base  mt-4 ">
-            Farm Area: {detail.farm_area} Hectors
-          </div>
+        <div className="flex flex-col p-6 gap-y-3 text-center md:border-r md:border-t ">
+          <span className="text-2xl font-bold text-primary">
+            {" "}
+            {detail.farm_area}
+          </span>
+          <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
+            Farm Area
+          </p>
         </div>
-        <div className="bg-white max-h-52 flex flex-col justify-center items-center border-2 border-solid border-primary   p-10 rounded-lg">
-          <ToIcon
-            type={IconTypes.Crop}
-            size={IconSize.MD}
-            style={IconStyles.Default}
-          />
-          <div className="text-center font-semibold text-secondary text-base  mt-4 ">
-            Farm Note: {detail.farm_notes}
-          </div>
+        <div className="text-center flex flex-col p-6 gap-y-3 border-t ">
+          <span className="text-2xl font-bold text-primary capitalize">
+            {detail.farm_notes}
+          </span>
+          <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
+            Farm Note
+          </p>
         </div>
       </div>
     </div>

@@ -47,19 +47,20 @@ const DetailModal = ({ id }: { id: number }) => {
 
   return (
     <ToModal onOpen={() => onDetailClick()} title={"Detail"}>
-      <ul className="flex">
-        <div className="flex-1 mr-2">
+      <div className="flex flex-none sticky gap-x-2 top-0 ">
+        <div className="flex-1 ">
          <button
             onClick={() => setActiveItem("Farm Detail")}
-            className="text-center block w-full border border-blue-500 rounded py-2 px-4 hover:bg-blue-700  hover:text-white"
+            className={`${activeItem==='Farm Detail'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
           >
             Farm Detail
          </button>
         </div>
-        <div className="flex-1 mr-2">
+        <div className="flex-1 ">
          <button
             onClick={() => setActiveItem("Farmers")}
-            className="text-center w-full block border border-blue-500 rounded py-2 px-4 hover:bg-blue-700  hover:text-white"
+            className={`${activeItem==='Farmers'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
+           
           >
             Farmers Detail
          </button>
@@ -67,18 +68,18 @@ const DetailModal = ({ id }: { id: number }) => {
         <div className="text-center flex-1">
          <button
             onClick={() => setActiveItem("Plantation")}
-            className="text-center w-full block border border-blue-500 rounded py-2 px-4 hover:bg-blue-700  hover:text-white"
+            className={`${activeItem==='Plantation'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 '}`}
           >
             Plantation Detail
          </button>
         </div>
-      </ul>
+      </div>
       <br />
 
       <div
         className={` ${
           activeItem !== "Farm Detail" ? "hidden" : "flex"
-        } flex flex-col px-2   items-center justify-center`}
+        } flex flex-col px-2 flex-1   items-center justify-center`}
       >
         <FarmDetail
           detail={detail}
@@ -88,7 +89,7 @@ const DetailModal = ({ id }: { id: number }) => {
       <div
         className={`${
           activeItem !== "Farmers" ? "hidden" : "flex"
-        } flex flex-col px-2   items-center justify-center`}
+        } flex flex-col px-2 flex-1   items-center justify-center`}
       >
         <FarmersDetail 
            detail={detail}
@@ -98,7 +99,7 @@ const DetailModal = ({ id }: { id: number }) => {
       <div
         className={`${
           activeItem !== "Plantation" ? "hidden" : "flex"
-        } flex flex-col px-2  items-center justify-center`}
+        } flex flex-col px-2 flex-1  items-center justify-center`}
       >
         <PlantationDetail 
            detail={detail}

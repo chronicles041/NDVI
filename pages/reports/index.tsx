@@ -93,53 +93,53 @@ const ReportColumns = [
   //   Cell : ({value}) => !value  ? <span className="text-red-500">N/A</span> : value
   // },
 
-  // {
-  //   Header: "NDVI",
-  //   columns: [
-  //     {
-  //       Header: "Previous Phase",
-  //       // accessor: "plantation_date",
-  //       accessor: (row: any) => row,
-  //       Cell: ({ value }: any) => (
-  //         <>
-  //           <div
-  //             className={`${
-  //               value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
-  //             }`}
-  //           >
-  //             0.234 / 0.245
-  //           </div>
-  //         </>
-  //       ),
-  //     },
-  //     {
-  //       Header: "Current Phase",
-  //       // accessor: "plantation_date",
-  //       accessor: (row: any) => row,
-  //       Cell: ({ value }: any) => (
-  //         <>
-  //           <div
-  //             className={`${
-  //               value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
-  //             }`}
-  //           >
-  //             0.275 / 0.325
-  //           </div>
-  //         </>
-  //       ),
-  //     },
-  //     {
-  //       Header: "Next Phase",
-  //       // accessor: "plantation_date",
-  //       accessor: (row: any) => row,
-  //       Cell: ({ value }: any) => (
-  //         <>
-  //           <div className={"text-blue-500"}>0.425</div>
-  //         </>
-  //       ),
-  //     },
-  //   ],
-  // },
+  {
+    Header: "NDVI",
+    columns: [
+      {
+        Header: "Previous Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div
+              className={`${
+                value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
+              }`}
+            >
+              0.234 / 0.245
+            </div>
+          </>
+        ),
+      },
+      {
+        Header: "Current Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div
+              className={`${
+                value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
+              }`}
+            >
+              0.275 / 0.325
+            </div>
+          </>
+        ),
+      },
+      {
+        Header: "Next Phase",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }: any) => (
+          <>
+            <div className={"text-blue-500"}>0.425</div>
+          </>
+        ),
+      },
+    ],
+  },
 
   {
     Header: "Action",
@@ -281,7 +281,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
         />
         <div className="flex-initial p-2">
           <button
-            className="text-white bg-secondary opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+            className="text-white bg-secondary_one opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
             type="button"
           >
             <CSVLink
