@@ -4,6 +4,17 @@ import React from "react";
 import { baseUrl } from "./serviceConfig";
 
 export default new (class ReportService {
+  FetchPhases() {
+    return (
+      axios
+        // .get<ILocation, any>("https://app.teamonetech.com/api/v1/province/", {
+        .get<any>(`${baseUrl}Phases/`, {})
+        .then((res) => {
+          return res;
+        })
+    );
+  }
+
   FetchProvince() {
     return (
       axios
@@ -118,7 +129,9 @@ export default new (class ReportService {
               tole_name: value.tole_name,
               farm_polygon_json: value.farm_polygon_json,
               extra_field: value.extra_field,
-              current_phase: value.current_phase,
+              current_phase: value?.season[0] ? value.season[0].crops.current_phase.phase_name : 'N/A',
+              current_phase_value : value?.season[0] ? value.season[0].crops.current_phase.ndvi?.ndvi_value : 'N/A',
+              previous_phase_value : value?.season[0] ? value.season[0].crops.previous_phase.ndvi?.ndvi_value : 'N/A',
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);

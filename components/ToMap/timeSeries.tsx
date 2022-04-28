@@ -4,6 +4,7 @@ import { Button, Card, Input, List, Typography } from "antd";
 import MapService from "./mapService";
 import ReactApexChart from "react-apexcharts";
 import moment from "moment";
+import ReportService from "../../api/service";
 
 type graphDataTypes = {
   ndvi: [];
@@ -20,125 +21,140 @@ function TimeSeriesGraph({
   loading,
   plantationDate,
 }: TimeSeriesProps) {
-  const createXdates = (date) => {
-    moment(date).format("Do MMM, yy");
-    // xaxis: {
-    //   categories: graphData?.ndvi?.map((item) =>
-    //     moment(item.date).format("Do MMM, yy")
-    //   ),
-    //   title: {
-    //     text: "Date",
-    //   },
-    // },
-  };
+  const [phase, setPhase] = React.useState<[]>();
+  const [minDate, setMindate] = React.useState<any>("2022-02-28");
+  const [maxDate, setMaxDate] = React.useState<any>("2022-08-01");
 
-  const testArray = [
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-    "2022-02-03",
-  ];
+  useEffect(() => {
+    ReportService.FetchPhases().then((res: any) => setPhase(res.data.results));
+    // console.log("***",filterParams?filterParams:"Undefined")
+  }, []);
 
-  const testData: null | any[] = [
-    0.29, 0.317, 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887,
-    0.802, 0.755, 0.654, 0.525,
-  ];
-  // const testData: null | any[] = [
-  //   [ 0.317, moment("2022-04-20").format("Do MMM")], 0.436, 0.541, 0.632, 0.709, 0.781, 0.834, 0.879, 0.89, 0.887, 0.802,
-  //    0.755, 0.654, 0.525, 0.369,
-  //  ];
+  const makeAnnotations = () => {
 
-  const testData2: any = testData.map((d, i) => {
-    let nA;
-    if (i % 4 == 0) {
-      nA = d + 0.022;
-    }
-    if (i % 4 != 0) {
-      nA = d + 0.022;
-    }
-    return nA;
-  });
+    let tArray:any = []
+    let currentTime = new Date(plantationDate);
+    phase?.map((d,i)=>{
 
-  const daysDifference = [
-    0, 5, 12, 19, 26, 33, 41, 49, 60, 67, 74, 94, 100, 110, 120,
-  ];
+      let tempDate = new Date(plantationDate);
+      let reqDate = tempDate.setDate(currentTime.getDate() + d.days)
 
-  const pLength: number = testData.length;
+        tArray = [...tArray,
+          {
+            x: reqDate,
+            borderColor: "#999",
+            yAxisIndex: 0,
+            label: {
+              show: true,
+              text: d.phase_name,
+              style: {
+                color: "#fff",
+                background: "#775DD0",
+              },
+            },
+          },
+        ]
+    })
 
-  const createGraphDates = () => {
+
+
+    return tArray
+  }
+
+
+  const createPhaseData = () => {
     let currentTime = new Date(plantationDate);
     let tempArray = [];
+    let timeArray: any = [];
     tempArray.push(moment(currentTime).format("Do MMM"));
-    for (let i = 1; i < 15; i++) {
-      console.log("Block statement execution no." + i);
-      let reqDate = currentTime.setDate(currentTime.getDate() + 9);
+
+    phase?.map((d, i) => {
+      let tempDate = new Date(plantationDate);
+      let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
+      console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days);
+      let datObj = [new Date(reqDate).getTime(), d.phase_ndvi_value];
+      // let datObj = [new Date(reqDate).getTime(), testData[i]];
+      timeArray.push(datObj);
+    });
+
+    return [{ data: timeArray }];
+  };
+
+  const createGraphData = () => {
+    let currentTime = new Date("02 Feb 2022");
+    let timeArray: any = [];
+    tempArray.push(moment(currentTime).format("Do MMM"));
+
+    graphData?.ndvi?.map((d, i) => {
+      let reqDate = new Date(d.date).getDate();
       // let reqDate = currentTime.setDate(currentTime.getDate() + (daysDifference[i+1]-daysDifference[i]));
       tempArray.push(moment(reqDate).format("Do MMM"));
-      // currentTime = reqDate
-      // moment(reqDate).format("Do MMM")
-    }
+      let datObj = [new Date(d.date).getTime(), d.ndvi_value];
+      // let datObj = [new Date(reqDate).getTime(), testData[i]];
+      timeArray.push(datObj);
+    });
     // alert(tempArray[2])
-    return tempArray;
+    return [{ data: timeArray }];
   };
 
-  const NewConfig = {
-    series: [
-      {
-        name: "Performance",
-        type: "area",
-        data: graphData?.ndvi?.map((item) => item.ndvi_value),
-      },
-      // {
-      //   name: "Phase Wise Data",
-      //   data: testData,
-      // },
-      // {
-      //   name: "Phase Wise Data",
-      //   data: testData2,
-      // },
-    ],
-  };
-
-  const chartOptions = {
+  const options = {
     chart: {
-      // type: 'area'
+      id: "area-datetime",
+      type: "area",
+      height: 350,
+      zoom: {
+        autoScaleYaxis: true,
+      },
+    },
+    annotations: {
+      yaxis: [
+        {
+          y: 0.525,
+          borderColor: "#999",
+          label: {
+            show: true,
+            text: "Harvest",
+            style: {
+              color: "#fff",
+              background: "#00E396",
+            },
+          },
+        },
+      ],
+      xaxis: [
+       ...makeAnnotations()
+      ],
     },
     dataLabels: {
       enabled: false,
     },
-    // stroke: {
-    //   curve: 'smooth'
-    // },
+    markers: {
+      size: 0,
+      style: "hollow",
+    },
     xaxis: {
-      // type: 'datetime',
-      categories: graphData?.ndvi?.map((item) =>
-        moment(item.date).format("Do MMM")
-      ),
-      // categories: createGraphDates(),
+      type: "datetime",
+      // min: new Date(minDate).getTime(),
+      // max: new Date(maxDate).getTime(),
+      tickAmount: 15,
     },
     yaxis: {
-      decimalsInFloat: 3,
-      // min: -0.50,
-      // max: 1.000,
-      // tickAmount: 10,
-      title: {
-        text: "NDVI Performance",
+      min: -0.1,
+      max: 1.0,
+      tickAmount: 5,
+    },
+    tooltip: {
+      x: {
+        format: "dd MMM yyyy",
+      },
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.7,
+        opacityTo: 0.9,
+        stops: [0, 100],
       },
     },
   };
@@ -146,17 +162,17 @@ function TimeSeriesGraph({
   return (
     <>
       <div className={"m-1 rounded-2xl shadow-l"}>
-       
-        {graphData?.ndvi?.length > 0 ? (
+
+      {graphData?.ndvi?.length > 0 ? (
           <>
             {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
             <ReactApexChart
-              options={chartOptions}
-              series={NewConfig.series}
-              height="200"
-              type="line"
-              // height="350"
-            />
+          options={options}
+          // series={createGraphData()}
+          series={[...createGraphData(), ...createPhaseData()]}
+          type="area"
+          height={550}
+        />
           </>
         ) : (
           <></>

@@ -24,6 +24,24 @@ import { CSVLink, CSVDownload } from "react-csv";
 
 // };
 
+// const phaseData = {
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+//   "phase name" : 0.234,
+// }
+
 const ReportColumns = [
   {
     Header: "Farm ID",
@@ -107,7 +125,7 @@ const ReportColumns = [
                 value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
               }`}
             >
-              0.234 / 0.245
+              {value.previous_phase_value? value?.previous_phase_value:0} /{value.previous_phase_value? value?.current_phase_value:0}
             </div>
           </>
         ),
@@ -123,7 +141,7 @@ const ReportColumns = [
                 value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
               }`}
             >
-              0.275 / 0.325
+              {value.previous_phase_value? value?.current_phase_value:0} / {value.current_phase_value ? value?.current_phase_value:0}
             </div>
           </>
         ),
