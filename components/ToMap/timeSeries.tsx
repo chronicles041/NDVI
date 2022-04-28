@@ -64,9 +64,7 @@ function TimeSeriesGraph({
 
   const createPhaseData = () => {
     let currentTime = new Date(plantationDate);
-    let tempArray = [];
     let timeArray: any = [];
-    tempArray.push(moment(currentTime).format("Do MMM"));
 
     phase?.map((d, i) => {
       let tempDate = new Date(plantationDate);
@@ -81,16 +79,10 @@ function TimeSeriesGraph({
   };
 
   const createGraphData = () => {
-    let currentTime = new Date("02 Feb 2022");
     let timeArray: any = [];
-    tempArray.push(moment(currentTime).format("Do MMM"));
 
     graphData?.ndvi?.map((d, i) => {
-      let reqDate = new Date(d.date).getDate();
-      // let reqDate = currentTime.setDate(currentTime.getDate() + (daysDifference[i+1]-daysDifference[i]));
-      tempArray.push(moment(reqDate).format("Do MMM"));
       let datObj = [new Date(d.date).getTime(), d.ndvi_value];
-      // let datObj = [new Date(reqDate).getTime(), testData[i]];
       timeArray.push(datObj);
     });
     // alert(tempArray[2])

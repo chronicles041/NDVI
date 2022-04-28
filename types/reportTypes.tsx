@@ -25,6 +25,8 @@ export interface IFieldReport {
   current_phase: String;
   current_phase_value: number;
   previous_phase_value: number;
+  current_phase_name: string;
+  previous_phase_name: string;
 }
 
 export interface IFieldFilters {
@@ -36,4 +38,5 @@ export interface IFieldFilters {
   arm_area_min: string;
   farm_area_max: string;
   tole_name: string;
+  has_season:Boolean
 }

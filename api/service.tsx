@@ -131,7 +131,9 @@ export default new (class ReportService {
               extra_field: value.extra_field,
               current_phase: value?.season[0] ? value.season[0].crops.current_phase.phase_name : 'N/A',
               current_phase_value : value?.season[0] ? value.season[0].crops.current_phase.ndvi?.ndvi_value : 'N/A',
+              current_phase_name : value?.season[0] ? value.season[0].crops.current_phase?.phase_name : 'N/A',
               previous_phase_value : value?.season[0] ? value.season[0].crops.previous_phase.ndvi?.ndvi_value : 'N/A',
+              previous_phase_name: value?.season[0] ? value.season[0].crops.previous_phase?.phase_name : 'N/A',
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);

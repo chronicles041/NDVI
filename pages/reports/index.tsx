@@ -17,30 +17,7 @@ import { ToTablePagination } from "../../components/ToTable/pagination";
 import { ToListPagination } from "../../components/ToListPagination";
 import { CSVLink, CSVDownload } from "react-csv";
 
-// import UsersTable from "./usersTable";
 
-// type Props = {
-//   ttestData : []
-
-// };
-
-// const phaseData = {
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-//   "phase name" : 0.234,
-// }
 
 const ReportColumns = [
   {
@@ -114,51 +91,52 @@ const ReportColumns = [
   {
     Header: "NDVI",
     columns: [
-      {
-        Header: "Previous Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div
-              className={`${
-                value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              {value.previous_phase_value? value?.previous_phase_value:0} /{value.previous_phase_value? value?.current_phase_value:0}
-            </div>
-          </>
-        ),
-      },
-      {
-        Header: "Current Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div
-              className={`${
-                value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              {value.previous_phase_value? value?.current_phase_value:0} / {value.current_phase_value ? value?.current_phase_value:0}
-            </div>
-          </>
-        ),
-      },
-      {
-        Header: "Next Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div className={"text-blue-500"}>0.425</div>
-          </>
-        ),
-      },
+
     ],
   },
-
+  {
+    Header: "Previous Phase",
+    // accessor: "plantation_date",
+    accessor: (row: any) => row,
+    Cell: ({ value }: any) => (
+      <>
+        <div
+          // className={`${
+          //   value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
+          // }`}
+        >
+          {value.previous_phase_value? value?.previous_phase_value: 'N/A'} 
+        </div>
+      </>
+    ),
+  },
+  {
+    Header: "Current Phase",
+    // accessor: "plantation_date",
+    accessor: (row: any) => row,
+    Cell: ({ value }: any) => (
+      <>
+        <div
+          // className={`${
+          //   value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
+          // }`}
+        >
+          {value.current_phase_value?`${value?.current_phase_value} (${value?.current_phase_name})`: 'N/A'} 
+          
+        </div>
+      </>
+    ),
+  },
+  // {
+  //   Header: "Next Phase",
+  //   // accessor: "plantation_date",
+  //   accessor: (row: any) => row,
+  //   Cell: ({ value }: any) => (
+  //     <>
+  //       <div className={"text-blue-500"}>0.425</div>
+  //     </>
+  //   ),
+  // },
   {
     Header: "Action",
     accessor: (row: any) => row,
@@ -212,6 +190,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     arm_area_min: "",
     farm_area_max: "",
     tole_name: "",
+    has_season:true,
   };
 
   const [filterParams, setFilterParams] =
