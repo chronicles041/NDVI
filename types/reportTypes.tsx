@@ -3,6 +3,11 @@ export interface ILocation {
   title: string;
 }
 
+type phaseDetail = {
+  name: string;
+  value: number;
+  phaseValue:number
+};
 export interface IFieldReport {
   farm_id: number;
   farm_area: string;
@@ -22,7 +27,8 @@ export interface IFieldReport {
   tole_name: string;
   farm_polygon_json: JSON;
   extra_field: JSON;
-  current_phase: String;
+  current_phase: phaseDetail;
+  previous_phase: phaseDetail;
   current_phase_value: number;
   previous_phase_value: number;
   current_phase_name: string;
@@ -38,5 +44,5 @@ export interface IFieldFilters {
   arm_area_min: string;
   farm_area_max: string;
   tole_name: string;
-  has_season:Boolean
+  has_season: Boolean;
 }
