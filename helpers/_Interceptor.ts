@@ -9,8 +9,14 @@ axios.interceptors.request.use(function (config) {
     config.headers.common = {
       Authorization: `Token ${token}`
     }
-  }
 
+
+  }
+  if (token === '') {
+    config.headers.common = {
+      Authorization: null
+    }
+  }
 
   return config;
 });
