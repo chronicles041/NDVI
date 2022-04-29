@@ -14,6 +14,27 @@ export default new (class ReportService {
         })
     );
   }
+  FetchWeather(params) {
+    return (
+      axios
+        // .get<ILocation, any>("https://app.teamonetech.com/api/v1/province/", {
+        .get<any>(`${baseUrl}weather/`, params )
+        .then((res) => {
+          return res.data;
+        })
+    );
+  }
+
+  FetchNextWeather(params) {
+    return (
+      axios
+        // .get<ILocation, any>("https://app.teamonetech.com/api/v1/province/", {
+        .get<any>(`${baseUrl}next_weather/`, params )
+        .then((res) => {
+          return res.data;
+        })
+    );
+  }
 
   FetchProvince() {
     return (
@@ -130,20 +151,40 @@ export default new (class ReportService {
               farm_polygon_json: value.farm_polygon_json,
               extra_field: value.extra_field,
               current_phase: {
-                name:value?.season[0] ? value.season[0].crops.current_phase?.phase_name : 'N/A',
-                value:value?.season[0] ? value.season[0].crops.current_phase.ndvi?.ndvi_value : 'N/A',
-                phaseValue:  value?.season[0] ? value.season[0].crops.current_phase.phase_ndvi_value:'N/A',
+                name: value?.season[0]
+                  ? value.season[0].crops.current_phase?.phase_name
+                  : "N/A",
+                value: value?.season[0]
+                  ? value.season[0].crops.current_phase.ndvi?.ndvi_value
+                  : "N/A",
+                phaseValue: value?.season[0]
+                  ? value.season[0].crops.current_phase.phase_ndvi_value
+                  : "N/A",
               },
               previous_phase: {
-                name:value?.season[0] ? value.season[0].crops.previous_phase?.phase_name : -1,
-                value:value?.season[0] ? value.season[0].crops.previous_phase.ndvi?.ndvi_value : 'N/A',
-                phaseValue:  value?.season[0] ? value.season[0].crops.previous_phase.phase_ndvi_value:'N/A',
+                name: value?.season[0]
+                  ? value.season[0].crops.previous_phase?.phase_name
+                  : -1,
+                value: value?.season[0]
+                  ? value.season[0].crops.previous_phase.ndvi?.ndvi_value
+                  : "N/A",
+                phaseValue: value?.season[0]
+                  ? value.season[0].crops.previous_phase.phase_ndvi_value
+                  : "N/A",
               },
               // current_phase: value?.season[0] ? value.season[0].crops.current_phase.phase_name : 'N/A',
-              current_phase_value : value?.season[0] ? value.season[0].crops.current_phase.ndvi?.ndvi_value : 'N/A',
-              current_phase_name : value?.season[0] ? value.season[0].crops.current_phase?.phase_name : 'N/A',
-              previous_phase_value : value?.season[0] ? value.season[0].crops.previous_phase.ndvi?.ndvi_value : 'N/A',
-              previous_phase_name: value?.season[0] ? value.season[0].crops.previous_phase?.phase_name : 'N/A',
+              current_phase_value: value?.season[0]
+                ? value.season[0].crops.current_phase.ndvi?.ndvi_value
+                : "N/A",
+              current_phase_name: value?.season[0]
+                ? value.season[0].crops.current_phase?.phase_name
+                : "N/A",
+              previous_phase_value: value?.season[0]
+                ? value.season[0].crops.previous_phase.ndvi?.ndvi_value
+                : "N/A",
+              previous_phase_name: value?.season[0]
+                ? value.season[0].crops.previous_phase?.phase_name
+                : "N/A",
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);

@@ -31,14 +31,11 @@ function TimeSeriesGraph({
   }, []);
 
   const makeAnnotations = () => {
-
     let tArray:any = []
     let currentTime = new Date(plantationDate);
     phase?.map((d,i)=>{
-
       let tempDate = new Date(plantationDate);
       let reqDate = tempDate.setDate(currentTime.getDate() + d.days)
-
         tArray = [...tArray,
           {
             x: reqDate,

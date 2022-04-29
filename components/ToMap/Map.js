@@ -7,6 +7,8 @@ import dynamic from "next/dynamic";
 import Reports from "../../pages/reports";
 import ColorPalette from "./colorPalate";
 import TimeSeriesGraph from "./timeSeries";
+import Weather from "../ToWeather/Weather";
+import ToWeather from "../ToWeather";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
@@ -63,7 +65,7 @@ function ToMap(props) {
     console.log("Polygon :", Object.values(item.farm_polygon_json));
     console.log("Center :", item.extra_field.centroid);
     getplantationDate();
-    setPlantationDate(item.plantation_date)
+    setPlantationDate(item.plantation_date);
   };
 
   const getLayerData = (item, previous, previous_date) => {
@@ -74,7 +76,7 @@ function ToMap(props) {
     // };
     const params = {
       farm_id: item.farm_id,
-      plantation_date:item.plantation_date
+      plantation_date: item.plantation_date,
     };
     console.log("Graph Data");
 
@@ -146,6 +148,10 @@ function ToMap(props) {
             graphData={graphData}
           />
         </div>
+
+        <ToWeather
+          coordinates={selectedFarm?.extra_field?.centroid.reverse()}
+        />
       </div>
     </>
   );

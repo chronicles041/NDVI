@@ -115,7 +115,7 @@ class DateList extends React.Component {
   };
 
   onChange = (value) => {
-    alert(value)
+    // alert(value)
     this.props.selectedIndex(this.props.mapData[value]);
     this.setState(
       {
