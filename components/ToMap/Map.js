@@ -149,7 +149,7 @@ function ToMap(props) {
         </div>
 
         <ToWeather
-          coordinates={selectedFarm?.extra_field?.centroid.reverse()}
+          coordinates={center}
         />
       </div>
     </>

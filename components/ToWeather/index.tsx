@@ -13,10 +13,20 @@ const ToWeather = ({ coordinates }: Props) => {
   const [farmWeather, setFarmWeather] = useState();
   const [nextWeather, setNextWeather] = useState();
 
+  function reverseArr(input) {
+    var ret = new Array;
+    for(var i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+    return ret;
+}
+
   useEffect(() => {
     if (coordinates) {
+        let wCoordinates = reverseArr(coordinates)
+        // let wCoordinates =  coordinates.reverse()
       const params = {
-        coordinates: coordinates.toString(),
+        coordinates: wCoordinates.toString(),
       };
       ReportService.FetchWeather({ params }).then((res) => {
         console.log("Weather_data", res);
