@@ -34,8 +34,24 @@ export const Routes = [
     // },
     {
         path: "/reports",
-        icon: IconTypes.Activity,
+        icon: IconTypes.Report,
         name: "Reports"
+    },
+    {
+        path: "/weather",
+        icon: IconTypes.Weather,
+        name: "Weather"
+    },
+    {
+        path: "/activity",
+        icon: IconTypes.Activity,
+        name: "Activity"
+    },
+    {
+        path: "/chat",
+        icon: IconTypes.Expert,
+        name: "Talk to Expert"
     }
+
 
 ]

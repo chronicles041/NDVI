@@ -16,13 +16,7 @@ import ListReport from "../../components/listView";
 import { ToTablePagination } from "../../components/ToTable/pagination";
 import { ToListPagination } from "../../components/ToListPagination";
 import { CSVLink, CSVDownload } from "react-csv";
-
-// import UsersTable from "./usersTable";
-
-// type Props = {
-//   ttestData : []
-
-// };
+import moment from "moment";
 
 const ReportColumns = [
   {
@@ -82,65 +76,108 @@ const ReportColumns = [
     Header: "Crop",
     accessor: "crop_type_name",
   },
-  // {
-  //   Header: "Plantation Date",
-  //   accessor: "plantation_date",
-  //   Cell : ({value}) => value === 'N/A' ? <span className="text-red-500">{value}</span> : value
-  // },
-  // {
-  //   Header: "Current Phase",
-  //   accessor: "current_phase",
-  //   Cell : ({value}) => !value  ? <span className="text-red-500">N/A</span> : value
-  // },
+  {
+    Header: "Plantation Date",
+    accessor: "plantation_date",
+    Cell: ({ value }) =>
+      value === "N/A" ? (
+        <span className="text-red-500">{value}</span>
+      ) : (
+        moment(value).format("Do MMM, yy")
+      ),
+  },
 
   {
-    Header: "NDVI",
+    Header: "Previous Phase",
     columns: [
       {
-        Header: "Previous Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div
-              className={`${
-                value?.farm_id % 3 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              0.234 / 0.245
-            </div>
-          </>
-        ),
+        Header: "Name",
+        accessor: "previous_phase",
+        Cell: ({ value }) =>
+          !value ? <span className="text-red-500">N/A</span> : value.name,
       },
       {
-        Header: "Current Phase",
+        Header: "Value ┉",
         // accessor: "plantation_date",
         accessor: (row: any) => row,
         Cell: ({ value }: any) => (
           <>
-            <div
-              className={`${
-                value.farm_id % 2 === 0 ? "text-red-500" : "text-blue-500"
-              }`}
-            >
-              0.275 / 0.325
+            <div className="flex font-semibold">
+              <span
+                className={`${
+                  value.previous_phase.value < value.previous_phase.phaseValue
+                    ? "text-red-500"
+                    : "text-blue-500"
+                }`}
+              >
+                {value.previous_phase.value ? (
+                  value.previous_phase.value
+                ) : (
+                  <span className="text-red-500">NA</span>
+                )}
+              </span>
+              &nbsp; / &nbsp;
+              <span className={` text-blue-500`}>
+                {value.previous_phase.phaseValue}
+              </span>
             </div>
-          </>
-        ),
-      },
-      {
-        Header: "Next Phase",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div className={"text-blue-500"}>0.425</div>
           </>
         ),
       },
     ],
   },
 
+  {
+    Header: "Current Phase",
+    columns: [
+
+      {
+        Header: "Name",
+        accessor: "current_phase",
+        Cell: ({ value }) =>
+          !value ? <span className="text-red-500">N/A</span> : value.name,
+      },
+      {
+        Header: " Value ⇡",
+        // accessor: "plantation_date",
+        accessor: (row: any) => row,
+        Cell: ({ value }) => (
+          <>
+            <div className="flex font-semibold">
+              <span
+                className={`${
+                  value.current_phase.value < value.current_phase.phaseValue
+                    ? "text-red-500"
+                    : "text-blue-500"
+                }`}
+              >
+                {value.current_phase.value ? (
+                  value.current_phase.value
+                ) : (
+                  <span className="text-red-500">NA</span>
+                )}
+              </span>
+              &nbsp; / &nbsp;
+              <span className={` text-blue-500`}>
+                {value.current_phase.phaseValue}
+              </span>
+            </div>
+          </>
+        ),
+      },
+    ],
+  },
+
+  // {
+  //   Header: "Next Phase",
+  //   // accessor: "plantation_date",
+  //   accessor: (row: any) => row,
+  //   Cell: ({ value }: any) => (
+  //     <>
+  //       <div className={"text-blue-500"}>0.425</div>
+  //     </>
+  //   ),
+  // },
   {
     Header: "Action",
     accessor: (row: any) => row,
@@ -194,6 +231,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     arm_area_min: "",
     farm_area_max: "",
     tole_name: "",
+    has_season: true,
   };
 
   const [filterParams, setFilterParams] =
@@ -345,15 +383,4 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 
 export default Reports;
 
-// {/* <div className="flex items-center justify-center">
-//   <Link as={`/maps/${value.farm_id}`} href={`/maps/`} passHref>
-//     {/* <Link href={`/maps`} passHref > */}
-//     <button
-//       className="bg-primary text-black hover:text-white hover:bg-secondary transition duration-300 ease-in-out
-// font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-//       type="button"
-//     >
-//       Go to Map
-//     </button>
-//   </Link>
-// </div>; */}
+
