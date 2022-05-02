@@ -128,7 +128,7 @@ export default new (class ReportService {
             ...tempReturnValue,
             {
               farm_id: value.farm_id,
-              farm_area: value.farm_area,
+              farm_area: value.farm_area.toFixed(2),
               farm_name: value.farm_name,
               farmer_name: "Some Farmer",
               gender: "M / F",

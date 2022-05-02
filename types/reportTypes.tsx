@@ -10,7 +10,7 @@ type phaseDetail = {
 };
 export interface IFieldReport {
   farm_id: number;
-  farm_area: string;
+  farm_area: number;
   farm_name: string;
   farmer_name: string;
   gender: string;
