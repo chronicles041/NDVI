@@ -9,7 +9,7 @@ const Navbar = ({  isCollapse }: NavbarProps) => {
  
 
   return (
-    <div className="w-full h-full absoulte sidebar border-r-2 shadow-custom-shadow">
+    <div className="w-full h-full absoulte sidebar">
 
       <div className="pl-3 py-8 overflow-y-auto h-full">
 
