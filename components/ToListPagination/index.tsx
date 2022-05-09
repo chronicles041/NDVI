@@ -16,15 +16,15 @@ export const ToListPagination = ({
   gotoPage,
 }: PaginationProps) => {
   return (
-    <div className="flex-none ">
+    <div className="flex-none w-full">
       <div className=" w-full  flex flex-row items-center justify-center px-2 py-2">
         <button
           onClick={() => gotoPage(page - 1)}
           disabled={page === 1}
           className={
             page !== 1
-              ? "mx-2 bg-primary rounded-full px-2 text-white  shadow-2xl"
-              : "mx-2 bg-primary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl cursor-not-allowed "
+              ? "mx-2 bg-secondary rounded-full px-2 text-white  shadow-2xl"
+              : "mx-2 bg-secondary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl cursor-not-allowed "
           }
         >
           {"PREV"}
@@ -37,15 +37,15 @@ export const ToListPagination = ({
           disabled={page === pageCount}
           className={
             page !== pageCount
-              ? "mx-2 bg-primary rounded-full px-2 text-white  shadow-2xl"
-              : "mx-2 bg-primary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl   cursor-not-allowed"
+              ? "mx-2 bg-secondary rounded-full px-2 text-white  shadow-2xl"
+              : "mx-2 bg-secondary rounded-full px-2 text-gray-200 opacity-70 shadow-2xl   cursor-not-allowed"
           }
         >
           {"Next"}
         </button>{" "}
       </div>
 
-      <div className="text-md font-semibold w-full bg-primary px-2 py-2 mt-3 text-center text-white shadow-2xl rounded-sm opacity-80 ">
+      <div className="text-md font-semibold w-full bg-[#007691] px-2 py-2 mt-3 text-center text-white rounded-md opacity-80 ">
         {/* Showing {pageSize} of ~{pageCount * pageSize} results */}
         <span className="font-medium">
         Showing Page{" "}

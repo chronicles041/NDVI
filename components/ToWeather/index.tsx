@@ -1,6 +1,8 @@
 import moment from "moment";
 import { ReactNode, useEffect, useState } from "react";
 import ReportService from "../../api/service";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
+import ToTittle from "../ToTittle";
 
 type Props = {
   children?: ReactNode;
@@ -14,17 +16,17 @@ const ToWeather = ({ coordinates }: Props) => {
   const [nextWeather, setNextWeather] = useState();
 
   function reverseArr(input) {
-    var ret = new Array;
-    for(var i = input.length-1; i >= 0; i--) {
-        ret.push(input[i]);
+    var ret = new Array();
+    for (var i = input.length - 1; i >= 0; i--) {
+      ret.push(input[i]);
     }
     return ret;
-}
+  }
 
   useEffect(() => {
     if (coordinates) {
-        let wCoordinates = reverseArr(coordinates)
-        // let wCoordinates =  coordinates.reverse()
+      let wCoordinates = reverseArr(coordinates);
+      // let wCoordinates =  coordinates.reverse()
       const params = {
         coordinates: wCoordinates.toString(),
       };
@@ -43,79 +45,106 @@ const ToWeather = ({ coordinates }: Props) => {
   const currentTime = new Date().toString();
   const currentDay = new Date();
   return (
-    <>
-      <div className="flex flex-row gap-x-3 ">
-        <div className="basis-3/4   z-0 flex flex-col gap-y-3 overflow-y-scroll">
-          <div className="flex flex-col space-y-6 w-full max-w-screen-sm bg-white p-5  rounded-xl ring-8 ring-white ring-opacity-40">
-            {nextWeather?.daily.map((d, i) => (
-              <div className="flex justify-between items-center">
-                <span className="font-semibold text-lg w-1/4">
-                  {moment(currentDay)
-                    .add(i , "days")
-                    .format("ddd")}
-                </span>
-                <div className="flex items-center justify-end w-1/4 pr-10">
-                  <span className="font-semibold">{d.humidity}%</span>
-                  <svg
-                    className="w-6 h-6 fill-current ml-1"
-                    viewBox="0 0 16 20"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g transform="matrix(1,0,0,1,-4,-2)">
-                      <path d="M17.66,8L12.71,3.06C12.32,2.67 11.69,2.67 11.3,3.06L6.34,8C4.78,9.56 4,11.64 4,13.64C4,15.64 4.78,17.75 6.34,19.31C7.9,20.87 9.95,21.66 12,21.66C14.05,21.66 16.1,20.87 17.66,19.31C19.22,17.75 20,15.64 20,13.64C20,11.64 19.22,9.56 17.66,8ZM6,14C6.01,12 6.62,10.73 7.76,9.6L12,5.27L16.24,9.65C17.38,10.77 17.99,12 18,14C18.016,17.296 14.96,19.809 12,19.74C9.069,19.672 5.982,17.655 6,14Z" />
-                    </g>
-                  </svg>
-                </div>
-                <img
-                  className="h-full"
-                  src={`http://openweathermap.org/img/w/${d.weather[0]?.icon}.png`}
-                />
-                <span className="font-semibold text-lg w-1/4 text-right">
-                  {d.temp.max}° / {d.temp.min}°
+    <div className="flex flex-col items-center gap-y-2 mt-4">
+      <ToTittle tittle="Weather Forcast"></ToTittle>
+      <div className="flex flex-row p-2  rounded-xl h-auto w-full items-center justify-center">
+        <div className="flex-col flex-1 p-2">
+          <div className=" cursor-pointer flex flex-col justify-center items-center text-center p-8 gap-y-6 ">
+            <div className=" flex flex-col justify-center items-center px-4  py-4 bg-[#eaffb1] shadow-weather-shadow rounded-lg">
+              <div className="text-md font-bold flex flex-col text-secondary">
+                <span className="uppercase">Today</span>{" "}
+                <span className="font-normal text-secondary text-sm mt-2">
+                  {moment(currentTime).format("dddd , Do MMM YYYY ")}
                 </span>
               </div>
-            ))}
+              <div className="w-28 h-28 flex items-center justify-center">
+                <img
+                  className="h-20"
+                  src={`http://openweathermap.org/img/w/${farmWeather?.icon}.png`}
+                />
+              </div>
+              <p className="text-secondary mb-2 capitalize font-semibold">
+                {farmWeather?.weather_report[0].description}
+              </p>
+              <div className="text-4xl font-bold text-secondary mb-2 mt-2">
+                {farmWeather?.temperature.toFixed(2)}º
+              </div>
+            </div>
+            <div className="flex flex-row w-full mt-">
+              <div className="flex-1 flex-row  items-start">
+                <div className="flex  items-center justify-center">
+                  <ToIcon
+                    type={IconTypes.Wind}
+                    size={IconSize.SM}
+                    style={""}
+                  ></ToIcon>
+                </div>
+
+                <div className="flex flex-col items-center">
+                  <div className="font-medium text-sm mt-2 ">Wind</div>
+                  <div className="text-secondary text-sm font-semibold">
+                    {" "}
+                    {`${farmWeather?.speed}  km/h`}
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 flex-row items-center">
+                <div className="flex flex-1 items-center justify-center">
+                  <ToIcon
+                    type={IconTypes.Humidity}
+                    size={IconSize.SM}
+                    style={""}
+                  ></ToIcon>
+                </div>
+
+                <div className="flex-1 flex-col items-center">
+                  <div className="font-medium text-sm mt-2">Humidity</div>
+                  <div className="text-secondary text-sm font-semibold">{`${farmWeather?.humidity} %`}</div>
+                </div>
+              </div>
+              <div className="flex-1 flex-row items-start">
+                <div className="flex flex-1 items-center justify-center">
+                  <ToIcon
+                    type={IconTypes.Pressure}
+                    size={IconSize.SM}
+                    style={""}
+                  ></ToIcon>
+                </div>
+
+                <div className="flex-1 flex-col items-center">
+                  <div className="font-medium text-sm mt-2">Pressure</div>
+                  <div className="text-secondary text-sm font-semibold">{`${farmWeather?.pressure} mb `}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* todaypnael */}
-
-        <div className="basis-1/4 flex-col flex justify-centergap-x-2 items-center">
-          <div className="w-64   mt-10 cursor-pointer border b-gray-400 rounded flex flex-col justify-center items-center text-center p-6 bg-white">
-            <div className="text-md font-bold flex flex-col text-gray-900">
-              <span className="uppercase">Today</span>{" "}
-              <span className="font-normal text-gray-700 text-sm">
-                {moment(currentTime).format("Do MMM")}
+        <div className="flex-1 flex-col gap-y-3 items-center p-2">
+          {nextWeather?.daily.map((d, i) => (
+            <div className="flex justify-between items- -5">
+              <span className="font-semibold text-lg w-1/4">
+                {moment(currentDay).add(i, "days").format("ddd")}
               </span>
-            </div>
-            <div className="w-32 h-32 flex items-center justify-center">
+              <div className="flex items-center justify-end w-1/4 gap-x-3 pr-10">
+                <span className="font-semibold">{d.humidity}%</span>
+                <ToIcon
+                  type={IconTypes.Humidity}
+                  size={IconSize.SM}
+                  style={""}
+                ></ToIcon>
+              </div>
               <img
                 className="h-full"
-                src={`http://openweathermap.org/img/w/${farmWeather?.icon}.png`}
+                src={`http://openweathermap.org/img/w/${d.weather[0]?.icon}.png`}
               />
+              <span className="font-semibold text-lg w-1/4 text-right">
+                {d.temp.max}° / {d.temp.min}°
+              </span>
             </div>
-            <p className="text-gray-700 mb-2">
-              {farmWeather?.weather_report[0].description}
-            </p>
-            <div className="text-3xl font-bold text-gray-900 mb-6">
-              {farmWeather?.temperature.toFixed(2)}º
-            </div>
-            <div className=" ">
-              {/* <div className="flex items-center text-gray-700 px-2">
-           logo
-            100 l/m<sup>2</sup>
-          </div> */}
-              <div className="  text-gray-700 px-2">
-                {`Wind ${farmWeather?.speed}  km/h`}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-
-      {/* {JSON.stringify(nextWeather?.daily)} */}
-    </>
+    </div>
   );
 };
 

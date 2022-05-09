@@ -26,7 +26,9 @@ import Profile from "./assets/profile.svg";
 import Settings from "./assets/settings.svg";
 import Activity from "./assets/activity.svg";
 import Expert from "./assets/expert.svg";
-
+import Wind from "./assets/wind.svg";
+import Pressure from "./assets/pressure.svg";
+import Humidity from "./assets/humidity.svg";
 // import styles from "./../../styles";
 
 interface IiconSize {
@@ -87,6 +89,9 @@ export const IconTypes = {
   Profile:Profile,
   Activity:Activity,
   Expert:Expert,
+  Wind:Wind,
+  Pressure:Pressure,
+  Humidity:Humidity,
 };
 export const IconStyles = {
   Default: " ",

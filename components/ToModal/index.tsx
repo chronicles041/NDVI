@@ -1,4 +1,5 @@
 import { ReactNode, useState } from "react";
+import ToTittle from "../ToTittle";
 
 type Props = {
   children?: ReactNode;
@@ -7,13 +8,13 @@ type Props = {
   onOpen: Function;
 };
 
-const ToModal = ({ children, title, type,onOpen }: Props) => {
+const ToModal = ({ children, title, type, onOpen }: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   const setModalOpen = () => {
-    setShowModal(true)
-     onOpen()
-  }
+    setShowModal(true);
+    onOpen();
+  };
   return (
     <>
       <button
@@ -29,18 +30,7 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
           <div className="flex  justify-center bg-gray-500 transition duration-300 ease-in-out bg-opacity-50 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className=" relative flex flex-col justify-center items-center w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
               <div className="relative w-full bg-white border-2 h-full p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
-                <h2 className="text-xl font-bold mb-2 text-gray-800">
-                  {title} <br />
-                </h2>
-                <div className="text-center max-w-xl mx-auto">
-                  <div className="text-center mb-10">
-                    <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
-                    <span className="inline-block w-3 h-1 rounded-full bg-secondary ml-1"></span>
-                    <span className="inline-block w-40 h-1 rounded-full bg-primary"></span>
-                    <span className="inline-block w-3 h-1 rounded-full bg-secondary ml-1"></span>
-                    <span className="inline-block w-1 h-1 rounded-full bg-primary ml-1"></span>
-                  </div>
-                </div>
+               <ToTittle tittle={"Feild Details"}></ToTittle>
                 <div className="flex flex-col h-[90%] w-full overflow-x-hidden overflow-y-hidden">
                   {" "}
                   {children}{" "}
@@ -51,7 +41,9 @@ const ToModal = ({ children, title, type,onOpen }: Props) => {
                       className="text-white transition duration-300 ease-in-out  bg-secondary  hover:bg-primary hover:text-white shadow-md  rounded-md outline-none focus:outline-none mt-2 px-2 py-2 w-full"
                       onClick={() => setShowModal(false)}
                     >
-                      <span className="text-base px-2 font-semibold">Close</span>
+                      <span className="text-base px-2 font-semibold">
+                        Close
+                      </span>
                     </button>
                   </div>
                 </div>
