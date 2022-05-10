@@ -7,7 +7,6 @@ import {
   TileLayer,
 } from "react-leaflet";
 
-
 class LayerOptions extends React.Component {
   polyRef = React.createRef();
   ndviOverlayRef = React.createRef();
@@ -15,11 +14,11 @@ class LayerOptions extends React.Component {
   // geoOverlayRef = React.createRef();
   layControlRef = React.createRef();
 
-  
   constructor(props) {
     super(props);
     this.state = {
       polygon: [],
+      multiplePolygon: [],
       ndvi_path: "",
       ndwi_path: "",
       geo_path: "https://miro.medium.com/max/800/1*Z9QPlG7TvSkYMv0OzUbrPg.jpeg",
@@ -28,20 +27,22 @@ class LayerOptions extends React.Component {
   }
 
   componentWillMount() {
-  //   this.setState({
-  //     polygon: this.props.polygon,
-  //   });
-  this.createPolygon(this.props.polygon);
+    //   this.setState({
+    //     polygon: this.props.polygon,
+    //   });
+    // this.createPolygon(this.props.polygon);
+    this.createMultiplePolygon();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.polygon !== prevState.polygon) {
       this.controllLayer();
+      // this.createMultiplePolygon()
     }
     if (prevProps.polygon === this.state.polygon) {
       this.createPolygon(this.props.polygon);
-    } 
-    
+    }
+
     if (prevProps.polygon !== this.props.polygon) {
       this.createPolygon(this.props.polygon);
     }
@@ -89,19 +90,59 @@ class LayerOptions extends React.Component {
       newArray = [...newArray, [arr[1], arr[0]]];
       return null;
     });
-    console.log("New Array : " , newArray)
+    console.log("New Array : ", newArray);
     this.setState(
       {
         polygon: newArray,
         ndwi_path: "",
         ndvi_path: "",
       },
-      () => {}
+      () => {
+        this.createMultiplePolygon();
+      }
     );
   };
 
+  createMultiplePolygon = () => {
+    let finalArray = [];
+
+    this.props.multipleField?.map((field) => {
+      let tempArray = field;
+      let newArray = [];
+      tempArray.map((arr) => {
+        newArray = [...newArray, [arr[1], arr[0]]];
+        return null;
+      });
+      // console.log("**DNew Array : ", newArray);
+      finalArray.push(newArray);
+    });
+
+    finalArray.map((ar) => {
+      if (arraysEqual(this.state.polygon[0], ar)) {
+        console.log("*********************************");
+        console.log("**DCommon: ");
+        console.log("**DCommonArray: ");
+        console.log("*********************************");
+      }
+    });
+
+    // console.log("**DFinal State : ", this.state.polygon);
+    // console.log(
+    //   "**DFinal Array : ",
+    //   finalArray.filter((ar) => ar !== this.state.polygon)
+    // );
+
+
+    this.setState({
+      multiplePolygon: finalArray,
+    });
+  };
+
   render() {
-    const polygonStyle = { color: "yellow" };
+    const polygonStyle = { color: "blue" };
+
+    const multiPolygon = this.props.multipleField;
+
     return (
       <>
         <LayersControl
@@ -115,6 +156,14 @@ class LayerOptions extends React.Component {
             positions={this.state.polygon}
             // positions={testPolygon}
           />
+          {/* {this.props.multipleField?.length < 0 ? ( */}
+          <Polygon
+            ref={this.polyRef}
+            pathOptions={{ color: "yellow" }}
+            positions={this.state.multiplePolygon}
+          />
+          {/* // ) : null} */}
+
           <LayerGroup>
             <LayersControl.BaseLayer checked name="Satellite Map">
               <TileLayer url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" />
