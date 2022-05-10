@@ -5,6 +5,7 @@ import MapService from "./mapService";
 import ReactApexChart from "react-apexcharts";
 import moment from "moment";
 import ReportService from "../../api/service";
+import ToTittle from "../ToTittle";
 
 type graphDataTypes = {
   ndvi: [];
