@@ -130,7 +130,6 @@ const ReportColumns = [
   {
     Header: "Current Phase",
     columns: [
-
       {
         Header: "Name",
         accessor: "current_phase",
@@ -189,7 +188,12 @@ const ReportColumns = [
   },
 ];
 
-const Reports = ({ selectedItem, loading, listView }: any) => {
+const Reports = ({
+  selectedItem,
+  loading,
+  listView,
+  getMultiplefields,
+}: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
   ]);
@@ -247,10 +251,24 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     ReportService.FetchFieldReport(filterParams).then((res) => {
       setReportData(res);
       setTableLoading(false);
+      createMultiplolygon(res);
     });
 
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
+
+  const createMultiplolygon = (res) => {
+    let tempArray: any = [];
+    res.data.map((data) => {
+      let singlePloygon = data.farm_polygon_json?.location;
+      tempArray.push(singlePloygon);
+      // tempArray.push(createPolygon(singlePloygon));
+    });
+    console.log("**Create Multiploygon", tempArray);
+    getMultiplefields(tempArray);
+  };
+
+
 
   const processData = () => {
     setTableLoading(true);
@@ -382,5 +400,3 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 };
 
 export default Reports;
-
-

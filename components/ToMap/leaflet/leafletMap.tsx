@@ -12,7 +12,8 @@ function LeafletMap({
   newFarmArray,
   selectedData,
   configureColorPalate,
-}) {
+  multipleField,
+}: any) {
   const [addView, setView] = useState(false);
 
   const MapSettings = () => {
@@ -26,6 +27,8 @@ function LeafletMap({
     // });
     // }
     map.setView([center[1], center[0]], 17);
+    // map.setView([81.44453166029894, 28.209537039662536], 17);
+
     return null;
   };
 
@@ -36,8 +39,13 @@ function LeafletMap({
   return (
     <>
       {/* <button onClick={()=>setView(!addView)}>Check : {addView?"True":"False"}</button> */}
-      <MapContainer center={[center[1], center[0]]} zoom={16}>
-        <LayerOptions selectedData={selectedData} polygon={polygon} />
+      {/* <MapContainer center={[51.51, -0.12]} zoom={16}> */}
+        <MapContainer center={[center[1], center[0]]} zoom={16}>
+        <LayerOptions
+          multipleField={multipleField}
+          selectedData={selectedData}
+          polygon={polygon}
+        />
         {/* <NewField addFieldView={addView} newFarmArray={newFarmArray} /> */}
         <MapSettings></MapSettings>
       </MapContainer>

@@ -117,14 +117,14 @@ class LayerOptions extends React.Component {
       finalArray.push(newArray);
     });
 
-    finalArray.map((ar) => {
-      if (arraysEqual(this.state.polygon[0], ar)) {
-        console.log("*********************************");
-        console.log("**DCommon: ");
-        console.log("**DCommonArray: ");
-        console.log("*********************************");
-      }
-    });
+    // finalArray.map((ar) => {
+    //   if (arraysEqual(this.state.polygon[0], ar)) {
+    //     console.log("*********************************");
+    //     console.log("**DCommon: ");
+    //     console.log("**DCommonArray: ");
+    //     console.log("*********************************");
+    //   }
+    // });
 
     // console.log("**DFinal State : ", this.state.polygon);
     // console.log(

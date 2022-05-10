@@ -39,6 +39,7 @@ function ToMap(props) {
   const [graphData, setGraphData] = useState({});
   const [viewAllFields, setAllFields] = useState(false);
   const [plantationDate, setPlantationDate] = React.useState();
+  const [multipleField, setMultipleField] = React.useState();
 
   // useEffect(() => {
   //   if (props.location.state) {
@@ -111,6 +112,7 @@ function ToMap(props) {
       <div className="container bg-white px-4 py-4 flex-col">
         <div className="flex flex-row gap-x-3">
           <div className="basis-3/4 z-0 flex flex-col gap-y-3">
+             {/* **Here  {JSON.stringify(multipleField[1])} */}
             <div className="dateList flex justify-center bg-[#007691] rounded-md items-center   w-full mt-3">
               <DateList
                 loading={loading}
@@ -130,6 +132,7 @@ function ToMap(props) {
               configureColorPalate={(type, value) =>
                 setColor({ ...color, [type]: value })
               }
+              multipleField={multipleField}
             />
             <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
@@ -139,10 +142,11 @@ function ToMap(props) {
               selectedItem={selectFarm}
               listView={true}
               getPlantationDate={getplantationDate}
+              getMultiplefields = {(value:any)=>setMultipleField(value)}
             />
           </div>
         </div>
-        <div hidden={loading} className={"pt-5 text-center"}>
+        {/* <div hidden={loading} className={"pt-5 text-center"}>
           <TimeSeriesGraph
             plantationDate={plantationDate}
             graphData={graphData}
@@ -150,7 +154,7 @@ function ToMap(props) {
         </div>
         <ToWeather
           coordinates={center}
-        />
+        /> */}
       </div>
     </>
   );
