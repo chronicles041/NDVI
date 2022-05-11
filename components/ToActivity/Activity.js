@@ -7,17 +7,16 @@ export default function Activity() {
         <span className="text-2xl text-primary font-semibold">To Do</span>
         <div className="flex flex-col px-6 py-2 bg-[#eaffb1] shadow-xl rounded-lg gap-y-2">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-            Noteworthy technology acquisitions 2021
+            New Plantation Monitoring 
           </h5>
           <p class="mb-3 font-normal text-gray-700">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
          <div
             
             className="flex items-center py-3 px-3 text-sm font-medium  w-32 text-center text-white bg-primary rounded-lg"
           >
-            Open Task
+            30 days left
           </div>
         </div>
       </div>
@@ -25,11 +24,10 @@ export default function Activity() {
         <span className="text-2xl text-primary font-semibold">In Progress</span>
         <div className="flex flex-col px-6 py-2 bg-[#eaffb1] shadow-xl rounded-lg gap-y-2">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-            Noteworthy technology acquisitions 2021
+            Download Svg of Graph Field No.CA3
           </h5>
           <p class="mb-3 font-normal text-gray-700">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
+            Lorem ipsum dolor sit amet consectetur adipiscing elit.
           </p>
          <div
            
@@ -43,11 +41,10 @@ export default function Activity() {
         <span className="text-2xl text-primary font-semibold">Completed</span>
         <div className="flex flex-col px-6 py-2 bg-[#eaffb1] shadow-xl rounded-lg gap-y-2">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-            Noteworthy technology acquisitions 2021
+            Add New Field in Banke District
           </h5>
           <p class="mb-3 font-normal text-gray-700">
-            Here are the biggest enterprise technology acquisitions of 2021 so
-            far, in reverse chronological order.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           </p>
          <div
 

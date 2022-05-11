@@ -58,7 +58,7 @@ class DateList extends React.Component {
                 ? "red"
                 : "#161626",
             color: d.ndvi_path === "cloud cover" ? "white" : "#374151",
-            cursor: d.ndvi_path === "not-allowed" ? "alias" : "#374151",
+            cursor: d.ndvi_path !== "cloud cover" ? "" : "not-allowed",
             fontSize: "7px",
           },
           label: (
