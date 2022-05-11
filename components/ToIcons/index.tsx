@@ -31,6 +31,7 @@ import Pressure from "./assets/pressure.svg";
 import Humidity from "./assets/humidity.svg";
 import Sunrise from "./assets/sunrise.svg";
 import Sunset from "./assets/sunset.svg";
+import Cloud from "./assets/cloud.svg";
 // import styles from "./../../styles";
 
 interface IiconSize {
@@ -96,6 +97,7 @@ export const IconTypes = {
   Humidity: Humidity,
   Sunrise: Sunrise,
   Sunset: Sunset,
+  Cloud: Cloud,
 };
 export const IconStyles = {
   Default: " ",

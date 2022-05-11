@@ -167,11 +167,12 @@ const ReportColumns = [
     ],
   },
   {
-    Header: "Yeild Estimation",
+    Header: "Yeild Estimation (Mg / Hector)",
     columns: [
       {
         Header: "77 Days ",
         accessor: "yield_estimation_77",
+        Cell: ({ value }: any) => <>{value ? value.toFixed(4) : "N/A"}</>,
       },
       {
         Header: "120 Days ",
@@ -262,6 +263,7 @@ const Reports = ({
     ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
     ReportService.FetchFieldReport(filterParams).then((res) => {
+      // console.log("**RES",res)
       setReportData(res);
       setTableLoading(false);
       if (listView) {
@@ -290,6 +292,8 @@ const Reports = ({
       setReportData(res);
       setTableLoading(false);
       createMultiplolygon(res);
+      // if (res.count > 1) {
+      // }
     });
   };
 

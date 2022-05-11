@@ -123,6 +123,8 @@ export default new (class ReportService {
       })
       .then((res) => {
         let tempReturnValue: IFieldReport[] = [];
+      console.log("**RES",res)
+
         res.data.results.map((value: IFieldReport, i: number) => {
           tempReturnValue = [
             ...tempReturnValue,
