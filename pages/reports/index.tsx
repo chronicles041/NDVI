@@ -166,6 +166,19 @@ const ReportColumns = [
       },
     ],
   },
+  {
+    Header: "Yeild Estimation",
+    columns: [
+      {
+        Header: "77 Days ",
+        accessor: "yield_estimation_77",
+      },
+      {
+        Header: "120 Days ",
+        accessor: "yield_estimation_120",
+      },
+    ],
+  },
 
   // {
   //   Header: "Next Phase",
@@ -220,7 +233,7 @@ const Reports = ({
   }>({ data: [], total: 0 });
 
   const [pageSize, setPageSize] = React.useState<number>(10);
-  const [limit, setLimit] = React.useState<number>(10);
+  const [limit, setLimit] = React.useState<number>(listView ? 20 : 10);
   const [offSet, setOffset] = React.useState<number>(0);
   const [selectedData, selectData] = useState<IFieldReport | undefined>();
   const [tableView, setTableView] = React.useState<boolean>(false);
@@ -251,7 +264,9 @@ const Reports = ({
     ReportService.FetchFieldReport(filterParams).then((res) => {
       setReportData(res);
       setTableLoading(false);
-      createMultiplolygon(res);
+      if (listView) {
+        createMultiplolygon(res);
+      }
     });
 
     // console.log("***",filterParams?filterParams:"Undefined")
@@ -264,11 +279,9 @@ const Reports = ({
       tempArray.push(singlePloygon);
       // tempArray.push(createPolygon(singlePloygon));
     });
-    console.log("**Create Multiploygon", tempArray);
+    // console.log("**Create Multiploygon", tempArray);
     getMultiplefields(tempArray);
   };
-
-
 
   const processData = () => {
     setTableLoading(true);
@@ -276,6 +289,7 @@ const Reports = ({
     ReportService.FetchFieldReport(filterParams).then((res) => {
       setReportData(res);
       setTableLoading(false);
+      createMultiplolygon(res);
     });
   };
 
@@ -387,12 +401,13 @@ const Reports = ({
       <ToListPagination
         loading={loading}
         page={offSet >= reportData.total ? -1 : offSet / limit + 1}
-        pageCount={Math.round(reportData.total / 10)}
-        pageSize={limit}
+        pageCount={Math.round(reportData.total / 20)}
+        pageSize={20}
+        // pageSize={limit}
         // page={currentP}
         setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
-          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 20)
         }
       />
     </>

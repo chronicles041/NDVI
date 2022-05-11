@@ -29,6 +29,8 @@ import Expert from "./assets/expert.svg";
 import Wind from "./assets/wind.svg";
 import Pressure from "./assets/pressure.svg";
 import Humidity from "./assets/humidity.svg";
+import Sunrise from "./assets/sunrise.svg";
+import Sunset from "./assets/sunset.svg";
 // import styles from "./../../styles";
 
 interface IiconSize {
@@ -81,24 +83,26 @@ export const IconTypes = {
   Map: Map,
   Toggle: Toggle,
   Location: Location,
-  Project:Project,
-  Organiztion:Organiztion,
-  Loading:Loading,
+  Project: Project,
+  Organiztion: Organiztion,
+  Loading: Loading,
   Settings: Settings,
-  Logout:Logout,
-  Profile:Profile,
-  Activity:Activity,
-  Expert:Expert,
-  Wind:Wind,
-  Pressure:Pressure,
-  Humidity:Humidity,
+  Logout: Logout,
+  Profile: Profile,
+  Activity: Activity,
+  Expert: Expert,
+  Wind: Wind,
+  Pressure: Pressure,
+  Humidity: Humidity,
+  Sunrise: Sunrise,
+  Sunset: Sunset,
 };
 export const IconStyles = {
   Default: " ",
   Navigation: " ",
   Loading: "text-center",
   Selected: "fill-blue-500",
-  FillColor: "fill-white"
+  FillColor: "fill-white",
 };
 
 export const IconSize = {
@@ -132,5 +136,3 @@ export const IconSize = {
 };
 
 export default ToIcon;
-
-

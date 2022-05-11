@@ -46,9 +46,9 @@ const ToWeather = ({ coordinates }: Props) => {
   const currentDay = new Date();
   return (
     <div className="flex flex-col items-center gap-y-2 mt-4">
-      <ToTittle tittle="Weather Forcast"></ToTittle>
+      <ToTittle tittle="Weather Forcast" />
       <div className="flex flex-row p-2  rounded-xl h-auto w-full items-center justify-center">
-        <div className="flex-col flex-1 p-2">
+        {/* <div className="flex-col flex-1 p-2">
           <div className=" cursor-pointer flex flex-col justify-center items-center text-center p-8 gap-y-6 ">
             <div className=" flex flex-col justify-center items-center px-4  py-4 bg-[#eaffb1] shadow-weather-shadow rounded-lg">
               <div className="text-md font-bold flex flex-col text-secondary">
@@ -118,25 +118,37 @@ const ToWeather = ({ coordinates }: Props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex-1 flex-col gap-y-3 items-center p-2">
           {nextWeather?.daily.map((d, i) => (
             <div className="flex justify-between items- -5">
               <span className="font-semibold text-lg w-1/4">
-                {moment(currentDay).add(i, "days").format("ddd")}
+                {moment.unix(d.dt).format("ddd")}
               </span>
-              <div className="flex items-center justify-end w-1/4 gap-x-3 pr-10">
-                <span className="font-semibold">{d.humidity}%</span>
+              <span className="font-semibold text-sm w-1/4">
                 <ToIcon
-                  type={IconTypes.Humidity}
+                  type={IconTypes.Sunrise}
                   size={IconSize.SM}
                   style={""}
-                ></ToIcon>
+                />
+                {moment.unix(d.sunrise).format(" h:mm a")} -
+                {moment.unix(d.sunset).format(" h:mm a")}
+                <ToIcon type={IconTypes.Sunset} size={IconSize.SM} style={""} />
+              </span>
+              <span className="font-semibold text-sm w-1/4">
+                Wind - {d.wind_speed} km/hr
+              </span>
+              <div className="flex items-center justify-end w-1/4 gap-x-3 pr-10">
+                <span className="font-semibold text-sm">
+                  {`${d.weather[0]?.main}`}-{" "}
+                  {`${d.weather[0]?.description}`}
+                </span>
+                <img
+                  className="h-full"
+                  src={`http://openweathermap.org/img/w/${d.weather[0]?.icon}.png`}
+                />
               </div>
-              <img
-                className="h-full"
-                src={`http://openweathermap.org/img/w/${d.weather[0]?.icon}.png`}
-              />
+
               <span className="font-semibold text-lg w-1/4 text-right">
                 {d.temp.max}° / {d.temp.min}°
               </span>

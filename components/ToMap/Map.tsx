@@ -146,7 +146,7 @@ function ToMap(props) {
             />
           </div>
         </div>
-        {/* <div hidden={loading} className={"pt-5 text-center"}>
+        <div hidden={loading} className={"pt-5 text-center"}>
           <TimeSeriesGraph
             plantationDate={plantationDate}
             graphData={graphData}
@@ -154,7 +154,7 @@ function ToMap(props) {
         </div>
         <ToWeather
           coordinates={center}
-        /> */}
+        />
       </div>
     </>
   );

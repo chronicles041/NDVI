@@ -152,6 +152,7 @@ function TimeSeriesGraph({
   return (
     <>
       <div className={"m-1 rounded-2xl shadow-l"}>
+      <ToTittle tittle="Time Series Graph" />
 
       {graphData?.ndvi?.length > 0 ? (
           <>
