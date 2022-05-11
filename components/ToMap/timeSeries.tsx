@@ -73,7 +73,11 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
 
-    return [{ data: timeArray }];
+    return [{ 
+      data: timeArray,
+      name:"Globel Maize Trend",
+      color:"green"
+     }];
   };
 
   const createGraphData = () => {
@@ -84,7 +88,12 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
     // alert(tempArray[2])
-    return [{ data: timeArray }];
+    return [{ 
+      data: timeArray,
+      name:"Selected Field" ,
+      color:"#007691"
+    
+    }];
   };
 
   const options = {
@@ -142,9 +151,9 @@ function TimeSeriesGraph({
       type: "gradient",
       gradient: {
         shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.9,
-        stops: [0, 100],
+        opacityFrom: 0.5,
+        opacityTo: 0.2,
+        stops: [0,100],
       },
     },
   };
