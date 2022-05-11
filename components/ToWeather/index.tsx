@@ -3,6 +3,8 @@ import { ReactNode, useEffect, useState } from "react";
 import ReportService from "../../api/service";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 import ToTittle from "../ToTittle";
+import { getIcon } from "../Weather/iconsMap";
+import WeatherIcon from "../Weather/WeatherIcon";
 
 type Props = {
   children?: ReactNode;
@@ -46,8 +48,8 @@ const ToWeather = ({ coordinates }: Props) => {
   const currentDay = new Date();
   return (
     <div className="flex flex-col items-center gap-y-2 mt-4">
-      <ToTittle tittle="Weather Forcast" />
-      <div className="flex flex-row p-2  rounded-xl h-auto w-full items-center justify-center">
+      <ToTittle tittle="Weather Forecast" />
+      <div className="flex flex-row bg-gradient-to-tr from-gray-900 to-gray-600 bg-gradient-to-r  font-medium text-white p-2  rounded-xl h-auto w-full items-center justify-center">
         {/* <div className="flex-col flex-1 p-2">
           <div className=" cursor-pointer flex flex-col justify-center items-center text-center p-8 gap-y-6 ">
             <div className=" flex flex-col justify-center items-center px-4  py-4 bg-[#eaffb1] shadow-weather-shadow rounded-lg">
@@ -119,13 +121,13 @@ const ToWeather = ({ coordinates }: Props) => {
             </div>
           </div>
         </div> */}
-        <div className="flex-1 flex-col gap-y-3 items-center p-2">
+        <div className="flex flex-row gap-y-3 gap-x-2 items-center p-2">
           {nextWeather?.daily.map((d, i) => (
-            <div className="flex justify-between items- -5">
-              <span className="font-semibold text-lg w-1/4">
+            <div className="flex  content-center bg-black bg-opacity-25 p-4 rounded-md shadow-md gap-y-4 flex-col  items-center justify-center">
+              <span className=" text-white opacity-80 font-semibold text-lg w-1/4">
                 {moment.unix(d.dt).format("ddd")}
               </span>
-              <span className="font-semibold text-sm w-1/4">
+              {/* <span className="font-semibold text-sm w-1/4">
                 <ToIcon
                   type={IconTypes.Sunrise}
                   size={IconSize.SM}
@@ -134,23 +136,24 @@ const ToWeather = ({ coordinates }: Props) => {
                 {moment.unix(d.sunrise).format(" h:mm a")} -
                 {moment.unix(d.sunset).format(" h:mm a")}
                 <ToIcon type={IconTypes.Sunset} size={IconSize.SM} style={""} />
-              </span>
-              <span className="font-semibold text-sm w-1/4">
-                Wind - {d.wind_speed} km/hr
-              </span>
-              <div className="flex items-center justify-end w-1/4 gap-x-3 pr-10">
-                <span className="font-semibold text-sm">
-                  {`${d.weather[0]?.main}`}-{" "}
-                  {`${d.weather[0]?.description}`}
-                </span>
-                <img
+              </span> */}
+              
+              <div className="flex flex-col items-center gap-y-1  justify-end w-auto">
+              
+                <WeatherIcon size={50} title= ""  path={getIcon(d.weather[0]?.icon)}></WeatherIcon>
+                <div className="font-medium text-sm">
+                  {`${d.weather[0]?.main}`}{" "}
+                  {/* {`${d.weather[0]?.description}`} */}
+                </div>
+                {/* <img
                   className="h-full"
                   src={`http://openweathermap.org/img/w/${d.weather[0]?.icon}.png`}
-                />
+                /> */}
               </div>
+              
 
-              <span className="font-semibold text-lg w-1/4 text-right">
-                {d.temp.max}° / {d.temp.min}°
+              <span className="font-medium items-center text-lg w-full text-center justify-center">
+                {d.temp.max}°  {d.temp.min}°
               </span>
             </div>
           ))}
