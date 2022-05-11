@@ -130,7 +130,6 @@ const ReportColumns = [
   {
     Header: "Current Phase",
     columns: [
-
       {
         Header: "Name",
         accessor: "current_phase",
@@ -167,6 +166,20 @@ const ReportColumns = [
       },
     ],
   },
+  {
+    Header: "Yeild Estimation (Mg / Hector)",
+    columns: [
+      {
+        Header: "77 Days ",
+        accessor: "yield_estimation_77",
+        Cell: ({ value }: any) => <>{value ? value.toFixed(4) : "N/A"}</>,
+      },
+      {
+        Header: "120 Days ",
+        accessor: "yield_estimation_120",
+      },
+    ],
+  },
 
   // {
   //   Header: "Next Phase",
@@ -189,7 +202,12 @@ const ReportColumns = [
   },
 ];
 
-const Reports = ({ selectedItem, loading, listView }: any) => {
+const Reports = ({
+  selectedItem,
+  loading,
+  listView,
+  getMultiplefields,
+}: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
   ]);
@@ -216,7 +234,7 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
   }>({ data: [], total: 0 });
 
   const [pageSize, setPageSize] = React.useState<number>(10);
-  const [limit, setLimit] = React.useState<number>(10);
+  const [limit, setLimit] = React.useState<number>(listView ? 20 : 10);
   const [offSet, setOffset] = React.useState<number>(0);
   const [selectedData, selectData] = useState<IFieldReport | undefined>();
   const [tableView, setTableView] = React.useState<boolean>(false);
@@ -245,12 +263,27 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     ReportService.FetchWard().then((res) => setWard(res));
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
     ReportService.FetchFieldReport(filterParams).then((res) => {
+      // console.log("**RES",res)
       setReportData(res);
       setTableLoading(false);
+      if (listView) {
+        createMultiplolygon(res);
+      }
     });
 
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [limit, offSet]);
+
+  const createMultiplolygon = (res) => {
+    let tempArray: any = [];
+    res.data.map((data) => {
+      let singlePloygon = data.farm_polygon_json?.location;
+      tempArray.push(singlePloygon);
+      // tempArray.push(createPolygon(singlePloygon));
+    });
+    // console.log("**Create Multiploygon", tempArray);
+    getMultiplefields(tempArray);
+  };
 
   const processData = () => {
     setTableLoading(true);
@@ -258,6 +291,9 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
     ReportService.FetchFieldReport(filterParams).then((res) => {
       setReportData(res);
       setTableLoading(false);
+      createMultiplolygon(res);
+      // if (res.count > 1) {
+      // }
     });
   };
 
@@ -369,12 +405,13 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
       <ToListPagination
         loading={loading}
         page={offSet >= reportData.total ? -1 : offSet / limit + 1}
-        pageCount={Math.round(reportData.total / 10)}
-        pageSize={limit}
+        pageCount={Math.round(reportData.total / 20)}
+        pageSize={20}
+        // pageSize={limit}
         // page={currentP}
         setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
-          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 20)
         }
       />
     </>
@@ -382,5 +419,3 @@ const Reports = ({ selectedItem, loading, listView }: any) => {
 };
 
 export default Reports;
-
-

@@ -5,6 +5,7 @@ import MapService from "./mapService";
 import ReactApexChart from "react-apexcharts";
 import moment from "moment";
 import ReportService from "../../api/service";
+import ToTittle from "../ToTittle";
 
 type graphDataTypes = {
   ndvi: [];
@@ -72,7 +73,11 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
 
-    return [{ data: timeArray }];
+    return [{ 
+      data: timeArray,
+      name:"Globel Maize Trend",
+      color:"green"
+     }];
   };
 
   const createGraphData = () => {
@@ -83,7 +88,12 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
     // alert(tempArray[2])
-    return [{ data: timeArray }];
+    return [{ 
+      data: timeArray,
+      name:"Selected Field" ,
+      color:"#007691"
+    
+    }];
   };
 
   const options = {
@@ -141,9 +151,9 @@ function TimeSeriesGraph({
       type: "gradient",
       gradient: {
         shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.9,
-        stops: [0, 100],
+        opacityFrom: 0.5,
+        opacityTo: 0.2,
+        stops: [0,100],
       },
     },
   };
@@ -151,6 +161,7 @@ function TimeSeriesGraph({
   return (
     <>
       <div className={"m-1 rounded-2xl shadow-l"}>
+      <ToTittle tittle="Time Series Graph" />
 
       {graphData?.ndvi?.length > 0 ? (
           <>

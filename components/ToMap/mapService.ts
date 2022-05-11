@@ -24,5 +24,6 @@ class MapService {
       params,
     });
   }
+  
 }
 export default new MapService();

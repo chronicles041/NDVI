@@ -1,6 +1,11 @@
 import React from "react";
 import { Slider } from "antd";
-import { LeftOutlined, RightOutlined, CaretRightFilled,CaretLeftFilled   } from "@ant-design/icons";
+import {
+  LeftOutlined,
+  RightOutlined,
+  CaretRightFilled,
+  CaretLeftFilled,
+} from "@ant-design/icons";
 import moment from "moment";
 import ToIcon, { IconSize, IconStyles, IconTypes } from "../ToIcons";
 
@@ -43,18 +48,26 @@ class DateList extends React.Component {
       tempMarks = {
         ...tempMarks,
         [i]: {
+          hidden: true,
+
           style: {
             backgroundColor:
-              this.state.markerIndex === i ? "#59433E" : "#161626",
-            color: "#374151",
+              this.state.markerIndex === i
+                ? "#59433E"
+                : d.ndvi_path === "cloud cover"
+                ? "red"
+                : "#161626",
+            color: d.ndvi_path === "cloud cover" ? "white" : "#374151",
+            cursor: d.ndvi_path === "not-allowed" ? "alias" : "#374151",
             fontSize: "7px",
           },
-          label:
-            this.state.markerIndex === i ? (
-              <strong>{moment(d.date).format("Do MMM, yy")} </strong>
-            ) : (
-              <strong>{moment(d.date).format("Do MMM, yy")} </strong>
-            ),
+          label: (
+            <strong>
+              {d.ndvi_path === "cloud cover" ? "🌧 " : ""}
+              {moment(d.date).format("Do MMM, yy")}
+            </strong>
+          ),
+          // className={`${d.ndvi_path}`}
           // label: this.state.markerIndexactiveMarker ?  'Active': <strong>{moment(d.date).format("Do MMM, yy")}</strong>,
         },
       };
@@ -138,7 +151,11 @@ class DateList extends React.Component {
     return (
       <div className="flex flex-row w-full justify-center items-center p-5">
         {this.props.loading ? (
-         <ToIcon type={IconTypes.Loading} size={IconSize.LOADING} style={IconStyles.FillColor}></ToIcon>
+          <ToIcon
+            type={IconTypes.Loading}
+            size={IconSize.LOADING}
+            style={IconStyles.FillColor}
+          ></ToIcon>
         ) : (
           <>
             <div className="basis-[2%]">
@@ -148,7 +165,6 @@ class DateList extends React.Component {
                   this.makeVisibleMarker(true, false);
                 }}
               />
-
             </div>
 
             <div className="basis-[96%] w-full flex flex-col justify-center items-center">

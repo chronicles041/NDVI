@@ -8,6 +8,7 @@ module.exports = {
     extend: {
     boxShadow:{
       'custom-shadow':"-3px 4px 4px rgba(0,0,0,0.25);",
+      'weather-shadow': '20px 20px 60px #c7d996,-20px -20px 60px #ffffcc;',
     },
     fontFamily:{
      "Oxygen":["Oxygen", ...defaultTheme.fontFamily.sans],

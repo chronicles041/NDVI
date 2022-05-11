@@ -6,11 +6,11 @@ export interface ILocation {
 type phaseDetail = {
   name: string;
   value: number;
-  phaseValue:number
+  phaseValue: number;
 };
 export interface IFieldReport {
   farm_id: number;
-  farm_area: string;
+  farm_area: number;
   farm_name: string;
   farmer_name: string;
   gender: string;
@@ -33,6 +33,8 @@ export interface IFieldReport {
   previous_phase_value: number;
   current_phase_name: string;
   previous_phase_name: string;
+  yield_estimation_77: number;
+  yield_estimation_120: number;
 }
 
 export interface IFieldFilters {
