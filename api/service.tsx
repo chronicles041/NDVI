@@ -131,10 +131,15 @@ export default new (class ReportService {
           let plantationDate = value?.season[0]
             ? value.season[0].crop_plantation_date
             : "N/A";
-            var date = new Date(plantationDate);
-           var newDate =  date.setDate(date.getDate() + 90)
-           var year = date.toLocaleDateString(newDate);
-            console.log("*** Date",moment(newDate).format("Dd MM YYYY"),plantationDate,year);
+          var date = new Date(plantationDate);
+          var newDate = date.setDate(date.getDate() + 90);
+          var year = date.toLocaleDateString(newDate);
+          console.log(
+            "*** Date",
+            moment(newDate).format("Dd MM YYYY"),
+            plantationDate,
+            year
+          );
           // if (variety) {
           //   console.log("*** Value", value?.season[0].crop_variety);
           // }
@@ -247,6 +252,49 @@ export default new (class ReportService {
       .get<IFieldReport, any>(`${baseUrl}dashboard/`, {})
       .then((res) => {
         return res.data;
+      });
+  }
+
+  GetAllUsers() {
+    return axios
+      .get<IFieldReport, any>(`${baseUrl}allusers/`, {})
+      .then((res) => {
+        return res.data;
+      });
+  }
+  FetchUsers() {
+    return axios
+      .get<any>(`${baseUrl}allusers/`, {})
+      .then((res) => {
+        let tempReturnValue: any = [];
+
+        res.data.results.map((value: { name: string; id: number }) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.username, value: value.id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
+      });
+  }
+
+  FetchDropdownFarm(params: any) {
+    return axios
+    .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
+      params,
+    })
+      .then((res) => {
+        let tempReturnValue: any = [];
+        console.log("***res",res)
+        res.data.results.map((value:any) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.farm_name, value: value.farm_id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
       });
   }
 })();
