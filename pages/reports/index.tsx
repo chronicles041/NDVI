@@ -18,6 +18,7 @@ import { ToListPagination } from "../../components/ToListPagination";
 import { CSVLink, CSVDownload } from "react-csv";
 import moment from "moment";
 
+
 const ReportColumns = [
   {
     Header: "Farm ID",
@@ -75,6 +76,10 @@ const ReportColumns = [
   {
     Header: "Crop",
     accessor: "crop_type_name",
+  },
+  {
+    Header: "Variety",
+    accessor: "seed_variety",
   },
   {
     Header: "Plantation Date",
@@ -179,6 +184,12 @@ const ReportColumns = [
         accessor: "yield_estimation_120",
       },
     ],
+  },
+  {
+    Header: "Harvest Ready",
+    accessor: "days_before_harvest",
+    Cell: ({ value }: any) => "N/A",
+    // Cell: ({ value }: any) => <>{value ? `${value} days` : "N/A"}</>,
   },
 
   // {
@@ -365,9 +376,9 @@ const Reports = ({
               Export
             </CSVLink>
           </button>
+
         </div>
       </div>
-
       <ReportTable
         // setPageSize={(value: number) => setLimit(value)}
         setPageSize={(value: number) => changePageSize(value)}

@@ -2,6 +2,7 @@ import axios, { responseEncoding } from "axios";
 import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
 import { baseUrl } from "./serviceConfig";
+import moment from "moment";
 
 export default new (class ReportService {
   FetchPhases() {
@@ -123,9 +124,25 @@ export default new (class ReportService {
       })
       .then((res) => {
         let tempReturnValue: IFieldReport[] = [];
-      console.log("**RES",res)
+        // console.log("**RES", res);
 
         res.data.results.map((value: IFieldReport, i: number) => {
+          let variety = value?.season[0].crop_variety;
+          let plantationDate = value?.season[0]
+            ? value.season[0].crop_plantation_date
+            : "N/A";
+          var date = new Date(plantationDate);
+          var newDate = date.setDate(date.getDate() + 90);
+          var year = date.toLocaleDateString(newDate);
+          console.log(
+            "*** Date",
+            moment(newDate).format("Dd MM YYYY"),
+            plantationDate,
+            year
+          );
+          // if (variety) {
+          //   console.log("*** Value", value?.season[0].crop_variety);
+          // }
           tempReturnValue = [
             ...tempReturnValue,
             {
@@ -144,9 +161,7 @@ export default new (class ReportService {
                 ? `${value.season[0].crop_name_en}`
                 : "Maize",
               // crop_type_name:value?.season[0] ? `${value.season[0].crop_name_en}(${value.season[0].crop_name_np})`: "Maize",
-              plantation_date: value?.season[0]
-                ? value.season[0].crop_plantation_date
-                : "N/A",
+              plantation_date: plantationDate,
               ward: value.ward,
               ward_number: value.ward_number,
               tole_name: value.tole_name,
@@ -163,8 +178,8 @@ export default new (class ReportService {
                   : "N/A",
                 phaseValue: value?.season[0]
                   ? value.season[0].crops.current_phase?.phase_ndvi_value
-                  ? value.season[0].crops.current_phase.phase_ndvi_value
-                  : "N/A"
+                    ? value.season[0].crops.current_phase.phase_ndvi_value
+                    : "N/A"
                   : "N/A",
               },
               previous_phase: {
@@ -196,6 +211,10 @@ export default new (class ReportService {
                 : "N/A",
               yield_estimation_120: value?.season[0]
                 ? value.season[0].yield_estimation_120
+                : "N/A",
+              days_before_harvest: 30,
+              seed_variety: value?.season[0].crop_variety
+                ? value?.season[0].crop_variety
                 : "N/A",
             },
           ];
@@ -233,6 +252,49 @@ export default new (class ReportService {
       .get<IFieldReport, any>(`${baseUrl}dashboard/`, {})
       .then((res) => {
         return res.data;
+      });
+  }
+
+  GetAllUsers() {
+    return axios
+      .get<IFieldReport, any>(`${baseUrl}allusers/`, {})
+      .then((res) => {
+        return res.data;
+      });
+  }
+  FetchUsers() {
+    return axios
+      .get<any>(`${baseUrl}allusers/`, {})
+      .then((res) => {
+        let tempReturnValue: any = [];
+
+        res.data.results.map((value: { name: string; id: number }) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.username, value: value.id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
+      });
+  }
+
+  FetchDropdownFarm(params: any) {
+    return axios
+    .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
+      params,
+    })
+      .then((res) => {
+        let tempReturnValue: any = [];
+        console.log("***res",res)
+        res.data.results.map((value:any) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.farm_name, value: value.farm_id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
       });
   }
 })();

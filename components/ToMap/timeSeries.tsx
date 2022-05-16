@@ -32,33 +32,31 @@ function TimeSeriesGraph({
   }, []);
 
   const makeAnnotations = () => {
-    let tArray:any = []
+    let tArray: any = [];
     let currentTime = new Date(plantationDate);
-    phase?.map((d,i)=>{
+    phase?.map((d, i) => {
       let tempDate = new Date(plantationDate);
-      let reqDate = tempDate.setDate(currentTime.getDate() + d.days)
-        tArray = [...tArray,
-          {
-            x: reqDate,
-            borderColor: "#999",
-            yAxisIndex: 0,
-            label: {
-              show: true,
-              text: d.phase_name,
-              style: {
-                color: "#fff",
-                background: "#775DD0",
-              },
+      let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
+      tArray = [
+        ...tArray,
+        {
+          x: reqDate,
+          borderColor: "#999",
+          yAxisIndex: 0,
+          label: {
+            show: true,
+            text: d.phase_name,
+            style: {
+              color: "#fff",
+              background: "#775DD0",
             },
           },
-        ]
-    })
+        },
+      ];
+    });
 
-
-
-    return tArray
-  }
-
+    return tArray;
+  };
 
   const createPhaseData = () => {
     let currentTime = new Date(plantationDate);
@@ -73,11 +71,13 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
 
-    return [{ 
-      data: timeArray,
-      name:"Globel Maize Trend",
-      color:"green"
-     }];
+    return [
+      {
+        data: timeArray,
+        name: "Globel Maize Trend",
+        color: "green",
+      },
+    ];
   };
 
   const createGraphData = () => {
@@ -88,12 +88,33 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
     // alert(tempArray[2])
-    return [{ 
-      data: timeArray,
-      name:"Selected Field" ,
-      color:"#007691"
-    
-    }];
+    console.log("***NDVI", timeArray);
+
+    return [
+      {
+        data: timeArray,
+        name: "Selected Field (NDVI)",
+        color: "white",
+      },
+    ];
+  };
+
+  const createEviData = () => {
+    let tempArray: any = [];
+
+    graphData?.evi?.map((d, i) => {
+      let datObj = [new Date(d.date).getTime(), d.evi_value];
+      tempArray.push(datObj);
+    });
+    // alert(tempArray[2])
+    console.log("***EVI", tempArray);
+    return [
+      {
+        data: tempArray,
+        name: "Selected Fieldv (EVI)",
+        color: "#007691",
+      },
+    ];
   };
 
   const options = {
@@ -120,9 +141,7 @@ function TimeSeriesGraph({
           },
         },
       ],
-      xaxis: [
-       ...makeAnnotations()
-      ],
+      xaxis: [...makeAnnotations()],
     },
     dataLabels: {
       enabled: false,
@@ -153,7 +172,7 @@ function TimeSeriesGraph({
         shadeIntensity: 1,
         opacityFrom: 0.5,
         opacityTo: 0.2,
-        stops: [0,100],
+        stops: [0, 100],
       },
     },
   };
@@ -161,18 +180,20 @@ function TimeSeriesGraph({
   return (
     <>
       <div className={"m-1 rounded-2xl shadow-l"}>
-      <ToTittle tittle="Time Series Graph" />
+        <ToTittle tittle="Time Series Graph" />
 
-      {graphData?.ndvi?.length > 0 ? (
+        {graphData?.ndvi?.length > 0 ? (
           <>
             {/* <button onClick={()=>createGraphDates()}>Click Me</button> */}
             <ReactApexChart
-          options={options}
-          // series={createGraphData()}
-          series={[...createGraphData(), ...createPhaseData()]}
-          type="area"
-          height={550}
-        />
+              options={options}
+              // series={createGraphData()}
+              // series={createEviData()}
+              // series={[ ...createPhaseData(),...createEviData()]}
+              series={[ ...createPhaseData(),...createGraphData()]}
+              type="area"
+              height={550}
+            />
           </>
         ) : (
           <></>
