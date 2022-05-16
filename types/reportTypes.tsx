@@ -36,6 +36,7 @@ export interface IFieldReport {
   yield_estimation_77: number;
   yield_estimation_120: number;
   days_before_harvest:number;
+  seed_variety:String
 }
 
 export interface IFieldFilters {

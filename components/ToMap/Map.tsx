@@ -89,8 +89,10 @@ function ToMap(props) {
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
         const tempNdviGraph = res.data.ndviGraph.reverse();
+        const tempEviGraph = res.data.eviGraph.reverse()
         setGraphData({
           ndvi: tempNdviGraph,
+          evi:tempEviGraph
         });
       })
       .catch((err) => setLoading(false));

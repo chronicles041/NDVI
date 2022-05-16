@@ -77,6 +77,10 @@ const ReportColumns = [
     accessor: "crop_type_name",
   },
   {
+    Header: "Variety",
+    accessor: "seed_variety",
+  },
+  {
     Header: "Plantation Date",
     accessor: "plantation_date",
     Cell: ({ value }) =>
@@ -181,7 +185,7 @@ const ReportColumns = [
     ],
   },
   {
-    Header: "Days Before Harvest",
+    Header: "Harvest Ready",
     accessor: "days_before_harvest",
     Cell: ({ value }: any) => "N/A",
     // Cell: ({ value }: any) => <>{value ? `${value} days` : "N/A"}</>,

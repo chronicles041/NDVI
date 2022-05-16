@@ -2,6 +2,7 @@ import axios, { responseEncoding } from "axios";
 import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
 import { baseUrl } from "./serviceConfig";
+import moment from "moment";
 
 export default new (class ReportService {
   FetchPhases() {
@@ -126,7 +127,17 @@ export default new (class ReportService {
         // console.log("**RES", res);
 
         res.data.results.map((value: IFieldReport, i: number) => {
-          console.log("*** Value", value?.season[0].crop_variety)
+          let variety = value?.season[0].crop_variety;
+          let plantationDate = value?.season[0]
+            ? value.season[0].crop_plantation_date
+            : "N/A";
+            var date = new Date(plantationDate);
+           var newDate =  date.setDate(date.getDate() + 90)
+           var year = date.toLocaleDateString(newDate);
+            console.log("*** Date",moment(newDate).format("Dd MM YYYY"),plantationDate,year);
+          // if (variety) {
+          //   console.log("*** Value", value?.season[0].crop_variety);
+          // }
           tempReturnValue = [
             ...tempReturnValue,
             {
@@ -145,9 +156,7 @@ export default new (class ReportService {
                 ? `${value.season[0].crop_name_en}`
                 : "Maize",
               // crop_type_name:value?.season[0] ? `${value.season[0].crop_name_en}(${value.season[0].crop_name_np})`: "Maize",
-              plantation_date: value?.season[0]
-                ? value.season[0].crop_plantation_date
-                : "N/A",
+              plantation_date: plantationDate,
               ward: value.ward,
               ward_number: value.ward_number,
               tole_name: value.tole_name,
@@ -199,6 +208,9 @@ export default new (class ReportService {
                 ? value.season[0].yield_estimation_120
                 : "N/A",
               days_before_harvest: 30,
+              seed_variety: value?.season[0].crop_variety
+                ? value?.season[0].crop_variety
+                : "N/A",
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);
