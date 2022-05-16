@@ -180,6 +180,12 @@ const ReportColumns = [
       },
     ],
   },
+  {
+    Header: "Days Before Harvest",
+    accessor: "days_before_harvest",
+    Cell: ({ value }: any) => "N/A",
+    // Cell: ({ value }: any) => <>{value ? `${value} days` : "N/A"}</>,
+  },
 
   // {
   //   Header: "Next Phase",

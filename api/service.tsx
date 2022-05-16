@@ -123,9 +123,10 @@ export default new (class ReportService {
       })
       .then((res) => {
         let tempReturnValue: IFieldReport[] = [];
-      console.log("**RES",res)
+        // console.log("**RES", res);
 
         res.data.results.map((value: IFieldReport, i: number) => {
+          console.log("*** Value", value?.season[0].crop_variety)
           tempReturnValue = [
             ...tempReturnValue,
             {
@@ -163,8 +164,8 @@ export default new (class ReportService {
                   : "N/A",
                 phaseValue: value?.season[0]
                   ? value.season[0].crops.current_phase?.phase_ndvi_value
-                  ? value.season[0].crops.current_phase.phase_ndvi_value
-                  : "N/A"
+                    ? value.season[0].crops.current_phase.phase_ndvi_value
+                    : "N/A"
                   : "N/A",
               },
               previous_phase: {
@@ -197,6 +198,7 @@ export default new (class ReportService {
               yield_estimation_120: value?.season[0]
                 ? value.season[0].yield_estimation_120
                 : "N/A",
+              days_before_harvest: 30,
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);
