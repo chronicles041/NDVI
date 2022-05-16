@@ -17,14 +17,12 @@ export default function ToDropdown({
   disabled,
 }: any) {
   return (
-    <div className="flex flex-row ml-2">
-      <div className="flex flex-row w-full">
-        {title ? <div className="w-1/3 py-2">{title}</div> : null}
-        <div className="w-2/3 pt-1">
-        {label ? <div className="">{label}</div> : null}
+    <div className="flex flex-row px-2 py-2">
+      <div className="flex flex-col w-full items-center justify-center gap-5" >
+        {label ? <span className="text-lg font-medium  text-secondary">{label}</span> : null}
 
           <select
-            className="px-2 py-1 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none w-2/3"
+            className=" placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm focus:border-2 focus:border-primary focus:ring-transparent w-full"
             onChange={onChange}
             disabled={disabled}
           >
@@ -38,7 +36,6 @@ export default function ToDropdown({
               </>
             ))}
           </select>
-        </div>
       </div>
     </div>
   );

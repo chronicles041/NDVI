@@ -11,7 +11,7 @@ const Activity = dynamic(
 const ActivityIndex = () => {
   return (
     <PageLayout>
-      <div className="flex-initial p-2">
+      <div className="flex flex-col items-end gap-y-8 px-3 py-6">
         <ActivityForm />
         <Activity />
       </div>

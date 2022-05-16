@@ -56,61 +56,44 @@ const ActivityForm = () => {
   };
 
   return (
-    <ToModal onOpen={() => onDetailClick()} title={"Add New Activity"}>
-      <div className="flex flex-none sticky gap-x-2 top-0 "></div>
-      <h2 className="block text-gray-700 text-lg font-bold mb-2">
-        In CIMMYT Maize Commercialization Model{" "}
-      </h2>
+    <ToModal onOpen={() => onDetailClick()} title={"Add Task"}>
+      <div className="flex flex-col w-full gap-y-6">
       <div className="mb-4">
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      <input className=" rounded w-full   text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent h-16" 
           id="username"
           type="text"
           placeholder="Activity Title"
         />
       </div>
-
+      <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
       <ToDropdown options={users} label="Assign To" />
-
       <ToDropdown options={farmData} label="Select Farm" />
       <ToDropdown options={reportType} label="Activity Type" />
       <ToDropdown options={priorityType} label="Priority" />
-
-      <br />
-      <div className="mb-4">
+      </div>
+      <div className="flex flex-col gap-y-4">
         Description
         <textarea
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="focus:border-2 focus:border-primary focus:ring-transparent rounded w-full py-2 px-3 text-secondary leading-tight  h-3/4"
           id="username"
-          type="text"
+          rows={6}
           placeholder="Add Description to Activity"
         />
       </div>
-      <div className="flex gap-x-2 p-2 mr-2">
-        <div className="mb-4">
-          <br />
+      <div className="flex flex-row gap-x-6">
+        <div className="flex-1">
+          <span className="text-base font-medium text-secondary">Start Date</span>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            // placeholder=" Date"
-            value="Date"
-            disabled={true}
-          />
-        </div>
-        <div className="mb-4">
-          Start Date
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className=" rounded w-full  text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
             id="username"
             type="date"
             placeholder="Start Date"
           />
         </div>
-        <div className="mb-4">
+        <div className="flex-1">
           Due Date
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="rounded w-full  text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
             id="username"
             type="date"
             placeholder="Due Date"
@@ -126,6 +109,7 @@ const ActivityForm = () => {
         >
           Add Activity
         </button>
+      </div>
       </div>
     </ToModal>
   );
