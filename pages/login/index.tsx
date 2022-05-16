@@ -80,7 +80,7 @@ const Login = () => {
                   id="email"
                   name="email"
                   type="text"
-                  className=" bg-transparent  placeholder-transparent h-10 w-full text-white focus:border-lime-400 border-0 focus:ring-0 border-b-2 border-gray-200 "
+                  className=" bg-transparent placeholder-transparent h-10 w-full text-white focus:border-lime-400 border-0 focus:ring-0 border-b-2 border-gray-200 "
                   placeholder="email"
                   onChange={(e) => changeUsername(e.target.value)}
                 ></input>
@@ -107,26 +107,11 @@ const Login = () => {
                   Password
                 </label>
                 <br />
-
-                <div className="flex justify-center items-center my-2">
-                  <a
-                    href="#"
-                    className="border-2 border-white bg-gray-200 rounded-full p-3 mx-1 hover:bg-primary shadow-2xl"
-                  >
-                    <FaFacebookF className="text-sm fill-blue-500 hover:fill-secondary"></FaFacebookF>
-                  </a>
-                  <a
-                    href="#"
-                    className="border-2  border-white bg-gray-200 rounded-full p-3 mx-1 hover:bg-primary  shadow-2xl"
-                  >
-                    <FaGoogle className="text-sm fill-red-500 hover:fill-secondary"></FaGoogle>
-                  </a>
-                </div>
                 <p className="mt-2 text-center text-md font-normal text-secondary max-w">
                   Don't have an Account?
                   <a
                     href="#"
-                    className="font-medium text-secondary  hover:text-primary focus:outline-none focus:ring-1 focus:ring-primary mx-1 rounded focus:border-primary"
+                    className="font-medium text-secondary  hover:text-white focus:outline-none focus:ring-1 focus:ring-primary mx-1 rounded focus:border-primary"
                   >
                     Sign Up.
                   </a>

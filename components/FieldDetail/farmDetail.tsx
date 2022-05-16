@@ -42,7 +42,7 @@ const FarmDetail = ({ detail }: any) => {
         <div className="flex flex-col p-6 gap-y-3 text-center md:border-r md:border-t ">
           <span className="text-2xl font-bold text-primary">
             {" "}
-            {detail.farm_area}
+            {detail.farm_area} hectare
           </span>
           <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
             Farm Area
