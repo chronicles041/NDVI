@@ -33,6 +33,9 @@ import Sunrise from "./assets/sunrise.svg";
 import Sunset from "./assets/sunset.svg";
 import Cloud from "./assets/cloud.svg";
 // import styles from "./../../styles";
+import Time from "./assets/time.svg";
+import Done from "./assets/done.svg"
+import Edit from "./assets/eidt.svg";
 
 interface IiconSize {
   height: number;
@@ -98,6 +101,9 @@ export const IconTypes = {
   Sunrise: Sunrise,
   Sunset: Sunset,
   Cloud: Cloud,
+  Time:Time,
+  Edit:Edit,
+  Done:Done,
 };
 export const IconStyles = {
   Default: " ",
@@ -111,6 +117,10 @@ export const IconSize = {
   DEFAULT: {
     height: 30,
     width: 30,
+  },
+  XSM:{
+    height: 28,
+    width: 28,
   },
   SM: {
     height: 30,

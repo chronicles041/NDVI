@@ -27,7 +27,7 @@ const ToModal = ({ children, title, type, onOpen }: Props) => {
       </button>
       {showModal ? (
         <>
-          <div className="flex  justify-center bg-gray-500 transition duration-300 ease-in-out bg-opacity-50 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className={"flex justify-center bg-gray-600 bg-opacity-60 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none  animated fadeIn faster  "+ (showModal? "fadeIn ":"fadeOut")}>
             <div className=" relative flex flex-col justify-center items-center w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
               <div className="relative w-full bg-white border-2 h-full p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
                <ToTittle tittle={title ? title :"Feild Details"}></ToTittle>

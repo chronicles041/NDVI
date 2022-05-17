@@ -11,9 +11,13 @@ const Activity = dynamic(
 const ActivityIndex = () => {
   return (
     <PageLayout>
-      <div className="flex flex-col items-end gap-y-8 px-3 py-6">
-        <ActivityForm />
-        <Activity />
+      <div className="flex flex-col items-end  px-3 py-6 relative">
+        <div className="absolute bottom-4 right-7 z-50">
+          <ActivityForm />
+        </div>
+        <div className="mb-10">
+          <Activity />
+        </div>
       </div>
     </PageLayout>
   );
