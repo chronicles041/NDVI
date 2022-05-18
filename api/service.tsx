@@ -297,12 +297,30 @@ export default new (class ReportService {
       });
   }
 
-  AddNewActivity(formData: IActivity) {
+  AddNewActivity(params: IActivity) {
     return axios
-      .get<IFieldReport, any>(`${baseUrl}dashboard/`, {params:formData})
+      .post<IFieldReport, any>(`${baseUrl}tasks/`, params)
       .then((res) => {
         return res.data;
       });
+  }
+
+  FetchTasks() {
+    return axios.get<any>(`${baseUrl}tasks/`).then((res) => {
+      let tempReturnValue: IFieldReport[] = [];
+      // console.log("**RES", res);
+
+      res.data.results.map((value: IFieldReport, i: number) => {
+        // if (variety) {
+        //   console.log("*** Value", value?.season[0].crop_variety);
+        // }
+        tempReturnValue = [...tempReturnValue, value];
+        // console.log("**API**DropdDowm", tempReturnValue);
+      });
+      let ServerData = tempReturnValue;
+
+      return ServerData;
+    });
   }
 })();
 

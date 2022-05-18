@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DragableElements";
 import { on } from "cluster";
+import ReportService from "../../api/service";
 
 const testActivities = [
   {
@@ -110,9 +111,12 @@ const addToList = (list, index, element) => {
 
 const lists = ["todo", "inProgress", "done"];
 
-const generateLists = () => {
-  let todoList = testActivities
-    .filter((l) => l.status === 1)
+const generateLists = (activities: any) => {
+  console.log("***Test List", activities);
+  let todoList = activities.activites
+    .filter((l) => {
+      l.status === 4;
+    })
     .map((v) => {
       return {
         id: `item-${v.id}`,
@@ -121,7 +125,7 @@ const generateLists = () => {
       };
     });
   let onProcessList = testActivities
-    .filter((l) => l.status === 2)
+    .filter((l) => l.status === 1)
     .map((v) => {
       return {
         id: `item-${v.id}`,
@@ -165,12 +169,15 @@ const generateLists = () => {
   //   );
 };
 
-function DragList() {
-  const [elements, setElements] = React.useState(generateLists());
+function DragList(activities: any) {
+  //   const [activities, setActivities] = React.useState();
 
   useEffect(() => {
-    setElements(generateLists());
-  }, []);
+    setElements(generateLists(activities));
+    // ReportService.FetchTasks().then((res) => setActivities(res));
+  }, [activities]);
+
+  const [elements, setElements] = React.useState(generateLists(activities));
 
   const onDragEnd = (result) => {
     if (!result.destination) {

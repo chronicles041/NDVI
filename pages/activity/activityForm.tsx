@@ -88,7 +88,7 @@ const ActivityForm = () => {
   };
   const addActivity = () => {
     let newFormData: any = formData;
-    newFormData = { ...newFormData, project: 1 };
+    newFormData = { ...newFormData, project: 1,status:4 , assigned_by:2260};
     console.log("***Add Activity Form Values :", newFormData);
     // {
     //   "title":"Just a test Title Created by blinkrup",
@@ -137,24 +137,24 @@ const ActivityForm = () => {
         </div>
         <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
           <ToDropdown
-            onChange={(e: Event) => handleDropdownChange(e, "farm")}
+            onChange={(e: Event) => handleDropdownChange(e, "farms")}
             options={farmData}
             label="Select Farm"
             multiple={true}
           />
           <ToDropdown
-            onChange={(e: Event) => handleDropdownChange(e, "users")}
+            onChange={(e: Event) => handleDropdownChange(e, "task_assigned_to")}
             options={users}
             label="Assign for"
             multiple={true}
           />
           <ToDropdown
-             onChange={(e: Event) => handleDropdown(e, "activity_type")}
+             onChange={(e: Event) => handleDropdown(e, "type")}
             options={reportType}
             label="Activity Type"
           />
           <ToDropdown
-          onChange={(e: Event) => handleDropdown(e, "priority_type")}
+          onChange={(e: Event) => handleDropdown(e, "priority")}
             options={priorityType}
             label="Priority"
           />
@@ -182,7 +182,7 @@ const ActivityForm = () => {
               id="username"
               type="date"
               placeholder="Start Date"
-              onChange={(e: Event) => onChangeDate(e, "start_dat")}
+              onChange={(e: Event) => onChangeDate(e, "assigned_date")}
             />
           </div>
           <div className="flex-1">
@@ -194,7 +194,7 @@ const ActivityForm = () => {
               id="username"
               type="date"
               placeholder="Due Date"
-              onChange={(e: Event) => onChangeDate(e, "due_date")}
+              onChange={(e: Event) => onChangeDate(e, "end_date")}
             />
           </div>
         </div>
