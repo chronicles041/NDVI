@@ -58,58 +58,72 @@ const ActivityForm = () => {
   return (
     <ToModal onOpen={() => onDetailClick()} title={"Add Task"}>
       <div className="flex flex-col w-full gap-y-6">
-      <div className="mb-4">
-      <input className=" rounded w-full   text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent h-16" 
-          id="username"
-          type="text"
-          placeholder="Activity Title"
-        />
-      </div>
-      <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
-      <ToDropdown options={users} label="Assign To" />
-      <ToDropdown options={farmData} label="Select Farm" />
-      <ToDropdown options={reportType} label="Activity Type" />
-      <ToDropdown options={priorityType} label="Priority" />
-      </div>
-      <div className="flex flex-col gap-y-4">
-        Description
-        <textarea
-          className="focus:border-2 focus:bor       der-primary focus:ring-transparent rounded w-full py-2 px-3 text-secondary leading-tight  h-3/4"
-          id="username"
-          rows={6}
-          placeholder="Add Description to Activity"
-        />
-      </div>
-      <div className="flex flex-row gap-x-6">
-        <div className="flex-1">
-          <span className="text-base font-medium text-secondary">Start Date</span>
+        <div className="mb-4">
           <input
-            className=" rounded w-full  text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
+            className=" rounded w-full   text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent h-16"
             id="username"
-            type="date"
-            placeholder="Start Date"
+            type="text"
+            placeholder="Activity Title"
           />
         </div>
-        <div className="flex-1">
-          Due Date
-          <input
-            className="rounded w-full  text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
+        <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
+          <ToDropdown options={farmData} label="Select Farm" />
+          <ToDropdown options={users} label="Assign for" />
+          <ToDropdown options={reportType} label="Activity Type" />
+          <ToDropdown options={priorityType} label="Priority" />
+        </div>
+        <div className="flex flex-col gap-y-4">
+          <span className="text-base font-medium text-secondary">
+            Description
+          </span>
+          <textarea
+            className="focus:border-2 focus:border-primary focus:ring-transparent rounded w-full py-2 px-3 text-secondary leading-tight  h-3/4"
             id="username"
-            type="date"
-            placeholder="Due Date"
+            rows={6}
+            placeholder="Add Description to Activity"
           />
         </div>
-      </div>
+        <div className="flex flex-row gap-x-6">
+          <div className="flex-1">
+            <span className="text-base font-medium text-secondary mb-3">
+              Start Date
+            </span>
+            <input
+              className=" rounded w-full mt-3 text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
+              id="username"
+              type="date"
+              placeholder="Start Date"
+            />
+          </div>
+          <div className="flex-1">
+          <span className="text-base font-medium text-secondary">
+              Due Date
+            </span>
+            <input
+              className="rounded w-full mt-3 text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
+              id="username"
+              type="date"
+              placeholder="Due Date"
+            />
+          </div>
+        </div>
 
-      <div className="flex gap-x-2 p-2 mr-2">
-        <button
-          className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
-          type="button"
-          // onClick={() => this.triggerProcess()}
-        >
-          Add Activity
-        </button>
-      </div>
+        <div className="flex flex-row gap-x-4 p-2 ">
+          <button
+            className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+            type="button"
+            // onClick={() => this.triggerProcess()}
+          >
+            Add Activity
+          </button>
+          <button
+            className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
+            type="button"
+            // onClick={() => this.triggerProcess()}
+          >
+            Reset Activity
+          </button>
+        </div>
       </div>
     </ToModal>
   );
