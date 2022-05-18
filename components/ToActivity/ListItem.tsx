@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import ToIcon, { IconSize, IconTypes } from "../ToIcons";
 import ToModal from "../ToModal";
+import DetailView from "../ToActivity/DeatilView";
 
 const DragItem = styled.div`
   //   padding: 10px;
@@ -69,13 +70,7 @@ const ListItem = ({ item, index }) => {
                     <ToIcon type={IconTypes.Done} size={IconSize.XSM} style={""} >
                     </ToIcon>
                   </button>
-                  <ToModal
-                    iconType={IconTypes.Edit}
-                    iconSize={IconSize.XSM}
-                    onOpen={() => null}
-                    type={1}
-                    title={"dasd"}
-                  ></ToModal>
+                  <DetailView/>
                 </div>
               </div>
             </div>
