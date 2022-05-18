@@ -2,11 +2,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 import PageLayout from "../../components/Pagelayout";
 import ActivityForm from "./activityForm";
-
-const Activity = dynamic(
-  () => import("../../components/ToActivity/Activity.js"),
-  { ssr: false }
-);
+import Activity from "../../components/ToActivity/";
+import DragList from "../../components/ToActivity/DragList";
 
 const ActivityIndex = () => {
   return (
@@ -16,9 +13,11 @@ const ActivityIndex = () => {
           <ActivityForm />
         </div>
         <div className="mb-10">
-          <Activity />
+          {/* <Activity /> */}
+          <DragList />
         </div>
       </div>
+
     </PageLayout>
   );
 };
