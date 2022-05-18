@@ -222,7 +222,7 @@ function TimeSeriesGraph({
     chart: {
       id: "area-datetime",
       type: "area",
-      height: 350,
+      height: 450,
       zoom: {
         autoScaleYaxis: true,
       },
@@ -293,7 +293,7 @@ function TimeSeriesGraph({
               // series={[ ...createPhaseData(),...createEviData()]}
               series={[...indianTrend(), ...createGraphData(),...createPhaseData()]}
               type="area"
-              height={550}
+              height={600}
             />
           </>
         ) : (
