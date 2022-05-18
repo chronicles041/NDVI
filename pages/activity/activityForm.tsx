@@ -96,8 +96,8 @@ const ActivityForm = () => {
 
   return (
     <ToModal
-      iconType={IconTypes.Activity}
-      iconSize={IconSize.XSM}
+      iconType={IconTypes.Plus}
+      iconSize={IconSize.XXSM}
       onOpen={() => onDetailClick()}
       title={"Add Task"}
     >
