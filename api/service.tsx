@@ -3,6 +3,7 @@ import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
 import { baseUrl } from "./serviceConfig";
 import moment from "moment";
+import { IActivity } from "../types/activityTypes";
 
 export default new (class ReportService {
   FetchPhases() {
@@ -263,31 +264,29 @@ export default new (class ReportService {
       });
   }
   FetchUsers() {
-    return axios
-      .get<any>(`${baseUrl}allusers/`, {})
-      .then((res) => {
-        let tempReturnValue: any = [];
+    return axios.get<any>(`${baseUrl}allusers/`, {}).then((res) => {
+      let tempReturnValue: any = [];
 
-        res.data.results.map((value: { name: string; id: number }) => {
-          tempReturnValue = [
-            ...tempReturnValue,
-            { title: value.username, value: value.id },
-          ];
-          // console.log("**API**DropdDowm", tempReturnValue);
-        });
-        return tempReturnValue;
+      res.data.results.map((value: { name: string; id: number }) => {
+        tempReturnValue = [
+          ...tempReturnValue,
+          { title: value.username, value: value.id },
+        ];
+        // console.log("**API**DropdDowm", tempReturnValue);
       });
+      return tempReturnValue;
+    });
   }
 
   FetchDropdownFarm(params: any) {
     return axios
-    .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
-      params,
-    })
+      .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
+        params,
+      })
       .then((res) => {
         let tempReturnValue: any = [];
         // console.log("***res",res)
-        res.data.results.map((value:any) => {
+        res.data.results.map((value: any) => {
           tempReturnValue = [
             ...tempReturnValue,
             { title: value.farm_name, value: value.farm_id },
@@ -295,6 +294,14 @@ export default new (class ReportService {
           // console.log("**API**DropdDowm", tempReturnValue);
         });
         return tempReturnValue;
+      });
+  }
+
+  AddNewActivity(formData: IActivity) {
+    return axios
+      .get<IFieldReport, any>(`${baseUrl}dashboard/`, {params:formData})
+      .then((res) => {
+        return res.data;
       });
   }
 })();

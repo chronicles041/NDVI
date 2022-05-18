@@ -92,6 +92,8 @@ const ActivityForm = () => {
     //   "status":4,
     //   "remarks":"Description added"
     //   }
+    ReportService.AddNewActivity(newFormData).then((res: any) => console.log("***Add Activity",res));
+
   };
 
   return (
