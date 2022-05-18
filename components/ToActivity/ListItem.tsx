@@ -33,7 +33,7 @@ const ListItem = ({ item, index }) => {
             {...provided.dragHandleProps}
           >
             <div className="flex flex-col px-4 py-4 bg-[#eaffb1] shadow-sm rounded-lg gap-y-1 ">
-              <button className=" bg-indigo-600 text-white text-xs font-normal flex flex-row items-center justify-center text-center rounded-full w-16 h-5 py-2">
+              <button className=" bg-red-600 shadow-md text-white text-xs font-normal flex flex-row items-center justify-center text-center rounded-full w-16 h-5 py-2">
                 High
               </button>
               <h5 className="text-lg font-bold tracking-tight text-gray-900 ">

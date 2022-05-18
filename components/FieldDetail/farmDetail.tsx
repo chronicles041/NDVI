@@ -22,16 +22,24 @@ const FarmDetail = ({ detail }: any) => {
             farm name
           </p>
         </div>
-        <div className="flex flex-col p-6 gap-y-3 text-center md:border-r md:border-t ">
+        <div className="text-center flex flex-col p-6 gap-y-3 border-t border-b border-r">
           <span className="text-2xl font-bold text-primary">
-            {" "}
-            {detail.project_name}
+            {detail.tole_name}
           </span>
-          <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
-            Project Name
+          <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
+            Located Ward
           </p>
         </div>
-        <div className="text-center flex flex-col p-6 gap-y-3">
+        <div className="flex flex-col p-6 gap-y-3 text-center   ">
+          <span className="text-2xl font-bold text-primary">
+            {" "}
+            {detail.ward_number}
+          </span>
+          <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
+            Ward No
+          </p>
+        </div>
+        <div className="text-center flex flex-col p-6 gap-y-3 md:border-r" >
           <span className="text-2xl font-bold text-primary overflow-hidden tuncate">
             {detail.organization_name}
           </span>
@@ -39,7 +47,7 @@ const FarmDetail = ({ detail }: any) => {
             Organization Name
           </p>
         </div>
-        <div className="flex flex-col p-6 gap-y-3 text-center md:border-r md:border-t ">
+        <div className="flex flex-col p-6 gap-y-3 text-center  md:border-t md:border-b ">
           <span className="text-2xl font-bold text-primary">
             {" "}
             {detail.farm_area} hectare
@@ -48,12 +56,20 @@ const FarmDetail = ({ detail }: any) => {
             Farm Area
           </p>
         </div>
-        <div className="text-center flex flex-col p-6 gap-y-3 border-t ">
+        <div className="text-center flex flex-col p-6 gap-y-3 border-t  border-r">
           <span className="text-2xl font-bold text-primary capitalize">
             {detail.farm_notes}
           </span>
           <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
             Farm Note
+          </p>
+        </div>
+        <div className="text-center flex flex-col p-6 gap-y-3">
+          <span className="text-2xl font-bold text-primary capitalize">
+            {detail.project_name}
+          </span>
+          <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
+            Project Name
           </p>
         </div>
       </div>
