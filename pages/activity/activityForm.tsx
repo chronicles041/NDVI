@@ -107,13 +107,8 @@ const ActivityForm = () => {
     //   }
   };
 
-  const handlReset = () => {
-    let newFormData: any = formData;
-    const restFromData = newFormData.reset();
-    console.log(restFromData)
-
   
-  };
+  // };
 
   return (
     <ToModal

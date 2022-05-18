@@ -11,7 +11,6 @@ const ColumnHeader = styled.div`
 const DroppableStyles = styled.div`
   padding: 10px;
   border-radius: 6px;
-  background: #d4d4d4;
 `;
 
 const DraggableElement = ({ prefix, elements }) => (
