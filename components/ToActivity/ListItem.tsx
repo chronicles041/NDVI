@@ -2,12 +2,10 @@ import { Draggable } from "react-beautiful-dnd";
 import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import ToIcon, { IconSize, IconTypes } from "../ToIcons";
-
-
-
+import ToModal from "../ToModal";
 
 const DragItem = styled.div`
-//   padding: 10px;
+  //   padding: 10px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background: white;
@@ -33,8 +31,7 @@ const ListItem = ({ item, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-
-             <div className="flex flex-col px-6 py-5 bg-[#eaffb1] shadow-md rounded-lg gap-y-4 ">
+            <div className="flex flex-col px-6 py-5 bg-[#eaffb1] shadow-md rounded-lg gap-y-4 ">
               <button className=" bg-indigo-600 text-white text-sm font-medium rounded-full w-24 py-1">
                 High
               </button>
@@ -84,6 +81,14 @@ const ListItem = ({ item, index }) => {
                   </button>
                 </div>
               </div>
+              <ToModal
+                iconType={IconTypes.Activity}
+                iconSize={IconSize.XSM}
+                onOpen={() => null}
+                title={"Task Detail"}
+              >
+                Hello
+              </ToModal>
             </div>
           </DragItem>
         );
