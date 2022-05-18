@@ -4,8 +4,8 @@ import ToTittle from "../ToTittle";
 
 type Props = {
   children?: ReactNode;
-  title: string;
-  type?: any;
+  title?: string;
+  type?: number;
   iconType?: any;
   iconSize?: any;
   onOpen: Function;
@@ -28,8 +28,7 @@ const ToModal = ({
   return (
     <>
       <button
-        className=" text-white bg-primary hover:text-white hover:bg-secondary  transition duration-300 ease-in-out shadow-md flex flex-row items-center justify-center gap-x-2
-      font-bold  rounded-md px-4 py-3 border-opacity-30 hover:shadow-lg outline-none focus:outline-none"
+        className={`${type===1? "flex flex-row items-center text-base font-medium hover:cursor-pointer  justify-center text-center gap-x-2":" text-white bg-primary hover:text-white hover:bg-secondary  transition duration-300 ease-in-out shadow-md flex flex-row items-center justify-center gap-x-2 font-bold  rounded-md px-4 py-3 border-opacity-30 hover:shadow-lg outline-none focus:outline-none"}`}
         type="button"
         onClick={() => setModalOpen()}
       >
