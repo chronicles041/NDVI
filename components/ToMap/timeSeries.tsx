@@ -88,6 +88,14 @@ function TimeSeriesGraph({
       // 20 days: 0.19 NDVI
       {
         crop: 2,
+        days: 0,
+        id: 1,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.000,
+        project: 1,
+      },
+      {
+        crop: 2,
         days: 20,
         id: 1,
         phase_name: "Emergency",

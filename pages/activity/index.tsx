@@ -15,14 +15,15 @@ const ActivityIndex = () => {
 
   return (
     <PageLayout>
+              <div className="">
+          {/* <Activity /> */}
+          {activities ? <DragList activities={activities} /> : null}
+        </div>
       <div className="flex flex-col items-end  px-3 py-6 relative">
         <div className="absolute bottom-4 right-7 z-50">
           <ActivityForm />
         </div>
-        <div className="mb-10">
-          {/* <Activity /> */}
-          {activities ? <DragList activities={activities} /> : null}
-        </div>
+
       </div>
     </PageLayout>
   );

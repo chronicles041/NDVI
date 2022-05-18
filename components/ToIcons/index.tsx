@@ -37,6 +37,8 @@ import Time from "./assets/time.svg";
 import Done from "./assets/done.svg"
 import Edit from "./assets/eidt.svg";
 import Plus from "./assets/plus.svg";
+import Start from "./assets/start.svg";
+import Process from "./assets/process.svg";
 
 interface IiconSize {
   height: number;
@@ -106,6 +108,8 @@ export const IconTypes = {
   Edit:Edit,
   Done:Done,
   Plus:Plus,
+  Start:Start,
+  Process:Process,
 };
 export const IconStyles = {
   Default: " ",

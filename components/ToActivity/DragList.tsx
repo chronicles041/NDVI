@@ -124,7 +124,7 @@ const generateLists = (activities) => {
         };
       });
     let onProcessList = activities
-      .filter((l) => l.status === 2)
+      .filter((l) => l.status === 1)
       .map((v) => {
         return {
           ...v,
