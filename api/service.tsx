@@ -5,6 +5,7 @@ import { baseUrl } from "./serviceConfig";
 import moment from "moment";
 import { IActivity } from "../types/activityTypes";
 
+
 export default new (class ReportService {
   FetchPhases() {
     return (
@@ -265,6 +266,7 @@ export default new (class ReportService {
   }
   FetchUsers() {
     return axios.get<any>(`${baseUrl}allusers/`, {}).then((res) => {
+      // return axios.get<any>(`${baseUrl}allusers/?id=&username=&user_type__project__id=1`, {}).then((res) => {
       let tempReturnValue: any = [];
 
       res.data.results.map((value: { name: string; id: number }) => {

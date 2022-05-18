@@ -112,14 +112,13 @@ const lists = ["todo", "inProgress", "done"];
 
 const generateLists = (activities) => {
   if (activities) {
-    console.log("*** Activities ", activities);
     let todoList = activities
       .filter((l) => l.status === 4)
       .map((v) => {
         // return v
         return {
           ...v,
-            id: `item-${v.id}`,
+          id: `item-${v.id}`,
           prefix: v.id,
           content: `item ${v.id}`,
         };
@@ -129,7 +128,7 @@ const generateLists = (activities) => {
       .map((v) => {
         return {
           ...v,
-            id: `item-${v.id}`,
+          id: `item-${v.id}`,
           prefix: v.id,
           content: `item ${v.id}`,
         };
@@ -140,7 +139,7 @@ const generateLists = (activities) => {
       .map((v) => {
         return {
           ...v,
-            id: `item-${v.id}`,
+          id: `item-${v.id}`,
           prefix: v.id,
           content: `item ${v.id}`,
         };
@@ -151,6 +150,7 @@ const generateLists = (activities) => {
       inProgress: onProcessList,
       done: completedList,
     };
+    console.log("*** Activities Length ", activities);
 
     // console.log(
     //   "***List",
@@ -176,7 +176,11 @@ const generateLists = (activities) => {
   //     {}
   //   );
 };
-
+const InitialElements = {
+  todo: [],
+  inProgress: [],
+  done: [],
+};
 function DragList({ activities }: any) {
   const [elements, setElements] = React.useState(generateLists(activities));
 
