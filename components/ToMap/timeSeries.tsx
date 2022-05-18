@@ -48,7 +48,7 @@ function TimeSeriesGraph({
             text: d.phase_name,
             style: {
               color: "#fff",
-              background: "#775DD0",
+              background: "#58508d",
             },
           },
         },
@@ -75,7 +75,107 @@ function TimeSeriesGraph({
       {
         data: timeArray,
         name: "Globel Maize Trend",
-        color: "green",
+        color: "#58508d",
+      },
+    ];
+  };
+
+  const indianTrend = () => {
+    let currentTime = new Date(plantationDate);
+    let timeArray: any = [];
+
+    let phaseData = [
+      // 20 days: 0.19 NDVI
+      {
+        crop: 2,
+        days: 20,
+        id: 1,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.19,
+        project: 1,
+      },
+      // 40 days: 0.35 NDVI
+      {
+        crop: 2,
+        days: 40,
+        id: 2,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.35,
+        project: 1,
+      },
+      // 60 days: 0.65 NDVI
+
+      {
+        crop: 2,
+        days: 60,
+        id: 3,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.65,
+        project: 1,
+      },
+      // 80 days: 0.79 NDVI
+
+      {
+        crop: 2,
+        days: 80,
+        id: 4,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.79,
+        project: 1,
+      },
+      // 100 days: 0.75 NDVI
+
+      {
+        crop: 2,
+        days: 100,
+        id: 5,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.75,
+        project: 1,
+      },
+      // 120 days: 0.61 NDVI
+
+      {
+        crop: 2,
+        days: 120,
+        id: 6,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.61,
+        project: 1,
+      },
+      // 140 days: 0.42 NDVI
+      {
+        crop: 2,
+        days: 140,
+        id: 7,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.42,
+        project: 1,
+      },
+      // 160 days: 0.25 NDVI
+      {
+        crop: 2,
+        days: 160,
+        id: 8,
+        phase_name: "Emergency",
+        phase_ndvi_value: 0.25,
+        project: 1,
+      },
+    ];
+    phaseData?.map((d, i) => {
+      let tempDate = new Date(plantationDate);
+      let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
+      console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days);
+      let datObj = [new Date(reqDate).getTime(), d.phase_ndvi_value];
+      // let datObj = [new Date(reqDate).getTime(), testData[i]];
+      timeArray.push(datObj);
+    });
+
+    return [
+      {
+        data: timeArray,
+        name: "Indian Trend",
+        color: "#ff6361",
       },
     ];
   };
@@ -94,34 +194,35 @@ function TimeSeriesGraph({
       {
         data: timeArray,
         name: "Selected Field (NDVI)",
-        color: "white",
+        color: "#bc5090",
+        // type:"Area"
       },
     ];
   };
 
-  const createEviData = () => {
-    let tempArray: any = [];
+  // const createEviData = () => {
+  //   let tempArray: any = [];
 
-    graphData?.evi?.map((d, i) => {
-      let datObj = [new Date(d.date).getTime(), d.evi_value];
-      tempArray.push(datObj);
-    });
-    // alert(tempArray[2])
-    console.log("***EVI", tempArray);
-    return [
-      {
-        data: tempArray,
-        name: "Selected Fieldv (EVI)",
-        color: "#007691",
-      },
-    ];
-  };
+  //   graphData?.evi?.map((d, i) => {
+  //     let datObj = [new Date(d.date).getTime(), d.evi_value];
+  //     tempArray.push(datObj);
+  //   });
+  //   // alert(tempArray[2])
+  //   console.log("***EVI", tempArray);
+  //   return [
+  //     {
+  //       data: tempArray,
+  //       name: "Selected Fieldv (EVI)",
+  //       color: "#007691",
+  //     },
+  //   ];
+  // };
 
   const options = {
     chart: {
       id: "area-datetime",
       type: "area",
-      height: 350,
+      height: 450,
       zoom: {
         autoScaleYaxis: true,
       },
@@ -169,10 +270,10 @@ function TimeSeriesGraph({
     fill: {
       type: "gradient",
       gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.5,
-        opacityTo: 0.2,
-        stops: [0, 100],
+        shadeIntensity: 0,
+        opacityFrom: 0.2,
+        opacityTo: 0.5,
+        stops: [0,25, 50,75,100],
       },
     },
   };
@@ -190,9 +291,9 @@ function TimeSeriesGraph({
               // series={createGraphData()}
               // series={createEviData()}
               // series={[ ...createPhaseData(),...createEviData()]}
-              series={[ ...createPhaseData(),...createGraphData()]}
+              series={[...indianTrend(), ...createGraphData(),...createPhaseData()]}
               type="area"
-              height={550}
+              height={600}
             />
           </>
         ) : (

@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import ToIcon, { IconSize, IconTypes } from "../ToIcons";
 import ToModal from "../ToModal";
+import DetailView from "../ToActivity/DeatilView";
 
 const DragItem = styled.div`
   //   padding: 10px;
@@ -31,64 +32,49 @@ const ListItem = ({ item, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <div className="flex flex-col px-6 py-5 bg-[#eaffb1] shadow-md rounded-lg gap-y-4 ">
-              <button className=" bg-indigo-600 text-white text-sm font-medium rounded-full w-24 py-1">
+            <div className="flex flex-col px-4 py-4 bg-[#eaffb1] shadow-sm rounded-lg gap-y-1 ">
+              <button className=" bg-red-600 shadow-md text-white text-xs font-normal flex flex-row items-center justify-center text-center rounded-full w-16 h-5 py-2">
                 High
               </button>
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 ">
-                New Plantation Monitoring
+              <h5 className="text-lg font-bold tracking-tight text-gray-900 ">
+               {item.title}
               </h5>
-              <p className="font-normal text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              <p className="text-normal font-normal text-gray-700">
+                {item.remarks}
               </p>
               <div className="flex justify-end items-end gap-x-2">
                 <ToIcon
                   type={IconTypes.Time}
-                  size={IconSize.XSM}
+                  size={IconSize.XXSM}
                   style={""}
                 ></ToIcon>
-                <span className="text-lg text-secondary font-base">3hrs</span>
+                <span className="text-xs text-secondary font-normal">{item.time_duration} Days</span>
               </div>
-              <div className=" flex flex-row relative mt-7">
-                <div className="flex-1 items-start justify-start">
+              <div className=" flex relative flex-row mt-3 justify-center items-center">
+                <div className="flex-1 relative  ">
                   <img
                     src="https://source.unsplash.com/ILip77SbmOE/900x900"
-                    className="w-10 rounded-full ring-1 ring-secondary ring-offset-2  float-left "
+                    className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left "
                   />
                   <img
                     src="https://source.unsplash.com/ILip77SbmOE/900x900"
-                    className="w-10 rounded-full ring-1 ring-secondary ring-offset-2  float-left absolute left-6"
+                    className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left absolute left-6"
                   />
                   <img
                     src="https://source.unsplash.com/ILip77SbmOE/900x900"
-                    className="w-10 rounded-full ring-1 ring-secondary ring-offset-2  float-left absolute left-12"
+                    className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left absolute left-12"
                   ></img>
                 </div>
-                <div className="flex-1 flex-row absolute right-0">
-                  <button className="mr-4">
-                    <ToIcon
-                      type={IconTypes.Done}
-                      size={IconSize.XSM}
-                      style={""}
-                    ></ToIcon>
+                <div className=" flex flex-row gap-x-3 items-center justify-center">
+                  <button>
+                    <ToIcon type={IconTypes.Done} size={IconSize.XSM} style={""} / >
+               
                   </button>
-                  <button className="">
-                    <ToIcon
-                      type={IconTypes.Edit}
-                      size={IconSize.SM}
-                      style={""}
-                    ></ToIcon>
-                  </button>
+                  <DetailView
+                    detailData = {item}
+                  />
                 </div>
               </div>
-              <ToModal
-                iconType={IconTypes.Activity}
-                iconSize={IconSize.XSM}
-                onOpen={() => null}
-                title={"Task Detail"}
-              >
-                Hello
-              </ToModal>
             </div>
           </DragItem>
         );

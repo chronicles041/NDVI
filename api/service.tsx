@@ -3,6 +3,8 @@ import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
 import { baseUrl } from "./serviceConfig";
 import moment from "moment";
+import { IActivity } from "../types/activityTypes";
+
 
 export default new (class ReportService {
   FetchPhases() {
@@ -263,31 +265,30 @@ export default new (class ReportService {
       });
   }
   FetchUsers() {
-    return axios
-      .get<any>(`${baseUrl}allusers/`, {})
-      .then((res) => {
-        let tempReturnValue: any = [];
+    return axios.get<any>(`${baseUrl}allusers/`, {}).then((res) => {
+      // return axios.get<any>(`${baseUrl}allusers/?id=&username=&user_type__project__id=1`, {}).then((res) => {
+      let tempReturnValue: any = [];
 
-        res.data.results.map((value: { name: string; id: number }) => {
-          tempReturnValue = [
-            ...tempReturnValue,
-            { title: value.username, value: value.id },
-          ];
-          // console.log("**API**DropdDowm", tempReturnValue);
-        });
-        return tempReturnValue;
+      res.data.results.map((value: { name: string; id: number }) => {
+        tempReturnValue = [
+          ...tempReturnValue,
+          { title: value.username, value: value.id },
+        ];
+        // console.log("**API**DropdDowm", tempReturnValue);
       });
+      return tempReturnValue;
+    });
   }
 
   FetchDropdownFarm(params: any) {
     return axios
-    .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
-      params,
-    })
+      .get<IFieldReport, any>(`${baseUrl}farm_info_view/`, {
+        params,
+      })
       .then((res) => {
         let tempReturnValue: any = [];
         // console.log("***res",res)
-        res.data.results.map((value:any) => {
+        res.data.results.map((value: any) => {
           tempReturnValue = [
             ...tempReturnValue,
             { title: value.farm_name, value: value.farm_id },
@@ -296,6 +297,32 @@ export default new (class ReportService {
         });
         return tempReturnValue;
       });
+  }
+
+  AddNewActivity(params: IActivity) {
+    return axios
+      .post<IFieldReport, any>(`${baseUrl}tasks/`, params)
+      .then((res) => {
+        return res.data;
+      });
+  }
+
+  FetchTasks() {
+    return axios.get<any>(`${baseUrl}tasks/`).then((res) => {
+      let tempReturnValue: IFieldReport[] = [];
+      // console.log("**RES", res);
+
+      res.data.results.map((value: IFieldReport, i: number) => {
+        // if (variety) {
+        //   console.log("*** Value", value?.season[0].crop_variety);
+        // }
+        tempReturnValue = [...tempReturnValue, value];
+        // console.log("**API**DropdDowm", tempReturnValue);
+      });
+      let ServerData = tempReturnValue;
+
+      return ServerData;
+    });
   }
 })();
 
