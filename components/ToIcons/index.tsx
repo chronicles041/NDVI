@@ -36,6 +36,7 @@ import Cloud from "./assets/cloud.svg";
 import Time from "./assets/time.svg";
 import Done from "./assets/done.svg"
 import Edit from "./assets/eidt.svg";
+import Plus from "./assets/plus.svg";
 
 interface IiconSize {
   height: number;
@@ -104,6 +105,7 @@ export const IconTypes = {
   Time:Time,
   Edit:Edit,
   Done:Done,
+  Plus:Plus,
 };
 export const IconStyles = {
   Default: " ",
@@ -117,6 +119,10 @@ export const IconSize = {
   DEFAULT: {
     height: 30,
     width: 30,
+  },
+  XXSM:{
+    height:18,
+    width:18,
   },
   XSM:{
     height: 28,

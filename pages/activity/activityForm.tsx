@@ -63,6 +63,13 @@ const ActivityForm = () => {
     setFormData(tempFormData);
   };
 
+  const onChangeDate = (e: Event | any , name:any) => {
+    console.log("***Form Changed", e.target.value, "<--->", e.target.name);
+    let tempFormData: any = formData;
+    tempFormData = { ...tempFormData, [name]: e.target.value };
+    setFormData(tempFormData);
+  };
+
   const handleDropdownChange = (e: any, name: any) => {
     let newValue = Array.from(e.target.selectedOptions, (option) =>
       JSON.parse(option.value)
@@ -73,6 +80,12 @@ const ActivityForm = () => {
     setFormData(tempFormData);
   };
 
+  const handleDropdown = (e: Event | any, name: any) => {
+    // console.log("***Dropdown Changed", e.target.value, "<--->", value);
+    let tempFormData: any = formData;
+    tempFormData = { ...tempFormData, [name]: e.target.value };
+    setFormData(tempFormData);
+  };
   const addActivity = () => {
     let newFormData: any = formData;
     newFormData = { ...newFormData, project: 1 };
@@ -94,10 +107,18 @@ const ActivityForm = () => {
     //   }
   };
 
+  const handlReset = () => {
+    let newFormData: any = formData;
+    const restFromData = newFormData.reset();
+    console.log(restFromData)
+
+  
+  };
+
   return (
     <ToModal
-      iconType={IconTypes.Activity}
-      iconSize={IconSize.XSM}
+      iconType={IconTypes.Plus}
+      iconSize={IconSize.XXSM}
       onOpen={() => onDetailClick()}
       title={"Add Task"}
     >
@@ -114,20 +135,27 @@ const ActivityForm = () => {
         </div>
         <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
           <ToDropdown
-            onChange={
-              (e: Event) => handleDropdownChange(e, "farm")
-              // this.handleFilterChange(
-              //   e,
-              //   "ward__municipality__district__province__id"
-              // )
-            }
+            onChange={(e: Event) => handleDropdownChange(e, "farm")}
             options={farmData}
             label="Select Farm"
             multiple={true}
           />
-          <ToDropdown options={users} label="Assign for" />
-          <ToDropdown options={reportType} label="Activity Type" />
-          <ToDropdown options={priorityType} label="Priority" />
+          <ToDropdown
+            onChange={(e: Event) => handleDropdownChange(e, "users")}
+            options={users}
+            label="Assign for"
+            multiple={true}
+          />
+          <ToDropdown
+             onChange={(e: Event) => handleDropdown(e, "activity_type")}
+            options={reportType}
+            label="Activity Type"
+          />
+          <ToDropdown
+          onChange={(e: Event) => handleDropdown(e, "priority_type")}
+            options={priorityType}
+            label="Priority"
+          />
         </div>
         <div className="flex flex-col gap-y-4">
           <span className="text-base font-medium text-secondary">
@@ -152,6 +180,7 @@ const ActivityForm = () => {
               id="username"
               type="date"
               placeholder="Start Date"
+              onChange={(e: Event) => onChangeDate(e, "start_dat")}
             />
           </div>
           <div className="flex-1">
@@ -163,6 +192,7 @@ const ActivityForm = () => {
               id="username"
               type="date"
               placeholder="Due Date"
+              onChange={(e: Event) => onChangeDate(e, "due_date")}
             />
           </div>
         </div>
@@ -178,7 +208,7 @@ const ActivityForm = () => {
           <button
             className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
             type="button"
-            // onClick={() => this.triggerProcess()}
+            onClick={() => handlReset()}
           >
             Reset Activity
           </button>
