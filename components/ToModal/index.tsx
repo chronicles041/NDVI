@@ -28,8 +28,8 @@ const ToModal = ({
   return (
     <>
       <button
-        className=" text-white bg-primary hover:text-white hover:bg-secondary  transition duration-300 ease-in-out shadow-md
-      font-bold  rounded-md px-4 py-2 border-opacity-30 hover:shadow-lg outline-none focus:outline-none"
+        className=" text-white bg-primary hover:text-white hover:bg-secondary  transition duration-300 ease-in-out shadow-md flex flex-row items-center justify-center gap-x-2
+      font-bold  rounded-md px-4 py-3 border-opacity-30 hover:shadow-lg outline-none focus:outline-none"
         type="button"
         onClick={() => setModalOpen()}
       >
