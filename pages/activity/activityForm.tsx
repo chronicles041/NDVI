@@ -88,7 +88,7 @@ const ActivityForm = () => {
   };
   const addActivity = () => {
     let newFormData: any = formData;
-    newFormData = { ...newFormData, project: 1,status:4 , assigned_by:2260};
+    newFormData = { ...newFormData, project: 1,status:2, priority_name:"2",status_name:"2", assigned_by:2260};
     console.log("***Add Activity Form Values :", newFormData);
     // {
     //   "title":"Just a test Title Created by blinkrup",
