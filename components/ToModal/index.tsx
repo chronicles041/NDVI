@@ -1,14 +1,24 @@
 import { ReactNode, useState } from "react";
+import ToIcon, { IconStyles } from "../ToIcons";
 import ToTittle from "../ToTittle";
 
 type Props = {
   children?: ReactNode;
   title: string;
   type?: any;
+  iconType?: any;
+  iconSize?: any;
   onOpen: Function;
 };
 
-const ToModal = ({ children, title, type, onOpen }: Props) => {
+const ToModal = ({
+  children,
+  title,
+  type,
+  onOpen,
+  iconSize,
+  iconType,
+}: Props) => {
   const [showModal, setShowModal] = useState(false);
 
   const setModalOpen = () => {
@@ -23,14 +33,23 @@ const ToModal = ({ children, title, type, onOpen }: Props) => {
         type="button"
         onClick={() => setModalOpen()}
       >
+        {iconSize && iconType ? (
+          <ToIcon type={iconType} size={iconSize} style={IconStyles.Default} />
+        ) : null}
+
         {title}
       </button>
       {showModal ? (
         <>
-          <div className={"flex justify-center bg-gray-600 bg-opacity-60 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none  animated fadeIn faster  "+ (showModal? "fadeIn ":"fadeOut")}>
+          <div
+            className={
+              "flex justify-center bg-gray-600 bg-opacity-60 items-center overflow-x-hidden   overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none  animated fadeIn faster  " +
+              (showModal ? "fadeIn " : "fadeOut")
+            }
+          >
             <div className=" relative flex flex-col justify-center items-center w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
               <div className="relative w-full bg-white border-2 h-full p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
-               <ToTittle tittle={title ? title :"Feild Details"}></ToTittle>
+                <ToTittle tittle={title ? title : "Feild Details"}></ToTittle>
                 <div className="flex flex-col h-[90%] w-full overflow-x-hidden overflow-y-hidden">
                   {" "}
                   {children}{" "}

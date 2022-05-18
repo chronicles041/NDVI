@@ -7,6 +7,7 @@ type ToDropdownProps = {
   options: [];
   onChange: Function;
   disabled?: boolean;
+  multiple?:Boolean
 };
 
 export default function ToDropdown({
@@ -15,6 +16,7 @@ export default function ToDropdown({
   options,
   onChange,
   disabled,
+  multiple,
 }: any) {
   return (
     <div className="flex flex-row px-2 py-2">
@@ -25,6 +27,7 @@ export default function ToDropdown({
             className="flex-1 placeholder-gray-300 text-gray-600 relative bg-white rounded text-sm focus:border-2 focus:border-primary focus:ring-transparent w-full"
             onChange={onChange}
             disabled={disabled}
+            multiple={multiple}
           >
             <option value="Default">Select </option>
 

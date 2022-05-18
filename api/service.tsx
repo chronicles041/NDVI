@@ -286,7 +286,7 @@ export default new (class ReportService {
     })
       .then((res) => {
         let tempReturnValue: any = [];
-        console.log("***res",res)
+        // console.log("***res",res)
         res.data.results.map((value:any) => {
           tempReturnValue = [
             ...tempReturnValue,
