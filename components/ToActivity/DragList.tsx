@@ -18,7 +18,7 @@ const testActivities = [
     type: 1,
     visits: 1,
     last_visit: "2022-05-12",
-    status: 1,
+    status: 4,
     remarks: "Description added",
   },
   {
@@ -110,66 +110,78 @@ const addToList = (list, index, element) => {
 
 const lists = ["todo", "inProgress", "done"];
 
-const generateLists = () => {
-  let todoList = testActivities
-    .filter((l) => l.status === 1)
-    .map((v) => {
-      return {
-        id: `item-${v.id}`,
-        prefix: v.id,
-        content: `item ${v.id}`,
-      };
-    });
-  let onProcessList = testActivities
-    .filter((l) => l.status === 2)
-    .map((v) => {
-      return {
-        id: `item-${v.id}`,
-        prefix: v.id,
-        content: `item ${v.id}`,
-      };
-    });
+const generateLists = (activities) => {
+  if (activities) {
+    console.log("*** Activities ", activities);
+    let todoList = activities
+      .filter((l) => l.status === 4)
+      .map((v) => {
+        // return v
+        return {
+          ...v,
+            id: `item-${v.id}`,
+          prefix: v.id,
+          content: `item ${v.id}`,
+        };
+      });
+    let onProcessList = activities
+      .filter((l) => l.status === 2)
+      .map((v) => {
+        return {
+          ...v,
+            id: `item-${v.id}`,
+          prefix: v.id,
+          content: `item ${v.id}`,
+        };
+      });
 
-  let completedList = testActivities
-    .filter((l) => l.status === 3)
-    .map((v) => {
-      return {
-        id: `item-${v.id}`,
-        prefix: v.id,
-        content: `item ${v.id}`,
-      };
-    });
-  let tempList = {
-    todo: todoList,
-    inProgress: onProcessList,
-    done: completedList,
-  };
+    let completedList = activities
+      .filter((l) => l.status === 3)
+      .map((v) => {
+        return {
+          ...v,
+            id: `item-${v.id}`,
+          prefix: v.id,
+          content: `item ${v.id}`,
+        };
+      });
 
-  console.log(
-    "***List",
-    // lists,
-    // todoList,
-    // onProcessList,
-    // completedList,
-    // lists.reduce(
-    //   (acc, listKey) => ({ ...acc, [listKey.status]: getItems(listKey.name) }),
-    //   {}
-    // ),
-    tempList
-  );
+    let tempList = {
+      todo: todoList,
+      inProgress: onProcessList,
+      done: completedList,
+    };
 
-  return tempList;
+    // console.log(
+    //   "***List",
+    //   lists,
+    //   todoList,
+    //   onProcessList,
+    //   completedList,
+    //   lists.reduce(
+    //     (acc, listKey) => ({
+    //       ...acc,
+    //       [listKey.status]: getItems(listKey.name),
+    //     }),
+    //     {}
+    //   ),
+    //   tempList
+    // );
+
+    return tempList;
+  }
+
   //   return lists.reduce(
   //     (acc, listKey) => ({ ...acc, [listKey]: getItems(listKey) }),
   //     {}
   //   );
 };
 
-function DragList() {
-  const [elements, setElements] = React.useState(generateLists());
+function DragList({ activities }: any) {
+  const [elements, setElements] = React.useState(generateLists(activities));
 
   useEffect(() => {
-    setElements(generateLists());
+    setElements(generateLists(activities));
   }, []);
 
   const onDragEnd = (result) => {
@@ -196,17 +208,24 @@ function DragList() {
 
   return (
     <DragDropContextContainer>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <ListGrid>
-          {lists.map((listKey) => (
-            <DraggableElement
-              elements={elements[listKey]}
-              key={listKey}
-              prefix={listKey}
-            />
-          ))}
-        </ListGrid>
-      </DragDropContext>
+      {activities ? (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <ListGrid>
+            {lists.map((listKey) => (
+              <>
+                {/* {JSON.stringify(listKey)}
+                {JSON.stringify(elements[listKey])} */}
+                {/* {JSON.stringify(listKey)} */}
+                <DraggableElement
+                  elements={elements[listKey]}
+                  key={listKey}
+                  prefix={listKey}
+                />
+              </>
+            ))}
+          </ListGrid>
+        </DragDropContext>
+      ) : null}
     </DragDropContextContainer>
   );
 }

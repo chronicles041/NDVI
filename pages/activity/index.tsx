@@ -7,12 +7,10 @@ import DragList from "../../components/ToActivity/DragList";
 import ReportService from "../../api/service";
 
 const ActivityIndex = () => {
-
   const [activities, setActivities] = React.useState();
 
   useEffect(() => {
     ReportService.FetchTasks().then((res) => setActivities(res));
-
   }, []);
 
   return (
@@ -23,12 +21,9 @@ const ActivityIndex = () => {
         </div>
         <div className="mb-10">
           {/* <Activity /> */}
-          <DragList
-            activities={activities}
-          />
+          {activities ? <DragList activities={activities} /> : null}
         </div>
       </div>
-
     </PageLayout>
   );
 };
