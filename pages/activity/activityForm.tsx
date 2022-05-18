@@ -74,7 +74,7 @@ const ActivityForm = () => {
       <div className="flex flex-col gap-y-4">
         Description
         <textarea
-          className="focus:border-2 focus:border-primary focus:ring-transparent rounded w-full py-2 px-3 text-secondary leading-tight  h-3/4"
+          className="focus:border-2 focus:bor       der-primary focus:ring-transparent rounded w-full py-2 px-3 text-secondary leading-tight  h-3/4"
           id="username"
           rows={6}
           placeholder="Add Description to Activity"
