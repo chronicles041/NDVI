@@ -37,10 +37,10 @@ const ListItem = ({ item, index }) => {
                 High
               </button>
               <h5 className="text-lg font-bold tracking-tight text-gray-900 ">
-                New Plantation Monitoring
+               {item.title}
               </h5>
               <p className="text-normal font-normal text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                {item.remarks}
               </p>
               <div className="flex justify-end items-end gap-x-2">
                 <ToIcon
@@ -48,7 +48,7 @@ const ListItem = ({ item, index }) => {
                   size={IconSize.XXSM}
                   style={""}
                 ></ToIcon>
-                <span className="text-xs text-secondary font-normal">3hrs</span>
+                <span className="text-xs text-secondary font-normal">{item.time_duration} Days</span>
               </div>
               <div className=" flex relative flex-row mt-3 justify-center items-center">
                 <div className="flex-1 relative  ">
@@ -67,10 +67,12 @@ const ListItem = ({ item, index }) => {
                 </div>
                 <div className=" flex flex-row gap-x-3 items-center justify-center">
                   <button>
-                    <ToIcon type={IconTypes.Done} size={IconSize.XSM} style={""} >
-                    </ToIcon>
+                    <ToIcon type={IconTypes.Done} size={IconSize.XSM} style={""} / >
+               
                   </button>
-                  <DetailView/>
+                  <DetailView
+                    detailData = {item}
+                  />
                 </div>
               </div>
             </div>
