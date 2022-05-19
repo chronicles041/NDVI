@@ -156,7 +156,6 @@ export default new (class ReportService {
               age: 40,
               contact_no: 9843323432,
               organization_name: value.organization_name,
-              municipality_name: value.municipality_name,
               district_name: value.district_name,
               province_name: value.province_name,
               crop_type_name: value?.season[0]
@@ -165,6 +164,7 @@ export default new (class ReportService {
               // crop_type_name:value?.season[0] ? `${value.season[0].crop_name_en}(${value.season[0].crop_name_np})`: "Maize",
               plantation_date: plantationDate,
               ward: value.ward,
+              municipality_name: value.municipality_name,
               ward_number: value.ward_number,
               tole_name: value.tole_name,
               farm_polygon_json: value.farm_polygon_json,
@@ -218,6 +218,10 @@ export default new (class ReportService {
               seed_variety: value?.season[0].crop_variety
                 ? value?.season[0].crop_variety
                 : "N/A",
+                harvest_ready: value?.season[0].harvest_ready ? 
+                "Ready"
+                : "Not Ready"
+                // harvest_ready:
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);

@@ -187,8 +187,8 @@ const ReportColumns = [
   },
   {
     Header: "Harvest Ready",
-    accessor: "days_before_harvest",
-    Cell: ({ value }: any) => "N/A",
+    accessor: "harvest_ready",
+    // Cell: ({ value }: any) => value?"Ready" :"Not Ready",
     // Cell: ({ value }: any) => <>{value ? `${value} days` : "N/A"}</>,
   },
 
@@ -343,8 +343,13 @@ const Reports = ({
         Tole: data.tole_name,
         Organization: data.organization_name,
         Crop: "Maize",
+        Variety: data.seed_variety,
+        "Plantation Date":data.plantation_date,
+        "Current Phase":data.current_phase_name,
+        "Current Phase Value":data.current_phase_value,
+        "Yeild-77":data.yield_estimation_77,
+        "Yeild-120":data.yield_estimation_120,
       };
-
       tempArray.push(tempData);
     });
     return tempArray;

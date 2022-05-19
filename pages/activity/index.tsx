@@ -12,17 +12,23 @@ const ActivityIndex = () => {
   useEffect(() => {
     ReportService.FetchTasks().then((res) => setActivities(res));
   }, []);
+  const reloadTable = ()=>{
+    ReportService.FetchTasks().then((res) => setActivities(res));
 
+  }
   return (
     <PageLayout>
-      <div className="flex flex-col items-end  px-3 py-6 relative">
-        <div className="absolute bottom-4 right-7 z-50">
-          <ActivityForm />
-        </div>
-        <div className="mb-10">
+              <div className="">
           {/* <Activity /> */}
           {activities ? <DragList activities={activities} /> : null}
         </div>
+      <div className="flex flex-col items-end  px-3 py-6 relative">
+        <div className="absolute bottom-4 right-7 z-50">
+          <ActivityForm
+              reloadActivities={()=>reloadTable()}
+          />
+        </div>
+
       </div>
     </PageLayout>
   );

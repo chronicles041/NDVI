@@ -124,7 +124,7 @@ const generateLists = (activities) => {
         };
       });
     let onProcessList = activities
-      .filter((l) => l.status === 2)
+      .filter((l) => l.status === 1)
       .map((v) => {
         return {
           ...v,
@@ -186,7 +186,7 @@ function DragList({ activities }: any) {
 
   useEffect(() => {
     setElements(generateLists(activities));
-  }, []);
+  }, [activities]);
 
   const onDragEnd = (result) => {
     if (!result.destination) {

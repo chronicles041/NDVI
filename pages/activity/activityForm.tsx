@@ -6,7 +6,7 @@ import { IFieldFilters } from "../../types/reportTypes";
 import { IconSize, IconTypes } from "../../components/ToIcons";
 import { IActivity } from "../../types/activityTypes";
 
-const ActivityForm = () => {
+const ActivityForm = ({ reloadActivities }: Function) => {
   const defaultFilters: IFieldFilters = {
     search: " ",
     limit: 100,
@@ -63,7 +63,7 @@ const ActivityForm = () => {
     setFormData(tempFormData);
   };
 
-  const onChangeDate = (e: Event | any , name:any) => {
+  const onChangeDate = (e: Event | any, name: any) => {
     console.log("***Form Changed", e.target.value, "<--->", e.target.name);
     let tempFormData: any = formData;
     tempFormData = { ...tempFormData, [name]: e.target.value };
@@ -88,28 +88,22 @@ const ActivityForm = () => {
   };
   const addActivity = () => {
     let newFormData: any = formData;
-    newFormData = { ...newFormData, project: 1,status:2, priority_name:"2",status_name:"2", assigned_by:2260};
-    console.log("***Add Activity Form Values :", newFormData);
-    // {
-    //   "title":"Just a test Title Created by blinkrup",
-    //   "priority":1,
-    //   "assigned_date":"2022-05-17",
-    //   "end_date":"2022-05-31",
-    //   "project":1,
-    //   "task_assigned_to":[2126,2165],
-    //   "farms":[3111,3119],
-    //   "assigned_by":1,
-    //   "type":1,
-    //   "visits":1,
-    //   "last_visit":"2022-05-12",
-    //   "status":4,
-    //   "remarks":"Description added"
-    //   }
-    ReportService.AddNewActivity(newFormData).then((res: any) => console.log("***Add Activity",res));
+    newFormData = {
+      ...newFormData,
+      project: 1,
+      status: 4,
+      priority_name: "2",
+      status_name: "4",
+      assigned_by: 2260,
+    };
+      // reloadActivities();
 
+    ReportService.AddNewActivity(newFormData).then((res: any) => {
+      console.log("***Add Activity", res);
+      reloadActivities();
+    });
   };
 
-  
   // };
 
   return (
@@ -117,7 +111,7 @@ const ActivityForm = () => {
       iconType={IconTypes.Plus}
       iconSize={IconSize.XXSM}
       onOpen={() => onDetailClick()}
-      title={"Add Task"}
+      title={"Add Activity"}
     >
       <div className="flex flex-col w-full gap-y-6">
         <div className="mb-4">
@@ -144,12 +138,12 @@ const ActivityForm = () => {
             multiple={true}
           />
           <ToDropdown
-             onChange={(e: Event) => handleDropdown(e, "type")}
+            onChange={(e: Event) => handleDropdown(e, "type")}
             options={reportType}
             label="Activity Type"
           />
           <ToDropdown
-          onChange={(e: Event) => handleDropdown(e, "priority")}
+            onChange={(e: Event) => handleDropdown(e, "priority")}
             options={priorityType}
             label="Priority"
           />

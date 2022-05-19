@@ -24,10 +24,10 @@ const FarmDetail = ({ detail }: any) => {
         </div>
         <div className="text-center flex flex-col p-6 gap-y-3 border-t border-b border-r">
           <span className="text-2xl font-bold text-primary">
-            {detail.tole_name}
+          {detail.tole_name}
           </span>
           <p className="font-semibold tracking-widest text-secondary uppercase text-sm">
-            Located Ward
+            Tole Name
           </p>
         </div>
         <div className="flex flex-col p-6 gap-y-3 text-center   ">
@@ -36,7 +36,7 @@ const FarmDetail = ({ detail }: any) => {
             {detail.ward_number}
           </span>
           <p className="text-sm font-semibold tracking-widest text-secondary uppercase ">
-            Ward No
+          Located Ward
           </p>
         </div>
         <div className="text-center flex flex-col p-6 gap-y-3 md:border-r" >

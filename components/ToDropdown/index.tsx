@@ -21,6 +21,7 @@ export default function ToDropdown({
   return (
     <div className="flex flex-row px-2 py-2">
       <div className="flex flex-row w-full items-center justify-center gap-5" >
+      {title ? <div className="w-1/3 py-2">{title}</div> : null}
         {label ? <span className=" flex-1 text-base font-medium text-secondary">{label}</span> : null}
 
           <select
