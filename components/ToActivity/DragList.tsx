@@ -186,7 +186,7 @@ function DragList({ activities }: any) {
 
   useEffect(() => {
     setElements(generateLists(activities));
-  }, []);
+  }, [activities]);
 
   const onDragEnd = (result) => {
     if (!result.destination) {

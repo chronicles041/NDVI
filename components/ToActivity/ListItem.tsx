@@ -54,20 +54,33 @@ const ListItem = ({ item, index }) => {
               </div>
               <div className=" flex relative flex-row mt-3 justify-center items-center">
                 <div className="flex-1 relative  ">
+      
                   <img
-                    src="https://source.unsplash.com/ILip77SbmOE/900x900"
+                    src="https://cdn.vectorstock.com/i/1000x1000/91/23/man-avatar-icon-flat-vector-18149123.webp"
                     className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left "
+                    data-toggle="tooltip"
+                    title={`Assigned By ${item.assigned_by_username}`}
                   />
                   <img
-                    src="https://source.unsplash.com/ILip77SbmOE/900x900"
+                    src="https://cdn.vectorstock.com/i/1000x1000/23/96/man-avatar-icon-flat-vector-19152396.webp"
+                    // src="https://cdn.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.webp"
                     className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left absolute left-6"
-                  />
+                    data-toggle="tooltip"
+                    // title={item.task_assigned_to_username}
+                    title={`Assigned To ${item.task_assigned_to_username}`}
 
+                  />
                 </div>
                 <div className=" flex flex-row gap-x-3 items-center justify-center">
                   <button>
                     <ToIcon
-                      type={item.status=== 4 ?IconTypes.Start : item.status=== 1 ? IconTypes.Process : IconTypes.Done}
+                      type={
+                        item.status === 4
+                          ? IconTypes.Start
+                          : item.status === 1
+                          ? IconTypes.Process
+                          : IconTypes.Done
+                      }
                       size={IconSize.XSM}
                       style={""}
                     />
