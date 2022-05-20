@@ -33,11 +33,11 @@ export default function ToDropdown({
             <option value="Default">Select </option>
 
             {options?.map((v: ILocation, i: number) => (
-              <>
+            
                 <option key={i} value={v.value}>
                   {v.title}
                 </option>
-              </>
+            
             ))}
           </select>
       </div>

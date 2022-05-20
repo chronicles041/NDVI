@@ -123,7 +123,7 @@ const ToWeather = ({ coordinates }: Props) => {
         </div> */}
         <div className="flex flex-row gap-y-3 gap-x-2 items-center p-2">
           {nextWeather?.daily.map((d, i) => (
-            <div className="flex  content-center bg-black bg-opacity-25 p-4 rounded-md shadow-md gap-y-4 flex-col  items-center justify-center">
+            <div key={i} className="flex  content-center bg-black bg-opacity-25 p-4 rounded-md shadow-md gap-y-4 flex-col  items-center justify-center">
               <span className=" text-white opacity-80 font-semibold text-lg w-1/4">
                 {moment.unix(d.dt).format("ddd")}
               </span>

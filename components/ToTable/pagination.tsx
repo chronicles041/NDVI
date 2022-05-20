@@ -84,7 +84,7 @@ export const ToTablePagination = ({
             type="number"
             value={page}
             className="rounded-lg focus:ring-primary"
-            defaultValue={page}
+            // defaultValue={page}
             onChange={(e) => gotoPage(e.target.value)}
             style={{ width: "100px" }}
           />

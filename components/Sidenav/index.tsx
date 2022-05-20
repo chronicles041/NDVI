@@ -14,13 +14,13 @@ const Navbar = ({  isCollapse }: NavbarProps) => {
       <div className="pl-3 py-8 overflow-y-auto h-full">
 
         <ul className="space-y-2">
-          {Routes.map((route) => (
+          {Routes.map((route,k) => (
             <NavItem
               path={route.path}
               name={route.name}
               isCollapse={isCollapse}
               icon={route.icon}
-              key={0}
+              key={k}
             />
           ))}
         </ul>
