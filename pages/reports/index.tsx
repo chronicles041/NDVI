@@ -10,8 +10,8 @@ import {
 import ReportService from "../../api/service";
 import ListReport from "../../components/listView";
 import { ToListPagination } from "../../components/ToListPagination";
-import { ReportColumns } from "./tableColumns";
-import { CreateExportData } from "./exportReport";
+import  ReportColumns  from "../../components/tableColumns";
+import  CreateExportData  from "../../components/exportReport";
 
 const Reports = ({
   selectedItem,
@@ -189,7 +189,7 @@ const Reports = ({
           processFilter={() => createReportFilter()}
         />
         <div className="flex-initial p-2">
-          {/* <CreateExportData reportData={reportData} /> */}
+          <CreateExportData reportData={reportData} />
         </div>
       </div>
       <ReportTable

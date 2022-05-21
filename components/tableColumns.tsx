@@ -1,7 +1,7 @@
 import moment from "moment";
-import DetailModal from "../../components/FieldDetail";
+import DetailModal from "./FieldDetail";
 
-export const ReportColumns = [
+ const ReportColumns = [
   {
     Header: "Farm ID",
     accessor: "farm_id",
@@ -176,3 +176,6 @@ export const ReportColumns = [
     ),
   },
 ];
+
+
+export default ReportColumns

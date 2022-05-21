@@ -1,6 +1,6 @@
 import { CSVLink } from "react-csv";
 
-export const CreateExportData = ({ reportData }: any) => {
+ const CreateExportData = ({ reportData }: any) => {
   let tempArray: any = [];
   reportData.data.map((data) => {
     let tempData = {
@@ -39,3 +39,5 @@ export const CreateExportData = ({ reportData }: any) => {
     </button>
   );
 };
+
+export default CreateExportData
