@@ -142,7 +142,8 @@ export const ToTable = ({
             page={currentP}
             pageCount={Math.round(count / 10)}
             pageSize={limit}
-            setPageSize={(value: number) => setPageSize(value)}
+            // setPageSize={(value: number) => alert(value)}
+            setPageSize={(value: number) => setPageSize(value)} 
             gotoPage={(value: number) => gotoPage(value)}
           />
         </div>

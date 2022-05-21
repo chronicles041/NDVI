@@ -130,7 +130,7 @@ const Reports = ({
   };
 
   const changePageSize = (value: number) => {
-    console.log("***", value);
+    console.log("*** Change", value);
     let newParams = { ...filterParams, limit: value };
     setFilterParams(newParams);
     setLimit(value);
@@ -194,7 +194,8 @@ const Reports = ({
       </div>
       <ReportTable
         // setPageSize={(value: number) => setLimit(value)}
-        setPageSize={(value: number) => changePageSize(value)}
+        setPageSize={(value: number) => alert(value)}
+        // setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
           changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
         }
