@@ -11,7 +11,9 @@ const MapIndex = () => {
   return (
     <PageLayout>
       {/* <ToMap /> */}
-    <Map />
+    <Map
+      someText="sadasas"
+    />
       
     </PageLayout>
   );

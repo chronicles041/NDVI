@@ -23,14 +23,18 @@ const viewParams = {
   detailView: false,
 };
 
-function ToMap(props) {
+function ToMap() {
   const mapRef = useRef();
   const [polygon, setPolygon] = useState([]);
   const [center, setCenter] = useState([102.8312416766951, 15.248647579054131]);
   const [viewControl, setViewControl] = useState(viewParams);
   const [newFarm, setNewFarmArray] = useState();
   const [mapData, setMapData] = useState([]);
-  const [selectedData, selectData] = useState({});
+  const [selectedData, selectData] = useState({
+    ndwi_path: "",
+    ndvi_path: "",
+    evi_path: "",
+  });
   const [selectedFarm, selectField] = useState({});
   const [previousDate, setPreviousDate] = useState("");
   const [loading, setLoading] = useState(false);
@@ -89,10 +93,10 @@ function ToMap(props) {
         setMapData(res.data.data);
         setPreviousDate(res.data.previous_date);
         const tempNdviGraph = res.data.ndviGraph.reverse();
-        const tempEviGraph = res.data.eviGraph.reverse()
+        const tempEviGraph = res.data.eviGraph.reverse();
         setGraphData({
           ndvi: tempNdviGraph,
-          evi:tempEviGraph
+          evi: tempEviGraph,
         });
       })
       .catch((err) => setLoading(false));
@@ -114,7 +118,7 @@ function ToMap(props) {
       <div className="container bg-white px-4 py-4 flex-col">
         <div className="flex flex-row gap-x-3">
           <div className="basis-3/4 z-0 flex flex-col gap-y-3">
-             {/* **Here  {JSON.stringify(multipleField[1])} */}
+            {/* **Here  {JSON.stringify(multipleField[1])} */}
             <div className="dateList flex justify-center bg-[#007691] rounded-md items-center   w-full mt-3">
               <DateList
                 loading={loading}
@@ -125,15 +129,9 @@ function ToMap(props) {
             </div>
             <LeafletMap
               polygon={polygon}
-              // multiplePolygon = {}
               center={center}
-              ref={(mapRed) => mapRef}
-              viewControl={viewControl}
-              newFarmArray={setNewFarmArray}
+              // ref={(mapRed) => mapRef}
               selectedData={selectedData}
-              configureColorPalate={(type, value) =>
-                setColor({ ...color, [type]: value })
-              }
               multipleField={multipleField}
             />
             <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
@@ -144,7 +142,7 @@ function ToMap(props) {
               selectedItem={selectFarm}
               listView={true}
               getPlantationDate={getplantationDate}
-              getMultiplefields = {(value:any)=>setMultipleField(value)}
+              getMultiplefields={(value: any) => setMultipleField(value)}
             />
           </div>
         </div>
@@ -154,9 +152,7 @@ function ToMap(props) {
             graphData={graphData}
           />
         </div>
-        <ToWeather
-          coordinates={center}
-        />
+        <ToWeather coordinates={center} />
       </div>
     </>
   );
