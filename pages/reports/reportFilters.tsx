@@ -72,7 +72,8 @@ class ReportFilters extends React.Component<
               <p className="font-semibold p-4">Filter Data</p>
               <hr className="border-[20%] border-secondary " />
             </div>
-            <div className="flex flex-col mt-3 ">
+            <div className="flex flex-col mt-3 overflow-x-scroll ">
+              
               <div className="px-6 rounded   mt-2 w-full">
                 <p className="font-semibold mt-1 mb-2">Locate Fields</p>
                 <ToDropdown
