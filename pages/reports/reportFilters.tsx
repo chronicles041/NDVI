@@ -184,8 +184,25 @@ class ReportFilters extends React.Component<
                   </div>
                 </div>
               </div>
+              <hr className="border-[20%] mt-4 border-primary" />
+              <div className="px-6 rounded  mt-2 w-full">
+                <p className="font-semibold mt-1 mb-2">Harvest</p>
+                <div className="flex flex-row ml-2">
+                  <div className="flex flex-row w-full">
+                    <div className="w-1/3 py-2">{"Farm Name"}</div>
+                    <div className="w-2/3 pt-1">
+                      <input
+                        onChange={(e: any) =>
+                          this.handleFilterChange(e, "farm_name")
+                        }
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
+                              <br /><br /><br />
             <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
               <hr className="border-[20%]  border-secondary" />
 
