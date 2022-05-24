@@ -47,21 +47,29 @@ const ToWeather = ({ coordinates }: Props) => {
   const currentTime = new Date().toString();
   const currentDay = new Date();
   return (
-    <div className="flex flex-col overflow-y-scroll items-center gap-y-2 mt-4 ">
+    <div className="flex flex-col w-full overflow-y-scroll items-center gap-y-2 mt-4 ">
       <ToTittle tittle="Weather Forecast" />
-      <div>
-        <div className="flex flex-row= from-gray-900 to-gray-600    bg-gradient-to-r  font-medium text-white p-2   rounded-xl h-auto w-full items-center justify-center">
-          <div className="flex flex-row gap-y-3 gap-x-2 items-center p-2">
+      <div className="w-full">
+        <div className="flex flex-row from-gray-900 to-gray-800    bg-gradient-to-r  font-medium text-white p-2   rounded-xl h-auto w-full items-center justify-center">
+          <div className="flex flex-col  gap-y-3 gap-x-2 p-4 w-full">
+            <div className="md:flex px-4 md:visible hidden  bg-black py-4 rounded-lg bg-opacity-30 items-center justify-center">
+              <span className="w-1/5 ">Day</span>
+              <span className="w-1/5 text-center">Forecast</span>
+              <span className="w-1/5 text-center">Precipitation</span>
+              <span className="w-1/5 text-center">Min/Max</span>
+              <span className="w-1/5 text-left">Info</span>
+            
+            </div>
             {nextWeather?.daily.map((d, i) => (
               <div
                 key={i}
-                className="flex content-center bg-black bg-opacity-25 p-4 rounded-md shadow-md gap-y-4 flex-col  items-center justify-center"
+                className="flex md:flex-row flex-col  w-full px-4 flex-grow  justify-evenly items-center  bg-opacity-25  py-2  border-b-gray-300 border-opacity-20 border-b-2 gap-y-4  "
               >
-                <span className=" text-white opacity-80 font-semibold text-lg w-1/4">
-                  {moment.unix(d.dt).format("ddd")}
-                </span>
+                <div className=" md:w-1/5 text-white opacity-80 font-semibold text-lg ">
+                  {moment.unix(d.dt).format("dddd")}
+                </div>
 
-                <div className="flex flex-col items-center gap-y-1  justify-end w-auto">
+                <div className="flex  md:w-1/5 flex-col items-center gap-y-1  justify-end ">
                   <WeatherIcon
                     size={50}
                     title=""
@@ -70,18 +78,18 @@ const ToWeather = ({ coordinates }: Props) => {
                   <div className="font-medium text-sm">
                     {`${d.weather[0]?.main}`}
                   </div>
-                  <div className=" text-sm">
+               
+                </div>
+                <div className=" text-md text-center md:w-1/5">
                     {`${Math.round(d.pop * 100)} %`}
                   </div>
 
-                </div>
-
-                <span className="font-medium items-center text-sm w-full text-center justify-center">
-                  {d.temp.max}°C {d.temp.min}°C
+                <span className="font-medium  md:w-1/5 items-center text-md  text-center justify-center">
+                  {d.temp.max}°C <br/> {d.temp.min}°C
                 </span>
 
                 {/* <div className="flex bg-white text-black flex-row gap-y-3 gap-x-2 items-center p-2"> */}
-                  <span className="flex flex-col text-ellipsis text-xs font-semibold text-center   items-center gap-y-1 justify-end w-full">
+                  <span className="flex flex-col   md:w-1/5  text-sm font-medium md:text-left text-center   items-start gap-y-1 ">
                     Humidity : {d.humidity} <br />
                     Rain : {d.rain ?? "N/A"} <br />
                     Pressure : {d.pressure} hPa <br />
