@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import PageLayout from "../../components/Pagelayout";
 import ToWeather from "../../components/ToWeather";
 import Reports from "../reports";
+import ReportService from "../../api/service";
+
 const Weather =  dynamic(() => import("../../components/ToWeather/Weather.js"), { ssr: false });
 
 const WeatherIndex = () => {
@@ -27,20 +29,22 @@ const WeatherIndex = () => {
   const [plantationDate, setPlantationDate] = React.useState();
   const [multipleField, setMultipleField] = React.useState();
 
-  // useEffect(() => {
-  //   if (props.location.state) {
-  //     setViewControl({
-  //       addView: false,
-  //       listView: false,
-  //       detailView: true,
-  //     });
-  //     setCenter(JSON.parse(props.location.state.params.polygon)[1]);
-  //     setPolygon(JSON.parse(props.location.state.params.polygon));
-  //     setMapData([]);
-  //     getDisasterData(props.location.state.params);
-  //     setDetailData(props.location.state.params);
-  //   }
-  // }, [props.location.state]);
+  const [locationWeather, setLocationWeather] = useState();
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude
+      const lng = position.coords.longitude
+      const params = {
+        coordinates: [lat,lng].toString(),
+      };
+      ReportService.FetchWeather({ params }).then((res) => {
+        console.log("Weather_data_2", res);
+        setLocationWeather(res);
+      });
+      console.log("Latitude is :",lat,lng );
+    });
+  }, []);
 
   const selectFarm = (item) => {
     setLoading(true);
@@ -56,40 +60,6 @@ const WeatherIndex = () => {
     setPlantationDate(item.plantation_date);
   };
 
-  const getLayerData = (item, previous, previous_date) => {
-    const params = {
-      farm_id: item.farm_id,
-      plantation_date: item.plantation_date,
-    };
-    // const params = {
-    //   farm_id: item.farm_id,
-    //   plantation_date:selectedFarm.plantation_date
-    // };
-    console.log("Graph Data");
-
-    MapService.getDateImage(params)
-      .then((res) => {
-        let newMapData = res.data.data.concat(mapData);
-        setMapData(newMapData);
-        setLoading(false);
-        setMapData(res.data.data);
-        setPreviousDate(res.data.previous_date);
-        const tempNdviGraph = res.data.ndviGraph.reverse();
-        const tempEviGraph = res.data.eviGraph.reverse();
-        setGraphData({
-          ndvi: tempNdviGraph,
-          evi: tempEviGraph,
-        });
-      })
-      .catch((err) => setLoading(false));
-  };
-
-  const getNewDates = (pre, next) => {
-    // if (!props.location.state) {
-    setLoading(true);
-    getLayerData(selectedFarm, "True", previousDate);
-    // }
-  };
 
   const getplantationDate = () => {
     setPlantationDate(selectedFarm.plantation_date);
@@ -100,21 +70,13 @@ const WeatherIndex = () => {
     // <PageLayout>
     //   <Weather/>
     // </PageLayout>
-    <>
+    <PageLayout>
     <div className="container bg-white px-4 py-4 flex-col">
-      <div className="flex flex-row gap-x-3">
-        <div className="basis-3/4 z-0 flex flex-col gap-y-3">
-          {/* **Here  {JSON.stringify(multipleField[1])} */}
-          <ToWeather coordinates={center} />
+      <div className="flex overflow-scroll flex-row gap-x-3">
+        <div className="basis-3/4 z-0  bg-red-200 flex h-50  flex-col gap-y-3">
+        
+        <ToWeather miniView={false} coordinates={center} />
 
-          {/* <LeafletMap
-            polygon={polygon}
-            center={center}
-            // ref={(mapRed) => mapRef}
-            selectedData={selectedData}
-            multipleField={multipleField}
-          /> */}
-          {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
         </div>
         <div className="basis-1/4 flex-col flex justify-center gap-x-2 items-center">
           <Reports
@@ -125,10 +87,13 @@ const WeatherIndex = () => {
             getMultiplefields={(value: any) => setMultipleField(value)}
           />
         </div>
+
       </div>
+        {/* <ToWeather miniView={false} coordinates={center} /> */}
+        {"Location Weather = " + JSON.stringify(locationWeather)}
 
     </div>
-  </>
+  </PageLayout>
   );
 };
 

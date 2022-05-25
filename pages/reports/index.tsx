@@ -23,7 +23,6 @@ const Reports = ({
   formView,
   getMultiplefields,
   handleItemChange,
-
 }: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
@@ -188,9 +187,17 @@ const Reports = ({
 
   return listView ? (
     <>
-      <div className="flex-col p-2">
-        <ActivityForm reloadActivities={() => null} />
-      </div>
+      {/* {JSON.stringify(selectedData)} */}
+      {selectedData ? (
+        <div className="flex-col p-2">
+          <ActivityForm 
+          selectedFarm = {selectedData}
+          reloadActivities={() => null}
+          
+          />
+        </div>
+      ) : null}
+
       <ReportFilters
         provinceValues={province}
         districtValues={districts}
@@ -226,11 +233,11 @@ const Reports = ({
     </>
   ) : formView ? (
     <>
-        <ToMultiple
-            options = {farmData}
-            handleItemChange={(value)=>handleItemChange(value)}
-            title = {"Select Farms"}
-        />
+      <ToMultiple
+        options={farmData}
+        handleItemChange={(value) => handleItemChange(value)}
+        title={"Select Farms"}
+      />
       <ReportFilters
         provinceValues={province}
         districtValues={districts}

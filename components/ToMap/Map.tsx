@@ -156,7 +156,7 @@ function ToMap() {
             graphData={graphData}
           />
         </div>
-        <ToWeather coordinates={center} />
+        <ToWeather  miniView={true} coordinates={center} />
       </div>
     </>
   );
