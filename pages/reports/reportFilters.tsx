@@ -22,7 +22,11 @@ type ReportFilterProps = {
 type ReportFilterState = {
   filterIsOpen: boolean;
 };
-
+const harvestReadyOptions = [
+  { title: "All", value: null },
+  { title: "Ready", value: true },
+  { title: "Not Ready", value: false },
+];
 class ReportFilters extends React.Component<
   ReportFilterProps,
   ReportFilterState
@@ -73,7 +77,6 @@ class ReportFilters extends React.Component<
               <hr className="border-[20%] border-secondary " />
             </div>
             <div className="flex flex-col mt-3 overflow-x-scroll ">
-              
               <div className="px-6 rounded   mt-2 w-full">
                 <p className="font-semibold mt-1 mb-2">Locate Fields</p>
                 <ToDropdown
@@ -183,26 +186,35 @@ class ReportFilters extends React.Component<
                     </div>
                   </div>
                 </div>
-              </div>
-              <hr className="border-[20%] mt-4 border-primary" />
-              <div className="px-6 rounded  mt-2 w-full">
-                <p className="font-semibold mt-1 mb-2">Harvest</p>
                 <div className="flex flex-row ml-2">
                   <div className="flex flex-row w-full">
-                    <div className="w-1/3 py-2">{"Farm Name"}</div>
+                    <div className="w-1/3 py-2">{"Days to Harvest"}</div>
                     <div className="w-2/3 pt-1">
                       <input
                         onChange={(e: any) =>
-                          this.handleFilterChange(e, "farm_name")
+                          this.handleFilterChange(e, "days_to_harvest")
                         }
-                        type="text"
+                        type="number"
                       />
                     </div>
                   </div>
                 </div>
+                <ToDropdown
+                  options={harvestReadyOptions}
+                  title="Harvest Ready"
+                  onChange={(e: Event) =>
+                    this.handleFilterChange(
+                      e,
+                      "harvest_ready"
+                    )
+                  }
+                />
               </div>
+              <hr className="border-[20%] mt-4 border-primary" />
             </div>
-                              <br /><br /><br />
+            <br />
+            <br />
+            <br />
             <div className="flex fixed bottom-0 h-16 bg-white w-full  flex-col  ">
               <hr className="border-[20%]  border-secondary" />
 

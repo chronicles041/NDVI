@@ -10,14 +10,20 @@ import {
 import ReportService from "../../api/service";
 import ListReport from "../../components/listView";
 import { ToListPagination } from "../../components/ToListPagination";
-import  ReportColumns  from "../../components/tableColumns";
-import  CreateExportData  from "../../components/exportReport";
+import ReportColumns from "../../components/tableColumns";
+import CreateExportData from "../../components/exportReport";
+import ActivityForm from "../activity/activityForm";
+import ToDropdown from "../../components/ToDropdown";
+import ToMultiple from "../../components/ToMultiple";
 
 const Reports = ({
   selectedItem,
   loading,
   listView,
+  formView,
   getMultiplefields,
+  handleItemChange,
+
 }: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
@@ -87,7 +93,7 @@ const Reports = ({
     //   }
     // }
     // );
-    processData()
+    processData();
 
     // console.log("***",filterParams?filterParams:"Undefined")
   }, [filterParams]);
@@ -106,7 +112,7 @@ const Reports = ({
   const processData = () => {
     setTableLoading(true);
     ReportService.FetchFieldReport(filterParams).then((res) => {
-    console.log("***debug",res);
+      console.log("***debug", res);
 
       setReportData(res);
       setTableLoading(false);
@@ -119,7 +125,10 @@ const Reports = ({
       // if (res.count > 1) {
       // }
     });
-    return
+    ReportService.FetchDropdownFarm(filterParams).then((res) => {
+      setFarmData(res);
+    });
+    return;
   };
 
   const changePagination = (value: number) => {
@@ -171,43 +180,17 @@ const Reports = ({
     ReportService.FetchOrganizations().then((res) => setOrganization(res));
   };
 
+  const [farmData, setFarmData] = React.useState<any>([
+    { value: 0, title: "No Farms Found" },
+  ]);
+
   // const currentP: number = offSet >= reportData.total ? -1 : offSet / limit + 1;
 
-  return !listView ? (
-    <PageLayout>
-      <div className="flex flex-row ml-4">
-        <ReportFilters
-          provinceValues={province}
-          districtValues={districts}
-          municipalityValues={municipality}
-          wardValues={ward}
-          organizationValues={organization}
-          filterParams={filterParams}
-          changeFilterParams={setFilterParams}
-          processData={() => processData()}
-          resetFilter={() => setFilterParams(FarmDefaultFilters)}
-          processFilter={() => createReportFilter()}
-        />
-        <div className="flex-initial p-2">
-          <CreateExportData reportData={reportData} />
-        </div>
-      </div>
-      <ReportTable
-        // setPageSize={(value: number) => setLimit(value)}
-        setPageSize={(value: number) => alert(value)}
-        // setPageSize={(value: number) => changePageSize(value)}
-        gotoPage={(value: number) =>
-          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
-        }
-        tableColumns={ReportColumns}
-        tableData={reportData}
-        limit={limit}
-        offset={offSet}
-        loading={tableLoading}
-      />
-    </PageLayout>
-  ) : (
+  return listView ? (
     <>
+      <div className="flex-col p-2">
+        <ActivityForm reloadActivities={() => null} />
+      </div>
       <ReportFilters
         provinceValues={province}
         districtValues={districts}
@@ -241,6 +224,64 @@ const Reports = ({
         }
       />
     </>
+  ) : formView ? (
+    <>
+        <ToMultiple
+            options = {farmData}
+            handleItemChange={(value)=>handleItemChange(value)}
+            title = {"Select Farms"}
+        />
+      <ReportFilters
+        provinceValues={province}
+        districtValues={districts}
+        municipalityValues={municipality}
+        wardValues={ward}
+        organizationValues={organization}
+        filterParams={filterParams}
+        changeFilterParams={setFilterParams}
+        processData={() => processData()}
+        resetFilter={() => setFilterParams(FarmDefaultFilters)}
+        processFilter={() => createReportFilter()}
+      />
+    </>
+  ) : (
+    <PageLayout>
+      <div className="flex flex-row ml-4">
+        <ReportFilters
+          provinceValues={province}
+          districtValues={districts}
+          municipalityValues={municipality}
+          wardValues={ward}
+          organizationValues={organization}
+          filterParams={filterParams}
+          changeFilterParams={setFilterParams}
+          processData={() => processData()}
+          resetFilter={() => setFilterParams(FarmDefaultFilters)}
+          processFilter={() => createReportFilter()}
+        />
+
+        <div className="flex-initial p-2">
+          <CreateExportData reportData={reportData} />
+        </div>
+
+        <div className="flex-initial p-2">
+          <ActivityForm reloadActivities={() => null} />
+        </div>
+      </div>
+      <ReportTable
+        // setPageSize={(value: number) => setLimit(value)}
+        setPageSize={(value: number) => alert(value)}
+        // setPageSize={(value: number) => changePageSize(value)}
+        gotoPage={(value: number) =>
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+        }
+        tableColumns={ReportColumns}
+        tableData={reportData}
+        limit={limit}
+        offset={offSet}
+        loading={tableLoading}
+      />
+    </PageLayout>
   );
 };
 

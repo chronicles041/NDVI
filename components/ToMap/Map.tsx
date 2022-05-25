@@ -10,6 +10,7 @@ import TimeSeriesGraph from "./timeSeries";
 import Weather from "../ToWeather/Weather";
 import ToWeather from "../ToWeather";
 import ToTittle from "../ToTittle";
+import ActivityForm from "../../pages/activity/activityForm";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
@@ -119,7 +120,9 @@ function ToMap() {
         <div className="flex flex-row gap-x-3">
           <div className="basis-3/4 z-0 flex flex-col gap-y-3">
             {/* **Here  {JSON.stringify(multipleField[1])} */}
+
             <div className="dateList flex justify-center bg-[#007691] rounded-md items-center   w-full mt-3">
+
               <DateList
                 loading={loading}
                 mapData={mapData}
@@ -137,6 +140,7 @@ function ToMap() {
             <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
           </div>
           <div className="basis-1/4 flex-col flex justify-center gap-x-2 items-center">
+
             <Reports
               loading={loading}
               selectedItem={selectFarm}
