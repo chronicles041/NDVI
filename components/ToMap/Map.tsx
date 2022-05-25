@@ -137,7 +137,7 @@ function ToMap() {
               selectedData={selectedData}
               multipleField={multipleField}
             />
-            <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} />
+            {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
           </div>
           <div className="basis-1/4 flex-col flex justify-center gap-x-2 items-center">
 

@@ -39,6 +39,7 @@ import Edit from "./assets/eidt.svg";
 import Plus from "./assets/plus.svg";
 import Start from "./assets/start.svg";
 import Process from "./assets/process.svg";
+import Layers from "./assets/layers.svg";
 
 interface IiconSize {
   height: number;
@@ -110,6 +111,7 @@ export const IconTypes = {
   Plus:Plus,
   Start:Start,
   Process:Process,
+  Layers:Layers,
 };
 export const IconStyles = {
   Default: " ",

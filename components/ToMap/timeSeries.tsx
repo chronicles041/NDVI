@@ -82,7 +82,7 @@ function TimeSeriesGraph({
     phase?.map((d, i) => {
       let tempDate = new Date(plantationDate);
       let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
-      console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days);
+      // console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days); 
       let datObj = [new Date(reqDate).getTime(), d.phase_ndvi_value];
       // let datObj = [new Date(reqDate).getTime(), testData[i]];
       timeArray.push(datObj);
@@ -190,7 +190,7 @@ function TimeSeriesGraph({
     phaseData?.map((d, i) => {
       let tempDate = new Date(plantationDate);
       let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
-      console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days);
+      // console.log("Date", moment(reqDate).format("Do MMM yy"), "Days:", d.days); 
       let datObj = [new Date(reqDate).getTime(), d.phase_ndvi_value];
       // let datObj = [new Date(reqDate).getTime(), testData[i]];
       timeArray.push(datObj);
@@ -213,7 +213,7 @@ function TimeSeriesGraph({
       timeArray.push(datObj);
     });
     // alert(tempArray[2])
-    console.log("***NDVI", timeArray);
+    // console.log("***NDVI", timeArray);
 
     return [
       {

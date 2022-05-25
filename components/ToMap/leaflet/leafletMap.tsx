@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, useMap } from "react-leaflet";
+import { MapContainer, useMap,ZoomControl } from "react-leaflet";
 import LayerOptions from "./layerOption";
 
 type ILeafletMap = {
@@ -34,6 +34,7 @@ function LeafletMap({
           selectedData={selectedData}
           polygon={polygon}
         />
+         {/* <ZoomControl position='bottomright' /> */}
         <MapSettings></MapSettings>
       </MapContainer>
     </>
