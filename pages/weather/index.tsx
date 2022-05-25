@@ -5,30 +5,15 @@ import ToWeather from "../../components/ToWeather";
 import Reports from "../reports";
 import ReportService from "../../api/service";
 
-const Weather =  dynamic(() => import("../../components/ToWeather/Weather.js"), { ssr: false });
 
 const WeatherIndex = () => {
 
   const [polygon, setPolygon] = useState([]);
   const [center, setCenter] = useState([102.8312416766951, 15.248647579054131]);
   // const [viewControl, setViewControl] = useState(viewParams);
-  const [newFarm, setNewFarmArray] = useState();
-  const [mapData, setMapData] = useState([]);
-  const [selectedData, selectData] = useState({
-    ndwi_path: "",
-    ndvi_path: "",
-    evi_path: "",
-  });
   const [selectedFarm, selectField] = useState({});
-  const [previousDate, setPreviousDate] = useState("");
   const [loading, setLoading] = useState(false);
-  const [detailData, setDetailData] = useState({});
-  const [color, setColor] = useState({});
-  const [graphData, setGraphData] = useState({});
-  const [viewAllFields, setAllFields] = useState(false);
-  const [plantationDate, setPlantationDate] = React.useState();
   const [multipleField, setMultipleField] = React.useState();
-
   const [locationWeather, setLocationWeather] = useState();
   useEffect(() => {
 
@@ -47,23 +32,12 @@ const WeatherIndex = () => {
   }, []);
 
   const selectFarm = (item) => {
-    setLoading(true);
-    setPolygon(item.farm_polygon_json.location);
+
     setCenter(item.extra_field.centroid);
     selectField(item);
-    // // setMapData([])
-    getLayerData(item, "False", null);
-    console.log("Selected Farm :", item);
-    console.log("Polygon :", Object.values(item.farm_polygon_json));
-    console.log("Center :", item.extra_field.centroid);
-    getplantationDate();
-    setPlantationDate(item.plantation_date);
   };
 
 
-  const getplantationDate = () => {
-    setPlantationDate(selectedFarm.plantation_date);
-  };
 
   return (
 
@@ -73,7 +47,8 @@ const WeatherIndex = () => {
     <PageLayout>
     <div className="container bg-white px-4 py-4 flex-col">
       <div className="flex overflow-scroll flex-row gap-x-3">
-        <div className="basis-3/4 z-0  bg-red-200 flex h-50  flex-col gap-y-3">
+        {/* <div className="basis-3/4 z-0  bg-red-200 flex h-50  flex-col gap-y-3"> */}
+        <div className="basis-3/4 z-0  flex h-50  flex-col gap-y-3">
         
         <ToWeather miniView={false} coordinates={center} />
 
@@ -83,7 +58,6 @@ const WeatherIndex = () => {
             loading={loading}
             selectedItem={selectFarm}
             listView={true}
-            getPlantationDate={getplantationDate}
             getMultiplefields={(value: any) => setMultipleField(value)}
           />
         </div>

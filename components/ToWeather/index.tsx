@@ -141,7 +141,7 @@ const ToWeather = ({ coordinates ,miniView}: Props) => {
   const currentDay = new Date();
   return (
     <div className="flex flex-col w-full overflow-scroll items-center gap-y-2 mt-4 ">
-      <ToTittle tittle="Weather Forecast" />
+      {/* <ToTittle tittle="Weather Forecast" /> */}
       <div className="w-full">
         {miniView ? <MiniView /> : <DetailView />}
       </div>
