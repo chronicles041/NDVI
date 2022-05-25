@@ -215,7 +215,7 @@ export default new (class ReportService {
                 : "N/A",
                 harvest_ready: value?.season[0].harvest_ready ? 
                 "Ready"
-                : "Not Ready"
+                : `After ${value?.season[0].days_to_harvest} Days`
                 // harvest_ready:
             },
           ];
