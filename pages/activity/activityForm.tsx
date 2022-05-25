@@ -5,8 +5,10 @@ import ReportService from "../../api/service";
 import { IFieldFilters } from "../../types/reportTypes";
 import { IconSize, IconTypes } from "../../components/ToIcons";
 import { IActivity } from "../../types/activityTypes";
+import Reports from "../reports";
+import ToMultiple from "../../components/ToMultiple";
 
-const ActivityForm = ({ reloadActivities }: Function) => {
+const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
   const defaultFilters: IFieldFilters = {
     search: " ",
     limit: 100,
@@ -27,7 +29,7 @@ const ActivityForm = ({ reloadActivities }: Function) => {
   ]);
 
   const [farmData, setFarmData] = React.useState<any>([
-    { value: 0, title: "No Users Found" },
+    { value: 0, title: "No Farms Found" },
   ]);
 
   const [reportType, setReportTypes] = React.useState<any>([
@@ -80,6 +82,12 @@ const ActivityForm = ({ reloadActivities }: Function) => {
     setFormData(tempFormData);
   };
 
+  const handleMultipleChange = (value: [], name: string) => {
+    let tempFormData: any = formData;
+    tempFormData = { ...tempFormData, [name]: value };
+    setFormData(tempFormData);
+  };
+
   const handleDropdown = (e: Event | any, name: any) => {
     // console.log("***Dropdown Changed", e.target.value, "<--->", value);
     let tempFormData: any = formData;
@@ -94,9 +102,10 @@ const ActivityForm = ({ reloadActivities }: Function) => {
       status: 4,
       priority_name: "2",
       status_name: "4",
-      assigned_by: 2260,
+      // assigned_by: 2260,
+      farms:selectedFarm ? [selectedFarm.farm_id ]: formData?.farms
     };
-      // reloadActivities();
+    // reloadActivities();
 
     ReportService.AddNewActivity(newFormData).then((res: any) => {
       console.log("***Add Activity", res);
@@ -113,7 +122,8 @@ const ActivityForm = ({ reloadActivities }: Function) => {
       onOpen={() => onDetailClick()}
       title={"Add Activity"}
     >
-      <div className="flex flex-col w-full gap-y-6">
+      <div className="flex flex-col w-full p-5 gap-y-6">
+        {selectedFarm ? "Has" : "Not Has"}
         <div className="mb-4">
           <input
             className=" rounded w-full   text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent h-16"
@@ -124,19 +134,61 @@ const ActivityForm = ({ reloadActivities }: Function) => {
             onChange={onChange}
           />
         </div>
-        <div className="grid grid-cols-2 items-center justify-center gap-3 w-full mb-2">
-          <ToDropdown
+        <div className="grid grid-cols-1 items-center justify-center gap-3 w-full mb-2">
+          {/* <ToDropdown
             onChange={(e: Event) => handleDropdownChange(e, "farms")}
             options={farmData}
             label="Select Farm"
             multiple={true}
-          />
-          <ToDropdown
+          /> */}
+
+          {selectedFarm ? (
+            <div className="flex-1">
+              <span className="text-base font-medium text-secondary mb-3">
+                Selected Farm
+              </span>
+              <input
+                className=" rounded w-full mt-3 p-2 text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent"
+                // id="username"
+                // type="date"
+                // placeholder="Start Date"
+                // onChange={(e: Event) => onChangeDate(e, "assigned_date")}
+                value={`${selectedFarm.farm_name}-${selectedFarm.farm_id}`}
+                disabled
+              />
+            </div>
+          ) : (
+            <div className="flex-1">
+            <span className="text-base font-medium text-secondary mb-3">
+              Select Farms
+            </span>
+            <Reports
+              formView={true}
+              handleItemChange={(value) => handleMultipleChange(value, "farms")}
+            />
+          </div>
+           
+          )}
+
+          <div className="flex-1">
+            <span className="text-base font-medium text-secondary mb-3">
+              Select Users
+            </span>
+            <ToMultiple
+              options={users}
+              handleItemChange={(value) =>
+                handleMultipleChange(value, "task_assigned_to")
+              }
+              title={"Assign for"}
+            />
+          </div>
+
+          {/* <ToDropdown
             onChange={(e: Event) => handleDropdownChange(e, "task_assigned_to")}
             options={users}
             label="Assign for"
             multiple={true}
-          />
+          /> */}
           <ToDropdown
             onChange={(e: Event) => handleDropdown(e, "type")}
             options={reportType}

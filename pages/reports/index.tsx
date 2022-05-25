@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReportTable from "../../components/reportTable";
 import PageLayout from "../../components/Pagelayout";
 import ReportFilters from "./reportFilters";
@@ -8,216 +8,21 @@ import {
   ILocation,
 } from "../../types/reportTypes";
 import ReportService from "../../api/service";
-import { off } from "process";
-import Link from "next/link";
-import ToModal from "../../components/ToModal";
-import DetailModal from "../../components/FieldDetail";
 import ListReport from "../../components/listView";
-import { ToTablePagination } from "../../components/ToTable/pagination";
 import { ToListPagination } from "../../components/ToListPagination";
-import { CSVLink, CSVDownload } from "react-csv";
-import moment from "moment";
-
-
-const ReportColumns = [
-  {
-    Header: "Farm ID",
-    accessor: "farm_id",
-  },
-  {
-    Header: "Farm Name",
-    accessor: "farm_name",
-  },
-  {
-    Header: "Farm Area(Hector)",
-    accessor: "farm_area",
-  },
-  {
-    Header: "Province",
-    accessor: "province_name",
-  },
-  {
-    Header: "District",
-    accessor: "district_name",
-  },
-  {
-    Header: "Municipality",
-    accessor: "municipality_name",
-  },
-  {
-    Header: "Ward Number",
-    accessor: "ward_number",
-  },
-  {
-    Header: "Tole Name",
-    accessor: "tole_name",
-  },
-  // {
-  //   Header: "Farmer Name",
-  //   accessor: "farmer_name",
-  // },
-  // {
-  //   Header: "Gender",
-  //   accessor: "gender",
-  // },
-  // {
-  //   Header: "Age",
-  //   accessor: "age",
-  // },
-  // {
-  //   Header: "Contact Number",
-  //   accessor: "contact_no",
-  // },
-  {
-    Header: "Organization",
-    accessor: "organization_name",
-  },
-
-  {
-    Header: "Crop",
-    accessor: "crop_type_name",
-  },
-  {
-    Header: "Variety",
-    accessor: "seed_variety",
-  },
-  {
-    Header: "Plantation Date",
-    accessor: "plantation_date",
-    Cell: ({ value }) =>
-      value === "N/A" ? (
-        <span className="text-red-500">{value}</span>
-      ) : (
-        moment(value).format("Do MMM, yy")
-      ),
-  },
-
-  {
-    Header: "Previous Phase",
-    columns: [
-      {
-        Header: "Name",
-        accessor: "previous_phase",
-        Cell: ({ value }) =>
-          !value ? <span className="text-red-500">N/A</span> : value.name,
-      },
-      {
-        Header: "Value ┉",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }: any) => (
-          <>
-            <div className="flex font-semibold">
-              <span
-                className={`${
-                  value.previous_phase.value < value.previous_phase.phaseValue
-                    ? "text-red-500"
-                    : "text-blue-500"
-                }`}
-              >
-                {value.previous_phase.value ? (
-                  value.previous_phase.value
-                ) : (
-                  <span className="text-red-500">NA</span>
-                )}
-              </span>
-              &nbsp; / &nbsp;
-              <span className={` text-blue-500`}>
-                {value.previous_phase.phaseValue}
-              </span>
-            </div>
-          </>
-        ),
-      },
-    ],
-  },
-
-  {
-    Header: "Current Phase",
-    columns: [
-      {
-        Header: "Name",
-        accessor: "current_phase",
-        Cell: ({ value }) =>
-          !value ? <span className="text-red-500">N/A</span> : value.name,
-      },
-      {
-        Header: " Value ⇡",
-        // accessor: "plantation_date",
-        accessor: (row: any) => row,
-        Cell: ({ value }) => (
-          <>
-            <div className="flex font-semibold">
-              <span
-                className={`${
-                  value.current_phase.value < value.current_phase.phaseValue
-                    ? "text-red-500"
-                    : "text-blue-500"
-                }`}
-              >
-                {value.current_phase.value ? (
-                  value.current_phase.value
-                ) : (
-                  <span className="text-red-500">NA</span>
-                )}
-              </span>
-              &nbsp; / &nbsp;
-              <span className={` text-blue-500`}>
-                {value.current_phase.phaseValue}
-              </span>
-            </div>
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    Header: "Yeild Estimation (Mg / Hector)",
-    columns: [
-      {
-        Header: "77 Days ",
-        accessor: "yield_estimation_77",
-        Cell: ({ value }: any) => <>{value ? value.toFixed(4) : "N/A"}</>,
-      },
-      {
-        Header: "120 Days ",
-        accessor: "yield_estimation_120",
-      },
-    ],
-  },
-  {
-    Header: "Harvest Ready",
-    accessor: "harvest_ready",
-    // Cell: ({ value }: any) => value?"Ready" :"Not Ready",
-    // Cell: ({ value }: any) => <>{value ? `${value} days` : "N/A"}</>,
-  },
-
-  // {
-  //   Header: "Next Phase",
-  //   // accessor: "plantation_date",
-  //   accessor: (row: any) => row,
-  //   Cell: ({ value }: any) => (
-  //     <>
-  //       <div className={"text-blue-500"}>0.425</div>
-  //     </>
-  //   ),
-  // },
-  {
-    Header: "Action",
-    accessor: (row: any) => row,
-    Cell: ({ value }: any) => (
-      <div className="flex flex-row z-0 gap-x-2 justify-center items-center">
-        <DetailModal id={value.farm_id} />
-      </div>
-    ),
-  },
-];
+import ReportColumns from "../../components/tableColumns";
+import CreateExportData from "../../components/exportReport";
+import ActivityForm from "../activity/activityForm";
+import ToDropdown from "../../components/ToDropdown";
+import ToMultiple from "../../components/ToMultiple";
 
 const Reports = ({
   selectedItem,
   loading,
   listView,
+  formView,
   getMultiplefields,
+  handleItemChange,
 }: any) => {
   const [districts, setDistrict] = React.useState<ILocation[]>([
     { value: 0, title: "No Districts Found" },
@@ -232,11 +37,11 @@ const Reports = ({
   ]);
 
   const [province, setprovince] = React.useState<ILocation[]>([
-    { value: 0, title: "No Wards Found" },
+    { value: 0, title: "No Province Found" },
   ]);
 
   const [organization, setOrganization] = React.useState<ILocation[]>([
-    { value: 0, title: "No Wards Found" },
+    { value: 0, title: "No Organizations Found" },
   ]);
 
   const [reportData, setReportData] = React.useState<{
@@ -251,39 +56,46 @@ const Reports = ({
   const [tableView, setTableView] = React.useState<boolean>(false);
   const [tableLoading, setTableLoading] = React.useState<boolean>(false);
 
-  const defaultFilters: IFieldFilters = {
-    search: " ",
+  const FarmDefaultFilters: IFieldFilters = {
+    ward__id: null,
+    ward__number: null,
+    ward__municipality__id: null,
+    ward__municipality__district__id: null,
+    ward__municipality__district__province__id: null,
+    farm_name: null,
     limit: limit,
     offset: offSet,
     project__id: 1,
-    // organization__id: 2,
-    arm_area_min: "",
-    farm_area_max: "",
-    tole_name: "",
     has_season: true,
+    search: null,
+    organization__id: null,
+    farm_area_min: null,
+    farm_area_max: null,
+    tole_name: null,
   };
 
   const [filterParams, setFilterParams] =
-    React.useState<IFieldFilters>(defaultFilters);
+    React.useState<IFieldFilters>(FarmDefaultFilters);
+
+  // const [locationFilterParams, setLocationFilterParams] = React.useState<any>();
 
   useEffect(() => {
-    setTableLoading(true);
-    ReportService.FetchProvince().then((res) => setprovince(res));
-    ReportService.FetchDistricts().then((res) => setDistrict(res));
-    ReportService.FetchMunicipality().then((res) => setMunicipalitiy(res));
-    ReportService.FetchWard().then((res) => setWard(res));
-    ReportService.FetchOrganizations().then((res) => setOrganization(res));
-    ReportService.FetchFieldReport(filterParams).then((res) => {
-      // console.log("**RES",res)
-      setReportData(res);
-      setTableLoading(false);
-      if (listView) {
-        createMultiplolygon(res);
-      }
-    });
+    createReportFilter();
+    // setTableLoading(true);
+    // ReportService.FetchFieldReport(filterParams).then((res) => {
+    //   // console.log("**RES",res)
+    //   setReportData(res);
+    //   setTableLoading(false);
+    //   // createReportFilter();
+    //   if (listView) {
+    //     createMultiplolygon(res);
+    //   }
+    // }
+    // );
+    processData();
 
     // console.log("***",filterParams?filterParams:"Undefined")
-  }, [limit, offSet]);
+  }, [filterParams]);
 
   const createMultiplolygon = (res) => {
     let tempArray: any = [];
@@ -298,25 +110,35 @@ const Reports = ({
 
   const processData = () => {
     setTableLoading(true);
-
     ReportService.FetchFieldReport(filterParams).then((res) => {
+      console.log("***debug", res);
+
       setReportData(res);
       setTableLoading(false);
-      createMultiplolygon(res);
+      // createReportFilter();
+      if (listView) {
+        createMultiplolygon(res);
+      }
+      // return
+      // createMultiplolygon(res);
       // if (res.count > 1) {
       // }
     });
+    ReportService.FetchDropdownFarm(filterParams).then((res) => {
+      setFarmData(res);
+    });
+    return;
   };
 
   const changePagination = (value: number) => {
-    console.log("***", value);
+    console.log("*** Change Pagination ", value);
     let newParams = { ...filterParams, offset: value };
     setFilterParams(newParams);
     setOffset(value);
   };
 
   const changePageSize = (value: number) => {
-    console.log("***", value);
+    console.log("*** Change", value);
     let newParams = { ...filterParams, limit: value };
     setFilterParams(newParams);
     setLimit(value);
@@ -328,77 +150,54 @@ const Reports = ({
     selectedItem(value);
   };
 
-  const currentP: number = offSet >= reportData.total ? -1 : offSet / limit + 1;
+  const createReportFilter = () => {
+    console.log("***Report Filter", filterParams);
+    const locationFilterParams = {
+      district: {
+        province__id: filterParams.ward__municipality__district__province__id,
+      },
+      municipality: {
+        district__id: filterParams.ward__municipality__district__id,
+        district__province__id:
+          filterParams.ward__municipality__district__province__id,
+      },
+      ward: {
+        municipality__id: filterParams.ward__municipality__id,
+      },
+    };
 
-  const createExportData = () => {
-    let tempArray: any = [];
-    reportData.data.map((data) => {
-      let tempData = {
-        "Farm ID": data.farm_id,
-        "Farm Name": data.farm_name,
-        Province: data.province_name,
-        District: data.district_name,
-        Municipality: data.municipality_name,
-        "Ward Number": data.ward_number,
-        Tole: data.tole_name,
-        Organization: data.organization_name,
-        Crop: "Maize",
-        Variety: data.seed_variety,
-        "Plantation Date":data.plantation_date,
-        "Current Phase":data.current_phase_name,
-        "Current Phase Value":data.current_phase_value,
-        "Yeild-77":data.yield_estimation_77,
-        "Yeild-120":data.yield_estimation_120,
-      };
-      tempArray.push(tempData);
-    });
-    return tempArray;
+    ReportService.FetchProvince().then((res) => setprovince(res));
+    ReportService.FetchDistricts(locationFilterParams.district).then((res) =>
+      setDistrict(res)
+    );
+    ReportService.FetchMunicipality(locationFilterParams.municipality).then(
+      (res) => setMunicipalitiy(res)
+    );
+    ReportService.FetchWard(locationFilterParams.ward).then((res) =>
+      setWard(res)
+    );
+    ReportService.FetchOrganizations().then((res) => setOrganization(res));
   };
 
-  return !listView ? (
-    <PageLayout>
-      <div className="flex flex-row ml-4">
-        <ReportFilters
-          provinceValues={province}
-          districtValues={districts}
-          municipalityValues={municipality}
-          wardValues={ward}
-          organizationValues={organization}
-          filterParams={filterParams}
-          changeFilterParams={setFilterParams}
-          processData={() => processData()}
-          resetFilter={() => setFilterParams(defaultFilters)}
-        />
-        <div className="flex-initial p-2">
-          <button
-            className="text-white bg-secondary_one opacity-95  transition duration-300 ease-in-out  hover:bg-primary shadow-md uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
-            type="button"
-          >
-            <CSVLink
-              filename={`${Date().toLocaleString()}_plantsat.csv`}
-              data={createExportData()}
-            >
-              Export
-            </CSVLink>
-          </button>
+  const [farmData, setFarmData] = React.useState<any>([
+    { value: 0, title: "No Farms Found" },
+  ]);
 
-        </div>
-      </div>
-      <ReportTable
-        // setPageSize={(value: number) => setLimit(value)}
-        setPageSize={(value: number) => changePageSize(value)}
-        gotoPage={(value: number) =>
-          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
-        }
-        tableColumns={ReportColumns}
-        tableData={reportData}
-        limit={limit}
-        offset={offSet}
-        loading={tableLoading}
-      />
-    </PageLayout>
-  ) : (
+  // const currentP: number = offSet >= reportData.total ? -1 : offSet / limit + 1;
+
+  return listView ? (
     <>
+      {/* {JSON.stringify(selectedData)} */}
+      {selectedData ? (
+        <div className="flex-col p-2">
+          <ActivityForm 
+          selectedFarm = {selectedData}
+          reloadActivities={() => null}
+          
+          />
+        </div>
+      ) : null}
+
       <ReportFilters
         provinceValues={province}
         districtValues={districts}
@@ -408,7 +207,8 @@ const Reports = ({
         filterParams={filterParams}
         changeFilterParams={setFilterParams}
         processData={() => processData()}
-        resetFilter={() => setFilterParams(defaultFilters)}
+        resetFilter={() => setFilterParams(FarmDefaultFilters)}
+        processFilter={() => createReportFilter()}
       />
 
       <ListReport
@@ -431,6 +231,64 @@ const Reports = ({
         }
       />
     </>
+  ) : formView ? (
+    <>
+      <ToMultiple
+        options={farmData}
+        handleItemChange={(value) => handleItemChange(value)}
+        title={"Select Farms"}
+      />
+      <ReportFilters
+        provinceValues={province}
+        districtValues={districts}
+        municipalityValues={municipality}
+        wardValues={ward}
+        organizationValues={organization}
+        filterParams={filterParams}
+        changeFilterParams={setFilterParams}
+        processData={() => processData()}
+        resetFilter={() => setFilterParams(FarmDefaultFilters)}
+        processFilter={() => createReportFilter()}
+      />
+    </>
+  ) : (
+    <PageLayout>
+      <div className="flex flex-row ml-4">
+        <ReportFilters
+          provinceValues={province}
+          districtValues={districts}
+          municipalityValues={municipality}
+          wardValues={ward}
+          organizationValues={organization}
+          filterParams={filterParams}
+          changeFilterParams={setFilterParams}
+          processData={() => processData()}
+          resetFilter={() => setFilterParams(FarmDefaultFilters)}
+          processFilter={() => createReportFilter()}
+        />
+
+        <div className="flex-initial p-2">
+          <CreateExportData reportData={reportData} />
+        </div>
+
+        <div className="flex-initial p-2">
+          <ActivityForm reloadActivities={() => null} />
+        </div>
+      </div>
+      <ReportTable
+        // setPageSize={(value: number) => setLimit(value)}
+        setPageSize={(value: number) => alert(value)}
+        // setPageSize={(value: number) => changePageSize(value)}
+        gotoPage={(value: number) =>
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+        }
+        tableColumns={ReportColumns}
+        tableData={reportData}
+        limit={limit}
+        offset={offSet}
+        loading={tableLoading}
+      />
+    </PageLayout>
   );
 };
 

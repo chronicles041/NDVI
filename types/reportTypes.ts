@@ -43,11 +43,17 @@ export interface IFieldReport {
 export interface IFieldFilters {
   limit: number;
   offset: number;
-  search: string;
-  project__id: number;
-  organization__id?: number;
-  arm_area_min: string;
-  farm_area_max: string;
-  tole_name: string;
-  has_season: Boolean;
+  search: string | null;
+  farm_name: string | null;
+  project__id: number | null;
+  organization__id?: number | null;
+  farm_area_min: string | null;
+  farm_area_max: string | null;
+  tole_name: string | null;
+  has_season: Boolean | null;
+  ward__number: number | null;
+  ward__id: number | null;
+  ward__municipality__id: number | null;
+  ward__municipality__district__id: number | null;
+  ward__municipality__district__province__id: number | null;
 }

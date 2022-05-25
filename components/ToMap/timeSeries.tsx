@@ -32,11 +32,28 @@ function TimeSeriesGraph({
   }, []);
 
   const makeAnnotations = () => {
-    let tArray: any = [];
     let currentTime = new Date(plantationDate);
+
+    let tArray: any = [
+      {
+        x: currentTime.setDate(currentTime.getDate()),
+        borderColor: "#000",
+        yAxisIndex: 0,
+        label: {
+          show: true,
+          text: "Plantation Date",
+          style: {
+            color: "#fff",
+            background: "#58908d",
+          },
+        },
+      },
+    ];
+
     phase?.map((d, i) => {
       let tempDate = new Date(plantationDate);
       let reqDate = tempDate.setDate(currentTime.getDate() + d.days);
+
       tArray = [
         ...tArray,
         {
@@ -86,14 +103,14 @@ function TimeSeriesGraph({
 
     let phaseData = [
       // 20 days: 0.19 NDVI
-      {
-        crop: 2,
-        days: 0,
-        id: 1,
-        phase_name: "Emergency",
-        phase_ndvi_value: 0.000,
-        project: 1,
-      },
+      // {
+      //   crop: 2,
+      //   days: 0,
+      //   id: 1,
+      //   phase_name: "Emergency",
+      //   phase_ndvi_value: 0.0,
+      //   project: 1,
+      // },
       {
         crop: 2,
         days: 20,
@@ -281,7 +298,7 @@ function TimeSeriesGraph({
         shadeIntensity: 0,
         opacityFrom: 0.2,
         opacityTo: 0.5,
-        stops: [0,25, 50,75,100],
+        stops: [0, 25, 50, 75, 100],
       },
     },
   };
@@ -299,7 +316,11 @@ function TimeSeriesGraph({
               // series={createGraphData()}
               // series={createEviData()}
               // series={[ ...createPhaseData(),...createEviData()]}
-              series={[...indianTrend(), ...createGraphData(),...createPhaseData()]}
+              series={[
+                ...indianTrend(),
+                ...createGraphData(),
+                ...createPhaseData(),
+              ]}
               type="area"
               height={600}
             />

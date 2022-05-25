@@ -58,8 +58,8 @@ export default new (class ReportService {
     );
   }
 
-  FetchDistricts() {
-    return axios.get<ILocation, any>(`${baseUrl}district/`, {}).then((res) => {
+  FetchDistricts(params) {
+    return axios.get<ILocation, any>(`${baseUrl}district/`, {params}).then((res) => {
       let tempReturnValue: ILocation[] = [];
       res.data.results.map((value: { name: string; id: number }) => {
         tempReturnValue = [
@@ -72,9 +72,9 @@ export default new (class ReportService {
     });
   }
 
-  FetchMunicipality() {
+  FetchMunicipality(params) {
     return axios
-      .get<ILocation, any>(`${baseUrl}municipality/`, {})
+      .get<ILocation, any>(`${baseUrl}municipality/`, {params})
       .then((res) => {
         let tempReturnValue: ILocation[] = [];
         res.data.results.map((value: { name: string; id: number }) => {
@@ -88,8 +88,8 @@ export default new (class ReportService {
       });
   }
 
-  FetchWard() {
-    return axios.get<ILocation, any>(`${baseUrl}ward/`, {}).then((res) => {
+  FetchWard(params) {
+    return axios.get<ILocation, any>(`${baseUrl}ward/`, {params}).then((res) => {
       let tempReturnValue: ILocation[] = [];
       res.data.results.map((value: { name: number; id: number }) => {
         tempReturnValue = [
@@ -136,12 +136,7 @@ export default new (class ReportService {
           var date = new Date(plantationDate);
           var newDate = date.setDate(date.getDate() + 90);
           var year = date.toLocaleDateString(newDate);
-          console.log(
-            "*** Date",
-            moment(newDate).format("Dd MM YYYY"),
-            plantationDate,
-            year
-          );
+
           // if (variety) {
           //   console.log("*** Value", value?.season[0].crop_variety);
           // }
@@ -171,7 +166,7 @@ export default new (class ReportService {
               extra_field: value.extra_field,
               current_phase: {
                 name: value?.season[0]
-                  ? value.season[0].crops.current_phase?.phase_name
+                  ? value.season[0].crops.current_phase?.phase_name?value.season[0].crops.current_phase?.phase_name:'N/A'
                   : "N/A",
                 value: value?.season[0]
                   ? value.season[0].crops.current_phase?.ndvi
@@ -186,8 +181,8 @@ export default new (class ReportService {
               },
               previous_phase: {
                 name: value?.season[0]
-                  ? value.season[0].crops.previous_phase?.phase_name
-                  : -1,
+                  ? value.season[0].crops.previous_phase?.phase_name?value.season[0].crops.previous_phase?.phase_name:"N/A"
+                  : 'N/A',
                 value: value?.season[0]
                   ? value.season[0].crops.previous_phase?.ndvi?.ndvi_value
                   : "N/A",

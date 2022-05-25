@@ -48,12 +48,9 @@ export const ToTable = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0 }, // Pass our hoisted table state
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controlledPageCount,
+      // initialState: { pageIndex: 0 }, // Pass our hoisted table state
+      // manualPagination: true,
+      // pageCount: controlledPageCount,
     },
     usePagination
   );
@@ -79,7 +76,7 @@ export const ToTable = ({
               <thead className="bg-gray-50">
                 {headerGroups.map((headerGroup, i) => (
                   <tr {...headerGroup.getHeaderGroupProps()} key={i}>
-                    {headerGroup.headers.map((column) => (
+                    {headerGroup.headers.map((column,index) => (
                       <th
                         className={`${
                           column.render("Header") === "Action"
@@ -87,7 +84,7 @@ export const ToTable = ({
                             : ""
                         } px-6 py-3 align-right text-left text-base font-semibold text-gray-500 uppercase tracking-wider border`}
                         {...column.getHeaderProps()}
-                        key={i}
+                        key={index}
                       >
                         {column.render("Header")}
                       </th>
@@ -118,7 +115,7 @@ export const ToTable = ({
                       className={`bg-white border-b hover:bg-gray-100 `}
                       hidden={loading}
                     >
-                      {row.cells.map((cell: any) => {
+                      {row.cells.map((cell: any,indeX:number) => {
                         return (
                           <td
                             {...cell.getCellProps()}
@@ -127,7 +124,7 @@ export const ToTable = ({
                                 ? "  bg-white inset-x-0  "
                                 : ""
                             } py-4 px-6 text-base font-medium text-secondary whitespace-nowrap  border`}
-                            key={i}
+                            key={indeX}
                           >
                             <div className="">{cell.render("Cell")}</div>
                           </td>
@@ -145,7 +142,8 @@ export const ToTable = ({
             page={currentP}
             pageCount={Math.round(count / 10)}
             pageSize={limit}
-            setPageSize={(value: number) => setPageSize(value)}
+            // setPageSize={(value: number) => alert(value)}
+            setPageSize={(value: number) => setPageSize(value)} 
             gotoPage={(value: number) => gotoPage(value)}
           />
         </div>

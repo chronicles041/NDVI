@@ -6,8 +6,29 @@ import {
   Polygon,
   TileLayer,
 } from "react-leaflet";
+type LayerOptionsProps = {
+  multipleField: [] | undefined;
+  selectedData: {
+    ndwi_path: string;
+    ndvi_path: string;
+    evi_path: string;
+  };
+  polygon: [number[]] | never[];
+};
 
-class LayerOptions extends React.Component {
+type LayerOptionsState = {
+  polygon: [number[]] | never[];
+  multiplePolygon: [] | undefined;
+  ndvi_path: string;
+  ndwi_path: string;
+  evi_path: string;
+  checkImage: boolean;
+};
+
+class LayerOptions extends React.Component<
+  LayerOptionsProps,
+  LayerOptionsState
+> {
   polyRef = React.createRef();
   ndviOverlayRef = React.createRef();
   ndwiOverlayRef = React.createRef();
@@ -15,18 +36,14 @@ class LayerOptions extends React.Component {
   // geoOverlayRef = React.createRef();
   layControlRef = React.createRef();
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      polygon: [],
-      multiplePolygon: [],
-      ndvi_path: "",
-      ndwi_path: "",
-      evi_path:"",
-      geo_path: "https://miro.medium.com/max/800/1*Z9QPlG7TvSkYMv0OzUbrPg.jpeg",
-      checkImage: false,
-    };
-  }
+  state: LayerOptionsState = {
+    polygon: [],
+    multiplePolygon: [],
+    ndvi_path: "",
+    ndwi_path: "",
+    evi_path: "",
+    checkImage: false,
+  };
 
   componentWillMount() {
     //   this.setState({
@@ -36,18 +53,19 @@ class LayerOptions extends React.Component {
     this.createMultiplePolygon();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(
+    prevProps: LayerOptionsProps,
+    prevState: LayerOptionsState
+  ) {
     if (this.state.polygon !== prevState.polygon) {
       this.controllLayer();
     }
     if (prevProps.polygon === this.state.polygon) {
       this.createPolygon(this.props.polygon);
     }
-
     if (prevProps.multipleField !== this.props.multipleField) {
       this.createMultiplePolygon();
     }
-
     if (prevProps.polygon !== this.props.polygon) {
       this.createPolygon(this.props.polygon);
     }
@@ -61,7 +79,6 @@ class LayerOptions extends React.Component {
       this.ndwiOverlayRef.current._bounds = this.polyRef.current._bounds;
       this.ndviOverlayRef.current._bounds = this.polyRef.current._bounds;
       this.eviOverlayRef.current._bounds = this.polyRef.current._bounds;
-
 
       this.controllLayer();
       this.setState({
@@ -94,8 +111,8 @@ class LayerOptions extends React.Component {
 
   createPolygon = (polygon) => {
     let tempArray = polygon;
-    let newArray = [];
-    tempArray.map((arr) => {
+    let newArray: typeof tempArray = [];
+    tempArray.map((arr: number[]) => {
       newArray = [...newArray, [arr[1], arr[0]]];
       return null;
     });
