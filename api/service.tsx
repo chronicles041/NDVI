@@ -210,8 +210,8 @@ export default new (class ReportService {
                 ? value.season[0].yield_estimation_120
                 : "N/A",
               days_before_harvest: 30,
-              seed_variety: value?.season[0].crop_variety
-                ? value?.season[0].crop_variety
+              seed_variety: value?.season[0].variety
+                ? value?.season[0].variety.variety_name
                 : "N/A",
                 harvest_ready: value?.season[0].harvest_ready ? 
                 "Ready"

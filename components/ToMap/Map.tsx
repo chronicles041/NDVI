@@ -10,7 +10,7 @@ import TimeSeriesGraph from "./timeSeries";
 import Weather from "../ToWeather/Weather";
 import ToWeather from "../ToWeather";
 import ToTittle from "../ToTittle";
-import ActivityForm from "../../pages/activity/activityForm";
+import ActivityForm from "../activityForm";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
