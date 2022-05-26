@@ -2,8 +2,8 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import Router from "next/router";
 import { useState } from "react";
 import axios from "axios";
-
-// let LoginApi = 'https://app.teamonetech.com/custom-auth/token/login/'
+import ReportService from "./../../api/service";
+// let LoginApi = "https://app.teamonetech.com/custom-auth/token/login/";
 let LoginApi = "https://api.plantsat.com/custom-auth/token/login/";
 
 const Login = () => {
@@ -11,10 +11,11 @@ const Login = () => {
   const [password, changePassword] = useState("");
   const [message, changeMessage] = useState("");
   // alert("Reached")
+  
   const createToken = () => {
     // Router.push("/index");
     changeMessage("");
-    localStorage.clear()
+    localStorage.clear();
     axios
       .post(LoginApi, {
         username: username,
@@ -23,12 +24,21 @@ const Login = () => {
       .then((response) => {
         console.log("Response", response.data.token);
         localStorage.setItem("token", response.data.token);
+        setUserInformation();
         Router.push("/");
       })
       .catch((err) => {
         changeMessage("Unable to Login. Check Credentials and try again");
         //   alert(err.message)
       });
+  };
+
+  const setUserInformation = () => {
+    ReportService.GetUserInformation().then((res) => {
+      localStorage.setItem("username", res.username);
+      localStorage.setItem("userid", res.id);
+      console.log("***User", res);
+    });
   };
 
   return (

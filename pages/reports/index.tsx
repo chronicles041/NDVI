@@ -81,17 +81,7 @@ const Reports = ({
 
   useEffect(() => {
     createReportFilter();
-    // setTableLoading(true);
-    // ReportService.FetchFieldReport(filterParams).then((res) => {
-    //   // console.log("**RES",res)
-    //   setReportData(res);
-    //   setTableLoading(false);
-    //   // createReportFilter();
-    //   if (listView) {
-    //     createMultiplolygon(res);
-    //   }
-    // }
-    // );
+
     processData();
 
     // console.log("***",filterParams?filterParams:"Undefined")
@@ -162,7 +152,7 @@ const Reports = ({
           filterParams.ward__municipality__district__province__id,
       },
       ward: {
-        municipality__id: filterParams.ward__municipality__id,
+        municipality__name: filterParams.ward__municipality__id,
       },
     };
 

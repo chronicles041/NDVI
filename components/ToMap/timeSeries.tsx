@@ -87,6 +87,7 @@ function TimeSeriesGraph({
       // let datObj = [new Date(reqDate).getTime(), testData[i]];
       timeArray.push(datObj);
     });
+    console.log("***Weather",timeArray)
 
     return [
       {

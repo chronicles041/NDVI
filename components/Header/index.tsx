@@ -22,6 +22,22 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
     Router.push("/login");
   };
 
+  const userName = () => {
+    let username :any= "Loading..";
+
+    if (typeof window !== "undefined") {
+      console.log("You are on the browser");
+      username = localStorage.getItem("username");
+      // 👉️ can use localStorage here
+    } else {
+      console.log("You are on the server");
+      // 👉️ can't use localStorage
+    }
+
+    console.log("***Username", username);
+    return username
+  };
+
   return (
     <header className=" relative p-2 flex flex-row justify-between items-center font-Oxygen">
       <div className="flex flex-row justify-center items-center gap-x-4 px-3 py-3 ">
@@ -48,8 +64,8 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
               className="w-12 h-12 rounded-full mr-2 object-cover border-2 ring-2 border-gray-400 ring-offset-2 ring-primary ring-opacity-80"
               src="https://random.imagecdn.app/500/150"
             ></img>
-            <span className="text-lg font-semibold text-secondary">
-              CIMMYT1
+            <span className="text-lg  capitalize font-semibold text-secondary">
+              {userName()}
             </span>
             <button
               className="text-lg font-semibold text-secondary"
@@ -76,18 +92,23 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
             >
               <li className="relative  hover:bg-primary hover:border-none hover:rounded-md border-b transition duration-200">
                 <div className=" text-center gap-x-3  px-3 py-2  flex items-center outline-none focus:outline-none">
-                  <ToIcon type={IconTypes.Profile} size={IconSize.SM} style={IconStyles.FillColor}>
-                  </ToIcon>
+                  <ToIcon
+                    type={IconTypes.Profile}
+                    size={IconSize.SM}
+                    style={IconStyles.FillColor}
+                  ></ToIcon>
                   <button className="pr-1 text-black flex-1 hover:text-white">
                     Profile
                   </button>
                 </div>
               </li>
-               <li className="relative  hover:bg-primary hover:border-none hover:rounded-md border-b">
+              <li className="relative  hover:bg-primary hover:border-none hover:rounded-md border-b">
                 <div className=" text-center gap-x-3  px-3 py-2  flex items-center outline-none focus:outline-none">
-                  <ToIcon type={IconTypes.Settings} size={IconSize.SM} style={IconStyles.Default}>
-
-                  </ToIcon>
+                  <ToIcon
+                    type={IconTypes.Settings}
+                    size={IconSize.SM}
+                    style={IconStyles.Default}
+                  ></ToIcon>
                   <button className="pr-1 text-black flex-1 hover:text-white">
                     Settings
                   </button>
@@ -95,8 +116,11 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
               </li>
               <li className="relative hover:bg-primary rounded-md  hover:rounded-md ">
                 <div className=" text-center gap-x-3  px-3 py-2  flex items-center outline-none focus:outline-none">
-                <ToIcon type={IconTypes.Logout} size={IconSize.SM} style={IconStyles.Default}>
-                </ToIcon>
+                  <ToIcon
+                    type={IconTypes.Logout}
+                    size={IconSize.SM}
+                    style={IconStyles.Default}
+                  ></ToIcon>
                   <button
                     className="pr-1 text-black flex-1 hover:text-white"
                     type="button"
