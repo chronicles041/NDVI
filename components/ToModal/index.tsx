@@ -49,7 +49,7 @@ const ToModal = ({
             <div className=" relative flex flex-col justify-center items-center w-full p-5 mt-20 mb-20 h-screen my-6 mx-auto max-w-3xl">
               <div className="relative w-full bg-white border-2 h-full p-6 flex flex-col gap-y-2 items-center  m-3 rounded-lg shadow-lg">
                 <ToTittle  tittle={title ? title : "Task Detail"}></ToTittle>
-                <div className="flex flex-col h-[90%] w-full overflow-x-hidden overflow-y-hidden">
+                <div className="flex flex-col h-[90%] w-full overflow-x-hidden overflow-y-scroll">
                   {" "}
                   {children}{" "}
                 </div>

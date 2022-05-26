@@ -1,7 +1,7 @@
 import axios, { responseEncoding } from "axios";
 import { IFieldReport, ILocation } from "../types/reportTypes";
 import React from "react";
-import { baseUrl } from "./serviceConfig";
+import { baseUrl, userUrl } from "./serviceConfig";
 import moment from "moment";
 import { IActivity } from "../types/activityTypes";
 
@@ -94,7 +94,7 @@ export default new (class ReportService {
       res.data.results.map((value: { name: number; id: number }) => {
         tempReturnValue = [
           ...tempReturnValue,
-          { title: value.number, value: value.id },
+          { title: value.number, value: value.number },
         ];
         // console.log("**API**DropdDowm", tempReturnValue);
       });
@@ -323,6 +323,17 @@ export default new (class ReportService {
       return ServerData;
     });
   }
+
+  GetUserInformation() {
+    return axios
+      .get(`${userUrl}`)
+      .then((res) => {
+        return res.data;
+      });
+  }
+
+
+
 })();
 
 // export default new ReportService

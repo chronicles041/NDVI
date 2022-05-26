@@ -102,7 +102,7 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
       status: 4,
       priority_name: "2",
       status_name: "4",
-      // assigned_by: 2260,
+      assigned_by: localStorage.getItem('userid'),
       farms:selectedFarm ? [selectedFarm.farm_id ]: formData?.farms
     };
     // reloadActivities();
