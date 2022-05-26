@@ -47,7 +47,8 @@ const Reports = ({
   const [reportData, setReportData] = React.useState<{
     data: IFieldReport[];
     total: number;
-  }>({ data: [], total: 0 });
+    total_area: number;
+  }>({ data: [], total: 0, total_area: 0 });
 
   const [pageSize, setPageSize] = React.useState<number>(10);
   const [limit, setLimit] = React.useState<number>(listView ? 20 : 10);
@@ -132,6 +133,8 @@ const Reports = ({
     let newParams = { ...filterParams, limit: value };
     setFilterParams(newParams);
     setLimit(value);
+    setOffset(0);
+
     // setOffset(limit/offSet)
   };
 
@@ -180,10 +183,9 @@ const Reports = ({
       {/* {JSON.stringify(selectedData)} */}
       {selectedData ? (
         <div className="flex-col p-2">
-          <ActivityForm 
-          selectedFarm = {selectedData}
-          reloadActivities={() => null}
-          
+          <ActivityForm
+            selectedFarm={selectedData}
+            reloadActivities={() => null}
           />
         </div>
       ) : null}
@@ -265,12 +267,17 @@ const Reports = ({
           <ActivityForm reloadActivities={() => null} />
         </div>
       </div>
+
+      <div className=" pl-5 mt-5 text-gray-800 text-sm font-semibold">
+        {reportData.total} Records Found covering {reportData.total_area} Hectare Area
+      </div>
       <ReportTable
         // setPageSize={(value: number) => setLimit(value)}
-        setPageSize={(value: number) => alert(value)}
-        // setPageSize={(value: number) => changePageSize(value)}
+        // setPageSize={(value: number) => alert(value)}
+        setPageSize={(value: number) => changePageSize(value)}
         gotoPage={(value: number) =>
-          changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+          // changePagination(value - 1 < 0 ? 0 : (value - 1) * 10)
+          changePagination(value - 1 < 0 ? 0 : (value - 1) * limit)
         }
         tableColumns={ReportColumns}
         tableData={reportData}

@@ -38,6 +38,8 @@ export interface IFieldReport {
   days_before_harvest: number;
   seed_variety: String;
   harvest_ready: String;
+  farmer_count:number
+  
 }
 
 export interface IFieldFilters {

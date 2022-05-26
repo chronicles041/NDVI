@@ -49,7 +49,7 @@ export const ToTable = ({
       columns,
       data,
       // initialState: { pageIndex: 0 }, // Pass our hoisted table state
-      // manualPagination: true,
+      manualPagination: true,
       // pageCount: controlledPageCount,
     },
     usePagination
