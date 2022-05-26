@@ -30,7 +30,7 @@ const DashBorad = () => {
           />
           <Stats
             icon={IconTypes.Land}
-            title={"Total Farm Digitalized (Hector)"}
+            title={"Total Farm Digitalized (Hectare)"}
             count={dashData?.farm_area_count.toFixed(2)}
             buttonText={"View Maps"}
             path={"/maps"}

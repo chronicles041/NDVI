@@ -5,7 +5,6 @@ import { baseUrl, userUrl } from "./serviceConfig";
 import moment from "moment";
 import { IActivity } from "../types/activityTypes";
 
-
 export default new (class ReportService {
   FetchPhases() {
     return (
@@ -59,22 +58,24 @@ export default new (class ReportService {
   }
 
   FetchDistricts(params) {
-    return axios.get<ILocation, any>(`${baseUrl}district/`, {params}).then((res) => {
-      let tempReturnValue: ILocation[] = [];
-      res.data.results.map((value: { name: string; id: number }) => {
-        tempReturnValue = [
-          ...tempReturnValue,
-          { title: value.name, value: value.id },
-        ];
-        // console.log("**API**DropdDowm", tempReturnValue);
+    return axios
+      .get<ILocation, any>(`${baseUrl}district/`, { params })
+      .then((res) => {
+        let tempReturnValue: ILocation[] = [];
+        res.data.results.map((value: { name: string; id: number }) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.name, value: value.id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
       });
-      return tempReturnValue;
-    });
   }
 
   FetchMunicipality(params) {
     return axios
-      .get<ILocation, any>(`${baseUrl}municipality/`, {params})
+      .get<ILocation, any>(`${baseUrl}municipality/`, { params })
       .then((res) => {
         let tempReturnValue: ILocation[] = [];
         res.data.results.map((value: { name: string; id: number }) => {
@@ -89,17 +90,19 @@ export default new (class ReportService {
   }
 
   FetchWard(params) {
-    return axios.get<ILocation, any>(`${baseUrl}ward/`, {params}).then((res) => {
-      let tempReturnValue: ILocation[] = [];
-      res.data.results.map((value: { name: number; id: number }) => {
-        tempReturnValue = [
-          ...tempReturnValue,
-          { title: value.number, value: value.number },
-        ];
-        // console.log("**API**DropdDowm", tempReturnValue);
+    return axios
+      .get<ILocation, any>(`${baseUrl}ward/`, { params })
+      .then((res) => {
+        let tempReturnValue: ILocation[] = [];
+        res.data.results.map((value: { name: number; id: number }) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.number, value: value.number },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
       });
-      return tempReturnValue;
-    });
   }
 
   FetchOrganizations() {
@@ -129,6 +132,8 @@ export default new (class ReportService {
         // console.log("**RES", res);
 
         res.data.results.map((value: IFieldReport, i: number) => {
+          let farmerArray = [];
+
           let variety = value?.season[0].crop_variety;
           let plantationDate = value?.season[0]
             ? value.season[0].crop_plantation_date
@@ -136,17 +141,22 @@ export default new (class ReportService {
           var date = new Date(plantationDate);
           var newDate = date.setDate(date.getDate() + 90);
           var year = date.toLocaleDateString(newDate);
-
           // if (variety) {
           //   console.log("*** Value", value?.season[0].crop_variety);
           // }
+
+          value.farmer_info?.map((v) => {
+            farmerArray.push(`${v.farmer_name}(${v.farmer_phone})`);
+          });
+          let farmersName = farmerArray.join(",");
+
           tempReturnValue = [
             ...tempReturnValue,
             {
               farm_id: value.farm_id,
               farm_area: value.farm_area.toFixed(2),
               farm_name: value.farm_name,
-              farmer_name: "Some Farmer",
+              farmer_name: farmersName,
               gender: "M / F",
               age: 40,
               contact_no: 9843323432,
@@ -162,11 +172,14 @@ export default new (class ReportService {
               municipality_name: value.municipality_name,
               ward_number: value.ward_number,
               tole_name: value.tole_name,
+              farmer_count: value.farmer_count,
               farm_polygon_json: value.farm_polygon_json,
               extra_field: value.extra_field,
               current_phase: {
                 name: value?.season[0]
-                  ? value.season[0].crops.current_phase?.phase_name?value.season[0].crops.current_phase?.phase_name:'N/A'
+                  ? value.season[0].crops.current_phase?.phase_name
+                    ? value.season[0].crops.current_phase?.phase_name
+                    : "N/A"
                   : "N/A",
                 value: value?.season[0]
                   ? value.season[0].crops.current_phase?.ndvi
@@ -181,8 +194,10 @@ export default new (class ReportService {
               },
               previous_phase: {
                 name: value?.season[0]
-                  ? value.season[0].crops.previous_phase?.phase_name?value.season[0].crops.previous_phase?.phase_name:"N/A"
-                  : 'N/A',
+                  ? value.season[0].crops.previous_phase?.phase_name
+                    ? value.season[0].crops.previous_phase?.phase_name
+                    : "N/A"
+                  : "N/A",
                 value: value?.season[0]
                   ? value.season[0].crops.previous_phase?.ndvi?.ndvi_value
                   : "N/A",
@@ -213,10 +228,10 @@ export default new (class ReportService {
               seed_variety: value?.season[0].variety
                 ? value?.season[0].variety.variety_name
                 : "N/A",
-                harvest_ready: value?.season[0].harvest_ready ? 
-                "Ready"
-                : `After ${value?.season[0].days_to_harvest} Days`
-                // harvest_ready:
+              harvest_ready: value?.season[0].harvest_ready
+                ? "Ready"
+                : `After ${value?.season[0].days_to_harvest} Days`,
+              // harvest_ready:
             },
           ];
           // console.log("**API**DropdDowm", tempReturnValue);
@@ -224,6 +239,7 @@ export default new (class ReportService {
         let ServerData = {
           data: tempReturnValue,
           total: res.data.count,
+          total_area: res.data.total_area,
         };
         return ServerData;
       });
@@ -325,15 +341,10 @@ export default new (class ReportService {
   }
 
   GetUserInformation() {
-    return axios
-      .get(`${userUrl}`)
-      .then((res) => {
-        return res.data;
-      });
+    return axios.get(`${userUrl}`).then((res) => {
+      return res.data;
+    });
   }
-
-
-
 })();
 
 // export default new ReportService

@@ -11,14 +11,17 @@ import { CSVLink } from "react-csv";
       Municipality: data.municipality_name,
       "Ward Number": data.ward_number,
       Tole: data.tole_name,
+      "Farmer Count" : data.farmer_count,
+      "Farmers" : data.farmer_name,
       Organization: data.organization_name,
       Crop: "Maize",
       Variety: data.seed_variety,
       "Plantation Date": data.plantation_date,
-      "Current Phase": data.current_phase_name,
-      "Current Phase Value": data.current_phase_value,
-      "Yeild-77": data.yield_estimation_77,
-      "Yeild-120": data.yield_estimation_120,
+      // "Current Phase": data.current_phase_name,
+      // "Current Phase Value": data.current_phase_value,
+      // "Yeild-77": data.yield_estimation_77,
+      // "Yeild-120": data.yield_estimation_120,
+      "Harvest Ready" : data.harvest_ready
     };
     tempArray.push(tempData);
   });

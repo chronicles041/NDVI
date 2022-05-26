@@ -13,9 +13,10 @@ import DetailModal from "./FieldDetail";
   },
 
   {
-    Header: "Farm Area(Hector)",
+    Header: "Farm Area(Hectare)",
     accessor: "farm_area",
   },
+
 
   {
     Header: "Province",
@@ -147,7 +148,7 @@ import DetailModal from "./FieldDetail";
     ],
   },
   {
-    Header: "Yeild Estimation (Mg / Hector)",
+    Header: "Yeild Estimation (Mg / Hectare)",
     columns: [
       {
         Header: "77 Days ",

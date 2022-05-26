@@ -131,7 +131,7 @@ class ReportFilters extends React.Component<
 
               <hr className="border-[20%] mt-4 border-primary" />
               <div className="px-6 rounded  mt-2 w-full">
-                <p className="font-semibold mt-1 mb-2">Farm Area (Hector)</p>
+                <p className="font-semibold mt-1 mb-2">Farm Area (Hectare)</p>
                 <div className="flex flex-row ml-2">
                   <div className="flex flex-row w-full">
                     <div className="w-1/3 py-2">{"Farm Area Min"}</div>
