@@ -1,6 +1,6 @@
 import React from "react";
 import { ToTable } from "./ToTable";
-import { IFieldReport } from "../types/reportTypes";
+// import { IFieldReport } from "../types/reportTypes";
 
 type TableColumn = {
   Header: any;
@@ -8,10 +8,10 @@ type TableColumn = {
   Cell?: any;
 };
 
-type FieldVisitProps = {
+type UserProps = {
   tableColumns: any[];
   tableData: {
-    data: IFieldReport[];
+    data: any;
     total: number;
   };
   setPageSize: Function;
@@ -19,9 +19,10 @@ type FieldVisitProps = {
   limit: number;
   offset: number;
   loading: boolean;
+
 };
 
-type FieldVisitState = {
+type UserState = {
   columns: [TableColumn];
   data: [];
   currentPage: number;
@@ -33,8 +34,8 @@ type PaginationProps = {
   pageIndex: number;
 };
 
-class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
-  state: FieldVisitState = {
+class UserTable extends React.Component<UserProps, UserState> {
+  state: UserState = {
     columns: [
       {
         Header: "",
@@ -56,7 +57,7 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
     return (
       // <>{JSON.stringify(this.props.tableColumns)}</>
       // <div className="flex flex-col w-full  ">
-
+      
       <ToTable
         columns={this.props.tableColumns}
         data={tableData}
@@ -67,8 +68,9 @@ class ReportTable extends React.Component<FieldVisitProps, FieldVisitState> {
         setPageSize={(value: Number) => this.props.setPageSize(value)}
         gotoPage={(value: Number) => this.props.gotoPage(value)}
       />
+      
     );
   }
 }
 
-export default ReportTable;
+export default UserTable;

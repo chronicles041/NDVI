@@ -5,7 +5,7 @@ import ToWeather from "../../components/ToWeather";
 import Reports from "../reports";
 import ReportService from "../../api/service";
 // import WeatherChart from "../../components/ToWeather/weatherChart";
-const WeatherChart = dynamic(() => import('../../components/ToWeather/weatherChart'))
+// const WeatherChart = dynamic(() => import('../../components/ToWeather/weatherChart'))
 
 const WeatherIndex = () => {
   const [polygon, setPolygon] = useState([]);
@@ -56,7 +56,7 @@ const WeatherIndex = () => {
           </div>
         </div>
         <div className="container bg-white px-4 py-4 flex-col">
-          <WeatherChart coordinates={center}/>
+          {/* <WeatherChart coordinates={center}/> */}
         </div>
         {/* <ToWeather miniView={false} coordinates={center} /> */}
         {/* {"Location Weather = " + JSON.stringify(locationWeather)} */}

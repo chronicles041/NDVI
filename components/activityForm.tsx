@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import ToDropdown from "../../components/ToDropdown";
-import ToModal from "../../components/ToModal";
-import ReportService from "../../api/service";
-import { IFieldFilters } from "../../types/reportTypes";
-import { IconSize, IconTypes } from "../../components/ToIcons";
-import { IActivity } from "../../types/activityTypes";
-import Reports from "../reports";
-import ToMultiple from "../../components/ToMultiple";
+import ToDropdown from "./ToDropdown";
+import ToModal from "./ToModal";
+import ReportService from "../api/service";
+import { IFieldFilters } from "../types/reportTypes";
+import { IconSize, IconTypes } from "./ToIcons";
+import { IActivity } from "../types/activityTypes";
+import Reports from "../pages/reports";
+import ToMultiple from "./ToMultiple";
 
 const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
   const defaultFilters: IFieldFilters = {
@@ -94,6 +94,7 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
     tempFormData = { ...tempFormData, [name]: e.target.value };
     setFormData(tempFormData);
   };
+
   const addActivity = () => {
     let newFormData: any = formData;
     newFormData = {
@@ -101,7 +102,7 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
       project: 1,
       status: 4,
       priority_name: "2",
-      status_name: "4",
+      status_name: "3",
       assigned_by: localStorage.getItem('userid'),
       farms:selectedFarm ? [selectedFarm.farm_id ]: formData?.farms
     };

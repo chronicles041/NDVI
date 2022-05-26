@@ -7,11 +7,11 @@ export const Routes = [
         icon: IconTypes.Dashboard,
         name: "Dashboard"
     },
-    // {
-    //     path: "/users",
-    //     icon: IconTypes.User,
-    //     name: "Users"
-    // },
+    {
+        path: "/users",
+        icon: IconTypes.User,
+        name: "Users"
+    },
     // {
     //     path: "/fields",
     //     icon: IconTypes.Farm,

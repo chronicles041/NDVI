@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import PageLayout from "../../components/Pagelayout";
-import ActivityForm from "./activityForm";
+import ActivityForm from "../../components/activityForm";
 import Activity from "../../components/ToActivity/";
 import DragList from "../../components/ToActivity/DragList";
 import ReportService from "../../api/service";

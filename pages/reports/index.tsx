@@ -12,7 +12,7 @@ import ListReport from "../../components/listView";
 import { ToListPagination } from "../../components/ToListPagination";
 import ReportColumns from "../../components/tableColumns";
 import CreateExportData from "../../components/exportReport";
-import ActivityForm from "../activity/activityForm";
+import ActivityForm from "../../components/activityForm";
 import ToDropdown from "../../components/ToDropdown";
 import ToMultiple from "../../components/ToMultiple";
 
@@ -152,7 +152,7 @@ const Reports = ({
           filterParams.ward__municipality__district__province__id,
       },
       ward: {
-        municipality__name: filterParams.ward__municipality__id,
+        municipality__id: filterParams.ward__municipality__id,
       },
     };
 

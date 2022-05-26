@@ -25,17 +25,17 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
   const userName = () => {
     let username :any= "Loading..";
 
-    if (typeof window !== "undefined") {
-      console.log("You are on the browser");
-      username = localStorage.getItem("username");
-      // 👉️ can use localStorage here
-    } else {
-      console.log("You are on the server");
-      // 👉️ can't use localStorage
-    }
+    // if (typeof window !== "undefined") {
+    //   console.log("You are on the browser");
+    //   username = localStorage.getItem("username");
+    //   // 👉️ can use localStorage here
+    // } else {
+    //   console.log("You are on the server");
+    //   // 👉️ can't use localStorage
+    // }
 
-    console.log("***Username", username);
-    return username
+    // console.log("***Username", username);
+    return ""
   };
 
   return (
