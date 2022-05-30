@@ -33,7 +33,7 @@
   opacity: 90;
 }
 
-.input-login{
+.input-login {
   border-width: 1px;
 }
 
@@ -184,19 +184,16 @@
   width: 100%;
 }
 
-
-
- .dateList .ant-slider-mark-text   {
-   padding:10px;
-   margin-left:3px;
-   cursor: pointer;
-   border-radius: 20px;
-  
+.dateList .ant-slider-mark-text {
+  padding: 10px;
+  margin-left: 3px;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
 .dateList .ant-slider-mark-text strong {
-  font-weight:800;
-  font-size:10px;
+  font-weight: 800;
+  font-size: 10px;
   color: white !important;
 }
 .animated {
@@ -241,11 +238,40 @@
   }
 }
 
+.leaflet-control {
+  /* background:red !important; */
+  border: none !important;
+}
 
+.s1fu0t3w{
+  padding: 10px;
+  width:500px;
+  height:50px;
 
-
-
-
-
+}
+.s1yss67b {
+  padding: 3px;
+  background-image: linear-gradient(
+    90deg,
+    #350801 0%,
+    #7e1805 5.55556%,
+    #af3a03 11.1111%,
+    #ecb225 16.6667%,
+    #fcd731 22.2222%,
+    #fee85f 27.7778%,
+    #fefe00 33.3333%,
+    #f2f900 38.8889%,
+    #c4e700 44.4444%,
+    #97d500 50%,
+    #5fc100 55.5556%,
+    #379f00 61.1111%,
+    #1c8300 66.6667%,
+    #0b6400 72.2222%,
+    #064b0a 77.7778%,
+    #033a0f 83.3333%,
+    #02310c 88.8889%,
+    #02310c 94.4444%
+  );
+}
 
 /* ant-progress ant-progress-line ant-progress-status-active ant-progress-show-info ant-progress-default */

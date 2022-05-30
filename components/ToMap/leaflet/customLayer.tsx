@@ -42,10 +42,10 @@ const CustomLayer = ({
     // console.log(  selectedData[`${e.target.name}_path`]);
   };
   return (
-    <div className="">
+    <span >
       <div
         onClick={() => setControlOpen()}
-        className="block p-1 w-fit bg-gray-100 rounded-md "
+        className="block p-1   w-fit bg-gray-100 rounded-md item-center "
       >
         <ToIcon
           type={IconTypes.Layers}
@@ -54,7 +54,7 @@ const CustomLayer = ({
         />
       </div>
       {showControl ? (
-        <div className="p-3 pr-3 mt-3 m-2 h-auto w-auto grid-flow-row bg-white text-white">
+        <div className="p-3 item-right mt-2 pl-3   h-auto w-auto grid-flow-row bg-white text-white">
           <div className="p-2">
             <input
               type="checkbox"
@@ -93,7 +93,7 @@ const CustomLayer = ({
           </div>
         </div>
       ) : null}
-    </div>
+    </span>
   );
 };
 

@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import MapService from "./mapService";
 // import ColorPalette from "./colorPalate";
 import DateList from "./dateSlider";
 // import Reports from "../reports";
 import dynamic from "next/dynamic";
 import Reports from "../../pages/reports";
-import ColorPalette from "./colorPalate";
 import TimeSeriesGraph from "./timeSeries";
-import Weather from "../ToWeather/Weather";
 import ToWeather from "../ToWeather";
-import ToTittle from "../ToTittle";
-import ActivityForm from "../activityForm";
 // import LeafletMap from "./leaflet/leafletMap";
 
 const LeafletMap = dynamic(() => import("./leaflet/leafletMap"), {
@@ -31,11 +27,13 @@ function ToMap() {
   const [viewControl, setViewControl] = useState(viewParams);
   const [newFarm, setNewFarmArray] = useState();
   const [mapData, setMapData] = useState([]);
+
   const [selectedData, selectData] = useState({
     ndwi_path: "",
     ndvi_path: "",
     evi_path: "",
   });
+
   const [selectedFarm, selectField] = useState({});
   const [previousDate, setPreviousDate] = useState("");
   const [loading, setLoading] = useState(false);
@@ -63,6 +61,11 @@ function ToMap() {
 
   const selectFarm = (item) => {
     setLoading(true);
+    selectData({
+      ndwi_path: "",
+      ndvi_path: "",
+      evi_path: "",
+    });
     setPolygon(item.farm_polygon_json.location);
     setCenter(item.extra_field.centroid);
     selectField(item);
@@ -122,7 +125,6 @@ function ToMap() {
             {/* **Here  {JSON.stringify(multipleField[1])} */}
 
             <div className="dateList flex justify-center bg-[#007691] rounded-md items-center   w-full mt-3">
-
               <DateList
                 loading={loading}
                 mapData={mapData}
@@ -140,7 +142,6 @@ function ToMap() {
             {/* <ColorPalette ndvi={mapData.length > 0} ndwi={mapData.length > 0} /> */}
           </div>
           <div className="basis-1/4 flex-col flex justify-center gap-x-2 items-center">
-
             <Reports
               loading={loading}
               selectedItem={selectFarm}
@@ -156,7 +157,25 @@ function ToMap() {
             graphData={graphData}
           />
         </div>
-        <ToWeather  miniView={true} coordinates={center} />
+        <div
+          className="s1fu0t3w"
+          //  style="--s1fu0t3w-0: 10px"
+        >
+          <div className="wssuqyr">
+            <div className="w14dsuj8">
+              <div className="r1fekfqr">
+                <span className="r1dkxj1s text-white">
+                  Low vegetation index
+                </span>
+                <span className="r1dkxj1s text-white">High</span>
+              </div>
+              <ul className="s11dx267">
+                <li className="s1yss67b"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ToWeather miniView={true} coordinates={center} />
       </div>
     </>
   );

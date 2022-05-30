@@ -1,14 +1,7 @@
 import { LatLngBoundsExpression } from "leaflet";
 import React from "react";
-import {
-  ImageOverlay,
-  LayerGroup,
-  LayersControl,
-  Polygon,
-  TileLayer,
-} from "react-leaflet";
+import { ImageOverlay, Polygon, TileLayer } from "react-leaflet";
 import Control from "react-leaflet-custom-control";
-import ColorPalette from "../colorPalate";
 import CustomLayer from "./customLayer";
 type LayerOptionsProps = {
   multipleField: [] | undefined;
@@ -70,8 +63,6 @@ class LayerOptions extends React.Component<
       this.createPolygon(this.props.polygon);
     }
     if (prevProps.selectedData !== this.props.selectedData) {
-      //  this.getCurrentPath()
-
       this.setState({
         overlay_path: this.getCurrentPath(),
       });
@@ -83,7 +74,9 @@ class LayerOptions extends React.Component<
     const key = Object.keys(obj).find((key) => obj[key] === true);
     let finalValue = " ";
     if (key) {
-      finalValue = this.props.selectedData[`${key}_path`];
+      let pathValue = this.props.selectedData;
+      // alert(typeof pathValue[`${key}_path`]);
+      finalValue = pathValue[`${key}_path`];
     }
     if (!key) {
       finalValue = "";
@@ -158,6 +151,7 @@ class LayerOptions extends React.Component<
         {this.props.selectedData.evi_path === "" ? null : (
           <>
             <Control prepend position="topleft">
+              
               <CustomLayer
                 selectedData={this.props.selectedData}
                 getImagePath={this.setOverlayPath}
@@ -261,4 +255,28 @@ class LayerOptions extends React.Component<
 
 export default LayerOptions;
 
-
+{
+  /* style="
+            --s1yss67b-0: linear-gradient(
+              90deg,
+              #350801 0%,
+              #7e1805 5.55556%,
+              #af3a03 11.1111%,
+              #ecb225 16.6667%,
+              #fcd731 22.2222%,
+              #fee85f 27.7778%,
+              #fefe00 33.3333%,
+              #f2f900 38.8889%,
+              #c4e700 44.4444%,
+              #97d500 50%,
+              #5fc100 55.5556%,
+              #379f00 61.1111%,
+              #1c8300 66.6667%,
+              #0b6400 72.2222%,
+              #064b0a 77.7778%,
+              #033a0f 83.3333%,
+              #02310c 88.8889%,
+              #02310c 94.4444%
+            );
+          " */
+}
