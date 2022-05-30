@@ -27,7 +27,7 @@ const DashBorad = () => {
   return (
     <PageLayout>
       <div className={"p-6  m-3 "}>
-        <ToCard title={"Farm vs Digitalization "}>
+        <ToCard title={"Farm Stats "}>
           <div className="grid gap-x-12 mt-8  grid-cols-3 mb-5">
             <Stats
               icon={IconTypes.Farm}
@@ -90,7 +90,7 @@ const DashBorad = () => {
           />
         </div>
         {/* </ToCard> */}
-        <ToCard  title={"CIMMYT MCM Active Variety Detail"}>
+        <ToCard  title={"Maize Variety Detail"}>
 
 
 

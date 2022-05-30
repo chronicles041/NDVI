@@ -9,12 +9,12 @@ export const PieTypes = {
 
 export const ChartType = {
   harvest: {
-    name: "Harvest (Farm Count)",
+    name: "Harvested Farms",
     labels: ["Ready", "Not Ready"],
   },
 
   harvest2: {
-    name: "Harvest (Farm Area - Hectare)",
+    name: "Harvested Farm Area",
     labels: ["Ready", "Not Ready"],
   },
 };
