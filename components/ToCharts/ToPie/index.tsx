@@ -6,32 +6,59 @@ export const PieTypes = {
   Pie: "pie",
   Donut: "donut",
 };
-type Props = {
-  type: string | any;
-  title: string;
+
+export const ChartType = {
+  harvest: {
+    name: "Harvest (Farm Count)",
+    labels: ["Ready", "Not Ready"],
+  },
+
+  harvest2: {
+    name: "Harvest (Farm Area - Hectare)",
+    labels: ["Ready", "Not Ready"],
+  },
 };
 
-export const ToPie = ({ title, type }: Props) => {
+type Props = {
+  type: string | any;
+  chartType: typeof ChartType.harvest;
+  title: string;
+  data: any;
+  labels?: any;
+};
+
+export const ToPie = ({ title, type, data, labels,chartType }: Props) => {
+  // alert(JSON.stringify(labels));
+  // const options = {
+  //   plotOptions: {
+  //     pie: {
+  //       expandOnClick: true,
+  //     },
+  //   },
+  //   labels: labels,
+  // };
+  // labels: ["Field Visit", "Satellite Data Analysis", "Report Compilation"],
   const state2 = {
-    options: {
-      plotOptions: {
-        pie: {
-          expandOnClick: true
-        }
-      }
-    },
-    series: [40, 35, 25],
-    // labels: ["Field Visit", "Satellite Data Analysis", "Report Compilation"],
+    series: [40, 35],
   };
 
   return (
-    <ToCard title={title}>
+    <ToCard title={chartType.name}>
       <Chart
-        options={state2.options}
-        series={state2.series}
+        options={{
+          plotOptions: {
+            pie: {
+              expandOnClick: true,
+            },
+          },
+          labels: chartType.labels,
+        }}
+        series={data}
+        // series={state2.series}
         // labels={state2.labels}
+        // labels={labels}
         type={type}
-        height={'400'}
+        height={"400"}
       />
     </ToCard>
   );

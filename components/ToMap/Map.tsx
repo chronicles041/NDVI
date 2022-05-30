@@ -156,6 +156,22 @@ function ToMap() {
             graphData={graphData}
           />
         </div>
+        <div
+           className="s1fu0t3w" 
+          //  style="--s1fu0t3w-0: 10px"
+           >
+            <div className="wssuqyr">
+              <div className="w14dsuj8">
+                <div className="r1fekfqr">
+                  <span className="r1dkxj1s text-white">Low vegetation index</span>
+                  <span className="r1dkxj1s text-white">High</span>
+                </div>
+                <ul className="s11dx267">
+                  <li className="s1yss67b"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         <ToWeather  miniView={true} coordinates={center} />
       </div>
     </>
