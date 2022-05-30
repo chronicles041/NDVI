@@ -28,7 +28,7 @@ const DashBorad = () => {
     <PageLayout>
       <div className={"p-6  m-3 "}>
         <ToCard title={"Farm vs Digitalization "}>
-          <div className="grid  grid-cols-3 mb-5">
+          <div className="grid gap-x-12 mt-8  grid-cols-3 mb-5">
             <Stats
               icon={IconTypes.Farm}
               title={"Total Farms"}
@@ -54,7 +54,7 @@ const DashBorad = () => {
         </ToCard>
 
         <ToCard title={"CIMMYT MCM District Wise Detail"}>
-          <div className="grid  grid-cols-3 mb-5">
+          <div className="grid  gap-x-12 mt-8  grid-cols-3 mb-5">
             {dashData?.district_wise_info.map((d) => (
               <Stats
                 icon={IconTypes.Farm}
@@ -90,38 +90,94 @@ const DashBorad = () => {
           />
         </div>
         {/* </ToCard> */}
-        <ToCard title={"CIMMYT MCM Active Variety Detail"}>
-          <div className="grid  grid-cols-3 mb-5">
+        <ToCard  title={"CIMMYT MCM Active Variety Detail"}>
+
+
+
+          
+          <table className="w-full mt-6 text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    
+          <th scope="col" className="px-6 py-3">Name</th>
+        <th scope="col" className="px-6 py-3">Area</th>
+        <th scope="col" className="px-6 py-3">Farms</th>
+
+        <th scope="col" className="px-6 py-3">Farmers</th>
+        <th scope="col" className="px-6 py-3">Days to Mature</th>
+
+     
+  </thead>
+  <tbody>
+   
             {dashData?.variety_wise_info.map((d) => (
-              <div>
-                {/* {JSON.stringify(d)}  */}
-                Name : {d.variety_name} <br />
-                Area : {d.total_area} <br />
-                Farms: {d.total_farms} <br />
-                Farmers : {d.total_farmers} <br />
-                Days To Mature:{d.maturity_days} <br />
-                <br />
-              </div>
+
+<tr className="odd:bg-white even:bg-gray-50 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">{d.variety_name}</th>
+ <td className="px-6 py-4">{d.total_area} ha</td>
+ <td className="px-6 py-4">{d.total_farms}</td>
+ <td className="px-6 py-4">{d.total_farmers}</td>
+ <td className="px-6 py-4">{d.maturity_days}</td>
+</tr>
+            
             ))}
+  </tbody>
 
             {/* {JSON.stringify(dashData?.variety_wise_info)} */}
-          </div>
+          </table>
         </ToCard>
 
         <ToCard title={"Task Detail"}>
-          <div className="grid  grid-cols-3 mb-5">
-            <div>
-              {/* {JSON.stringify(d)}  */}
-              Total Tasks : {dashData?.task_info.total_tasks} <br />
-              Running : {dashData?.task_info.status_running_count} <br />
-              Paused: {dashData?.task_info.status_paused_count} <br />
-              Completed : {dashData?.task_info.status_completed_count} <br />
-              Started : {dashData?.task_info.status_started_count} <br />
-              <br />
-            </div>
+         
+
+
+
+
+          <table className="w-auto  mt-6 text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <th scope="col" className="px-6 py-3">Task</th>
+        <th scope="col" className="px-6 py-3">Count</th>
+  </thead>
+  <tbody>
+   
+         
+
+<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Running</th>
+ <td className="px-6 py-4">{dashData?.task_info.status_running_count} </td>
+
+</tr>
+
+<tr className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Paused</th>
+ <td className="px-6 py-4">{dashData?.task_info.status_paused_count} </td>
+
+</tr>
+
+
+<tr className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Completed</th>
+ <td className="px-6 py-4">{dashData?.task_info.status_completed_count} </td>
+
+</tr>
+
+
+<tr className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Started</th>
+ <td className="px-6 py-4">{dashData?.task_info.status_started_count} </td>
+
+</tr>
+
+
+<tr className="bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700">
+<th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">Total Tasks</th>
+ <td className="px-6 py-4 font-medium text-gray-900">{dashData?.task_info.total_tasks} </td>
+
+</tr>
+            
+  </tbody>
 
             {/* {JSON.stringify(dashData?.variety_wise_info)} */}
-          </div>
+          </table>
         </ToCard>
       </div>
     </PageLayout>
