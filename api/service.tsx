@@ -280,7 +280,7 @@ export default new (class ReportService {
       });
   }
   FetchUsers() {
-    return axios.get<any>(`${baseUrl}allusers/`, {}).then((res) => {
+    return axios.get<any>(`${baseUrl}allusers/?user_type__project__id=1`, {}).then((res) => {
       // return axios.get<any>(`${baseUrl}allusers/?id=&username=&user_type__project__id=1`, {}).then((res) => {
       let tempReturnValue: any = [];
 

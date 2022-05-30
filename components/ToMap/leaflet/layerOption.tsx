@@ -151,6 +151,7 @@ class LayerOptions extends React.Component<
         {this.props.selectedData.evi_path === "" ? null : (
           <>
             <Control prepend position="topleft">
+              
               <CustomLayer
                 selectedData={this.props.selectedData}
                 getImagePath={this.setOverlayPath}

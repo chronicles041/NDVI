@@ -101,8 +101,9 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
       ...newFormData,
       project: 1,
       status: 4,
-      priority_name: "2",
-      status_name: "3",
+      // priority_name: "2", 
+      // status_name: "3",
+      // priority:4,
       assigned_by: localStorage.getItem('userid'),
       farms:selectedFarm ? [selectedFarm.farm_id ]: formData?.farms
     };
