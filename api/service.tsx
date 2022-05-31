@@ -345,6 +345,13 @@ export default new (class ReportService {
       return res.data;
     });
   }
+
+  PatchActivities() {
+    // return axios.get(`${userUrl}`).then((res) => {
+    //   return res.data;
+    // });
+    alert("Reached")
+  }
 })();
 
 // export default new ReportService

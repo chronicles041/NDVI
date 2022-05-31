@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DragableElements";
 import { on } from "cluster";
-
+import ReportService from "./../../api/service";
 const testActivities = [
   {
     id: 1,
@@ -176,11 +176,13 @@ const generateLists = (activities) => {
   //     {}
   //   );
 };
+
 const InitialElements = {
   todo: [],
   inProgress: [],
   done: [],
 };
+
 function DragList({ activities }: any) {
   const [elements, setElements] = React.useState(generateLists(activities));
 
@@ -193,7 +195,6 @@ function DragList({ activities }: any) {
       return;
     }
     const listCopy = { ...elements };
-
     const sourceList = listCopy[result.source.droppableId];
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
@@ -208,6 +209,7 @@ function DragList({ activities }: any) {
     );
 
     setElements(listCopy);
+    ReportService.PatchActivities();
   };
 
   return (
