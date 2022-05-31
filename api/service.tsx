@@ -350,7 +350,7 @@ export default new (class ReportService {
     // return axios.get(`${userUrl}`).then((res) => {
     //   return res.data;
     // });
-    alert("Reached")
+    console.log("Reached")
   }
 })();
 
