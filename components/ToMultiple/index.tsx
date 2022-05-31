@@ -1,24 +1,24 @@
 import { useState } from "react";
 
-const ToMultiple = ({ options,handleItemChange ,title}: any) => {
+const ToMultiple = ({ options, handleItemChange, title }: any) => {
   const [isList, setIsList] = useState(false);
   const [selectedItem, setSelectedItem] = useState([]);
   const [isSubList, setIsSubList] = useState(3);
-  
+
   const onItemSelect = (e, value) => {
-    let tempItem = selectedItem
+    let tempItem = selectedItem;
     if (e.target.checked) {
-    //   alert(` ADD ${value}`);
-      tempItem.push(value)
+      //   alert(` ADD ${value}`);
+      tempItem.push(value);
     }
     if (!e.target.checked) {
-        // alert(` Remove ${value}`);
-      tempItem.pop(value)
-      }
-      setSelectedItem(tempItem)
-      console.log(tempItem);
-   handleItemChange(tempItem)
-      return
+      // alert(` Remove ${value}`);
+      tempItem.pop(value);
+    }
+    setSelectedItem(tempItem);
+    console.log(tempItem);
+    handleItemChange(tempItem);
+    return;
   };
 
   return (
@@ -27,7 +27,7 @@ const ToMultiple = ({ options,handleItemChange ,title}: any) => {
         onClick={() => setIsList(!isList)}
         className="w-64 p-4 shadow rounded bg-white text-sm font-medium leading-none text-gray-800 flex items-center justify-between cursor-pointer"
       >
-       {title}
+        {title}
         <div>
           {isList ? (
             <div>
@@ -84,13 +84,13 @@ const ToMultiple = ({ options,handleItemChange ,title}: any) => {
                   />
                 </svg>
                 <div className="pl-4 flex items-center">
-                  <div className="bg-gray-100 dark:bg-gray-800 border rounded-sm border-gray-200 dark:border-gray-700 w-3 h-3 flex flex-shrink-0 justify-center items-center relative">
+                  <div className="bg-gray-100  border rounded-sm border-gray-200  w-3 h-3 flex flex-shrink-0 justify-center items-center relative">
                     <input
                       type="checkbox"
                       className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
                       onChange={(e) => onItemSelect(e, option.value)}
                       checked={selectedItem.includes(option.value)}
-                    //   defaultValue={selectedItem.find(option)}
+                      //   defaultValue={selectedItem.find(option)}
                     />
                     <div className="check-icon hidden bg-indigo-700 text-white rounded-sm">
                       <svg
