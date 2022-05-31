@@ -200,7 +200,7 @@ function TimeSeriesGraph({
     return [
       {
         data: timeArray,
-        name: "Indian Trend",
+        name: "USA Trend",
         color: "#ff6361",
       },
     ];

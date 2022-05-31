@@ -125,7 +125,7 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
       title={"Add Activity"}
     >
       <div className="flex flex-col w-full p-5 gap-y-6">
-        {selectedFarm ? "Has" : "Not Has"}
+        {/* {selectedFarm ? "Has" : "Not Has"} */}
         <div className="mb-4">
           <input
             className=" rounded w-full   text-secondary leading-tight focus:border-2 focus:border-primary focus:ring-transparent h-16"
