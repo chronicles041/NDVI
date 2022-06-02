@@ -1,5 +1,5 @@
 import moment from "moment";
-import DetailModal from "./FieldDetail";
+import DetailModal from "../FieldDetail";
 
  const ReportColumns = [
   {

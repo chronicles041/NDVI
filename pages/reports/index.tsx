@@ -10,7 +10,7 @@ import {
 import ReportService from "../../api/service";
 import ListReport from "../../components/listView";
 import { ToListPagination } from "../../components/ToListPagination";
-import ReportColumns from "../../components/tableColumns";
+import ReportColumns from "../../components/TableColumns/tableColumns";
 import CreateExportData from "../../components/exportReport";
 import ActivityForm from "../../components/activityForm";
 import ToDropdown from "../../components/ToDropdown";
