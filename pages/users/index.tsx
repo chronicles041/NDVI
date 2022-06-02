@@ -29,7 +29,6 @@ const Users = () => {
   };
   return (
     <PageLayout>
-      <div className="flex flex-row ml-4">Under Maintainance</div>
       <UserTable
         // setPageSize={(value: number) => setLimit(value)}
         setPageSize={(value: number) => alert(value)}
