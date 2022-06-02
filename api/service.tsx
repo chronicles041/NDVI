@@ -279,20 +279,47 @@ export default new (class ReportService {
         return res.data;
       });
   }
-  FetchUsers() {
-    return axios.get<any>(`${baseUrl}allusers/?user_type__project__id=1`, {}).then((res) => {
-      // return axios.get<any>(`${baseUrl}allusers/?id=&username=&user_type__project__id=1`, {}).then((res) => {
-      let tempReturnValue: any = [];
 
-      res.data.results.map((value: { name: string; id: number }) => {
-        tempReturnValue = [
-          ...tempReturnValue,
-          { title: value.username, value: value.id },
-        ];
-        // console.log("**API**DropdDowm", tempReturnValue);
+  FetchUsers() {
+    return axios
+      .get<any>(`${baseUrl}allusers/?user_type__project__id=1`, {})
+      .then((res) => {
+        // return axios.get<any>(`${baseUrl}allusers/?id=&username=&user_type__project__id=1`, {}).then((res) => {
+        let tempReturnValue: any = [];
+
+        res.data.results.map((value: { name: string; id: number }) => {
+          tempReturnValue = [
+            ...tempReturnValue,
+            { title: value.username, value: value.id },
+          ];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        return tempReturnValue;
       });
-      return tempReturnValue;
-    });
+  }
+
+  FetchTableUsers() {
+    return axios
+      .get<IFieldReport, any>(
+        `${baseUrl}allusers/?user_type__project__id=1`,
+        {}
+      )
+      .then((res) => {
+        let tempReturnValue: IFieldReport[] = [];
+        // console.log("**RES", res);
+
+        res.data.results.map((value: IFieldReport, i: number) => {
+          tempReturnValue = [...tempReturnValue, value];
+          // console.log("**API**DropdDowm", tempReturnValue);
+        });
+        let ServerData = {
+          data: tempReturnValue,
+          total: res.data.count,
+          total_area: res.data.total_area,
+        };
+        return ServerData;
+      });
+    // return
   }
 
   FetchDropdownFarm(params: any) {
@@ -344,6 +371,13 @@ export default new (class ReportService {
     return axios.get(`${userUrl}`).then((res) => {
       return res.data;
     });
+  }
+
+  PatchActivities() {
+    // return axios.get(`${userUrl}`).then((res) => {
+    //   return res.data;
+    // });
+    console.log("Reached");
   }
 })();
 
