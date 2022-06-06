@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import ToIcon, { IconSize, IconTypes } from "../ToIcons";
 import ToModal from "../ToModal";
 import DetailView from "../ToActivity/DeatilView";
+import FieldVisitView from "../ToActivity/FieldVisit";
 
 const DragItem = styled.div`
   //   padding: 10px;
@@ -54,7 +55,6 @@ const ListItem = ({ item, index }) => {
               </div>
               <div className=" flex relative flex-row mt-3 justify-center items-center">
                 <div className="flex-1 relative  ">
-      
                   <img
                     src="https://cdn.vectorstock.com/i/1000x1000/91/23/man-avatar-icon-flat-vector-18149123.webp"
                     className="w-8 rounded-full ring-1 ring-secondary ring-offset-2  float-left "
@@ -68,7 +68,6 @@ const ListItem = ({ item, index }) => {
                     data-toggle="tooltip"
                     // title={item.task_assigned_to_username}
                     title={`Assigned To ${item.task_assigned_to_username}`}
-
                   />
                 </div>
                 <div className=" flex flex-row gap-x-3 items-center justify-center">
@@ -86,7 +85,10 @@ const ListItem = ({ item, index }) => {
                     />
                   </button>
                   <DetailView detailData={item} />
+                  <FieldVisitView detailData={item}/>
+
                 </div>
+
               </div>
             </div>
           </DragItem>

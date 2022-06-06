@@ -242,7 +242,7 @@ const ActivityForm = ({ reloadActivities, selectedFarm }: any) => {
           </div>
         </div>
 
-        <div className="flex flex-row gap-x-4 p-2 ">
+        <div className="flex flex-row gap-x-4 p-2  ">
           <button
             className="text-white bg-secondary opacity-90 hover:opacity-100 uppercase py-2 px-6 rounded outline-none focus:outline-none mt-2 w-full"
             type="button"
