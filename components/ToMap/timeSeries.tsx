@@ -210,7 +210,7 @@ function TimeSeriesGraph({
     let timeArray: any = [];
 
     graphData?.ndvi?.map((d, i) => {
-      let datObj = [new Date(d.date).getTime(), d.ndvi_value];
+      let datObj = [new Date(d.date).getTime(), d.max_ndvi_value];
       timeArray.push(datObj);
     });
     // alert(tempArray[2])
