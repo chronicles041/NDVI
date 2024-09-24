@@ -3,34 +3,33 @@ import Router from "next/router";
 import { useState } from "react";
 import axios from "axios";
 import ReportService from "./../../api/service";
-let LoginApi = "https://app.teamonetech.com/custom-auth/token/login/";
+// let LoginApi = "https://app.teamonetech.com/custom-auth/token/login/";
 // let LoginApi = "https://api.plantsat.com/custom-auth/token/login/";
 
 const Login = () => {
   const [username, changeUsername] = useState("");
   const [password, changePassword] = useState("");
   const [message, changeMessage] = useState("");
-  // alert("Reached")
-  
+
+  // Modified createToken function
   const createToken = () => {
-    // Router.push("/index");
     changeMessage("");
     localStorage.clear();
-    axios
-      .post(LoginApi, {
-        username: username,
-        password: password,
-      })
-      .then((response) => {
-        console.log("Response", response.data.token);
-        localStorage.setItem("token", response.data.token);
-        setUserInformation();
-        Router.push("/");
-      })
-      .catch((err) => {
-        changeMessage("Unable to Login. Check Credentials and try again");
-        //   alert(err.message)
-      });
+
+    // Simulate successful login by setting a mock token
+    const mockToken = "mockToken12345";
+    localStorage.setItem("token", mockToken);
+
+    // Simulate setting user information
+    const mockUserInfo = {
+      username: "mockUser",
+      id: "mockUserId123",
+    };
+    localStorage.setItem("username", mockUserInfo.username);
+    localStorage.setItem("userid", mockUserInfo.id);
+
+    console.log("Mock login successful");
+    Router.push("/");
   };
 
   const setUserInformation = () => {
@@ -46,7 +45,6 @@ const Login = () => {
       <div className="grid h-screen p-0 grid-cols-1 m-0 lg:grid-cols-3  place-items-start place-content-stretch   font-Oxygen">
         <div className="w-full col-span-2 p-0 m-0 relative h-full bg-white  hidden mx-auto lg:flex flex-col gap-2 justify-center">
           <div className="circle-shape-one"></div>
-          {/* <div className="round-shape-one"></div> */}
           <div className="round-shape-three"></div>
           <img
             className="absolute bottom-0 right-0 left-0 max-h-80 w-auto opacity-90"
@@ -77,14 +75,12 @@ const Login = () => {
             >
               <path
                 fill="#7C9C3C"
-                // fill-opacity="1"
                 d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,85.3C672,75,768,85,864,122.7C960,160,1056,224,1152,245.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
               ></path>
             </svg>
           </div>
           <div className="sm:mx-auto sm:w-full sm:max-w-md rounded-2xl">
             <div className="bg-primary bg-opacity-9 py-4 px-6 sm:px-10 rounded-b-lg">
-              {/* <form className="mb-0 space-y-6" action="#" method="POST"> */}
               <div className="relative mb-2">
                 <input
                   id="email"
@@ -135,13 +131,11 @@ const Login = () => {
               <div>
                 <button
                   className="w-1/2 mx-auto flex justify-center py-2 px-4 border border-transparent  rounded-2xl bg-secondary text-lg font-medium text-white  hover:bg-banner_background hover:text-secondary  transition ease-in-out  duration-500"
-                  // onClick={() => Router.push("/dasboard")}
                   onClick={() => createToken()}
                 >
                   Sign In
                 </button>
               </div>
-              {/* </form> */}
             </div>
           </div>
         </div>
@@ -149,7 +143,5 @@ const Login = () => {
     </div>
   );
 };
-
-
 
 export default Login;

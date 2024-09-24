@@ -66,7 +66,7 @@ const DetailModal = ({ id }: { id: number }) => {
          </button>
         </div>
         <div className="text-center flex-1">
-         <button
+         <button  
             onClick={() => setActiveItem("Plantation")}
             className={`${activeItem==='Plantation'?'text-center block w-full text-black border-b-2 border-primary py-2 px-4 ':'text-center block w-full text-black  py-2 px-4 relative after:absolute after:bg-secondary after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300'}`}
           >
