@@ -1,8 +1,6 @@
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import Router from "next/router";
 import { useState } from "react";
-import axios from "axios";
-import ReportService from "./../../api/service";
 // let LoginApi = "https://app.teamonetech.com/custom-auth/token/login/";
 // let LoginApi = "https://api.plantsat.com/custom-auth/token/login/";
 
@@ -42,8 +40,8 @@ const Login = () => {
 
   return (
     <div className="h-screen  w-full">
-      <div className="grid h-screen p-0 grid-cols-1 m-0 lg:grid-cols-3  place-items-start place-content-stretch   font-Oxygen">
-        <div className="w-full col-span-2 p-0 m-0 relative h-full bg-white  hidden mx-auto lg:flex flex-col gap-2 justify-center">
+      <div className="grid h-screen p-0 grid-cols-1  lg:grid-cols-2  place-items-start place-content-stretch   font-Oxygen">
+        <div className="w-full p-0 m-0 relative h-full bg-white  hidden mx-auto lg:flex flex-col gap-2 justify-center">
           <div className="circle-shape-one"></div>
           <div className="round-shape-three"></div>
           <img
@@ -56,8 +54,9 @@ const Login = () => {
             <br />
           </h1>
         </div>
-        <div className="h-auto my-auto  border-2   lg:mx-0  mx-auto   w-auto flex flex-col justify-center rounded-lg   ">
-          <div className="sm:mx-auto bg-white sm:w-full sm:max-w-md rounded-t-2xl ">
+        <div className="w-full h-full   flex flex-col justify-center  bg-[url('/login_cover.jpg')] bg-cover bg-center mx-auto my-auto px-8 lg:px-20 " style={{ boxShadow: "-20px 0 20px -10px rgba(0, 0, 0, 0.8)" }}>
+        <div className=" px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-70 border border-gray-200">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md rounded-t-2xl ">
             <img
               className="mx-auto h-12 w-auto mt-14 px-2 "
               src="logo.png"
@@ -67,7 +66,7 @@ const Login = () => {
               Sign into your Account
             </h2>
           </div>
-          <div className=" bg-white sm:mx-auto overflow-auto sm:w-full sm:max-w-md">
+          <div className="  sm:mx-auto overflow-auto sm:w-full sm:max-w-md">
             <svg
               className="w-full"
               xmlns="http://www.w3.org/2000/svg"
@@ -138,6 +137,9 @@ const Login = () => {
               </div>
             </div>
           </div>
+
+        </div>
+         
         </div>
       </div>
     </div>

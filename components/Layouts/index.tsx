@@ -8,7 +8,7 @@ type Props = {
   title?: string;
 };
 
-const Layout = ({ children, title = "PlantSat Web Application" }: Props) => {
+const Layout = ({ children, title = "NDVI Web Application" }: Props) => {
   const [isCollapse, changeCollapse] = useState(false);
   return (
     <>

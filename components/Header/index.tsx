@@ -52,7 +52,7 @@ const Header = ({ changeCollapse, isCollapse }: HeaderProps) => {
           />
         </div>
 
-        <img className="w-36 h-12" src="logo.png"></img>
+        <img className="w-36 h-12 object-contain" src="logo.png" alt="logo"/>
       </div>
 
       <div className="flex flex-row justify-center item-center px-3 py-3">

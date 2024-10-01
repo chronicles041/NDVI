@@ -3,7 +3,6 @@ import { AppProps } from "next/app";
 import Layout from "../components/Layouts";
 import "../styles/index.css";
 import { useRouter } from "next/router";
-import "../helpers/_Interceptor";
 export default function MyApp({ Component, pageProps }: AppProps) {
   // let hasToken = localStorage.getItem("Token");
   const router = useRouter();
