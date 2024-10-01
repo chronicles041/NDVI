@@ -41,7 +41,7 @@ const Layout = ({ children, title = "NDVI Web Application" }: Props) => {
                 " bg-gray-300 w-full"
               }
             >
-              <main className="p-4 min-h-screen mb-20 bg-gray-300 grow">
+              <main className="p-4 min-h-screen mb-20 bg-gray-300 grow sdfsdfdsf">
                 {children}
               </main>
             </div>
