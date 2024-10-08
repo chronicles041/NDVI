@@ -6,7 +6,7 @@ type Props = {
 
 const PageLayout = ({children} : Props) => {
   return (
-    <div className="overflow-y-auto overflow-x-hidden mb-4  bg-white  h-full  ">
+    <div className="overflow-x-hidden mb-4  bg-white  h-full  ">
       <main>{children}</main>
     </div>
   );

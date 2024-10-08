@@ -42,8 +42,8 @@ const MapIndex: React.FC = () => {
 
   return (
     <PageLayout>
-      <div className="container mx-auto p-2">
-        <h1 className="text-3xl font-bold mb-4">NDVI Map</h1>
+      <div className="p-8 flex-col">
+        <h1 className="text-3xl font-bold mb-8 underline text-green-700">Interactive NDVI visualization Map</h1>
 
         <MapContainer
           center={[44.45, -79.7]}

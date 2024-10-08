@@ -32,7 +32,7 @@ const Layout = ({ children, title = "NDVI Web Application" }: Props) => {
             <Navbar isCollapse={isCollapse} />
           </div>
           <div
-            className={`h-screen overflow-y-scroll ${
+            className={`h-screen overflow-auto   ${
               !isCollapse ? "basis-4/5" : "basis-[90%]"
             }`}
           >
@@ -41,7 +41,7 @@ const Layout = ({ children, title = "NDVI Web Application" }: Props) => {
                 " bg-gray-300 w-full"
               }
             >
-              <main className="p-4 min-h-screen mb-20 bg-gray-300 grow sdfsdfdsf">
+              <main className="p-4 min-h-screen mb-20 bg-gray-300 grow overflow-hidden">
                 {children}
               </main>
             </div>

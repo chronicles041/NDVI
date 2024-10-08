@@ -32,7 +32,7 @@ ChartJS.register(
 const Dashboard = () => {
   // Bar Chart (Farmer Enrollment Data)
   const farmerEnrollmentData = {
-    labels: ["May", "June", "July", "Auguest", "September"],
+    labels: ["May", "June", "July", "August", "September"],
     datasets: [
       {
         label: "Farmers Enrolled since May 2024",
@@ -315,7 +315,7 @@ const Dashboard = () => {
           {/* Farmer Enrollment Trend */}
           <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
             <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
-              Farmer Enrollment Trend
+              Farmer Enrollment Trend since May 2024
             </h4>
             <Bar
               data={farmerEnrollmentData}
@@ -332,7 +332,7 @@ const Dashboard = () => {
           {/* NDVI Analysis of Fields */}
           <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
             <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
-              NDVI Analysis of Fields
+              NDVI Analysis of Farms in September Month
             </h4>
             <Line
               data={ndviAnalysisData}
@@ -349,7 +349,7 @@ const Dashboard = () => {
           {/* Field Type Distribution - Pie Chart */}
           <div className="flex justify-center items-center border-[3px] border-green-400 rounded-md p-4 shadow-md">
             <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
-              Field Type Distribution
+              Field Type Distribution throught out the year
             </h4>
             <div style={{ height: "350px", width: "100%" }}>
               <Pie
@@ -367,7 +367,7 @@ const Dashboard = () => {
           {/* NDVI Heatmap Distribution */}
           <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
             <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
-              NDVI Heatmap Distribution
+              NDVI Heatmap Distribution of five months
             </h4>
             <Chart
               options={heatmapData.options}
