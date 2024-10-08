@@ -157,6 +157,10 @@ export const IconSize = {
   LOADING: {
     width: 70,
   },
+  NEW:{
+    height: 90,
+    width: 90,
+  }
 };
 
 export default ToIcon;

@@ -27,15 +27,7 @@ const Login = () => {
     localStorage.setItem("userid", mockUserInfo.id);
 
     console.log("Mock login successful");
-    Router.push("/");
-  };
-
-  const setUserInformation = () => {
-    ReportService.GetUserInformation().then((res) => {
-      localStorage.setItem("username", res.username);
-      localStorage.setItem("userid", res.id);
-      console.log("***User", res);
-    });
+    Router.push("/"); 
   };
 
   return (

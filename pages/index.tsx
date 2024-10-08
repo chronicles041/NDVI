@@ -1,80 +1,398 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import PageLayout from "../components/Pagelayout";
+import { Bar, Line, Pie } from "react-chartjs-2";
+import ToIcon, { IconSize, IconStyles, IconTypes } from "../components/ToIcons";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  LineElement,
+  ArcElement,
+} from "chart.js";
+import Chart from "react-apexcharts"; // Import ApexCharts
 
+// Register Chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+  LineElement,
+  ArcElement
+);
 
-const DashBorad = () => {
+const Dashboard = () => {
+  // Bar Chart (Farmer Enrollment Data)
+  const farmerEnrollmentData = {
+    labels: ["May", "June", "July", "Auguest", "September"],
+    datasets: [
+      {
+        label: "Farmers Enrolled since May 2024",
+        data: [10, 20, 30, 40, 60],
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Line Chart (NDVI Analysis)
+  const ndviAnalysisData = {
+    labels: [
+      "Farm 121 - Ontario",
+      "Farm 267 - Ontario",
+      "Farm 344 - Ontario",
+      "Farm 411 - Ontario",
+      "Farm 536 - Ontario",
+    ],
+    datasets: [
+      {
+        label: "NDVI Value throught out Spetemeber 2024",
+        data: [0.45, 0.7, 0.35, 0.8, 0.7],
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        borderColor: "rgba(153, 102, 255, 1)",
+        fill: false,
+        tension: 0.4,
+      },
+    ],
+  };
+
+  // Pie Chart (Field Types)
+  const fieldTypeData = {
+    labels: ["Wheat", "Rice", "Corn", "Soybean"],
+    datasets: [
+      {
+        data: [30, 20, 25, 25],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+      },
+    ],
+  };
+
+  // Heatmap (NDVI Value Distribution per Region using ApexCharts)
+  const heatmapData = {
+    series: [
+      {
+        name: "Farm 121 - ON",
+        data: [0.45, 0.65, 0.72, 0.85],
+      },
+      {
+        name: "Farm 224 - ON",
+        data: [0.3, 0.5, 0.78, 0.65],
+      },
+      {
+        name: "Farm 344 - ON",
+        data: [0.55, 0.45, 0.88, 0.55],
+      },
+    ],
+    options: {
+      chart: {
+        type: "heatmap",
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        heatmap: {
+          shadeIntensity: 0.5,
+          colorScale: {
+            ranges: [
+              {
+                from: 0,
+                to: 0.5,
+                color: "#FF0000",
+              },
+              {
+                from: 0.51,
+                to: 0.7,
+                color: "#FFA500",
+              },
+              {
+                from: 0.71,
+                to: 1,
+                color: "#008000",
+              },
+            ],
+          },
+        },
+      },
+      title: {
+        text: "NDVI Heatmap Distribution by Region",
+      },
+      dataLabels: {
+        enabled: true,
+      },
+      xaxis: {
+        categories: ["Barrie", "Midland", "Innisfil", "Penetangusine"],
+      },
+    },
+  };
+
+  // Scatter Plot (NDVI vs Crop Yield Analysis using ApexCharts)
+  const scatterData = {
+    series: [
+      {
+        name: "Crop Yield",
+        data: [
+          [0.45, 120],
+          [0.5, 150],
+          [0.6, 180],
+          [0.75, 250],
+          [0.85, 300],
+        ],
+      },
+    ],
+    options: {
+      chart: {
+        height: 350,
+        type: "scatter",
+        zoom: {
+          enabled: true,
+          type: "xy",
+        },
+      },
+      xaxis: {
+        title: {
+          text: "NDVI Values",
+        },
+      },
+      yaxis: {
+        title: {
+          text: "Crop Yield (kg/hectare)",
+        },
+      },
+      title: {
+        text: "Correlation between NDVI Values and Crop Yield",
+      },
+    },
+  };
 
   return (
     <PageLayout>
-       <div className="mb-12 grid gap-y-10 gap-x-6 grid-cols-1 xl:grid-cols-2 py-20 px-10">
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-          <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-              <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"></path>
-              <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z" clip-rule="evenodd"></path>
-              <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z"></path>
-            </svg>
+      <div className="grid gap-y-4 gap-x-6 grid-cols-1 xl:grid-cols-2 py-20 px-10">
+        <div className="flex flex-col bg-white p-6 rounded-xl shadow-md border-[3px] border-green-300 transition-transform transform hover:scale-95">
+          <div className="flex items-center mb-6 gap-10">
+            <ToIcon
+              type={IconTypes.User}
+              size={IconSize.NEW}
+              style={IconStyles.Default}
+            />
+            <h3 className="text-2xl font-semibold text-blue-gray-800 ">
+              Total Farmers Enrolled
+            </h3>
           </div>
-          <div className="p-4 text-right">
-            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Farmer's Enrolled</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">23</h4>
-          </div>
-          <div className="border-t border-blue-gray-50 p-4">
-            <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-              <strong className="text-green-500">+55%</strong>&nbsp;than last week
-            </p>
-          </div>
-        </div>
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-          <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-              <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"></path>
-            </svg>
-          </div>
-          <div className="p-4 text-right">
-            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Today's Users</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">18</h4>
-          </div>
-          <div className="border-t border-blue-gray-50 p-4">
-            <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-              <strong className="text-green-500">+3%</strong>&nbsp;than last month
-            </p>
+          <h4 className="text-3xl font-semibold text-blue-gray-900">
+            56 Farmers
+          </h4>
+          <div className="relative w-full h-2 mt-2">
+            <div className="absolute inset-0 bg-blue-gray-200 rounded" />
+            <div
+              className="bg-green-500 h-full rounded transition-all duration-300"
+              style={{ width: "56%" }}
+            />{" "}
+            {/* Solid Progress Bar */}
           </div>
         </div>
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-          <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-              <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"></path>
-            </svg>
+
+        {/* Card for Total Fields Analyzed */}
+        <div className="flex flex-col bg-white p-6 rounded-xl shadow-md border-[3px] border-green-300 transition-transform transform hover:scale-95">
+          <div className="flex items-center mb-6 gap-10">
+            <ToIcon
+              type={IconTypes.Farm}
+              size={IconSize.NEW}
+              style={IconStyles.Default}
+            />
+            <h3 className="text-2xl font-semibold text-blue-gray-800">
+              Total Fields Analyzed
+            </h3>
           </div>
-          <div className="p-4 text-right">
-            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">New Clients</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">32</h4>
-          </div>
-          <div className="border-t border-blue-gray-50 p-4">
-            <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-              <strong className="text-red-500">-2%</strong>&nbsp;than yesterday
-            </p>
+          <h4 className="text-3xl font-semibold text-blue-gray-900">
+            124 Fields
+          </h4>
+          <div className="relative w-full h-2 mt-2">
+            <div className="absolute inset-0 bg-blue-gray-200 rounded" />
+            <div
+              className="bg-orange-500 h-full rounded transition-all duration-300 striped-progress"
+              style={{ width: "80%" }}
+            />{" "}
+            {/* Striped Progress Bar */}
           </div>
         </div>
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-          <div className="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-6 h-6 text-white">
-              <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"></path>
-            </svg>
+
+        {/* Card for Average NDVI Value */}
+        <div className="flex flex-col bg-white p-6 rounded-xl shadow-md  border-[3px] border-green-300 transition-transform transform hover:scale-95">
+          <div className="flex items-center mb-6 gap-10">
+            <ToIcon
+              type={IconTypes.Dressing}
+              size={IconSize.NEW}
+              style={IconStyles.Default}
+            />
+            <h3 className="text-2xl font-semibold text-blue-gray-800">
+              Average NDVI Value
+            </h3>
           </div>
-          <div className="p-4 text-right">
-            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Sales</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">$100</h4>
+          <h4 className="text-3xl font-semibold text-blue-gray-900">0.67</h4>
+          <div className="relative w-full h-2 mt-2">
+            <div className="absolute inset-0 bg-blue-gray-200 rounded" />
+            <div
+              className="bg-gradient-to-r from-purple-500 to-blue-500 h-full rounded transition-all duration-300"
+              style={{ width: "67%" }}
+            />{" "}
+            {/* Gradient Progress Bar */}
           </div>
-          <div className="border-t border-blue-gray-50 p-4">
-            <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
-              <strong className="text-green-500">+5%</strong>&nbsp;than yesterday
-            </p>
+        </div>
+
+        {/* Card for NDVI Alerts */}
+        <div className="flex flex-col bg-white p-6 rounded-xl shadow-md  border-[3px] border-green-300 transition-transform transform hover:scale-95">
+          <div className="flex items-center mb-6 gap-10">
+            <ToIcon
+              type={IconTypes.Project}
+              size={IconSize.NEW}
+              style={IconStyles.Default}
+            />
+            <h3 className="text-2xl font-bold text-blue-gray-800">
+              NDVI Alerts
+            </h3>
+          </div>
+          <h4 className="text-3xl font-semibold text-blue-gray-900">
+            7 Fields Below Threshold
+          </h4>
+          <div className="relative w-full h-2 mt-2">
+            <div className="absolute inset-0 bg-blue-gray-200 rounded" />
+            <div
+              className="bg-red-500 h-full rounded transition-all duration-300 animated-progress"
+              style={{ width: "30%" }}
+            />{" "}
+            {/* Animated Progress Bar */}
+          </div>
+        </div>
+      </div>
+
+      {/* Add styles for different progress bars */}
+      <style jsx>{`
+        .striped-progress {
+          background-image: linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+          );
+          background-size: 1rem 1rem;
+        }
+
+        .animated-progress {
+          animation: loading 2s infinite alternate;
+        }
+
+        @keyframes loading {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 30%; /* Change the width based on your progress */
+          }
+        }
+      `}</style>
+      {/* Analysis Section */}
+      <div className="px-10 py-10 bg-white shadow-md rounded-lg">
+        <h2 className="text-4xl font-bold text-green-700 mb-12 text-center underline">
+          Data Analysis
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Farmer Enrollment Trend */}
+          <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
+            <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
+              Farmer Enrollment Trend
+            </h4>
+            <Bar
+              data={farmerEnrollmentData}
+              options={{
+                responsive: true,
+                scales: {
+                  x: { ticks: { color: "#272524" } },
+                  y: { ticks: { color: "#272524" } },
+                },
+              }}
+            />
+          </div>
+
+          {/* NDVI Analysis of Fields */}
+          <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
+            <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
+              NDVI Analysis of Fields
+            </h4>
+            <Line
+              data={ndviAnalysisData}
+              options={{
+                responsive: true,
+                scales: {
+                  x: { ticks: { color: "#272524" } },
+                  y: { ticks: { color: "#272524" } },
+                },
+              }}
+            />
+          </div>
+
+          {/* Field Type Distribution - Pie Chart */}
+          <div className="flex justify-center items-center border-[3px] border-green-400 rounded-md p-4 shadow-md">
+            <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
+              Field Type Distribution
+            </h4>
+            <div style={{ height: "350px", width: "100%" }}>
+              <Pie
+                data={fieldTypeData}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: { labels: { color: "#272524"} },
+                  },
+                }}
+              />
+            </div>
+          </div>
+
+          {/* NDVI Heatmap Distribution */}
+          <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
+            <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
+              NDVI Heatmap Distribution
+            </h4>
+            <Chart
+              options={heatmapData.options}
+              series={heatmapData.series}
+              type="heatmap"
+              height={350}
+            />
+          </div>
+
+          {/* NDVI vs Crop Yield - Scatter Plot */}
+          <div className="border-[3px] border-green-400 rounded-md p-4 shadow-md">
+            <h4 className="text-2xl font-semibold text-green-800 mb-6 underline">
+              NDVI vs Crop Yield
+            </h4>
+            <Chart
+              options={scatterData.options}
+              series={scatterData.series}
+              type="scatter"
+              height={350}
+            />
           </div>
         </div>
       </div>
     </PageLayout>
   );
 };
-export default DashBorad;
+
+export default Dashboard;

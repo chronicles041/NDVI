@@ -1,5 +1,5 @@
 import moment from "moment";
-import ToModal from "../../components/ToModal";
+import ToModal from "../ToModal";
 import { IconSize, IconTypes } from "../ToIcons";
 const DetailViewForm = ({ detailData }) => {
   const onDetailClick = () => {

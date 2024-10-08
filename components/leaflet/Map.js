@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import { DisasterResponse } from "../Maps/disasterResponse.js";
-import LeafletMap from "./leafletMap";
-import MapService from "../Maps/mapService";
-import FarmList from "../Maps/farmList";
-import ColorPalette from "../Maps/colorPalate";
-import DateList from "../Maps/dateSlider";
-import TimeSeriesGraph from "../Maps/timeSeries";
-import FieldWeather from "../Maps/weather";
+import LeafletMap from "./leafletMap.js";
+import MapService from "../Maps/mapService.js";
+import FarmList from "../Maps/farmList.js";
+import ColorPalette from "../Maps/colorPalate.js";
+import DateList from "../Maps/dateSlider.js";
+import TimeSeriesGraph from "../Maps/timeSeries.js";
+import FieldWeather from "../Maps/weather.js";
 import dynamic from 'next/dynamic'
 
 

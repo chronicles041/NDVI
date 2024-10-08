@@ -3,8 +3,8 @@ import React, { useMemo } from "react";
 import styled, { css } from "styled-components";
 import ToIcon, { IconSize, IconTypes } from "../ToIcons";
 import ToModal from "../ToModal";
-import DetailView from "../ToActivity/DeatilView";
-import FieldVisitView from "../ToActivity/FieldVisit";
+import DetailView from "./DeatilView";
+import FieldVisitView from "./FieldVisit";
 
 const DragItem = styled.div`
   //   padding: 10px;
