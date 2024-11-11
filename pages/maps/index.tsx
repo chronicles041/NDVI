@@ -1,21 +1,24 @@
 // src/NDVIMap.tsx
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Polygon } from "react-leaflet";
+import { MapContainer, TileLayer, Polygon, useMap } from "react-leaflet";
 import { LatLngTuple } from "leaflet";
 import { fetchNDVIAndMapImage } from "./FetchNDVI";
 import PageLayout from "../../components/Pagelayout";
+import Ndvifetch from "./Ndvifetch";
 const fieldCoordinates: LatLngTuple[] = [
-  [44.45, -79.7],
-  [44.45, -79.68], // Point 2
-  [44.43, -79.68], // Point 3
-  [44.43, -79.7], // Point 4
-  [44.45, -79.7], // Point 1 again to close the polygon
+  [44.419988, -79.737911],
+  [44.416678, -79.744949], // Point 2
+  [44.409842, -79.739027], // Point 3
+  [44.412907, -79.731774], // Point 4
+  [44.419988, -79.737911], // Point 1 again to close the polygon
 ];
 
 // Define the bounding box (bbox) for the NDVI data request
 const bbox: [number, number, number, number] = [
   -80.50702, 43.47244, -80.504, 43.47456,
 ];
+
+const centerPosition: [number, number] = [44.416678, -79.7]; // Initial center
 
 const MapIndex: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -40,43 +43,47 @@ const MapIndex: React.FC = () => {
     setLoading(false);
   };
 
+ // Recenter Button component
+const RecenterButton: React.FC<{ center: [number, number] }> = ({ center }) => {
+  const map = useMap();
+
+  const recenterMap = () => {
+    map.setView(center, 12); // Reset zoom to 12, or use map.getZoom() if you want to maintain current zoom level
+  };
+
+  return (
+    <button
+      onClick={recenterMap}
+      className="bg-green-600 text-white px-6 text-md py-4 font-bold rounded shadow-lg hover:bg-green-400 focus:outline-none border-2 border-white"
+      style={{ position: "absolute", top: "10px", right: "10px", zIndex: 1000 }}
+    >
+      Re-center
+    </button>
+  );
+};
+
   return (
     <PageLayout>
-      <div className="p-8 flex-col">
-        <h1 className="text-3xl font-bold mb-8 underline text-green-700">Interactive NDVI visualization Map</h1>
+    <div className="p-8 flex-col">
+      <h1 className="text-3xl font-bold mb-8 underline text-green-700">
+        Interactive NDVI Visualization Map
+      </h1>
 
-        <MapContainer
-          center={[44.45, -79.7]}
-          zoom={11}
-          style={{ height: "400px" }}
-        >
+      {/* Wrap MapContainer in a relative div */}
+      <div className="relative" style={{ height: "400px" }}>
+        <MapContainer center={centerPosition} zoom={12} style={{ height: "100%" }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           <Polygon positions={fieldCoordinates} color="green" />
+          <RecenterButton center={centerPosition} /> {/* Add the RecenterButton */}
         </MapContainer>
-
-        <button
-          onClick={fetchData}
-          className="bg-blue-500 text-white py-2 px-4 mt-4 rounded"
-          disabled={loading}
-        >
-          {loading ? "Loading NDVI..." : "Fetch NDVI"}
-        </button>
-
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-
-        {ndviData && (
-          <div className="mt-4">
-            <h2 className="text-2xl">NDVI Data:</h2>
-            <p>Average NDVI: {calculateAverageNDVI(ndviData)}</p>
-            {/* You can display the NDVI image if needed */}
-            {imageUrl && <img src={imageUrl} alt="NDVI Map" className="mt-4" />}
-          </div>
-        )}
       </div>
-    </PageLayout>
+
+      <Ndvifetch />
+    </div>
+  </PageLayout>
   );
 };
 

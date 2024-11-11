@@ -8,7 +8,7 @@ interface NDVIResponse {
 
 export const fetchNDVIAndMapImage = async (
   bbox: [number, number, number, number],
-  dateFrom: string,
+  dateFrom: string, 
   dateTo: string
 ): Promise<{ ndviResponse: NDVIResponse | null; imageUrl: string | null }> => {
   const requestBody = {
