@@ -12,15 +12,16 @@ export const Routes = [
         icon: IconTypes.User,
         name: "Users"
     },
-    // {
-    //     path: "/fields",
-    //     icon: IconTypes.Farm,
-    //     name: "Fields"
-    // },
+ 
     {
         path: "/maps",
         icon: IconTypes.Farm,
         name: "Maps"
+    },
+    {
+        path: "/Ndvianalysis",
+        icon: IconTypes.Dressing,
+        name: "NDVI Aanalysis"
     },
     // {
     //     path: "/activities",
