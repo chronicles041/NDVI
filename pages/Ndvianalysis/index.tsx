@@ -60,7 +60,7 @@ const Ndvianalysis: React.FC = () => {
         
         {/* NDVI Trend Analysis */}
         <div className="p-8 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">NDVI Trend Over Time</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">NDVI Trend Over Time of Spring water Farm</h2>
           <p className="text-gray-600 mb-6">
             This chart represents NDVI variations over the year, reflecting vegetation health and
             density changes in Spring Water Field.
@@ -78,7 +78,7 @@ const Ndvianalysis: React.FC = () => {
 
         {/* Crop Health Analysis */}
         <div className="p-8 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Crop Health Analysis</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Crop Health Analysis </h2>
           <p className="text-gray-600 mb-6">
             A breakdown of the crop health across the field, identifying areas that require
             monitoring or intervention.

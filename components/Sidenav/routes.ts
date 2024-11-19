@@ -28,11 +28,11 @@ export const Routes = [
     //     icon: IconTypes.Activity,
     //     name: "Activities"
     // },
-    // {
-    //     path: "/weather",
-    //     icon: IconTypes.Weather,
-    //     name: "Weather"
-    // },
+    {
+         path: "/weather",
+         icon: IconTypes.Weather,
+         name: "Weather"
+    },
     // {
     //     path: "/reports",
     //     icon: IconTypes.Report,
