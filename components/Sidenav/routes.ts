@@ -33,16 +33,11 @@ export const Routes = [
          icon: IconTypes.Weather,
          name: "Weather"
     },
-    // {
-    //     path: "/reports",
-    //     icon: IconTypes.Report,
-    //     name: "Reports"
-    // },
-    // {
-    //     path: "/weather",
-    //     icon: IconTypes.Weather,
-    //     name: "Weather"
-    // },
+    {
+        path: "/report",
+        icon: IconTypes.Expert,
+        name: "Talk to Expert"
+    },
     // {
     //     path: "/activity",
     //     icon: IconTypes.Activity,
